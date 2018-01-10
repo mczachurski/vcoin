@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		F810C43A20011984001BE909 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C43920011984001BE909 /* AppDelegate.swift */; };
-		F810C43C20011984001BE909 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C43B20011984001BE909 /* ViewController.swift */; };
 		F810C43F20011984001BE909 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F810C43D20011984001BE909 /* Main.storyboard */; };
 		F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F810C44020011984001BE909 /* vcoin.xcdatamodeld */; };
 		F810C44420011984001BE909 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F810C44320011984001BE909 /* Assets.xcassets */; };
 		F810C44720011984001BE909 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F810C44520011984001BE909 /* LaunchScreen.storyboard */; };
 		F810C45220011984001BE909 /* vcoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C45120011984001BE909 /* vcoinTests.swift */; };
 		F810C45D20011984001BE909 /* vcoinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C45C20011984001BE909 /* vcoinUITests.swift */; };
+		F810C46B200119F1001BE909 /* CoinTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C46A200119F1001BE909 /* CoinTableViewController.swift */; };
+		F810C47020011D82001BE909 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C46F20011D82001BE909 /* Coin.swift */; };
+		F810C47120011ED8001BE909 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F810C46C20011D55001BE909 /* HandyJSON.framework */; };
+		F810C47220011ED8001BE909 /* HandyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F810C46C20011D55001BE909 /* HandyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84D440E200238C2000578E5 /* CoinViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +38,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F810C47320011ED8001BE909 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F810C47220011ED8001BE909 /* HandyJSON.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		F810C43620011984001BE909 /* vcoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vcoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F810C43920011984001BE909 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F810C43B20011984001BE909 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F810C43E20011984001BE909 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F810C44120011984001BE909 /* vcoin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = vcoin.xcdatamodel; sourceTree = "<group>"; };
 		F810C44320011984001BE909 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +66,10 @@
 		F810C45820011984001BE909 /* vcoinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vcoinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F810C45C20011984001BE909 /* vcoinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vcoinUITests.swift; sourceTree = "<group>"; };
 		F810C45E20011984001BE909 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F810C46A200119F1001BE909 /* CoinTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewController.swift; sourceTree = "<group>"; };
+		F810C46C20011D55001BE909 /* HandyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HandyJSON.framework; path = Carthage/Build/iOS/HandyJSON.framework; sourceTree = "<group>"; };
+		F810C46F20011D82001BE909 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		F84D440E200238C2000578E5 /* CoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F810C47120011ED8001BE909 /* HandyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +101,7 @@
 		F810C42D20011984001BE909 = {
 			isa = PBXGroup;
 			children = (
+				F810C46C20011D55001BE909 /* HandyJSON.framework */,
 				F810C43820011984001BE909 /* vcoin */,
 				F810C45020011984001BE909 /* vcoinTests */,
 				F810C45B20011984001BE909 /* vcoinUITests */,
@@ -99,13 +122,15 @@
 		F810C43820011984001BE909 /* vcoin */ = {
 			isa = PBXGroup;
 			children = (
+				F810C46E20011D6E001BE909 /* Model */,
 				F810C43920011984001BE909 /* AppDelegate.swift */,
-				F810C43B20011984001BE909 /* ViewController.swift */,
 				F810C43D20011984001BE909 /* Main.storyboard */,
 				F810C44320011984001BE909 /* Assets.xcassets */,
 				F810C44520011984001BE909 /* LaunchScreen.storyboard */,
 				F810C44820011984001BE909 /* Info.plist */,
 				F810C44020011984001BE909 /* vcoin.xcdatamodeld */,
+				F810C46A200119F1001BE909 /* CoinTableViewController.swift */,
+				F84D440E200238C2000578E5 /* CoinViewController.swift */,
 			);
 			path = vcoin;
 			sourceTree = "<group>";
@@ -128,6 +153,14 @@
 			path = vcoinUITests;
 			sourceTree = "<group>";
 		};
+		F810C46E20011D6E001BE909 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F810C46F20011D82001BE909 /* Coin.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +171,7 @@
 				F810C43220011984001BE909 /* Sources */,
 				F810C43320011984001BE909 /* Frameworks */,
 				F810C43420011984001BE909 /* Resources */,
+				F810C47320011ED8001BE909 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -262,9 +296,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F810C43C20011984001BE909 /* ViewController.swift in Sources */,
 				F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */,
 				F810C43A20011984001BE909 /* AppDelegate.swift in Sources */,
+				F810C47020011D82001BE909 /* Coin.swift in Sources */,
+				F810C46B200119F1001BE909 /* CoinTableViewController.swift in Sources */,
+				F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +468,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5UJ67W372Y;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = vcoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sltch.vcoin;
@@ -447,6 +487,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5UJ67W372Y;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = vcoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sltch.vcoin;
