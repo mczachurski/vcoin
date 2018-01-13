@@ -52,8 +52,6 @@ class CoinTableViewController: UITableViewController {
         
         self.lastLoadedPriceIndex = startIndex + 49
         
-        print("Wczytuję: \(self.lastLoadedPriceIndex) / \(startIndex)")
-        
         let priceRequest = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/pricemulti?fsyms=\(coinsSymbols)&tsyms=USD")!)
         
         let session = URLSession.shared
@@ -141,13 +139,7 @@ class CoinTableViewController: UITableViewController {
             loadCoinsPrices(startIndex: indexPath.row)
         }
         else {
-            let currencyFormatter = NumberFormatter()
-            currencyFormatter.usesGroupingSeparator = true
-            currencyFormatter.numberStyle = NumberFormatter.Style.currency
-            // localize to your grouping and decimal separator
-            currencyFormatter.locale = Locale(identifier: "en-US")
-            let priceString = currencyFormatter.string(from: NSNumber(value: coin.Price ?? 0.0))
-            cell.detailTextLabel?.text = priceString
+            cell.detailTextLabel?.text = coin.Price?.toFormattedPrice()
         }
         
         // Configure selection.

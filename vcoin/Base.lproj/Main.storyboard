@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexBackgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.1803921568627451" green="0.18823529411764706" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="coinitem" textLabel="mva-tl-xM4" detailTextLabel="Xum-qJ-LhF" style="IBUITableViewCellStyleValue1" id="u7X-qg-L84">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -95,23 +95,32 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQ9-AS-Iux" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="224" width="375" height="269"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="hCq-by-smd" firstAttribute="trailing" secondItem="EU3-4b-Wgy" secondAttribute="trailing" constant="16" id="2AS-EN-3pD"/>
                             <constraint firstItem="hCq-by-smd" firstAttribute="trailing" secondItem="QY8-h1-uOI" secondAttribute="trailing" constant="16" id="3SX-1l-c9D"/>
+                            <constraint firstItem="UQ9-AS-Iux" firstAttribute="leading" secondItem="hCq-by-smd" secondAttribute="leading" id="8wf-d1-YAb"/>
                             <constraint firstItem="EU3-4b-Wgy" firstAttribute="top" secondItem="QY8-h1-uOI" secondAttribute="bottom" constant="29" id="CdA-T4-oqV"/>
                             <constraint firstItem="QY8-h1-uOI" firstAttribute="leading" secondItem="hCq-by-smd" secondAttribute="leading" constant="16" id="DpF-O0-2jl"/>
+                            <constraint firstItem="UQ9-AS-Iux" firstAttribute="trailing" secondItem="hCq-by-smd" secondAttribute="trailing" id="Dqr-By-5Ee"/>
                             <constraint firstItem="hCq-by-smd" firstAttribute="trailing" secondItem="DNk-Ig-yRU" secondAttribute="trailing" constant="16" id="MPM-2o-AsB"/>
                             <constraint firstItem="QY8-h1-uOI" firstAttribute="top" secondItem="DNk-Ig-yRU" secondAttribute="bottom" constant="8" id="WHy-Ll-Mhf"/>
+                            <constraint firstItem="UQ9-AS-Iux" firstAttribute="top" secondItem="EU3-4b-Wgy" secondAttribute="bottom" constant="8" id="fnI-3n-Nff"/>
                             <constraint firstItem="EU3-4b-Wgy" firstAttribute="leading" secondItem="hCq-by-smd" secondAttribute="leading" constant="16" id="iEw-Ag-FMK"/>
                             <constraint firstItem="DNk-Ig-yRU" firstAttribute="top" secondItem="hCq-by-smd" secondAttribute="top" constant="77" id="lGf-3X-Shr"/>
                             <constraint firstItem="DNk-Ig-yRU" firstAttribute="leading" secondItem="hCq-by-smd" secondAttribute="leading" constant="16" id="rpD-SF-Ecv"/>
+                            <constraint firstItem="hCq-by-smd" firstAttribute="bottom" secondItem="UQ9-AS-Iux" secondAttribute="bottom" constant="58" id="x2i-zr-EfS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hCq-by-smd"/>
                     </view>
                     <navigationItem key="navigationItem" id="bfW-Em-LLs"/>
                     <connections>
+                        <outlet property="barChart" destination="UQ9-AS-Iux" id="93K-Lv-kbG"/>
                         <outlet property="coinName" destination="DNk-Ig-yRU" id="N8M-xw-nDx"/>
                         <outlet property="coinPrice" destination="EU3-4b-Wgy" id="HwX-5c-oAh"/>
                         <outlet property="coinShort" destination="QY8-h1-uOI" id="Ro8-j2-f6i"/>
@@ -119,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TNS-w9-NTs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1908" y="93"/>
+            <point key="canvasLocation" x="1908" y="92.203898050974516"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3gL-Cx-gOM">
@@ -129,8 +138,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="ceK-2U-R4C">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.94117647058823528" green="0.396078431372549" blue="0.031372549019607843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>

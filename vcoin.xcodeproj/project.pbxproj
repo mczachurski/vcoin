@@ -18,7 +18,11 @@
 		F810C47020011D82001BE909 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C46F20011D82001BE909 /* Coin.swift */; };
 		F810C47120011ED8001BE909 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F810C46C20011D55001BE909 /* HandyJSON.framework */; };
 		F810C47220011ED8001BE909 /* HandyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F810C46C20011D55001BE909 /* HandyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F8238B84200A01020011A03D /* CoinValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8238B83200A01020011A03D /* CoinValue.swift */; };
 		F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84D440E200238C2000578E5 /* CoinViewController.swift */; };
+		F8839E14200935DE005B056A /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8839E13200935DE005B056A /* Float.swift */; };
+		F8FF599C2006B5F700489434 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FF599A2006B5EE00489434 /* Charts.framework */; };
+		F8FF599D2006B5F700489434 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F8FF599A2006B5EE00489434 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F810C47220011ED8001BE909 /* HandyJSON.framework in Embed Frameworks */,
+				F8FF599D2006B5F700489434 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,7 +74,10 @@
 		F810C46A200119F1001BE909 /* CoinTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewController.swift; sourceTree = "<group>"; };
 		F810C46C20011D55001BE909 /* HandyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HandyJSON.framework; path = Carthage/Build/iOS/HandyJSON.framework; sourceTree = "<group>"; };
 		F810C46F20011D82001BE909 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		F8238B83200A01020011A03D /* CoinValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinValue.swift; sourceTree = "<group>"; };
 		F84D440E200238C2000578E5 /* CoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewController.swift; sourceTree = "<group>"; };
+		F8839E13200935DE005B056A /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
+		F8FF599A2006B5EE00489434 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8FF599C2006B5F700489434 /* Charts.framework in Frameworks */,
 				F810C47120011ED8001BE909 /* HandyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +110,7 @@
 		F810C42D20011984001BE909 = {
 			isa = PBXGroup;
 			children = (
+				F8FF599A2006B5EE00489434 /* Charts.framework */,
 				F810C46C20011D55001BE909 /* HandyJSON.framework */,
 				F810C43820011984001BE909 /* vcoin */,
 				F810C45020011984001BE909 /* vcoinTests */,
@@ -122,6 +132,7 @@
 		F810C43820011984001BE909 /* vcoin */ = {
 			isa = PBXGroup;
 			children = (
+				F8839E12200935CC005B056A /* Extensions */,
 				F810C46E20011D6E001BE909 /* Model */,
 				F810C43920011984001BE909 /* AppDelegate.swift */,
 				F810C43D20011984001BE909 /* Main.storyboard */,
@@ -157,8 +168,17 @@
 			isa = PBXGroup;
 			children = (
 				F810C46F20011D82001BE909 /* Coin.swift */,
+				F8238B83200A01020011A03D /* CoinValue.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F8839E12200935CC005B056A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F8839E13200935DE005B056A /* Float.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +318,8 @@
 			files = (
 				F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */,
 				F810C43A20011984001BE909 /* AppDelegate.swift in Sources */,
+				F8238B84200A01020011A03D /* CoinValue.swift in Sources */,
+				F8839E14200935DE005B056A /* Float.swift in Sources */,
 				F810C47020011D82001BE909 /* Coin.swift in Sources */,
 				F810C46B200119F1001BE909 /* CoinTableViewController.swift in Sources */,
 				F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */,
