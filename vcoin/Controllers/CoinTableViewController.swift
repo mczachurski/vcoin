@@ -8,10 +8,12 @@
 
 import UIKit
 
-class CoinTableViewController: UITableViewController {
+class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
 
     private var coinsDataSource: [Coin] = []
+    private var filteredDataSource: [Coin] = []
     private var lastLoadedPriceIndex = -1
+    private var filtr = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +35,7 @@ class CoinTableViewController: UITableViewController {
     }
     
     private func removeNavigationBarSeparator() {
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        //self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        //self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
     
     private func removeTableViewCellSeparator() {
@@ -44,8 +43,33 @@ class CoinTableViewController: UITableViewController {
     }
     
     private func addSearchControl() {
-        //let sc = UISearchController(searchResultsController: nil)
-        //self.navigationItem.searchController = sc
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.barTintColor = UIColor.main
+        searchController.searchBar.tintColor = UIColor.main
+        
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        
+        self.navigationItem.searchController = searchController
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        self.filtr = searchController.searchBar.text!
+        self.reloadData()
+    }
+    
+    private func reloadData() {
+        if self.filtr == "" {
+            self.filteredDataSource = self.coinsDataSource
+        } else {
+            self.filteredDataSource = self.coinsDataSource.filter() { $0.FullName?.range(of: self.filtr) != nil }
+        }
+        
+        self.tableView.reloadData()
     }
     
     private func addRefreshControl() {
@@ -133,7 +157,7 @@ class CoinTableViewController: UITableViewController {
                     
                     DispatchQueue.main.async {
                         self.coinsDataSource = coins
-                        self.tableView.reloadData()
+                        self.reloadData()
                         self.refreshControl?.endRefreshing()
                     }
                 }
@@ -157,7 +181,7 @@ class CoinTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.coinsDataSource.count
+        return self.filteredDataSource.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -168,7 +192,7 @@ class CoinTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "coinitem", for: indexPath)
 
         // Configure the cell.
-        let coin = self.coinsDataSource[indexPath.row]
+        let coin = self.filteredDataSource[indexPath.row]
         cell.textLabel?.text = coin.FullName
         
         if coin.Price == nil {
@@ -198,7 +222,7 @@ class CoinTableViewController: UITableViewController {
         if segue.identifier == "coindetails" {
             if let destination = segue.destination as? CoinViewController {
                 if let selectedPath = self.tableView.indexPathForSelectedRow {
-                    destination.coin = self.coinsDataSource[selectedPath.row]
+                    destination.coin = self.filteredDataSource[selectedPath.row]
                 }
             }
         }
