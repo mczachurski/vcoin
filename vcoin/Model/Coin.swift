@@ -26,7 +26,7 @@ public class Coin {
     public var TotalCoinsFreeFloat:String?
     public var Url:String?
     
-    public var Price:Float?
+    public var Price:Double?
     
     init(data:[String:Any]) {
         FullName = data["FullName"] as? String

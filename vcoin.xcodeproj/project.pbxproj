@@ -19,7 +19,7 @@
 		F84CB8BA200B79ED00A4AD3F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FF599A2006B5EE00489434 /* Charts.framework */; };
 		F84CB8BB200B79F000A4AD3F /* SwipeMenuViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */; };
 		F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84D440E200238C2000578E5 /* CoinViewController.swift */; };
-		F8839E14200935DE005B056A /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8839E13200935DE005B056A /* Float.swift */; };
+		F8839E14200935DE005B056A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8839E13200935DE005B056A /* Double.swift */; };
 		F8F97433200B3DC700FE864A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F97432200B3DC700FE864A /* UIColor.swift */; };
 		F8F9743A200B57BA00FE864A /* ChartRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F97439200B57BA00FE864A /* ChartRange.swift */; };
 /* End PBXBuildFile section */
@@ -58,7 +58,7 @@
 		F810C46A200119F1001BE909 /* CoinTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewController.swift; sourceTree = "<group>"; };
 		F810C46F20011D82001BE909 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		F84D440E200238C2000578E5 /* CoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewController.swift; sourceTree = "<group>"; };
-		F8839E13200935DE005B056A /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
+		F8839E13200935DE005B056A /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		F8F97432200B3DC700FE864A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeMenuViewController.framework; path = Carthage/Build/iOS/SwipeMenuViewController.framework; sourceTree = "<group>"; };
 		F8F97439200B57BA00FE864A /* ChartRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRange.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 		F8839E12200935CC005B056A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F8839E13200935DE005B056A /* Float.swift */,
+				F8839E13200935DE005B056A /* Double.swift */,
 				F8F97432200B3DC700FE864A /* UIColor.swift */,
 			);
 			path = Extensions;
@@ -341,7 +341,7 @@
 				F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */,
 				F810C43A20011984001BE909 /* AppDelegate.swift in Sources */,
 				F8F9743A200B57BA00FE864A /* ChartRange.swift in Sources */,
-				F8839E14200935DE005B056A /* Float.swift in Sources */,
+				F8839E14200935DE005B056A /* Double.swift in Sources */,
 				F810C47020011D82001BE909 /* Coin.swift in Sources */,
 				F8F97433200B3DC700FE864A /* UIColor.swift in Sources */,
 				F810C46B200119F1001BE909 /* CoinTableViewController.swift in Sources */,

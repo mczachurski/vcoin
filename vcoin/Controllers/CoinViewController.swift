@@ -13,7 +13,8 @@ import SwipeMenuViewController
 class CoinViewController: UIViewController, ChartViewDelegate, SwipeMenuViewDelegate, SwipeMenuViewDataSource {
 
     public var coin:Coin?
-
+    public var coinPercentage:[Int:Double] = [:]
+    
     @IBOutlet weak var swipeMenuView: SwipeMenuView! {
         didSet {
             swipeMenuView.delegate = self
@@ -36,6 +37,7 @@ class CoinViewController: UIViewController, ChartViewDelegate, SwipeMenuViewDele
     @IBOutlet weak var coinName: UILabel!
     @IBOutlet weak var coinShort: UILabel!
     @IBOutlet weak var coinPrice: UILabel!
+    @IBOutlet weak var coinDifference: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,13 +48,14 @@ class CoinViewController: UIViewController, ChartViewDelegate, SwipeMenuViewDele
         self.coinName.text = self.coin?.CoinName
         self.coinShort.text = self.coin?.Symbol
         self.coinPrice.text = self.coin?.Price?.toFormattedPrice()
+        self.coinDifference.text = ""
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    private func getChartValues(chartRange: ChartRange) -> LineChartView {
+    private func getChartValues(chartRange: ChartRange, index: Int) -> LineChartView {
         
         let short = self.coin!.Symbol!
         let lineChart = LineChartView()
@@ -80,7 +83,7 @@ class CoinViewController: UIViewController, ChartViewDelegate, SwipeMenuViewDele
             do {
                 if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any] {
                     if let coinsValues = json["Data"] as? [AnyObject] {
-                        self.loadChart(lineChart: lineChart, coinValues: coinsValues)
+                        self.loadChart(lineChart: lineChart, coinValues: coinsValues, index: index)
                     }
                 }
             } catch {
@@ -95,7 +98,7 @@ class CoinViewController: UIViewController, ChartViewDelegate, SwipeMenuViewDele
         return lineChart
     }
     
-    private func loadChart(lineChart: LineChartView, coinValues: [AnyObject]) {
+    private func loadChart(lineChart: LineChartView, coinValues: [AnyObject], index: Int) {
         
         if coinValues.count == 0 {
             DispatchQueue.main.async {
@@ -104,12 +107,29 @@ class CoinViewController: UIViewController, ChartViewDelegate, SwipeMenuViewDele
             return
         }
         
+        var firstPrice = 0.0
+        var lastPrice = 0.0
+        
         var values = [ChartDataEntry]()
         for (index, coinValue) in coinValues.enumerated() {
             if let coinValueDictionary = coinValue as? [String:Any] {
-                if let hight = coinValueDictionary["high"] as? Float {
-                    values.append(ChartDataEntry(x: Double(index + 1), y: Double(hight)))
+                if let hight = coinValueDictionary["high"] as? Double {
+                    values.append(ChartDataEntry(x: Double(index + 1), y: hight))
+                    
+                    if index == 0 {
+                        firstPrice = hight
+                    }
+                    
+                    lastPrice = hight
                 }
+            }
+        }
+        
+        self.coinPercentage[index] = ((lastPrice - firstPrice) / firstPrice.absoluteValue) * 100.0
+        
+        if index == 0 {
+            DispatchQueue.main.async {
+                self.renderDifference(index: index)
             }
         }
         
@@ -153,6 +173,18 @@ class CoinViewController: UIViewController, ChartViewDelegate, SwipeMenuViewDele
         }
     }
     
+    fileprivate func renderDifference(index: Int) {
+        if let difference = self.coinPercentage[index] {
+            self.coinDifference.text = String(describing: difference.rounded(toPlaces: 2)) + " %"
+            if difference >= 0 {
+                self.coinDifference.textColor = .greenPastel
+            }
+            else {
+                self.coinDifference.textColor = .redPastel
+            }
+        }
+    }
+    
     private func setNoDataText(lineChart: LineChartView, title: String) {
         lineChart.noDataText = title
         lineChart.noDataTextColor = .white
@@ -160,12 +192,16 @@ class CoinViewController: UIViewController, ChartViewDelegate, SwipeMenuViewDele
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        let value = Float(entry.y)
+        let value = entry.y
         self.coinPrice.text = value.toFormattedPrice()
     }
     
     func numberOfPages(in swipeMenuView: SwipeMenuView) -> Int {
         return ChartRange.allValues.count
+    }
+    
+    func swipeMenuView(_ swipeMenuView: SwipeMenuView, didChangeIndexFrom fromIndex: Int, to toIndex: Int) {
+        renderDifference(index: toIndex)
     }
     
     func swipeMenuView(_ swipeMenuView: SwipeMenuView, titleForPageAt index: Int) -> String {
@@ -176,7 +212,7 @@ class CoinViewController: UIViewController, ChartViewDelegate, SwipeMenuViewDele
         let vc = UIViewController()
         
         let chartRange = ChartRange.allValues[index]
-        vc.view = self.getChartValues(chartRange: chartRange)
+        vc.view = self.getChartValues(chartRange: chartRange, index: index)
 
         return vc
     }

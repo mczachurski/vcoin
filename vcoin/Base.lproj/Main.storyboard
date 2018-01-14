@@ -87,7 +87,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EU3-4b-Wgy">
-                                <rect key="frame" x="16" y="174" width="343" height="42"/>
+                                <rect key="frame" x="16" y="166" width="343" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="eVe-YY-xas"/>
                                 </constraints>
@@ -99,27 +99,37 @@
                                 <rect key="frame" x="0.0" y="248" width="375" height="303"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Difference" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iN8-tU-dha">
+                                <rect key="frame" x="16" y="219" width="343" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="hCq-by-smd" firstAttribute="trailing" secondItem="EU3-4b-Wgy" secondAttribute="trailing" constant="16" id="2AS-EN-3pD"/>
                             <constraint firstItem="hCq-by-smd" firstAttribute="trailing" secondItem="QY8-h1-uOI" secondAttribute="trailing" constant="16" id="3SX-1l-c9D"/>
-                            <constraint firstItem="J8W-mc-bwD" firstAttribute="top" secondItem="EU3-4b-Wgy" secondAttribute="bottom" constant="32" id="6QI-8p-e5K"/>
                             <constraint firstItem="J8W-mc-bwD" firstAttribute="bottom" secondItem="hCq-by-smd" secondAttribute="bottom" id="ALm-AE-Nx8"/>
-                            <constraint firstItem="EU3-4b-Wgy" firstAttribute="top" secondItem="QY8-h1-uOI" secondAttribute="bottom" constant="29" id="CdA-T4-oqV"/>
                             <constraint firstItem="QY8-h1-uOI" firstAttribute="leading" secondItem="hCq-by-smd" secondAttribute="leading" constant="16" id="DpF-O0-2jl"/>
                             <constraint firstItem="hCq-by-smd" firstAttribute="trailing" secondItem="DNk-Ig-yRU" secondAttribute="trailing" constant="16" id="MPM-2o-AsB"/>
                             <constraint firstItem="QY8-h1-uOI" firstAttribute="top" secondItem="DNk-Ig-yRU" secondAttribute="bottom" constant="8" id="WHy-Ll-Mhf"/>
                             <constraint firstItem="J8W-mc-bwD" firstAttribute="trailing" secondItem="hCq-by-smd" secondAttribute="trailing" id="Xpa-mf-w72"/>
+                            <constraint firstItem="iN8-tU-dha" firstAttribute="top" secondItem="EU3-4b-Wgy" secondAttribute="bottom" constant="11" id="e4M-fR-HK4"/>
+                            <constraint firstItem="EU3-4b-Wgy" firstAttribute="top" secondItem="QY8-h1-uOI" secondAttribute="bottom" constant="21" id="eNb-tj-UOD"/>
+                            <constraint firstItem="hCq-by-smd" firstAttribute="trailing" secondItem="iN8-tU-dha" secondAttribute="trailing" constant="16" id="ePF-85-hqv"/>
                             <constraint firstItem="EU3-4b-Wgy" firstAttribute="leading" secondItem="hCq-by-smd" secondAttribute="leading" constant="16" id="iEw-Ag-FMK"/>
                             <constraint firstItem="J8W-mc-bwD" firstAttribute="leading" secondItem="hCq-by-smd" secondAttribute="leading" id="kHO-i3-aNj"/>
+                            <constraint firstItem="J8W-mc-bwD" firstAttribute="top" secondItem="iN8-tU-dha" secondAttribute="bottom" constant="12" id="kOR-v7-6Zu"/>
                             <constraint firstItem="DNk-Ig-yRU" firstAttribute="top" secondItem="hCq-by-smd" secondAttribute="top" constant="77" id="lGf-3X-Shr"/>
+                            <constraint firstItem="iN8-tU-dha" firstAttribute="leading" secondItem="hCq-by-smd" secondAttribute="leading" constant="16" id="pGg-ag-7x7"/>
                             <constraint firstItem="DNk-Ig-yRU" firstAttribute="leading" secondItem="hCq-by-smd" secondAttribute="leading" constant="16" id="rpD-SF-Ecv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hCq-by-smd"/>
                     </view>
                     <navigationItem key="navigationItem" id="bfW-Em-LLs"/>
                     <connections>
+                        <outlet property="coinDifference" destination="iN8-tU-dha" id="01g-yB-mdb"/>
                         <outlet property="coinName" destination="DNk-Ig-yRU" id="N8M-xw-nDx"/>
                         <outlet property="coinPrice" destination="EU3-4b-Wgy" id="HwX-5c-oAh"/>
                         <outlet property="coinShort" destination="QY8-h1-uOI" id="Ro8-j2-f6i"/>
