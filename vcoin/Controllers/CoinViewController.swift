@@ -84,7 +84,7 @@ class CoinViewController: UIViewController, ChartViewDelegate {
         let set1 = LineChartDataSet(values: values, label: "DataSet 1")
         set1.drawIconsEnabled = false
         set1.highlightLineDashLengths = [5, 2.5]
-        set1.setColor(ChartColorTemplates.colorFromString("#ffF06508"))
+        set1.setColor(UIColor.main)
         set1.setCircleColor(.red)
         set1.lineWidth = 2
         set1.circleRadius = 3
@@ -96,8 +96,7 @@ class CoinViewController: UIViewController, ChartViewDelegate {
         set1.drawValuesEnabled = false
         set1.drawCirclesEnabled = false
         
-        let gradientColors = [ChartColorTemplates.colorFromString("#00F06508").cgColor,
-                              ChartColorTemplates.colorFromString("#66F06508").cgColor]
+        let gradientColors = [UIColor.main(alpha: 0.0).cgColor, UIColor.main(alpha: 0.3).cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         
         set1.fillAlpha = 1
