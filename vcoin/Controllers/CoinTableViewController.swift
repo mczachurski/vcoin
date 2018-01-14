@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import HandyJSON
 
 class CoinTableViewController: UITableViewController {
 
@@ -18,11 +17,11 @@ class CoinTableViewController: UITableViewController {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
         
-        addSearchControl()
-        addRefreshControl()
+        self.addSearchControl()
+        self.addRefreshControl()
         
-        removeTableViewCellSeparator()
-        removeNavigationBarSeparator()
+        self.removeTableViewCellSeparator()
+        self.removeNavigationBarSeparator()
         
         self.loadCoinsList()
     }
@@ -111,7 +110,6 @@ class CoinTableViewController: UITableViewController {
         
         var coinsSymbols = ""
         for index in startIndex...startIndex + 49 {
-            
             if index >= coins.count {
                 break
             }
@@ -159,7 +157,6 @@ class CoinTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Rows in section: \(self.coinsDataSource.count)")
         return self.coinsDataSource.count
     }
     
@@ -171,8 +168,6 @@ class CoinTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "coinitem", for: indexPath)
 
         // Configure the cell.
-        print("Index: \(indexPath.row)")
-        print("Count: \(self.coinsDataSource.count)")
         let coin = self.coinsDataSource[indexPath.row]
         cell.textLabel?.text = coin.FullName
         

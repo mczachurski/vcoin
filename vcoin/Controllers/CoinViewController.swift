@@ -8,66 +8,98 @@
 
 import UIKit
 import Charts
+import SwipeMenuViewController
 
-class CoinViewController: UIViewController, ChartViewDelegate {
+class CoinViewController: UIViewController, ChartViewDelegate, SwipeMenuViewDelegate, SwipeMenuViewDataSource {
 
     public var coin:Coin?
+
+    @IBOutlet weak var swipeMenuView: SwipeMenuView! {
+        didSet {
+            swipeMenuView.delegate = self
+            swipeMenuView.dataSource = self
+            
+            var options = SwipeMenuViewOptions()
+            options.tabView.style = .segmented
+            options.tabView.margin = 8.0
+            options.tabView.underlineView.backgroundColor = UIColor.main
+            options.tabView.backgroundColor = UIColor.black
+            options.tabView.underlineView.height = 1.0
+            options.tabView.itemView.textColor = UIColor.gray
+            options.tabView.itemView.selectedTextColor = UIColor.main
+            options.contentScrollView.backgroundColor = UIColor.black
+            
+            self.swipeMenuView.reloadData(options: options)
+        }
+    }
     
     @IBOutlet weak var coinName: UILabel!
     @IBOutlet weak var coinShort: UILabel!
     @IBOutlet weak var coinPrice: UILabel!
-    @IBOutlet weak var barChart: LineChartView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.largeTitleDisplayMode = .never
-        
-        self.barChart.delegate = self
-        self.barChart.noDataText = "Loading..."
-        self.barChart.noDataTextColor = .white
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.coinName.text = self.coin?.CoinName
         self.coinShort.text = self.coin?.Symbol
         self.coinPrice.text = self.coin?.Price?.toFormattedPrice()
-        
-        self.getChartValues()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    private func getChartValues() {
+    private func getChartValues(chartRange: ChartRange) -> LineChartView {
+        
         let short = self.coin!.Symbol!
-        let request = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/histominute?fsym=\(short)&tsym=USD&limit=60&aggregate=4")!)
+        let lineChart = LineChartView()
+        lineChart.delegate = self
+        
+        self.setNoDataText(lineChart: lineChart, title: "Loading...")
+        
+        var apiUrl = ""
+        switch chartRange {
+        case .hour:
+            apiUrl = "https://min-api.cryptocompare.com/data/histominute?fsym=\(short)&tsym=USD&limit=20&aggregate=3"
+        case .day:
+            apiUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=\(short)&tsym=USD&limit=24"
+        case .week:
+            apiUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=\(short)&tsym=USD&limit=21&aggregate=8"
+        case .month:
+            apiUrl = "https://min-api.cryptocompare.com/data/histoday?fsym=\(short)&tsym=USD&limit=30"
+        case .year:
+            apiUrl = "https://min-api.cryptocompare.com/data/histoday?fsym=\(short)&tsym=USD&limit=36&aggregate=10"
+        }
+        
+        let request = URLRequest(url: URL(string: apiUrl)!)
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
             do {
                 if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any] {
                     if let coinsValues = json["Data"] as? [AnyObject] {
-                        self.loadChart(coinValues: coinsValues)
+                        self.loadChart(lineChart: lineChart, coinValues: coinsValues)
                     }
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.barChart.noDataText = "Error during downloading chart data."
-                    self.barChart.noDataTextColor = .white
+                    self.setNoDataText(lineChart: lineChart, title: "Error during downloading chart data.")
                 }
             }
         })
         
+        
         task.resume()
+        return lineChart
     }
     
-    private func loadChart(coinValues:[AnyObject]) {
+    private func loadChart(lineChart: LineChartView, coinValues: [AnyObject]) {
         
         if coinValues.count == 0 {
             DispatchQueue.main.async {
-                self.barChart.noDataText = "No data to draw chart."
-                self.barChart.noDataTextColor = .white
-                self.barChart.notifyDataSetChanged()
+                self.setNoDataText(lineChart: lineChart, title: "No data to draw chart.")
             }
             return
         }
@@ -106,23 +138,46 @@ class CoinViewController: UIViewController, ChartViewDelegate {
         set1.mode = .cubicBezier
         
         let data = LineChartData(dataSet: set1)
-        self.barChart.legend.enabled = false
-        self.barChart.drawBordersEnabled = false
-        self.barChart.xAxis.enabled = false
-        self.barChart.leftAxis.enabled = false
-        self.barChart.rightAxis.enabled = false
-        self.barChart.dragEnabled = false
-        self.barChart.pinchZoomEnabled = false
-        self.barChart.scaleXEnabled = false
-        self.barChart.scaleYEnabled = false
+        lineChart.legend.enabled = false
+        lineChart.drawBordersEnabled = false
+        lineChart.xAxis.enabled = false
+        lineChart.leftAxis.enabled = false
+        lineChart.rightAxis.enabled = false
+        lineChart.dragEnabled = false
+        lineChart.pinchZoomEnabled = false
+        lineChart.scaleXEnabled = false
+        lineChart.scaleYEnabled = false
         
         DispatchQueue.main.async {
-            self.barChart.data = data
+            lineChart.data = data
         }
+    }
+    
+    private func setNoDataText(lineChart: LineChartView, title: String) {
+        lineChart.noDataText = title
+        lineChart.noDataTextColor = .white
+        lineChart.notifyDataSetChanged()
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         let value = Float(entry.y)
         self.coinPrice.text = value.toFormattedPrice()
+    }
+    
+    func numberOfPages(in swipeMenuView: SwipeMenuView) -> Int {
+        return ChartRange.allValues.count
+    }
+    
+    func swipeMenuView(_ swipeMenuView: SwipeMenuView, titleForPageAt index: Int) -> String {
+        return ChartRange.allValues[index].rawValue
+    }
+    
+    func swipeMenuView(_ swipeMenuView: SwipeMenuView, viewControllerForPageAt index: Int) -> UIViewController {
+        let vc = UIViewController()
+        
+        let chartRange = ChartRange.allValues[index]
+        vc.view = self.getChartValues(chartRange: chartRange)
+
+        return vc
     }
 }
