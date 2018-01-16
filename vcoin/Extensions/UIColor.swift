@@ -20,6 +20,12 @@ extension UIColor {
         return UIColor(red: 240.0 / 255.0, green: 101.0 / 255.0, blue: 8.0 / 255.0, alpha: alpha)
     }
     
+    class var darkBackground: UIColor {
+        get {
+            return UIColor(red: 10.0 / 255.0, green: 10.0 / 255.0, blue: 10.0 / 255.0, alpha: 1.0)
+        }
+    }
+    
     class var greenPastel: UIColor {
         get {
             return UIColor(red: 0.0 / 255.0, green: 169.0 / 255.0, blue: 108.0 / 255.0, alpha: 1.0)
