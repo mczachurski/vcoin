@@ -8,8 +8,16 @@
 
 import UIKit
 
-class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
-
+class CoinTableViewController: UITableViewController, UISearchBarDelegate {
+    
+    @IBAction func tapToHideKeyboard(_ sender: Any) {
+        self.navigationItem.searchController?.searchBar.resignFirstResponder()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.navigationItem.searchController?.searchBar.resignFirstResponder()
+    }
+    
     private var coinsDataSource: [Coin] = [] {
         didSet {
             self.reloadFilteredData()
@@ -27,7 +35,7 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
         
-        self.addSearchControl(searchResultsUpdater: self)
+        self.addSearchControl(searchBarDelegate: self)
         self.addRefreshControl(target: self, action: #selector(refreshTableView))
         
         self.removeTableViewCellSeparator()
@@ -47,9 +55,9 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     // MARK: - Searching
-
-    func updateSearchResults(for searchController: UISearchController) {
-        self.filtr = searchController.searchBar.text!
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.filtr = searchBar.text!
         self.reloadFilteredData()
     }
     

@@ -18,10 +18,10 @@ extension UITableViewController {
         self.tableView.separatorStyle = .none
     }
     
-    func addSearchControl(searchResultsUpdater: UISearchResultsUpdating) {
+    func addSearchControl(searchBarDelegate: UISearchBarDelegate) {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = searchResultsUpdater
         
+        searchController.searchBar.delegate = searchBarDelegate
         searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.barTintColor = UIColor.main
         searchController.searchBar.tintColor = UIColor.main
