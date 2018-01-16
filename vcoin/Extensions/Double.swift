@@ -21,6 +21,10 @@ extension Double {
         return priceString ?? ""
     }
     
+    func toFormattedPercent() -> String {
+        return String(self.rounded(toPlaces: 2)) + " %"
+    }
+    
     var absoluteValue: Double {
         if self > 0.0 {
             return self

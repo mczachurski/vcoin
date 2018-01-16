@@ -27,6 +27,7 @@ public class Coin {
     public var Url:String?
     
     public var Price:Double?
+    public var ChangePercentagePerDay:Double?
     
     init(data:[String:Any]) {
         FullName = data["FullName"] as? String

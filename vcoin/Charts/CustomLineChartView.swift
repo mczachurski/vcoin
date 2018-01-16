@@ -31,15 +31,15 @@ class CustomLineChartView : LineChartView {
         var apiUrl = ""
         switch chartRange {
         case .hour:
-            apiUrl = "https://min-api.cryptocompare.com/data/histominute?fsym=\(symbol)&tsym=USD&limit=20&aggregate=3"
+            apiUrl = "https://min-api.cryptocompare.com/data/histominute?fsym=\(symbol)&tsym=USD&limit=20&aggregate=3&e=CCCAGG"
         case .day:
-            apiUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=\(symbol)&tsym=USD&limit=24"
+            apiUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=\(symbol)&tsym=USD&limit=24&e=CCCAGG"
         case .week:
-            apiUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=\(symbol)&tsym=USD&limit=21&aggregate=8"
+            apiUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=\(symbol)&tsym=USD&limit=21&aggregate=8&e=CCCAGG"
         case .month:
-            apiUrl = "https://min-api.cryptocompare.com/data/histoday?fsym=\(symbol)&tsym=USD&limit=30"
+            apiUrl = "https://min-api.cryptocompare.com/data/histoday?fsym=\(symbol)&tsym=USD&limit=30&e=CCCAGG"
         case .year:
-            apiUrl = "https://min-api.cryptocompare.com/data/histoday?fsym=\(symbol)&tsym=USD&limit=36&aggregate=10"
+            apiUrl = "https://min-api.cryptocompare.com/data/histoday?fsym=\(symbol)&tsym=USD&limit=36&aggregate=10&e=CCCAGG"
         }
         
         let request = URLRequest(url: URL(string: apiUrl)!)

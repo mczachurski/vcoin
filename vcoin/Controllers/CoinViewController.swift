@@ -40,7 +40,7 @@ class CoinViewController: UIViewController, ChartViewDelegate, ChartDifferenceDe
         self.coinShort.text = self.coin.Symbol
         self.coinPrice.text = self.coin.Price?.toFormattedPrice()
 
-        self.coinDifference.text = String((0.0).rounded(toPlaces: 2)) + " %"
+        self.coinDifference.text = (0.0).toFormattedPercent()
         self.coinDifference.textColor = .greenPastel
     }
     
@@ -96,7 +96,7 @@ class CoinViewController: UIViewController, ChartViewDelegate, ChartDifferenceDe
     
     private func changePercantageDifference(chartView: CustomLineChartView) {
         DispatchQueue.main.async {
-            self.coinDifference.text = String(chartView.percentageDifference.rounded(toPlaces: 2)) + " %"
+            self.coinDifference.text = chartView.percentageDifference.toFormattedPercent()
             if chartView.percentageDifference >= 0 {
                 self.coinDifference.textColor = .greenPastel
             }
