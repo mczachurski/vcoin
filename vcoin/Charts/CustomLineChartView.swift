@@ -15,6 +15,8 @@ class CustomLineChartView : LineChartView {
     public var percentageDelegate: ChartDifferenceDelegate?
     public var chartRange: ChartRange = ChartRange.hour
     
+    private var restClient = RestClient()
+    
     convenience init(chartRange: ChartRange, delegate: ChartViewDelegate, percentageDelegate: ChartDifferenceDelegate) {
         self.init()
         
@@ -28,37 +30,9 @@ class CustomLineChartView : LineChartView {
     }
     
     func loadCharViewData(symbol: String) {
-        var apiUrl = ""
-        switch chartRange {
-        case .hour:
-            apiUrl = "https://min-api.cryptocompare.com/data/histominute?fsym=\(symbol)&tsym=USD&limit=20&aggregate=3&e=CCCAGG"
-        case .day:
-            apiUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=\(symbol)&tsym=USD&limit=24&e=CCCAGG"
-        case .week:
-            apiUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=\(symbol)&tsym=USD&limit=21&aggregate=8&e=CCCAGG"
-        case .month:
-            apiUrl = "https://min-api.cryptocompare.com/data/histoday?fsym=\(symbol)&tsym=USD&limit=30&e=CCCAGG"
-        case .year:
-            apiUrl = "https://min-api.cryptocompare.com/data/histoday?fsym=\(symbol)&tsym=USD&limit=36&aggregate=10&e=CCCAGG"
+        self.restClient.loadCharViewData(chartRange: self.chartRange, symbol: symbol) { (chartValues) in
+            self.renderChartViewData(coinValues: chartValues)
         }
-        
-        let request = URLRequest(url: URL(string: apiUrl)!)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any] {
-                    if let coinsValues = json["Data"] as? [AnyObject] {
-                        self.renderChartViewData(coinValues: coinsValues)
-                    }
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    self.setNoDataText(title: "Error during downloading chart data.")
-                }
-            }
-        })
-        
-        task.resume()
     }
     
     private func renderChartViewData(coinValues: [AnyObject]) {

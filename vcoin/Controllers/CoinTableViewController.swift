@@ -10,17 +10,25 @@ import UIKit
 
 class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
 
-    private var coinsDataSource: [Coin] = []
+    private var coinsDataSource: [Coin] = [] {
+        didSet {
+            self.reloadFilteredData()
+        }
+    }
+    
     private var filteredDataSource: [Coin] = []
-    private var lastLoadedPriceIndex = -1
+    
     private var filtr = ""
+    private var restClient = RestClient()
+    
+    // MARK: - View loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
         
-        self.addSearchControl()
-        self.addRefreshControl()
+        self.addSearchControl(searchResultsUpdater: self)
+        self.addRefreshControl(target: self, action: #selector(refreshTableView))
         
         self.removeTableViewCellSeparator()
         self.removeNavigationBarSeparator()
@@ -34,35 +42,18 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
         }
     }
     
-    private func removeNavigationBarSeparator() {
-        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
-    private func removeTableViewCellSeparator() {
-        self.tableView.separatorStyle = .none
-    }
-    
-    private func addSearchControl() {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        
-        searchController.searchBar.backgroundImage = UIImage()
-        searchController.searchBar.barTintColor = UIColor.main
-        searchController.searchBar.tintColor = UIColor.main
-        
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        
-        self.navigationItem.searchController = searchController
-    }
-    
+    // MARK: - Searching
+
     func updateSearchResults(for searchController: UISearchController) {
         self.filtr = searchController.searchBar.text!
-        self.reloadData()
+        self.reloadFilteredData()
     }
     
-    private func reloadData() {
+    private func reloadFilteredData() {
         if self.filtr == "" {
             self.filteredDataSource = self.coinsDataSource
         } else {
@@ -72,130 +63,46 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
         self.tableView.reloadData()
     }
     
-    private func addRefreshControl() {
-        self.extendedLayoutIncludesOpaqueBars = true
+    // MARK: - Refreshing
         
-        let refreshControl = UIRefreshControl()
-        
-        var attributes = [NSAttributedStringKey: AnyObject]()
-        attributes[NSAttributedStringKey.foregroundColor] = UIColor.gray
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
-        
-        refreshControl.tintColor = UIColor.gray
-        
-        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
-        self.refreshControl = refreshControl
-    }
-    
     @objc func refreshTableView(refreshControl: UIRefreshControl) {
         self.loadCoinsList()
     }
     
+    // MARK: - Loading data
+    
     private func loadCoinsList() {
-        self.lastLoadedPriceIndex = -1
-        
-        let request = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/all/coinlist")!)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any] {
-                    if let coinsDict = json["Data"] as? [String:Any] {
-                        
-                        var downloadedCoins:[Coin] = []
-                        for (_, data) in coinsDict {
-                            if let coinData = data as? [String:Any] {
-                                let coin = Coin(data: coinData)
-                                downloadedCoins.append(coin)
-                            }
-                        }
-                        
-                        downloadedCoins.sort {
-                            let coin1Sort = Int($0.SortOrder!)
-                            let coin2Sort = Int($1.SortOrder!)
-                            return coin1Sort! < coin2Sort!
-                        }
-                        
-                        DispatchQueue.main.async {
-                            self.coinsDataSource = downloadedCoins
-                            self.reloadData()
-                            self.refreshControl?.endRefreshing()
-                        }
-                    }
-                }
-            } catch {
-                print("error")
+        self.restClient.loadCoinsList { (coins) in
+            DispatchQueue.main.async {
+                self.coinsDataSource = coins
+                self.refreshControl?.endRefreshing()
             }
-        })
-        
-        task.resume()
+        }
     }
     
     private func loadCoinPrice(coin:Coin, cell: CoinListTableViewCell, index: Int) {
-        
-        let priceRequest = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/price?fsym=\(coin.Symbol)&tsyms=USD&e=CCCAGG")!)
-        
-        let session = URLSession.shared
-        let priceTask = session.dataTask(with: priceRequest, completionHandler: { priceData, response, error -> Void in
-            do {
-                if let priceJson = try JSONSerialization.jsonObject(with: priceData!, options: []) as? [String:Double] {
-                    coin.Price = priceJson["USD"]
-
-                    DispatchQueue.main.async {
-                        if cell.tag == index {
-                            cell.coinPrice?.text = coin.Price?.toFormattedPrice() ?? "-"
-                            cell.setNeedsLayout()
-                        }
-                    }
+        self.restClient.loadCoinPrice(symbol: coin.Symbol) { (price) in
+            coin.Price = price
+            DispatchQueue.main.async {
+                if cell.tag == index {
+                    cell.coinPrice = coin.Price
+                    cell.setNeedsLayout()
                 }
-            } catch {
-                print("error")
             }
-            
-        })
-        
-        priceTask.resume()
+        }
     }
     
     private func loadCoinChange(coin:Coin, cell: CoinListTableViewCell, index: Int) {
         
-        let priceRequest = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/generateAvg?fsym=\(coin.Symbol)&tsym=USD&e=CCCAGG")!)
-        
-        let session = URLSession.shared
-        let priceTask = session.dataTask(with: priceRequest, completionHandler: { priceData, response, error -> Void in
-            do {
-                if let priceJson = try JSONSerialization.jsonObject(with: priceData!, options: []) as? [String:Any] {
-                    if let priceData = priceJson["RAW"] as? [String:Any] {
-                        if let changePercantage = priceData["CHANGEPCT24HOUR"] as? Double {
-                            coin.ChangePercentagePerDay = changePercantage
-                        }
-                    }
-                    
-                    DispatchQueue.main.async {
-                        if cell.tag == index {
-                            cell.coinChange?.text = coin.ChangePercentagePerDay?.toFormattedPercent() ?? "-"
-                            
-                            if coin.ChangePercentagePerDay ?? 0 > 0 {
-                                cell.coinPrice?.textColor = UIColor.greenPastel
-                            }
-                            else {
-                                cell.coinPrice?.textColor = UIColor.redPastel
-                            }
-                            
-                            cell.setNeedsLayout()
-                        }
-                    }
+        self.restClient.loadCoinChange(symbol: coin.Symbol) { (priceChange) in
+            coin.ChangePercentagePerDay = priceChange
+            DispatchQueue.main.async {
+                if cell.tag == index {
+                    cell.coinChange = coin.ChangePercentagePerDay
+                    cell.setNeedsLayout()
                 }
-            } catch {
-                print("error")
             }
-            
-        })
-        
-        priceTask.resume()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        }
     }
 
     // MARK: - Table view data source
@@ -216,29 +123,19 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
         let cell = tableView.dequeueReusableCell(withIdentifier: "coinitem", for: indexPath) as! CoinListTableViewCell
         cell.tag = indexPath.row
         
-        // Configure the cell.
         let coin = self.filteredDataSource[indexPath.row]
-        cell.coinName?.text = coin.FullName
+        cell.coinName = coin.FullName
         
         if coin.Price == nil {
-            cell.coinChange?.text = "-"
-            cell.coinPrice?.text = "-"
-            cell.coinPrice?.textColor = UIColor.redPastel
+            cell.coinChange = nil
+            cell.coinPrice = nil
             
             self.loadCoinPrice(coin: coin, cell: cell, index: indexPath.row)
             self.loadCoinChange(coin: coin, cell: cell, index: indexPath.row)
         }
         else {
-            cell.coinChange?.text = coin.ChangePercentagePerDay?.toFormattedPercent() ?? "-"
-            cell.coinPrice?.text = coin.Price?.toFormattedPrice() ?? "-"
-            cell.coinPrice?.textColor = UIColor.redPastel
-            
-            if coin.ChangePercentagePerDay ?? 0 > 0 {
-                cell.coinPrice?.textColor = UIColor.greenPastel
-            }
-            else {
-                cell.coinPrice?.textColor = UIColor.redPastel
-            }
+            cell.coinChange = coin.ChangePercentagePerDay
+            cell.coinPrice = coin.Price
         }
         
         // Configure selection.

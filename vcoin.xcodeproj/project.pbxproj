@@ -24,6 +24,8 @@
 		F8D1E2B6200DE3AB00C53E47 /* SwipeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D1E2B5200DE3AB00C53E47 /* SwipeMenuView.swift */; };
 		F8D70177200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D70176200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift */; };
 		F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */; };
+		F8D7017D200E202A0005B6D8 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D7017C200E202A0005B6D8 /* RestClient.swift */; };
+		F8D7017F200E2D5C0005B6D8 /* UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D7017E200E2D5C0005B6D8 /* UITableViewController.swift */; };
 		F8F97433200B3DC700FE864A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F97432200B3DC700FE864A /* UIColor.swift */; };
 		F8F9743A200B57BA00FE864A /* ChartRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F97439200B57BA00FE864A /* ChartRange.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +69,8 @@
 		F8D1E2B5200DE3AB00C53E47 /* SwipeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeMenuView.swift; sourceTree = "<group>"; };
 		F8D70176200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDifferenceDelegate.swift; sourceTree = "<group>"; };
 		F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListTableViewCell.swift; sourceTree = "<group>"; };
+		F8D7017C200E202A0005B6D8 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
+		F8D7017E200E2D5C0005B6D8 /* UITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewController.swift; sourceTree = "<group>"; };
 		F8F97432200B3DC700FE864A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeMenuViewController.framework; path = Carthage/Build/iOS/SwipeMenuViewController.framework; sourceTree = "<group>"; };
 		F8F97439200B57BA00FE864A /* ChartRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRange.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 		F810C43820011984001BE909 /* vcoin */ = {
 			isa = PBXGroup;
 			children = (
+				F8D7017B200E20140005B6D8 /* HttpClients */,
 				F8D70178200E04B00005B6D8 /* Cells */,
 				F8D70173200DE8890005B6D8 /* Charts */,
 				F8F97434200B3E6100FE864A /* Controllers */,
@@ -181,6 +186,7 @@
 				F8839E13200935DE005B056A /* Double.swift */,
 				F8F97432200B3DC700FE864A /* UIColor.swift */,
 				F8D1E2B5200DE3AB00C53E47 /* SwipeMenuView.swift */,
+				F8D7017E200E2D5C0005B6D8 /* UITableViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -200,6 +206,14 @@
 				F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F8D7017B200E20140005B6D8 /* HttpClients */ = {
+			isa = PBXGroup;
+			children = (
+				F8D7017C200E202A0005B6D8 /* RestClient.swift */,
+			);
+			path = HttpClients;
 			sourceTree = "<group>";
 		};
 		F8F97434200B3E6100FE864A /* Controllers */ = {
@@ -373,6 +387,8 @@
 				F8F9743A200B57BA00FE864A /* ChartRange.swift in Sources */,
 				F8839E14200935DE005B056A /* Double.swift in Sources */,
 				F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */,
+				F8D7017F200E2D5C0005B6D8 /* UITableViewController.swift in Sources */,
+				F8D7017D200E202A0005B6D8 /* RestClient.swift in Sources */,
 				F810C47020011D82001BE909 /* Coin.swift in Sources */,
 				F8F97433200B3DC700FE864A /* UIColor.swift in Sources */,
 				F8D1E2B6200DE3AB00C53E47 /* SwipeMenuView.swift in Sources */,

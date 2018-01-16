@@ -70,9 +70,9 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <outlet property="coinChange" destination="lDD-SF-UwQ" id="XBS-Kg-wAO"/>
-                                    <outlet property="coinName" destination="F3x-Uf-FyI" id="jAi-mh-qxU"/>
-                                    <outlet property="coinPrice" destination="agd-Sp-46m" id="rkg-rw-vqL"/>
+                                    <outlet property="coinChangeLabel" destination="lDD-SF-UwQ" id="OBA-re-bsh"/>
+                                    <outlet property="coinNameLabel" destination="F3x-Uf-FyI" id="WsU-qw-m4T"/>
+                                    <outlet property="coinPriceLabel" destination="agd-Sp-46m" id="0le-FR-6Ni"/>
                                     <segue destination="p07-4N-xYf" kind="show" identifier="coindetails" id="MM6-tA-qky"/>
                                 </connections>
                             </tableViewCell>
