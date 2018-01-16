@@ -1,6 +1,15 @@
 
 # Created by https://www.gitignore.io/api/osx,swift,xcode,windows
 
+### Carthage ###
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+Carthage/Checkouts
+Carthage/Build
+Cartfile.resolved
+
+
 ### OSX ###
 *.DS_Store
 .AppleDouble
@@ -70,9 +79,6 @@ playground.xcworkspace
 # Package.pins
 .build/
 
-# CocoaPods - Refactored to standalone file
-
-# Carthage - Refactored to standalone file
 
 # fastlane
 #
