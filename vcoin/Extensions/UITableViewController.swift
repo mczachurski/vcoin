@@ -18,27 +18,21 @@ extension UITableViewController {
         self.tableView.separatorStyle = .none
     }
     
-    func addSearchControl(searchBarDelegate: UISearchBarDelegate) {
+    func addSearchControl(searchResultsUpdater: UISearchResultsUpdating) {
         let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = searchResultsUpdater
         
-        searchController.searchBar.delegate = searchBarDelegate
         searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.barTintColor = UIColor.main
         searchController.searchBar.tintColor = UIColor.main
+        searchController.searchBar.sizeToFit()
         
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        
-        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            if let backgroundview = textfield.subviews.first {
-                backgroundview.backgroundColor = UIColor.darkBackground
-                backgroundview.layer.cornerRadius = 10;
-                backgroundview.clipsToBounds = true;
-            }
-        }
+        searchController.obscuresBackgroundDuringPresentation = false
         
         self.navigationItem.searchController = searchController
+        searchController.definesPresentationContext = true
     }
     
     func addRefreshControl(target: Any?, action: Selector) {

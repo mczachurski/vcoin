@@ -32,7 +32,6 @@ class CoinViewController: UIViewController, ChartViewDelegate, ChartDifferenceDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.largeTitleDisplayMode = .never
     }
 
     override func viewWillAppear(_ animated: Bool) {

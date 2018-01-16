@@ -82,7 +82,9 @@
                             <outlet property="delegate" destination="G6J-ge-Zaf" id="Xab-sQ-NvI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Currencies" id="epZ-mR-Xwf"/>
+                    <navigationItem key="navigationItem" title="Currencies" id="epZ-mR-Xwf">
+                        <barButtonItem key="backBarButtonItem" title="Currencies" id="2hA-4A-uUe"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHV-jY-O0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -93,7 +95,7 @@
             <objects>
                 <viewController id="p07-4N-xYf" customClass="CoinViewController" customModule="vcoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KOO-fY-dI6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNk-Ig-yRU">
@@ -124,7 +126,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8W-mc-bwD" customClass="SwipeMenuView" customModule="SwipeMenuViewController">
-                                <rect key="frame" x="0.0" y="248" width="375" height="303"/>
+                                <rect key="frame" x="0.0" y="248" width="375" height="355"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Difference" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iN8-tU-dha">
@@ -155,7 +157,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hCq-by-smd"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bfW-Em-LLs"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="bfW-Em-LLs"/>
                     <connections>
                         <outlet property="coinDifference" destination="iN8-tU-dha" id="01g-yB-mdb"/>
                         <outlet property="coinName" destination="DNk-Ig-yRU" id="N8M-xw-nDx"/>
