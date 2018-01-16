@@ -21,7 +21,7 @@ public class Coin {
     public var ProofType:String?
     public var SortOrder:String?
     public var Sponsored:Bool?
-    public var Symbol:String?
+    public var Symbol:String
     public var TotalCoinSupply:String?
     public var TotalCoinsFreeFloat:String?
     public var Url:String?
@@ -34,7 +34,7 @@ public class Coin {
         ImageUrl = data["ImageUrl"] as? String
         Name = data["Name"] as? String
         SortOrder = data["SortOrder"] as? String
-        Symbol = data["Symbol"] as? String
+        Symbol = data["Symbol"] as! String
         CoinName = data["CoinName"] as? String
     }
 }

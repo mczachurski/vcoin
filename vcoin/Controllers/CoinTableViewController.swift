@@ -138,7 +138,7 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
                 break
             }
             
-            coinsSymbols = coinsSymbols + coins[index].Symbol! + ","
+            coinsSymbols = coinsSymbols + coins[index].Symbol + ","
         }
         
         self.lastLoadedPriceIndex = startIndex + 49
@@ -150,7 +150,7 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
             do {
                 if let priceJson = try JSONSerialization.jsonObject(with: priceData!, options: []) as? [String:Any] {
                     for coin in coins {
-                        if let priceList = priceJson[coin.Symbol!] as? [String:Double] {
+                        if let priceList = priceJson[coin.Symbol] as? [String:Double] {
                             coin.Price = priceList["USD"]
                         }
                     }
