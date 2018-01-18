@@ -14,6 +14,8 @@ class CoinListTableViewCell: UITableViewCell {
     @IBOutlet weak private var coinPriceLabel: UILabel!
     @IBOutlet weak private var coinChangeLabel: UILabel!
 
+    public var currency: String?
+    
     public var coinName:String? {
         didSet {
             self.coinNameLabel?.text = self.coinName
@@ -22,7 +24,7 @@ class CoinListTableViewCell: UITableViewCell {
     
     public var coinPrice: Double? {
         didSet {
-            self.coinPriceLabel?.text = self.coinPrice?.toFormattedPrice() ?? "-"
+            self.coinPriceLabel?.text = self.coinPrice?.toFormattedPrice(currency: self.currency!) ?? "-"
         }
     }
     

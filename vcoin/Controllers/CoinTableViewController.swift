@@ -20,6 +20,9 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
     
     private var filtr = ""
     private var restClient = RestClient()
+    private var settingsHandler = SettingsHandler()
+    private var settings:Settings!
+    private var currentCurrency:String!
     
     // MARK: - View loading
     
@@ -37,13 +40,28 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: true)
-        }
+        self.unselectSelectedRow()
+        self.reloadSettings()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    private func reloadSettings() {
+        self.settings = self.settingsHandler.getDefaultSettings()
+        if self.currentCurrency != self.settings.currency {
+            self.clearCoinPrices()
+            self.reloadFilteredData()
+        }
+        
+        self.currentCurrency = self.settings?.currency
+    }
+    
+    private func clearCoinPrices() {
+        for coin in self.coinsDataSource {
+            coin.Price = nil
+        }
     }
     
     // MARK: - Searching
@@ -81,7 +99,7 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     private func loadCoinPrice(coin:Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinPrice(symbol: coin.Symbol) { (price) in
+        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!) { (price) in
             coin.Price = price
             DispatchQueue.main.async {
                 if cell.tag == index {
@@ -125,6 +143,7 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
         
         let coin = self.filteredDataSource[indexPath.row]
         cell.coinName = coin.FullName
+        cell.currency = self.settings.currency
         
         if coin.Price == nil {
             cell.coinChange = nil
@@ -138,17 +157,12 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
             cell.coinPrice = coin.Price
         }
         
-        // Configure selection.
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.init(red: 20.0 / 255.0, green: 20.0 / 255.0, blue: 20.0 / 255.0, alpha: 1.0)
-        cell.selectedBackgroundView = bgColorView
-        
+        cell.setSelectedColor(color: UIColor.darkBackground)
         return cell
     }
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "coindetails" {
             if let destination = segue.destination as? CoinViewController {

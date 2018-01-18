@@ -49,4 +49,10 @@ extension UITableViewController {
         refreshControl.addTarget(target, action: action, for: .valueChanged)
         self.refreshControl = refreshControl
     }
+    
+    func unselectSelectedRow() {
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: true)
+        }
+    }
 }

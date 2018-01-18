@@ -19,6 +19,12 @@
 		F84CB8BA200B79ED00A4AD3F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FF599A2006B5EE00489434 /* Charts.framework */; };
 		F84CB8BB200B79F000A4AD3F /* SwipeMenuViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */; };
 		F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84D440E200238C2000578E5 /* CoinViewController.swift */; };
+		F8690EEB20110496004A0529 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EEA20110496004A0529 /* SettingsTableViewController.swift */; };
+		F8690EED2011078A004A0529 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EEC2011078A004A0529 /* UITableViewCell.swift */; };
+		F8690EEF20110C36004A0529 /* CurrencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EEE20110C36004A0529 /* CurrencyTableViewController.swift */; };
+		F8690EF120110DEB004A0529 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EF020110DEB004A0529 /* CoreDataHandler.swift */; };
+		F8690EF420110F15004A0529 /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EF320110F15004A0529 /* SettingsHandler.swift */; };
+		F8690EF620113477004A0529 /* CurrencyLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EF520113477004A0529 /* CurrencyLocale.swift */; };
 		F8839E14200935DE005B056A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8839E13200935DE005B056A /* Double.swift */; };
 		F8D1E2B4200DDDA600C53E47 /* CustomLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D1E2B3200DDDA600C53E47 /* CustomLineChartView.swift */; };
 		F8D1E2B6200DE3AB00C53E47 /* SwipeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D1E2B5200DE3AB00C53E47 /* SwipeMenuView.swift */; };
@@ -64,6 +70,12 @@
 		F810C46A200119F1001BE909 /* CoinTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewController.swift; sourceTree = "<group>"; };
 		F810C46F20011D82001BE909 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		F84D440E200238C2000578E5 /* CoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewController.swift; sourceTree = "<group>"; };
+		F8690EEA20110496004A0529 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		F8690EEC2011078A004A0529 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
+		F8690EEE20110C36004A0529 /* CurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewController.swift; sourceTree = "<group>"; };
+		F8690EF020110DEB004A0529 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
+		F8690EF320110F15004A0529 /* SettingsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHandler.swift; sourceTree = "<group>"; };
+		F8690EF520113477004A0529 /* CurrencyLocale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyLocale.swift; sourceTree = "<group>"; };
 		F8839E13200935DE005B056A /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		F8D1E2B3200DDDA600C53E47 /* CustomLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLineChartView.swift; sourceTree = "<group>"; };
 		F8D1E2B5200DE3AB00C53E47 /* SwipeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeMenuView.swift; sourceTree = "<group>"; };
@@ -130,6 +142,7 @@
 		F810C43820011984001BE909 /* vcoin */ = {
 			isa = PBXGroup;
 			children = (
+				F8690EF220110ED8004A0529 /* CoreData */,
 				F8D7017B200E20140005B6D8 /* HttpClients */,
 				F8D70178200E04B00005B6D8 /* Cells */,
 				F8D70173200DE8890005B6D8 /* Charts */,
@@ -169,6 +182,7 @@
 			children = (
 				F810C46F20011D82001BE909 /* Coin.swift */,
 				F8F97439200B57BA00FE864A /* ChartRange.swift */,
+				F8690EF520113477004A0529 /* CurrencyLocale.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +194,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F8690EF220110ED8004A0529 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F8690EF020110DEB004A0529 /* CoreDataHandler.swift */,
+				F8690EF320110F15004A0529 /* SettingsHandler.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		F8839E12200935CC005B056A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +210,7 @@
 				F8F97432200B3DC700FE864A /* UIColor.swift */,
 				F8D1E2B5200DE3AB00C53E47 /* SwipeMenuView.swift */,
 				F8D7017E200E2D5C0005B6D8 /* UITableViewController.swift */,
+				F8690EEC2011078A004A0529 /* UITableViewCell.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -221,6 +245,8 @@
 			children = (
 				F810C46A200119F1001BE909 /* CoinTableViewController.swift */,
 				F84D440E200238C2000578E5 /* CoinViewController.swift */,
+				F8690EEA20110496004A0529 /* SettingsTableViewController.swift */,
+				F8690EEE20110C36004A0529 /* CurrencyTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -380,20 +406,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8690EF420110F15004A0529 /* SettingsHandler.swift in Sources */,
 				F8D70177200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift in Sources */,
+				F8690EF120110DEB004A0529 /* CoreDataHandler.swift in Sources */,
+				F8690EED2011078A004A0529 /* UITableViewCell.swift in Sources */,
 				F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */,
 				F8D1E2B4200DDDA600C53E47 /* CustomLineChartView.swift in Sources */,
 				F810C43A20011984001BE909 /* AppDelegate.swift in Sources */,
 				F8F9743A200B57BA00FE864A /* ChartRange.swift in Sources */,
 				F8839E14200935DE005B056A /* Double.swift in Sources */,
 				F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */,
+				F8690EF620113477004A0529 /* CurrencyLocale.swift in Sources */,
 				F8D7017F200E2D5C0005B6D8 /* UITableViewController.swift in Sources */,
 				F8D7017D200E202A0005B6D8 /* RestClient.swift in Sources */,
 				F810C47020011D82001BE909 /* Coin.swift in Sources */,
 				F8F97433200B3DC700FE864A /* UIColor.swift in Sources */,
+				F8690EEB20110496004A0529 /* SettingsTableViewController.swift in Sources */,
 				F8D1E2B6200DE3AB00C53E47 /* SwipeMenuView.swift in Sources */,
 				F810C46B200119F1001BE909 /* CoinTableViewController.swift in Sources */,
 				F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */,
+				F8690EEF20110C36004A0529 /* CurrencyTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

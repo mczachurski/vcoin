@@ -43,16 +43,16 @@ class RestClient {
         task.resume()
     }
     
-    public func loadCoinPrice(symbol:String, callback: @escaping (Double?) -> ()) {
+    public func loadCoinPrice(symbol: String, currency: String, callback: @escaping (Double?) -> ()) {
         
         var price: Double? = nil
         
-        let priceRequest = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/price?fsym=\(symbol)&tsyms=USD&e=CCCAGG")!)
+        let priceRequest = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/price?fsym=\(symbol)&tsyms=\(currency)&e=CCCAGG")!)
         let session = URLSession.shared
         let priceTask = session.dataTask(with: priceRequest, completionHandler: { priceData, response, error -> Void in
             do {
                 if let priceJson = try JSONSerialization.jsonObject(with: priceData!, options: []) as? [String:Double] {
-                    price = priceJson["USD"]
+                    price = priceJson[currency]
                 }
                 
                 callback(price)

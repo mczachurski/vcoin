@@ -9,14 +9,17 @@
 import Foundation
 
 extension Double {
-    func toFormattedPrice() -> String {
+    func toFormattedPrice(currency: String) -> String {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = NumberFormatter.Style.currency
+        
+        var locale = CurrencyLocale.allCurrencies[currency]
+        if locale == nil {
+            locale = "en-US"
+        }
 
-        // localize to your grouping and decimal separator
-        currencyFormatter.locale = Locale(identifier: "en-US")
-
+        currencyFormatter.locale = Locale(identifier: locale!)
         let priceString = currencyFormatter.string(from: NSNumber(value: self))
         return priceString ?? ""
     }

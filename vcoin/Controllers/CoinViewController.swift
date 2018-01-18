@@ -13,7 +13,10 @@ import SwipeMenuViewController
 class CoinViewController: UIViewController, ChartViewDelegate, ChartDifferenceDelegate, SwipeMenuViewDelegate, SwipeMenuViewDataSource {
 
     public var coin:Coin!
+    
     private var charts:[Int:CustomLineChartView] = [:]
+    private var settings: Settings! = nil
+    private var settingsHandler = SettingsHandler()
     
     @IBOutlet weak var coinName: UILabel!
     @IBOutlet weak var coinShort: UILabel!
@@ -35,9 +38,11 @@ class CoinViewController: UIViewController, ChartViewDelegate, ChartDifferenceDe
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.settings = self.settingsHandler.getDefaultSettings()
+        
         self.coinName.text = self.coin.CoinName
         self.coinShort.text = self.coin.Symbol
-        self.coinPrice.text = self.coin.Price?.toFormattedPrice()
+        self.coinPrice.text = self.coin.Price?.toFormattedPrice(currency: self.settings.currency!)
 
         self.coinDifference.text = (0.0).toFormattedPercent()
         self.coinDifference.textColor = .greenPastel
@@ -51,7 +56,7 @@ class CoinViewController: UIViewController, ChartViewDelegate, ChartDifferenceDe
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         let value = entry.y
-        self.coinPrice.text = value.toFormattedPrice()
+        self.coinPrice.text = value.toFormattedPrice(currency: self.settings.currency!)
     }
     
     func differenceWasCalculated(chartView: CustomLineChartView, percentageDifference: Double) {
