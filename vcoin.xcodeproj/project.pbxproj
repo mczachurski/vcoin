@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F8034C6620121B6400D90103 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8034C6520121B6400D90103 /* Currency.swift */; };
 		F810C43A20011984001BE909 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C43920011984001BE909 /* AppDelegate.swift */; };
 		F810C43F20011984001BE909 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F810C43D20011984001BE909 /* Main.storyboard */; };
 		F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F810C44020011984001BE909 /* vcoin.xcdatamodeld */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F8034C6520121B6400D90103 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		F810C43620011984001BE909 /* vcoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vcoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F810C43920011984001BE909 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F810C43E20011984001BE909 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				F810C46F20011D82001BE909 /* Coin.swift */,
 				F8F97439200B57BA00FE864A /* ChartRange.swift */,
 				F8690EF520113477004A0529 /* CurrencyLocale.swift */,
+				F8034C6520121B6400D90103 /* Currency.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */,
 				F8690EF620113477004A0529 /* CurrencyLocale.swift in Sources */,
 				F8D7017F200E2D5C0005B6D8 /* UITableViewController.swift in Sources */,
+				F8034C6620121B6400D90103 /* Currency.swift in Sources */,
 				F8D7017D200E202A0005B6D8 /* RestClient.swift in Sources */,
 				F810C47020011D82001BE909 /* Coin.swift in Sources */,
 				F8F97433200B3DC700FE864A /* UIColor.swift in Sources */,

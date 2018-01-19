@@ -14,12 +14,12 @@ extension Double {
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = NumberFormatter.Style.currency
         
-        var locale = CurrencyLocale.allCurrencies[currency]
-        if locale == nil {
-            locale = "en-US"
+        var locale = "en-US"
+        if let currency = CurrencyLocale.allCurrenciesDictionary[currency] {
+            locale = currency.locale
         }
 
-        currencyFormatter.locale = Locale(identifier: locale!)
+        currencyFormatter.locale = Locale(identifier: locale)
         let priceString = currencyFormatter.string(from: NSNumber(value: self))
         return priceString ?? ""
     }

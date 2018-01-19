@@ -12,9 +12,6 @@ class CurrencyTableViewController: UITableViewController {
 
     var settings: Settings!
     var settingsHandler = SettingsHandler()
-    var locales = Array(CurrencyLocale.allCurrencies).sorted { (item1, item2) -> Bool in
-        return item1.key < item2.key
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +32,15 @@ class CurrencyTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CurrencyLocale.allCurrencies.count
+        return CurrencyLocale.allCurrenciesList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "currencyitem", for: indexPath) 
         
-        let locale = locales[indexPath.row].key
-        cell.textLabel?.text = locale
+        let currency = CurrencyLocale.allCurrenciesList[indexPath.row]
+        cell.textLabel?.text = currency.code
+        cell.detailTextLabel?.text = currency.name
         
         if cell.textLabel?.text == self.settings.currency {
             cell.accessoryType = .checkmark
