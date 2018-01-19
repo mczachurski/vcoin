@@ -13,6 +13,8 @@ class CurrencyTableViewController: UITableViewController {
     var settings: Settings!
     var settingsHandler = SettingsHandler()
     
+    // MARK: View loading
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false

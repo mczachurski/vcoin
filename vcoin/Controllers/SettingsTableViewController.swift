@@ -50,6 +50,8 @@ class SettingsTableViewController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Table view data source
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.setSelectedColor(color: UIColor.darkBackground)
     }
@@ -61,6 +63,8 @@ class SettingsTableViewController: UITableViewController {
             UIApplication.shared.open(URL(string: "https://github.com/mczachurski/vcoin")! , options: [:], completionHandler: nil)
         }
     }
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "currencySegue" {

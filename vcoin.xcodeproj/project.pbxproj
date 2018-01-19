@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F8034C6620121B6400D90103 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8034C6520121B6400D90103 /* Currency.swift */; };
+		F8034C6820122C6D00D90103 /* ThirdPartyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8034C6720122C6D00D90103 /* ThirdPartyTableViewController.swift */; };
 		F810C43A20011984001BE909 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C43920011984001BE909 /* AppDelegate.swift */; };
 		F810C43F20011984001BE909 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F810C43D20011984001BE909 /* Main.storyboard */; };
 		F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F810C44020011984001BE909 /* vcoin.xcdatamodeld */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		F8034C6520121B6400D90103 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		F8034C6720122C6D00D90103 /* ThirdPartyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyTableViewController.swift; sourceTree = "<group>"; };
 		F810C43620011984001BE909 /* vcoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vcoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F810C43920011984001BE909 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F810C43E20011984001BE909 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				F84D440E200238C2000578E5 /* CoinViewController.swift */,
 				F8690EEA20110496004A0529 /* SettingsTableViewController.swift */,
 				F8690EEE20110C36004A0529 /* CurrencyTableViewController.swift */,
+				F8034C6720122C6D00D90103 /* ThirdPartyTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				F8D1E2B4200DDDA600C53E47 /* CustomLineChartView.swift in Sources */,
 				F810C43A20011984001BE909 /* AppDelegate.swift in Sources */,
 				F8F9743A200B57BA00FE864A /* ChartRange.swift in Sources */,
+				F8034C6820122C6D00D90103 /* ThirdPartyTableViewController.swift in Sources */,
 				F8839E14200935DE005B056A /* Double.swift in Sources */,
 				F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */,
 				F8690EF620113477004A0529 /* CurrencyLocale.swift in Sources */,
