@@ -52,12 +52,14 @@ class BaseTableViewController : UITableViewController {
         self.view.backgroundColor = UIColor.black
         self.tableView.backgroundColor = UIColor.black
         self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.view.backgroundColor = UIColor.black
     }
     
     open func disableDarkMode() {
         self.view.backgroundColor = UIColor.white
         self.tableView.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.barStyle = .default
+        self.navigationController?.view.backgroundColor = UIColor.white
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
