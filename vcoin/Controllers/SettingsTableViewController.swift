@@ -16,6 +16,8 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var currencyOutlet: UILabel!
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
     
+    // MARK: - View loading
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
@@ -37,6 +39,8 @@ class SettingsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - Actions
+    
     @IBAction func toggleDarkModeSwitch(_ sender: UISwitch) {
         self.settings?.isDarkMode = sender.isOn
         self.settingsHandler.save(settings: self.settings)
@@ -48,6 +52,14 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.setSelectedColor(color: UIColor.darkBackground)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.unselectSelectedRow()
+        
+        if indexPath.section == 1 && indexPath.row == 1 {
+            UIApplication.shared.open(URL(string: "https://github.com/mczachurski/vcoin")! , options: [:], completionHandler: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
