@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
+class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating {
     
     private var coinsDataSource: [Coin] = [] {
         didSet {
@@ -20,27 +20,22 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
     
     private var filtr = ""
     private var restClient = RestClient()
-    private var settingsHandler = SettingsHandler()
-    private var settings:Settings!
     private var currentCurrency:String!
     
     // MARK: - View loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.clearsSelectionOnViewWillAppear = false
         
         self.addSearchControl(searchResultsUpdater: self)
         self.addRefreshControl(target: self, action: #selector(refreshTableView))
-        
-        self.removeTableViewCellSeparator()
-        self.removeNavigationBarSeparator()
         
         self.loadCoinsList()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.unselectSelectedRow()
+        super.viewWillAppear(animated)
+        
         self.reloadSettings()
     }
     
@@ -140,6 +135,7 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "coinitem", for: indexPath) as! CoinListTableViewCell
         cell.tag = indexPath.row
+        cell.isDarkMode = self.settings.isDarkMode
         
         let coin = self.filteredDataSource[indexPath.row]
         cell.coinName = coin.FullName
@@ -157,7 +153,6 @@ class CoinTableViewController: UITableViewController, UISearchResultsUpdating {
             cell.coinPrice = coin.Price
         }
         
-        cell.setSelectedColor(color: UIColor.darkBackground)
         return cell
     }
 

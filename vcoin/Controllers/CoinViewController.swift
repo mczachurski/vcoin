@@ -10,13 +10,10 @@ import UIKit
 import Charts
 import SwipeMenuViewController
 
-class CoinViewController: UIViewController, ChartViewDelegate, ChartDifferenceDelegate, SwipeMenuViewDelegate, SwipeMenuViewDataSource {
+class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifferenceDelegate, SwipeMenuViewDelegate, SwipeMenuViewDataSource {
 
     public var coin:Coin!
-    
     private var charts:[Int:CustomLineChartView] = [:]
-    private var settings: Settings! = nil
-    private var settingsHandler = SettingsHandler()
     
     @IBOutlet weak var coinName: UILabel!
     @IBOutlet weak var coinShort: UILabel!
@@ -38,8 +35,8 @@ class CoinViewController: UIViewController, ChartViewDelegate, ChartDifferenceDe
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.settings = self.settingsHandler.getDefaultSettings()
-        
+        super.viewWillAppear(animated)
+                
         self.coinName.text = self.coin.CoinName
         self.coinShort.text = self.coin.Symbol
         self.coinPrice.text = self.coin.Price?.toFormattedPrice(currency: self.settings.currency!)
@@ -50,6 +47,30 @@ class CoinViewController: UIViewController, ChartViewDelegate, ChartDifferenceDe
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Theme style
+    
+    override func enableDarkMode() {
+        super.enableDarkMode()
+        
+        for chart in charts {
+            chart.value.backgroundColor = UIColor.black
+        }
+        
+        self.coinName.textColor = UIColor.white
+        self.coinPrice.textColor = UIColor.white
+    }
+
+    override func disableDarkMode() {
+        super.disableDarkMode()
+        
+        for chart in charts {
+            chart.value.backgroundColor = UIColor.white
+        }
+        
+        self.coinName.textColor = UIColor.black
+        self.coinPrice.textColor = UIColor.black
     }
     
     // MARK: - ChartViewDelegate
@@ -102,10 +123,10 @@ class CoinViewController: UIViewController, ChartViewDelegate, ChartDifferenceDe
         DispatchQueue.main.async {
             self.coinDifference.text = chartView.percentageDifference.toFormattedPercent()
             if chartView.percentageDifference >= 0 {
-                self.coinDifference.textColor = .greenPastel
+                self.coinDifference.textColor = UIColor.greenPastel
             }
             else {
-                self.coinDifference.textColor = .redPastel
+                self.coinDifference.textColor = UIColor.redPastel
             }
         }
     }

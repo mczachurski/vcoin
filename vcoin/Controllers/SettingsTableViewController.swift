@@ -8,28 +8,20 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
-
-    var settings: Settings! = nil
-    var settingsHandler = SettingsHandler()
+class SettingsTableViewController: BaseTableViewController {
     
     @IBOutlet weak var currencyOutlet: UILabel!
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
+    @IBOutlet weak var darkModeLabelOutlet: UILabel!
     
     // MARK: - View loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.clearsSelectionOnViewWillAppear = false
-        
-        self.removeNavigationBarSeparator()
-        self.removeTableViewCellSeparator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.unselectSelectedRow()
-        
-        self.settings = settingsHandler.getDefaultSettings()
+        super.viewWillAppear(animated)
         
         self.currencyOutlet.text = self.settings.currency
         self.darkModeSwitchOutlet.isOn = self.settings.isDarkMode
@@ -39,11 +31,25 @@ class SettingsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - Theme style
+    
+    override func enableDarkMode() {
+        super.enableDarkMode()
+        self.darkModeLabelOutlet.textColor = UIColor.white
+    }
+    
+    override func disableDarkMode() {
+        super.disableDarkMode()
+        self.darkModeLabelOutlet.textColor = UIColor.black
+    }
+    
     // MARK: - Actions
     
     @IBAction func toggleDarkModeSwitch(_ sender: UISwitch) {
         self.settings?.isDarkMode = sender.isOn
         self.settingsHandler.save(settings: self.settings)
+        
+        NotificationCenter.default.post(name: sender.isOn ? .darkModeEnabled : .darkModeDisabled, object: nil)
     }
     
     @IBAction func doneAction(_ sender: Any) {
@@ -51,10 +57,6 @@ class SettingsTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.setSelectedColor(color: UIColor.darkBackground)
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.unselectSelectedRow()

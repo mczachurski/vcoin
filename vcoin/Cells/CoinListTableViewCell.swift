@@ -41,12 +41,14 @@ class CoinListTableViewCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    public var isDarkMode: Bool? {
+        didSet {
+            if isDarkMode ?? true {
+                self.coinNameLabel.textColor = UIColor.white
+            }
+            else {
+                self.coinNameLabel.textColor = UIColor.black
+            }
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
 }

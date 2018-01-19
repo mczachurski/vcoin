@@ -8,23 +8,16 @@
 
 import UIKit
 
-class CurrencyTableViewController: UITableViewController {
-
-    var settings: Settings!
-    var settingsHandler = SettingsHandler()
+class CurrencyTableViewController: BaseTableViewController {
     
     // MARK: View loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.clearsSelectionOnViewWillAppear = false
-        
-        self.removeNavigationBarSeparator()
-        self.removeTableViewCellSeparator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.unselectSelectedRow()
+        super.viewWillAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,8 +43,7 @@ class CurrencyTableViewController: UITableViewController {
         else {
             cell.accessoryType = .none
         }
-        
-        cell.setSelectedColor(color: UIColor.darkBackground)
+
         return cell
     }
     

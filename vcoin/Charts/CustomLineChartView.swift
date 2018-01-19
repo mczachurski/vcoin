@@ -117,5 +117,6 @@ class CustomLineChartView : LineChartView {
         self.pinchZoomEnabled = false
         self.scaleXEnabled = false
         self.scaleYEnabled = false
+        self.chartDescription?.text = ""
     }
 }
