@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 
-class BaseTableViewController : UITableViewController {
+class BaseTableViewController : UITableViewController, UIGestureRecognizerDelegate {
 
     var settingsHandler = SettingsHandler()
     var settings:Settings!
     var twoFingersGestureAction = TwoFingersGestureAction()
+    
+    // MARK: - View loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,8 @@ class BaseTableViewController : UITableViewController {
         
         let twoFingersGestureReognizer = TwoFingersGestureRecognizer(target: self.twoFingersGestureAction, action: #selector(self.twoFingersGestureAction.gestureRecognizer))
         twoFingersGestureReognizer.cancelsTouchesInView = false
-        //self.view.addGestureRecognizer(twoFingersGestureReognizer)
+        twoFingersGestureReognizer.delegate = self
+        self.view.addGestureRecognizer(twoFingersGestureReognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +45,15 @@ class BaseTableViewController : UITableViewController {
         NotificationCenter.default.removeObserver(self, name: .darkModeEnabled, object: nil)
         NotificationCenter.default.removeObserver(self, name: .darkModeDisabled, object: nil)
     }
+    
+    // MARK: - Gesture recognizer
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    // MARK: - Theme
     
     @objc func darkModeEnabled(_ notification: Notification) {
         enableDarkMode()
@@ -66,6 +78,8 @@ class BaseTableViewController : UITableViewController {
         self.navigationController?.navigationBar.barStyle = .default
         self.navigationController?.view.backgroundColor = UIColor.white
     }
+    
+    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         

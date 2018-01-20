@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var settingsHandler = SettingsHandler()
     var settings:Settings!
     var twoFingersGestureAction = TwoFingersGestureAction()
+    
+    // MARK: - View loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +25,8 @@ class BaseViewController: UIViewController {
         
         let twoFingersGestureReognizer = TwoFingersGestureRecognizer(target: self.twoFingersGestureAction, action: #selector(self.twoFingersGestureAction.gestureRecognizer))
         twoFingersGestureReognizer.cancelsTouchesInView = false
-        //self.view.addGestureRecognizer(twoFingersGestureReognizer)
+        twoFingersGestureReognizer.delegate = self
+        self.view.addGestureRecognizer(twoFingersGestureReognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +40,15 @@ class BaseViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .darkModeEnabled, object: nil)
         NotificationCenter.default.removeObserver(self, name: .darkModeDisabled, object: nil)
     }
+    
+    // MARK: - Gesture recognizer
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    // MARK: - Theme
     
     @objc func darkModeEnabled(_ notification: Notification) {
         enableDarkMode()
