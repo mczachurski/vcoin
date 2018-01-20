@@ -87,6 +87,7 @@
 		F84D440E200238C2000578E5 /* CoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewController.swift; sourceTree = "<group>"; };
 		F84E1AC920136A0000E06DAE /* TwoFingersGestureAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFingersGestureAction.swift; sourceTree = "<group>"; };
 		F84E1ACC201382F000E06DAE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		F84E1ACE2013B77200E06DAE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F8690EEA20110496004A0529 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F8690EEC2011078A004A0529 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		F8690EEE20110C36004A0529 /* CurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +138,7 @@
 		F810C42D20011984001BE909 = {
 			isa = PBXGroup;
 			children = (
+				F84E1ACE2013B77200E06DAE /* README.md */,
 				F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */,
 				F8FF599A2006B5EE00489434 /* Charts.framework */,
 				F810C43820011984001BE909 /* vcoin */,
