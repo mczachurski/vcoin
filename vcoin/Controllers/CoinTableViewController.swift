@@ -35,7 +35,6 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.reloadSettings()
     }
     
