@@ -20,19 +20,14 @@ extension UITableViewController {
     
     func addSearchControl(searchResultsUpdater: UISearchResultsUpdating) {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = searchResultsUpdater
         
-        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchResultsUpdater = searchResultsUpdater
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search currencies"
         searchController.searchBar.barTintColor = UIColor.main
         searchController.searchBar.tintColor = UIColor.main
-        searchController.searchBar.sizeToFit()
-        
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.obscuresBackgroundDuringPresentation = false
-        
-        self.navigationItem.searchController = searchController
-        searchController.definesPresentationContext = true
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     func addRefreshControl(target: Any?, action: Selector) {
