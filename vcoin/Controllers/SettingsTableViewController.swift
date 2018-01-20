@@ -68,7 +68,10 @@ class SettingsTableViewController: BaseTableViewController {
         self.unselectSelectedRow()
         
         if indexPath.section == 1 && indexPath.row == 1 {
-            UIApplication.shared.open(URL(string: "https://github.com/mczachurski/vcoin")! , options: [:], completionHandler: nil)
+            "https://github.com/mczachurski/vcoin".openInBrowser()
+        }
+        else if indexPath.section == 1 && indexPath.row == 2 {
+            "https://twitter.com/mczachurski".openInBrowser()
         }
     }
     

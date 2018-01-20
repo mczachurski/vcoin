@@ -182,7 +182,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <sections>
-                            <tableViewSection headerTitle="Main" id="sDB-85-NKe">
+                            <tableViewSection headerTitle="Main" footerTitle="You can switch themes by two fingers swiping up/down on any view." id="sDB-85-NKe">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="v2c-Gl-wdc" detailTextLabel="sfV-K5-0Nh" style="IBUITableViewCellStyleValue1" id="87Y-Cb-2iW">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
@@ -251,7 +251,7 @@
                             <tableViewSection headerTitle="Other" id="IhA-em-Mg9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Rgw-Cs-b87" style="IBUITableViewCellStyleDefault" id="ZKu-1J-PfN">
-                                        <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="227.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZKu-1J-PfN" id="jUy-pm-BuK">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -272,7 +272,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Z6M-3e-yuC" detailTextLabel="k6f-5c-We5" style="IBUITableViewCellStyleValue1" id="185-rw-PSV">
-                                        <rect key="frame" x="0.0" y="243.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="271.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="185-rw-PSV" id="EZT-yS-9Zy">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -287,6 +287,31 @@
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="GitHub" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k6f-5c-We5">
                                                     <rect key="frame" x="286" y="12" width="54" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="LgH-ZW-Srn" detailTextLabel="DYX-JT-kqu" style="IBUITableViewCellStyleValue1" id="F5R-4F-4Xn">
+                                        <rect key="frame" x="0.0" y="315.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F5R-4F-4Xn" id="d9G-Vc-ZYG">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Follow me on Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LgH-ZW-Srn">
+                                                    <rect key="frame" x="16" y="12" width="158" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="@mczachurski" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DYX-JT-kqu">
+                                                    <rect key="frame" x="228" y="12" width="112" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

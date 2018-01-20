@@ -30,11 +30,11 @@ class ThirdPartyTableViewController: BaseTableViewController {
         switch(indexPath.row)
         {
         case 0:
-            UIApplication.shared.open(URL(string: "https://www.cryptocompare.com")! , options: [:], completionHandler: nil)
+            "https://www.cryptocompare.com".openInBrowser()
         case 1:
-            UIApplication.shared.open(URL(string: "https://github.com/danielgindi/Charts")! , options: [:], completionHandler: nil)
+            "https://github.com/danielgindi/Charts".openInBrowser()
         case 2:
-            UIApplication.shared.open(URL(string: "https://github.com/yysskk/SwipeMenuViewController")! , options: [:], completionHandler: nil)
+            "https://github.com/yysskk/SwipeMenuViewController".openInBrowser()
         default:
             break;
         }

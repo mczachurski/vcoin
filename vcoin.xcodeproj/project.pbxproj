@@ -26,6 +26,7 @@
 		F84CB8BB200B79F000A4AD3F /* SwipeMenuViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */; };
 		F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84D440E200238C2000578E5 /* CoinViewController.swift */; };
 		F84E1ACA20136A0000E06DAE /* TwoFingersGestureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84E1AC920136A0000E06DAE /* TwoFingersGestureAction.swift */; };
+		F84E1ACD201382F000E06DAE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84E1ACC201382F000E06DAE /* String.swift */; };
 		F8690EEB20110496004A0529 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EEA20110496004A0529 /* SettingsTableViewController.swift */; };
 		F8690EED2011078A004A0529 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EEC2011078A004A0529 /* UITableViewCell.swift */; };
 		F8690EEF20110C36004A0529 /* CurrencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EEE20110C36004A0529 /* CurrencyTableViewController.swift */; };
@@ -85,6 +86,7 @@
 		F84B4A5B20134F7A0034DBA1 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F84D440E200238C2000578E5 /* CoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewController.swift; sourceTree = "<group>"; };
 		F84E1AC920136A0000E06DAE /* TwoFingersGestureAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFingersGestureAction.swift; sourceTree = "<group>"; };
+		F84E1ACC201382F000E06DAE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		F8690EEA20110496004A0529 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F8690EEC2011078A004A0529 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		F8690EEE20110C36004A0529 /* CurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				F8D7017E200E2D5C0005B6D8 /* UITableViewController.swift */,
 				F8690EEC2011078A004A0529 /* UITableViewCell.swift */,
 				F82D16172012419200071216 /* NotificationName.swift */,
+				F84E1ACC201382F000E06DAE /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F84E1ACD201382F000E06DAE /* String.swift in Sources */,
 				F8690EF420110F15004A0529 /* SettingsHandler.swift in Sources */,
 				F84E1ACA20136A0000E06DAE /* TwoFingersGestureAction.swift in Sources */,
 				F82D16182012419200071216 /* NotificationName.swift in Sources */,
