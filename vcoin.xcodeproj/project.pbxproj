@@ -21,6 +21,7 @@
 		F82D16162012405D00071216 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D16152012405D00071216 /* BaseTableViewController.swift */; };
 		F82D16182012419200071216 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D16172012419200071216 /* NotificationName.swift */; };
 		F82D161D20128B9800071216 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D161C20128B9800071216 /* BaseViewController.swift */; };
+		F84B4A5C20134F7A0034DBA1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84B4A5B20134F7A0034DBA1 /* Player.swift */; };
 		F84CB8BA200B79ED00A4AD3F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FF599A2006B5EE00489434 /* Charts.framework */; };
 		F84CB8BB200B79F000A4AD3F /* SwipeMenuViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */; };
 		F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84D440E200238C2000578E5 /* CoinViewController.swift */; };
@@ -33,6 +34,7 @@
 		F8839E14200935DE005B056A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8839E13200935DE005B056A /* Double.swift */; };
 		F8D1E2B4200DDDA600C53E47 /* CustomLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D1E2B3200DDDA600C53E47 /* CustomLineChartView.swift */; };
 		F8D1E2B6200DE3AB00C53E47 /* SwipeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D1E2B5200DE3AB00C53E47 /* SwipeMenuView.swift */; };
+		F8D4F7A320132A5800570910 /* TwoFingersGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4F7A220132A5800570910 /* TwoFingersGestureRecognizer.swift */; };
 		F8D70177200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D70176200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift */; };
 		F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */; };
 		F8D7017D200E202A0005B6D8 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D7017C200E202A0005B6D8 /* RestClient.swift */; };
@@ -79,6 +81,7 @@
 		F82D16152012405D00071216 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		F82D16172012419200071216 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		F82D161C20128B9800071216 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		F84B4A5B20134F7A0034DBA1 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F84D440E200238C2000578E5 /* CoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewController.swift; sourceTree = "<group>"; };
 		F8690EEA20110496004A0529 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F8690EEC2011078A004A0529 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 		F8839E13200935DE005B056A /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		F8D1E2B3200DDDA600C53E47 /* CustomLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLineChartView.swift; sourceTree = "<group>"; };
 		F8D1E2B5200DE3AB00C53E47 /* SwipeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeMenuView.swift; sourceTree = "<group>"; };
+		F8D4F7A220132A5800570910 /* TwoFingersGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFingersGestureRecognizer.swift; sourceTree = "<group>"; };
 		F8D70176200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDifferenceDelegate.swift; sourceTree = "<group>"; };
 		F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListTableViewCell.swift; sourceTree = "<group>"; };
 		F8D7017C200E202A0005B6D8 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 		F810C43820011984001BE909 /* vcoin */ = {
 			isa = PBXGroup;
 			children = (
+				F84B4A5D20134FAA0034DBA1 /* Sounds */,
 				F82D16192012679700071216 /* UIObjects */,
 				F8690EF220110ED8004A0529 /* CoreData */,
 				F8D7017B200E20140005B6D8 /* HttpClients */,
@@ -204,8 +209,17 @@
 			children = (
 				F82D16152012405D00071216 /* BaseTableViewController.swift */,
 				F82D161C20128B9800071216 /* BaseViewController.swift */,
+				F8D4F7A220132A5800570910 /* TwoFingersGestureRecognizer.swift */,
 			);
 			path = UIObjects;
+			sourceTree = "<group>";
+		};
+		F84B4A5D20134FAA0034DBA1 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F84B4A5B20134F7A0034DBA1 /* Player.swift */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		F84CB8B9200B79ED00A4AD3F /* Frameworks */ = {
@@ -435,10 +449,12 @@
 				F8690EF120110DEB004A0529 /* CoreDataHandler.swift in Sources */,
 				F8690EED2011078A004A0529 /* UITableViewCell.swift in Sources */,
 				F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */,
+				F84B4A5C20134F7A0034DBA1 /* Player.swift in Sources */,
 				F8D1E2B4200DDDA600C53E47 /* CustomLineChartView.swift in Sources */,
 				F810C43A20011984001BE909 /* AppDelegate.swift in Sources */,
 				F8F9743A200B57BA00FE864A /* ChartRange.swift in Sources */,
 				F8034C6820122C6D00D90103 /* ThirdPartyTableViewController.swift in Sources */,
+				F8D4F7A320132A5800570910 /* TwoFingersGestureRecognizer.swift in Sources */,
 				F8839E14200935DE005B056A /* Double.swift in Sources */,
 				F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */,
 				F82D16162012405D00071216 /* BaseTableViewController.swift in Sources */,

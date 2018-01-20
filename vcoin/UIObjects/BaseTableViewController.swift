@@ -13,6 +13,7 @@ class BaseTableViewController : UITableViewController {
 
     var settingsHandler = SettingsHandler()
     var settings:Settings!
+    var player = Player()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,31 @@ class BaseTableViewController : UITableViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
+        
+        let twoFingersGestureReognizer = TwoFingersGestureRecognizer(target: self, action: #selector(longPressGestureRecognizer))
+        twoFingersGestureReognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(twoFingersGestureReognizer)
+    }
+    
+    @objc func longPressGestureRecognizer(sender: TwoFingersGestureRecognizer) {
+        if sender.state == .ended {
+            
+            if sender.fingersDirection == .moveDown && !self.settings.isDarkMode {
+                self.settings?.isDarkMode = true
+                self.settingsHandler.save(settings: self.settings)
+                
+                player.play(name: "switch-on")
+                NotificationCenter.default.post(name: .darkModeEnabled, object: nil)
+            }
+            
+            if sender.fingersDirection == .moveUp && self.settings.isDarkMode {
+                self.settings?.isDarkMode = false
+                self.settingsHandler.save(settings: self.settings)
+                
+                player.play(name: "switch-off")
+                NotificationCenter.default.post(name: .darkModeDisabled, object: nil)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

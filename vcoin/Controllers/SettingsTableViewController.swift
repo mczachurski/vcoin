@@ -36,11 +36,13 @@ class SettingsTableViewController: BaseTableViewController {
     override func enableDarkMode() {
         super.enableDarkMode()
         self.darkModeLabelOutlet.textColor = UIColor.white
+        self.darkModeSwitchOutlet.setOn(true, animated: true)
     }
     
     override func disableDarkMode() {
         super.disableDarkMode()
         self.darkModeLabelOutlet.textColor = UIColor.black
+        self.darkModeSwitchOutlet.setOn(false, animated: true)
     }
     
     // MARK: - Actions
