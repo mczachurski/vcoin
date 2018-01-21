@@ -15,8 +15,8 @@ class Player {
     
     func play(name: String) {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setActive(true, with: [])
             
             let asset = NSDataAsset(name: name)!
             audioPlayer = try AVAudioPlayer(data:asset.data, fileTypeHint: AVFileType.wav.rawValue)
