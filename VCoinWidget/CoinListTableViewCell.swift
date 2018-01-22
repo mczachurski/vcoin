@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VCoinKit
 
 class CoinListTableViewCell: UITableViewCell {
 

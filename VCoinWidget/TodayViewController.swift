@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import CoreData
 import NotificationCenter
 import VCoinKit
 
 class TodayViewController: UITableViewController, NCWidgetProviding {
     
     private let restClient = RestClient()
+    private let settingsHandler = SettingsHandler()
+    
     private let widgetMaxSize = CGFloat(8 * 44)
     private var filteredDataSource: [Coin] = []
+    private var settings:Settings!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,8 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         self.removeTableViewCellSeparator()
+        
+        self.settings = self.settingsHandler.getDefaultSettings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,7 +75,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
     
     private func loadCoinPrice(coin:Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: "USD") { (price) in
+        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!) { (price) in
             coin.Price = price
             DispatchQueue.main.async {
                 if cell.tag == index {
@@ -113,7 +119,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         
         let coin = self.filteredDataSource[indexPath.row]
         cell.coinName = coin.FullName
-        cell.currency = "USD"
+        cell.currency = self.settings.currency
         
         if coin.Price == nil {
             cell.coinChange = nil
