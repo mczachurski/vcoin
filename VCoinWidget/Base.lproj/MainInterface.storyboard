@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="VCoinWidget" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LM4-OB-oDi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="coinitem" id="qof-Cs-Zvo" customClass="CoinListTableViewCell" customModule="VCoinWidget" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qof-Cs-Zvo" id="c2v-Et-HMR">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dd-sY-5FQ">
+                                            <rect key="frame" x="16" y="11" width="45" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="G02-Py-ays"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbF-15-QmQ">
+                                            <rect key="frame" x="270.5" y="6" width="33" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="SyR-xL-QE7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WyX-cP-z3X">
+                                            <rect key="frame" x="260" y="23" width="43.5" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="14" id="1uB-NR-yE8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                            <color key="textColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="WyX-cP-z3X" firstAttribute="top" secondItem="cbF-15-QmQ" secondAttribute="bottom" constant="1" id="2v4-zp-wEw"/>
+                                        <constraint firstAttribute="trailing" secondItem="WyX-cP-z3X" secondAttribute="trailing" constant="16.5" id="A2O-Td-DR0"/>
+                                        <constraint firstItem="5dd-sY-5FQ" firstAttribute="centerY" secondItem="c2v-Et-HMR" secondAttribute="centerY" id="HJf-ld-B6E"/>
+                                        <constraint firstItem="cbF-15-QmQ" firstAttribute="top" secondItem="c2v-Et-HMR" secondAttribute="top" constant="6" id="Ws9-Sb-SkQ"/>
+                                        <constraint firstItem="5dd-sY-5FQ" firstAttribute="leading" secondItem="c2v-Et-HMR" secondAttribute="leadingMargin" id="XrQ-gr-iB3"/>
+                                        <constraint firstItem="WyX-cP-z3X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5dd-sY-5FQ" secondAttribute="trailing" constant="8" id="fg4-TQ-qQR"/>
+                                        <constraint firstItem="cbF-15-QmQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5dd-sY-5FQ" secondAttribute="trailing" constant="8" id="mQg-cu-T7I"/>
+                                        <constraint firstAttribute="trailing" secondItem="cbF-15-QmQ" secondAttribute="trailing" constant="16.5" id="zvC-mR-7Ot"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="coinChangeLabel" destination="WyX-cP-z3X" id="BP9-8w-MEa"/>
+                                    <outlet property="coinNameLabel" destination="5dd-sY-5FQ" id="Wjs-Ge-idl"/>
+                                    <outlet property="coinPriceLabel" destination="cbF-15-QmQ" id="c7a-PG-eMm"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="M4Y-Lb-cyx" id="09e-dM-bgr"/>
+                            <outlet property="delegate" destination="M4Y-Lb-cyx" id="2aF-wS-PNC"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="110"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
