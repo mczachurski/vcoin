@@ -22,7 +22,9 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         self.removeTableViewCellSeparator()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.loadCoinsList()
     }
     
@@ -38,6 +40,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         
+        self.loadCoinsList()
         completionHandler(NCUpdateResult.newData)
     }
     
