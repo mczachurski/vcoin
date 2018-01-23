@@ -14,12 +14,16 @@ import VCoinKit
 class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifferenceDelegate, SwipeMenuViewDelegate, SwipeMenuViewDataSource {
 
     public var coin:Coin!
+    
     private var charts:[Int:CustomLineChartView] = [:]
+    private var favouritesHandler = FavouritesHandler()
+    private var isFavourite = false
     
     @IBOutlet weak var coinName: UILabel!
     @IBOutlet weak var coinShort: UILabel!
     @IBOutlet weak var coinPrice: UILabel!
     @IBOutlet weak var coinDifference: UILabel!
+    @IBOutlet weak var favouriteButtonOutlet: UIBarButtonItem!
     
     @IBOutlet weak var swipeMenuView: SwipeMenuView! {
         didSet {
@@ -44,10 +48,37 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
 
         self.coinDifference.text = (0.0).toFormattedPercent()
         self.coinDifference.textColor = .greenPastel
+        
+        self.setFavouriteButton()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Favourites
+    
+    @IBAction func toggleFavourites(_ sender: UIBarButtonItem) {
+        if self.isFavourite {
+            self.favouritesHandler.deleteFavouriteEntity(symbol: coin.Symbol)
+        }
+        else {
+            let favourite = self.favouritesHandler.createFavouriteEntity()
+            favourite.coinSymbol = self.coin.Symbol
+        }
+        
+        CoreDataHandler.shared.saveContext()
+        self.setFavouriteButton()
+    }
+    
+    private func setFavouriteButton() {
+        self.isFavourite = self.favouritesHandler.isFavourite(symbol: coin.Symbol)
+        if self.isFavourite {
+            self.favouriteButtonOutlet.image = UIImage(named: "star-selected")
+        }
+        else {
+            self.favouriteButtonOutlet.image = UIImage(named: "star-not-selected")
+        }
     }
     
     // MARK: - Theme style

@@ -38,10 +38,6 @@ class SettingsHandler {
         
     }
     
-    func save(settings: Settings) {
-        CoreDataHandler.shared.saveContext()
-    }
-    
     private func createSettingsEntity() -> Settings
     {
         let context = CoreDataHandler.shared.getManagedObjectContext()

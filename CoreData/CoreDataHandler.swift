@@ -17,13 +17,15 @@ class CoreDataHandler {
     private init() {
     }
     
+    // MARK: - Core Data Context
+    
     public func getManagedObjectContext() -> NSManagedObjectContext
     {
         let persistentContainer = self.persistentContainer
         return persistentContainer.viewContext
     }
     
-    // MARK: - Core Data stack
+    // MARK: - Core Data Stack
     
     private lazy var persistentContainer: NSPersistentContainer = {
         /*
@@ -57,7 +59,7 @@ class CoreDataHandler {
         return container
     }()
     
-    // MARK: - Core Data Saving support
+    // MARK: - Core Data Saving
     
     public func saveContext () {
         let context = self.persistentContainer.viewContext

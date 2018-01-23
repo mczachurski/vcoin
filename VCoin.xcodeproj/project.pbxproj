@@ -52,6 +52,8 @@
 		F8EBBB5B2017C41E006AA211 /* vcoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F810C44020011984001BE909 /* vcoin.xcdatamodeld */; };
 		F8EBBB5C2017C667006AA211 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EF020110DEB004A0529 /* CoreDataHandler.swift */; };
 		F8EBBB5D2017C667006AA211 /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EF320110F15004A0529 /* SettingsHandler.swift */; };
+		F8EBBB5F2017CEA4006AA211 /* FavouritesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBBB5E2017CEA4006AA211 /* FavouritesHandler.swift */; };
+		F8EBBB602017CEA4006AA211 /* FavouritesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBBB5E2017CEA4006AA211 /* FavouritesHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +143,7 @@
 		F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListTableViewCell.swift; sourceTree = "<group>"; };
 		F8D7017C200E202A0005B6D8 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		F8D7017E200E2D5C0005B6D8 /* UITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewController.swift; sourceTree = "<group>"; };
+		F8EBBB5E2017CEA4006AA211 /* FavouritesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesHandler.swift; sourceTree = "<group>"; };
 		F8F97432200B3DC700FE864A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeMenuViewController.framework; path = Carthage/Build/iOS/SwipeMenuViewController.framework; sourceTree = "<group>"; };
 		F8F97439200B57BA00FE864A /* ChartTimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTimeRange.swift; sourceTree = "<group>"; };
@@ -307,6 +310,7 @@
 			children = (
 				F8690EF020110DEB004A0529 /* CoreDataHandler.swift */,
 				F8690EF320110F15004A0529 /* SettingsHandler.swift */,
+				F8EBBB5E2017CEA4006AA211 /* FavouritesHandler.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -538,6 +542,7 @@
 			files = (
 				F8690EF420110F15004A0529 /* SettingsHandler.swift in Sources */,
 				F8690EF120110DEB004A0529 /* CoreDataHandler.swift in Sources */,
+				F8EBBB5F2017CEA4006AA211 /* FavouritesHandler.swift in Sources */,
 				F84E1ACA20136A0000E06DAE /* TwoFingersGestureAction.swift in Sources */,
 				F8271FF120165DD5000DAB2B /* String.swift in Sources */,
 				F82D16182012419200071216 /* NotificationName.swift in Sources */,
@@ -581,6 +586,7 @@
 			files = (
 				F8EBBB5C2017C667006AA211 /* CoreDataHandler.swift in Sources */,
 				F8EBBB5D2017C667006AA211 /* SettingsHandler.swift in Sources */,
+				F8EBBB602017CEA4006AA211 /* FavouritesHandler.swift in Sources */,
 				F8EBBB5B2017C41E006AA211 /* vcoin.xcdatamodeld in Sources */,
 				F8271FEA20165CCE000DAB2B /* CoinListTableViewCell.swift in Sources */,
 				F83C83CF20165193003C0D78 /* TodayViewController.swift in Sources */,

@@ -52,7 +52,7 @@ class CurrencyTableViewController: BaseTableViewController {
         let cell = tableView.cellForRow(at: indexPath)
         
         self.settings.currency = cell?.textLabel?.text
-        self.settingsHandler.save(settings: self.settings)
+        CoreDataHandler.shared.saveContext()
         
         self.navigationController?.popViewController(animated: true)
     }

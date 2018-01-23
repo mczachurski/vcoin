@@ -49,7 +49,7 @@ class SettingsTableViewController: BaseTableViewController {
     
     @IBAction func toggleDarkModeSwitch(_ sender: UISwitch) {
         self.settings?.isDarkMode = sender.isOn
-        self.settingsHandler.save(settings: self.settings)
+        CoreDataHandler.shared.saveContext()
         
         NotificationCenter.default.post(name: sender.isOn ? .darkModeEnabled : .darkModeDisabled, object: nil)
     }

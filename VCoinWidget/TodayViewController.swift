@@ -14,6 +14,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     
     private let restClient = RestClient()
     private let settingsHandler = SettingsHandler()
+    private let favouritesHandler = FavouritesHandler()
     
     private let widgetMaxSize = CGFloat(8 * 44)
     private var filteredDataSource: [Coin] = []
@@ -58,16 +59,36 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     
     private func loadCoinsList() {
         self.restClient.loadCoinsList { (coins) in
-            DispatchQueue.main.async {
-                
-                for (index, coin) in coins.enumerated() {
-                    self.filteredDataSource.append(coin)
+            self.filteredDataSource = []
+            
+            let favourites = self.favouritesHandler.getFavourites()
+            if favourites.count > 0 {
+                for favourite in favourites {
+                    let favouriteCoin = coins.filter({ (coin) -> Bool in
+                        return coin.Symbol == favourite.coinSymbol!
+                    })
                     
-                    if index == 7 {
-                        break
+                    if favouriteCoin.count == 1 {
+                        self.filteredDataSource.append(favouriteCoin.first!)
                     }
                 }
+            }
+            
+            for coin in coins {
+                if self.filteredDataSource.count == 8 {
+                    break
+                }
                 
+                let filteredCoin = self.filteredDataSource.filter({ (filteredCoin) -> Bool in
+                    return filteredCoin.Symbol == coin.Symbol
+                })
+                
+                if filteredCoin.count == 0 {
+                    self.filteredDataSource.append(coin)
+                }
+            }
+            
+            DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }

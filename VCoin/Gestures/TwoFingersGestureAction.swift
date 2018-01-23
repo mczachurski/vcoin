@@ -23,7 +23,7 @@ class TwoFingersGestureAction {
             
             if sender.fingersDirection == .moveDown && !self.settings.isDarkMode {
                 self.settings?.isDarkMode = true
-                self.settingsHandler.save(settings: self.settings)
+                CoreDataHandler.shared.saveContext()
                 
                 player.play(name: "switch-on")
                 NotificationCenter.default.post(name: .darkModeEnabled, object: nil)
@@ -31,7 +31,7 @@ class TwoFingersGestureAction {
             
             if sender.fingersDirection == .moveUp && self.settings.isDarkMode {
                 self.settings?.isDarkMode = false
-                self.settingsHandler.save(settings: self.settings)
+                CoreDataHandler.shared.saveContext()
                 
                 player.play(name: "switch-off")
                 NotificationCenter.default.post(name: .darkModeDisabled, object: nil)

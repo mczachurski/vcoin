@@ -14,13 +14,13 @@
         <!--Currencies-->
         <scene sceneID="OON-Oo-o7N">
             <objects>
-                <tableViewController id="G6J-ge-Zaf" customClass="CoinTableViewController" customModule="vcoin" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="G6J-ge-Zaf" customClass="CoinTableViewController" customModule="VCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hpf-ZI-yGk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="coinitem" rowHeight="60" id="u7X-qg-L84" customClass="CoinListTableViewCell" customModule="vcoin" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="coinitem" rowHeight="60" id="u7X-qg-L84" customClass="CoinListTableViewCell" customModule="VCoin" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u7X-qg-L84" id="Heo-HF-Xhn">
@@ -96,7 +96,7 @@
         <!--Coin View Controller-->
         <scene sceneID="aGd-aW-phE">
             <objects>
-                <viewController id="p07-4N-xYf" customClass="CoinViewController" customModule="vcoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="p07-4N-xYf" customClass="CoinViewController" customModule="VCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KOO-fY-dI6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -160,12 +160,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hCq-by-smd"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="bfW-Em-LLs"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="bfW-Em-LLs">
+                        <barButtonItem key="rightBarButtonItem" image="star-not-selected" id="Whr-P8-bkZ">
+                            <connections>
+                                <action selector="toggleFavourites:" destination="p07-4N-xYf" id="PZp-s9-fgN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="coinDifference" destination="iN8-tU-dha" id="01g-yB-mdb"/>
                         <outlet property="coinName" destination="DNk-Ig-yRU" id="N8M-xw-nDx"/>
                         <outlet property="coinPrice" destination="EU3-4b-Wgy" id="HwX-5c-oAh"/>
                         <outlet property="coinShort" destination="QY8-h1-uOI" id="Ro8-j2-f6i"/>
+                        <outlet property="favouriteButtonOutlet" destination="Whr-P8-bkZ" id="7XZ-NG-nF0"/>
                         <outlet property="swipeMenuView" destination="J8W-mc-bwD" id="53U-Ha-mNd"/>
                     </connections>
                 </viewController>
@@ -176,7 +183,7 @@
         <!--Settings-->
         <scene sceneID="G3A-yZ-EhR">
             <objects>
-                <tableViewController id="Zbc-Nq-BDK" customClass="SettingsTableViewController" customModule="vcoin" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Zbc-Nq-BDK" customClass="SettingsTableViewController" customModule="VCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="cvA-UW-VnI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -350,7 +357,7 @@
         <!--Third party-->
         <scene sceneID="7ya-1W-Aza">
             <objects>
-                <tableViewController id="PXQ-Nd-Pho" customClass="ThirdPartyTableViewController" customModule="vcoin" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="PXQ-Nd-Pho" customClass="ThirdPartyTableViewController" customModule="VCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kMg-L3-1qX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -450,7 +457,7 @@
         <!--Currency-->
         <scene sceneID="9Zc-fN-nJx">
             <objects>
-                <tableViewController id="Aj7-cx-jO3" customClass="CurrencyTableViewController" customModule="vcoin" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Aj7-cx-jO3" customClass="CurrencyTableViewController" customModule="VCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="i9c-CM-VlC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -536,5 +543,6 @@
     </scenes>
     <resources>
         <image name="settings" width="25" height="25"/>
+        <image name="star-not-selected" width="25" height="25"/>
     </resources>
 </document>
