@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import VCoinKit
 
 class TwoFingersGestureAction {
     
