@@ -33,10 +33,10 @@ class CoinListTableViewCell: UITableViewCell {
             self.coinChangeLabel?.text = self.coinChange?.toFormattedPercent() ?? "-"
             
             if self.coinChange ?? 0 > 0 {
-                self.coinPriceLabel?.textColor = UIColor.greenPastel
+                self.coinPriceLabel?.textColor = UIColor.green
             }
             else {
-                self.coinPriceLabel?.textColor = UIColor.redPastel
+                self.coinPriceLabel?.textColor = UIColor.red
             }
         }
     }

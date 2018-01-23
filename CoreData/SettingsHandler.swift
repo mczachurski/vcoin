@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 import UIKit
 
-class SettingsHandler : CoreDataHandler {
+class SettingsHandler {
     
     func getDefaultSettings() -> Settings {
         
         var settingsList:[Settings] = []
         
-        let context = self.getManagedObjectContext()
+        let context = CoreDataHandler.shared.getManagedObjectContext()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
         do {
             settingsList = try context.fetch(fetchRequest) as! [Settings]
@@ -28,7 +28,7 @@ class SettingsHandler : CoreDataHandler {
         var settings:Settings? = nil
         if settingsList.count == 0 {
             settings = self.createSettingsEntity()
-            self.save()
+            CoreDataHandler.shared.saveContext()
         }
         else {
             settings = settingsList.first
@@ -39,12 +39,12 @@ class SettingsHandler : CoreDataHandler {
     }
     
     func save(settings: Settings) {
-        self.save()
+        CoreDataHandler.shared.saveContext()
     }
     
     private func createSettingsEntity() -> Settings
     {
-        let context = self.getManagedObjectContext()
+        let context = CoreDataHandler.shared.getManagedObjectContext()
         return Settings(context: context)
     }
 }

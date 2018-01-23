@@ -49,6 +49,9 @@
 		F8D4F7A320132A5800570910 /* TwoFingersGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4F7A220132A5800570910 /* TwoFingersGestureRecognizer.swift */; };
 		F8D70177200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D70176200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift */; };
 		F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */; };
+		F8EBBB5B2017C41E006AA211 /* vcoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F810C44020011984001BE909 /* vcoin.xcdatamodeld */; };
+		F8EBBB5C2017C667006AA211 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EF020110DEB004A0529 /* CoreDataHandler.swift */; };
+		F8EBBB5D2017C667006AA211 /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EF320110F15004A0529 /* SettingsHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +112,8 @@
 		F82D16152012405D00071216 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		F82D16172012419200071216 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		F82D161C20128B9800071216 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		F82EF01B201707B1003B249F /* VCoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VCoin.entitlements; sourceTree = "<group>"; };
+		F82EF01C201707C0003B249F /* VCoinWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VCoinWidget.entitlements; sourceTree = "<group>"; };
 		F83C83A8201650E7003C0D78 /* VCoinKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VCoinKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F83C83AA201650E7003C0D78 /* VCoinKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCoinKit.h; sourceTree = "<group>"; };
 		F83C83AB201650E7003C0D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -180,6 +185,7 @@
 				F810C43820011984001BE909 /* VCoin */,
 				F83C83A9201650E7003C0D78 /* VCoinKit */,
 				F83C83CD20165193003C0D78 /* VCoinWidget */,
+				F8690EF220110ED8004A0529 /* CoreData */,
 				F810C43720011984001BE909 /* Products */,
 				F84CB8B9200B79ED00A4AD3F /* Frameworks */,
 			);
@@ -198,10 +204,10 @@
 		F810C43820011984001BE909 /* VCoin */ = {
 			isa = PBXGroup;
 			children = (
+				F82EF01B201707B1003B249F /* VCoin.entitlements */,
 				F84E1ACB20136B2600E06DAE /* Gestures */,
 				F84B4A5D20134FAA0034DBA1 /* Sounds */,
 				F82D16192012679700071216 /* UIObjects */,
-				F8690EF220110ED8004A0529 /* CoreData */,
 				F8D70178200E04B00005B6D8 /* Cells */,
 				F8D70173200DE8890005B6D8 /* Charts */,
 				F8F97434200B3E6100FE864A /* Controllers */,
@@ -262,6 +268,7 @@
 		F83C83CD20165193003C0D78 /* VCoinWidget */ = {
 			isa = PBXGroup;
 			children = (
+				F82EF01C201707C0003B249F /* VCoinWidget.entitlements */,
 				F8271FE920165CCE000DAB2B /* CoinListTableViewCell.swift */,
 				F83C83CE20165193003C0D78 /* TodayViewController.swift */,
 				F83C83D020165193003C0D78 /* MainInterface.storyboard */,
@@ -435,6 +442,11 @@
 					F810C43520011984001BE909 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					F83C83A7201650E7003C0D78 = {
 						CreatedOnToolsVersion = 9.2;
@@ -443,6 +455,11 @@
 					F83C83C920165193003C0D78 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -520,11 +537,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8690EF420110F15004A0529 /* SettingsHandler.swift in Sources */,
+				F8690EF120110DEB004A0529 /* CoreDataHandler.swift in Sources */,
 				F84E1ACA20136A0000E06DAE /* TwoFingersGestureAction.swift in Sources */,
 				F8271FF120165DD5000DAB2B /* String.swift in Sources */,
 				F82D16182012419200071216 /* NotificationName.swift in Sources */,
 				F8D70177200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift in Sources */,
-				F8690EF120110DEB004A0529 /* CoreDataHandler.swift in Sources */,
 				F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */,
 				F84B4A5C20134F7A0034DBA1 /* Player.swift in Sources */,
 				F8D1E2B4200DDDA600C53E47 /* CustomLineChartView.swift in Sources */,
@@ -562,6 +579,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8EBBB5C2017C667006AA211 /* CoreDataHandler.swift in Sources */,
+				F8EBBB5D2017C667006AA211 /* SettingsHandler.swift in Sources */,
+				F8EBBB5B2017C41E006AA211 /* vcoin.xcdatamodeld in Sources */,
 				F8271FEA20165CCE000DAB2B /* CoinListTableViewCell.swift in Sources */,
 				F83C83CF20165193003C0D78 /* TodayViewController.swift in Sources */,
 			);
@@ -722,6 +742,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = VCoin/VCoin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5UJ67W372Y;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -742,6 +763,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = VCoin/VCoin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5UJ67W372Y;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -810,6 +832,7 @@
 		F83C83D820165194003C0D78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VCoinWidget/VCoinWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5UJ67W372Y;
 				INFOPLIST_FILE = VCoinWidget/Info.plist;
@@ -825,6 +848,7 @@
 		F83C83D920165194003C0D78 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VCoinWidget/VCoinWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5UJ67W372Y;
 				INFOPLIST_FILE = VCoinWidget/Info.plist;
