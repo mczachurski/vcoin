@@ -18,7 +18,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating 
     }
     
     private var filteredDataSource: [Coin] = []
-    
+    private var favouritesHandler = FavouritesHandler()
     private var filtr = ""
     private var restClient = RestClient()
     private var currentCurrency:String!
@@ -140,6 +140,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating 
         let coin = self.filteredDataSource[indexPath.row]
         cell.coinName = coin.FullName
         cell.currency = self.settings.currency
+        cell.isFavourite = favouritesHandler.isFavourite(symbol: coin.Symbol)
         
         if coin.Price == nil {
             cell.coinChange = nil

@@ -28,7 +28,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3x-Uf-FyI">
-                                            <rect key="frame" x="16" y="19" width="45" height="21"/>
+                                            <rect key="frame" x="26" y="19" width="45" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="8I1-cH-k1B"/>
                                             </constraints>
@@ -54,13 +54,23 @@
                                             <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favourite" translatesAutoresizingMaskIntoConstraints="NO" id="9jG-T8-E4M">
+                                            <rect key="frame" x="8" y="24" width="10" height="10"/>
+                                            <color key="tintColor" red="0.94258779290000005" green="0.39486823529999998" blue="0.033136983100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="10" id="c0O-ik-YPA"/>
+                                                <constraint firstAttribute="width" constant="10" id="k8o-Eh-1Kw"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="lDD-SF-UwQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="F3x-Uf-FyI" secondAttribute="trailing" constant="8" id="0Sq-aw-CMB"/>
+                                        <constraint firstItem="9jG-T8-E4M" firstAttribute="centerY" secondItem="Heo-HF-Xhn" secondAttribute="centerY" id="3du-Fk-Kgr"/>
+                                        <constraint firstItem="9jG-T8-E4M" firstAttribute="leading" secondItem="Heo-HF-Xhn" secondAttribute="leadingMargin" constant="-8" id="7He-aQ-8Qf"/>
                                         <constraint firstAttribute="trailing" secondItem="lDD-SF-UwQ" secondAttribute="trailing" id="B1Z-Il-85o"/>
                                         <constraint firstItem="agd-Sp-46m" firstAttribute="top" secondItem="Heo-HF-Xhn" secondAttribute="top" constant="12" id="FJ5-Dc-fYe"/>
+                                        <constraint firstItem="F3x-Uf-FyI" firstAttribute="leading" secondItem="9jG-T8-E4M" secondAttribute="trailing" constant="8" id="JLV-TI-f7V"/>
                                         <constraint firstItem="F3x-Uf-FyI" firstAttribute="centerY" secondItem="Heo-HF-Xhn" secondAttribute="centerY" id="L82-2N-ygt"/>
-                                        <constraint firstItem="F3x-Uf-FyI" firstAttribute="leading" secondItem="Heo-HF-Xhn" secondAttribute="leadingMargin" id="VjH-bH-KaI"/>
                                         <constraint firstItem="agd-Sp-46m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="F3x-Uf-FyI" secondAttribute="trailing" constant="8" id="cTW-Ka-SjG"/>
                                         <constraint firstAttribute="trailing" secondItem="agd-Sp-46m" secondAttribute="trailing" id="cpW-HE-eAk"/>
                                         <constraint firstItem="lDD-SF-UwQ" firstAttribute="top" secondItem="agd-Sp-46m" secondAttribute="bottom" constant="3" id="hsR-84-Hzq"/>
@@ -69,6 +79,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="coinChangeLabel" destination="lDD-SF-UwQ" id="OBA-re-bsh"/>
+                                    <outlet property="coinFavouriteImage" destination="9jG-T8-E4M" id="cTf-Z2-FKI"/>
                                     <outlet property="coinNameLabel" destination="F3x-Uf-FyI" id="WsU-qw-m4T"/>
                                     <outlet property="coinPriceLabel" destination="agd-Sp-46m" id="0le-FR-6Ni"/>
                                     <segue destination="p07-4N-xYf" kind="show" identifier="coindetails" id="MM6-tA-qky"/>
@@ -91,7 +102,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHV-jY-O0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013.5" y="91.5"/>
+            <point key="canvasLocation" x="1012" y="91.304347826086968"/>
         </scene>
         <!--Coin View Controller-->
         <scene sceneID="aGd-aW-phE">
@@ -568,6 +579,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="favourite" width="10" height="10"/>
         <image name="settings" width="25" height="25"/>
         <image name="star-not-selected" width="25" height="25"/>
     </resources>

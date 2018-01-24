@@ -13,7 +13,8 @@ class CoinListTableViewCell: UITableViewCell {
     @IBOutlet weak private var coinNameLabel: UILabel!
     @IBOutlet weak private var coinPriceLabel: UILabel!
     @IBOutlet weak private var coinChangeLabel: UILabel!
-
+    @IBOutlet weak private var coinFavouriteImage: UIImageView!
+    
     public var currency: String?
     
     public var coinName:String? {
@@ -48,6 +49,17 @@ class CoinListTableViewCell: UITableViewCell {
             }
             else {
                 self.coinNameLabel.textColor = UIColor.black
+            }
+        }
+    }
+    
+    public var isFavourite: Bool? {
+        didSet {
+            if isFavourite ?? true {
+                self.coinFavouriteImage.isHidden = false
+            }
+            else {
+                self.coinFavouriteImage.isHidden = true
             }
         }
     }
