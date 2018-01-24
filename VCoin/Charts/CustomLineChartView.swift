@@ -52,7 +52,9 @@ class CustomLineChartView : LineChartView {
         for (index, coinValue) in coinValues.enumerated() {
             if let coinValueDictionary = coinValue as? [String:Any] {
                 if let hight = coinValueDictionary["high"] as? Double {
-                    values.append(ChartDataEntry(x: Double(index + 1), y: hight))
+                    
+                    let chartDataEntry = CustomChartDataEntry(x: Double(index + 1), y: hight, timestamp: coinValueDictionary["time"])
+                    values.append(chartDataEntry)
                     
                     if index == 0 {
                         firstPrice = hight

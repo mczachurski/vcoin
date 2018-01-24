@@ -24,6 +24,8 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
     @IBOutlet weak var coinPrice: UILabel!
     @IBOutlet weak var coinDifference: UILabel!
     @IBOutlet weak var favouriteButtonOutlet: UIBarButtonItem!
+    @IBOutlet weak var historicDate: UILabel!
+    @IBOutlet weak var historicPrice: UILabel!
     
     @IBOutlet weak var swipeMenuView: SwipeMenuView! {
         didSet {
@@ -48,6 +50,9 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
 
         self.coinDifference.text = (0.0).toFormattedPercent()
         self.coinDifference.textColor = .greenPastel
+        
+        self.historicPrice.text = ""
+        self.historicDate.text = ""
         
         self.setFavouriteButton()
     }
@@ -109,7 +114,21 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         let value = entry.y
-        self.coinPrice.text = value.toFormattedPrice(currency: self.settings.currency!)
+        
+        if let customChartDataEntry = entry as? CustomChartDataEntry, let time = customChartDataEntry.time {
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone.current
+            dateFormatter.locale = NSLocale.current
+            dateFormatter.dateFormat = "yyyy-MM-dd, HH:mm"
+            self.historicDate.text = dateFormatter.string(from: time)
+        }
+        
+        self.historicPrice.text = value.toFormattedPrice(currency: self.settings.currency!)
+    }
+    
+    func chartValueNothingSelected(_ chartView: ChartViewBase) {
+        self.historicPrice.text = ""
+        self.historicDate.text = ""
     }
     
     func differenceWasCalculated(chartView: CustomLineChartView, percentageDifference: Double) {
@@ -124,6 +143,9 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
         if let chartView = self.charts[toIndex] {
             self.changePercantageDifference(chartView: chartView)
         }
+        
+        self.historicPrice.text = ""
+        self.historicDate.text = ""
     }
     
     // MARK: - SwipeMenuViewDataSource

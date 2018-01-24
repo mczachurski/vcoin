@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F8034C6820122C6D00D90103 /* ThirdPartyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8034C6720122C6D00D90103 /* ThirdPartyTableViewController.swift */; };
+		F8077D0F20186EA000155D6F /* CustomChartDataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8077D0E20186EA000155D6F /* CustomChartDataEntry.swift */; };
 		F810C43A20011984001BE909 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C43920011984001BE909 /* AppDelegate.swift */; };
 		F810C43F20011984001BE909 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F810C43D20011984001BE909 /* Main.storyboard */; };
 		F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F810C44020011984001BE909 /* vcoin.xcdatamodeld */; };
@@ -101,6 +102,7 @@
 /* Begin PBXFileReference section */
 		F8034C6520121B6400D90103 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		F8034C6720122C6D00D90103 /* ThirdPartyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyTableViewController.swift; sourceTree = "<group>"; };
+		F8077D0E20186EA000155D6F /* CustomChartDataEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChartDataEntry.swift; sourceTree = "<group>"; };
 		F810C43620011984001BE909 /* VCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F810C43920011984001BE909 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F810C43E20011984001BE909 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 			children = (
 				F8D1E2B3200DDDA600C53E47 /* CustomLineChartView.swift */,
 				F8D70176200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift */,
+				F8077D0E20186EA000155D6F /* CustomChartDataEntry.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8077D0F20186EA000155D6F /* CustomChartDataEntry.swift in Sources */,
 				F8690EF420110F15004A0529 /* SettingsHandler.swift in Sources */,
 				F8690EF120110DEB004A0529 /* CoreDataHandler.swift in Sources */,
 				F8EBBB5F2017CEA4006AA211 /* FavouritesHandler.swift in Sources */,
