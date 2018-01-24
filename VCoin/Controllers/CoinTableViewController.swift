@@ -35,6 +35,10 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating 
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        if let selectedRowIndexPath = self.tableView.indexPathForSelectedRow {
+            self.tableView.reloadRows(at: [selectedRowIndexPath], with: .none)
+        }
+        
         super.viewWillAppear(animated)
         self.reloadSettings()
     }
