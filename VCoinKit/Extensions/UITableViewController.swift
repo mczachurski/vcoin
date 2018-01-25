@@ -14,10 +14,6 @@ extension UITableViewController {
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
     
-    public func removeTableViewCellSeparator() {
-        self.tableView.separatorStyle = .none
-    }
-    
     public func addSearchControl(searchResultsUpdater: UISearchResultsUpdating) {
         let searchController = UISearchController(searchResultsController: nil)
         

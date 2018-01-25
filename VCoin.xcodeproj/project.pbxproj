@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F8034C6820122C6D00D90103 /* ThirdPartyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8034C6720122C6D00D90103 /* ThirdPartyTableViewController.swift */; };
+		F8039991201A537A00D3F6CF /* HGPlaceholders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8039990201A537A00D3F6CF /* HGPlaceholders.framework */; };
+		F8039993201A53A300D3F6CF /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8039992201A53A300D3F6CF /* BaseTableView.swift */; };
 		F8077D0F20186EA000155D6F /* CustomChartDataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8077D0E20186EA000155D6F /* CustomChartDataEntry.swift */; };
 		F810C43A20011984001BE909 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C43920011984001BE909 /* AppDelegate.swift */; };
 		F810C43F20011984001BE909 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F810C43D20011984001BE909 /* Main.storyboard */; };
@@ -102,6 +104,8 @@
 /* Begin PBXFileReference section */
 		F8034C6520121B6400D90103 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		F8034C6720122C6D00D90103 /* ThirdPartyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyTableViewController.swift; sourceTree = "<group>"; };
+		F8039990201A537A00D3F6CF /* HGPlaceholders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HGPlaceholders.framework; path = Carthage/Build/iOS/HGPlaceholders.framework; sourceTree = "<group>"; };
+		F8039992201A53A300D3F6CF /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		F8077D0E20186EA000155D6F /* CustomChartDataEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChartDataEntry.swift; sourceTree = "<group>"; };
 		F810C43620011984001BE909 /* VCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F810C43920011984001BE909 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8039991201A537A00D3F6CF /* HGPlaceholders.framework in Frameworks */,
 				F84CB8BA200B79ED00A4AD3F /* Charts.framework in Frameworks */,
 				F84CB8BB200B79F000A4AD3F /* SwipeMenuViewController.framework in Frameworks */,
 			);
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				F84E1ACE2013B77200E06DAE /* README.md */,
+				F8039990201A537A00D3F6CF /* HGPlaceholders.framework */,
 				F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */,
 				F8FF599A2006B5EE00489434 /* Charts.framework */,
 				F810C43820011984001BE909 /* VCoin */,
@@ -254,6 +260,7 @@
 			children = (
 				F82D16152012405D00071216 /* BaseTableViewController.swift */,
 				F82D161C20128B9800071216 /* BaseViewController.swift */,
+				F8039992201A53A300D3F6CF /* BaseTableView.swift */,
 			);
 			path = UIObjects;
 			sourceTree = "<group>";
@@ -527,10 +534,12 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/SwipeMenuViewController.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/HGPlaceholders.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwipeMenuViewController.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HGPlaceholders.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -549,6 +558,7 @@
 				F8EBBB5F2017CEA4006AA211 /* FavouritesHandler.swift in Sources */,
 				F84E1ACA20136A0000E06DAE /* TwoFingersGestureAction.swift in Sources */,
 				F8271FF120165DD5000DAB2B /* String.swift in Sources */,
+				F8039993201A53A300D3F6CF /* BaseTableView.swift in Sources */,
 				F82D16182012419200071216 /* NotificationName.swift in Sources */,
 				F8D70177200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift in Sources */,
 				F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */,

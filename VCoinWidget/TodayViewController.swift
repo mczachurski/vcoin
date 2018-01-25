@@ -24,9 +24,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
         
-        extensionContext?.widgetLargestAvailableDisplayMode = .expanded
-        self.removeTableViewCellSeparator()
-        
+        extensionContext?.widgetLargestAvailableDisplayMode = .expanded        
         self.settings = self.settingsHandler.getDefaultSettings()
     }
     
@@ -58,7 +56,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     // MARK: - Loading data
     
     private func loadCoinsList() {
-        self.restClient.loadCoinsList { (coins) in
+        self.restClient.loadCoinsList(callback: { (coins) in
             self.filteredDataSource = []
             
             let favourites = self.favouritesHandler.getFavourites()
@@ -91,6 +89,8 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }) { (error) in
+            print(error)
         }
     }
     

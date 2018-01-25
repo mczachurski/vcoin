@@ -13,7 +13,7 @@ public class RestClient {
     public init() {
     }
     
-    public func loadCoinsList(callback: @escaping ([Coin]) -> ()) {
+    public func loadCoinsList(callback: @escaping ([Coin]) -> (), errorCallback: @escaping (String) -> ()) {
         var downloadedCoins:[Coin] = []
         
         let request = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/all/coinlist")!)
@@ -22,7 +22,7 @@ public class RestClient {
             
             if let errorMessage = error {
                 print(errorMessage.localizedDescription)
-                callback(downloadedCoins)
+                errorCallback(errorMessage.localizedDescription)
                 return
             }
             
@@ -47,7 +47,7 @@ public class RestClient {
                 
                 callback(downloadedCoins)
             } catch {
-                print("loadCoinsList error")
+                errorCallback("Currencies wasn't downloaded")
             }
         })
         

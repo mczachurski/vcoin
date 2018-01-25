@@ -8,12 +8,19 @@
 
 import UIKit
 import VCoinKit
+import HGPlaceholders
 
-class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating {
+class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating, PlaceholderDelegate {
     
     private var coinsDataSource: [Coin] = [] {
         didSet {
             self.reloadFilteredData()
+        }
+    }
+    
+    private var baseTableView:BaseTableView {
+        get {
+            return self.tableView as! BaseTableView
         }
     }
     
@@ -31,6 +38,8 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating 
         self.addSearchControl(searchResultsUpdater: self)
         self.addRefreshControl(target: self, action: #selector(refreshTableView))
         
+        self.baseTableView.placeholderDelegate = self
+        self.baseTableView.showLoadingPlaceholder()
         self.loadCoinsList()
     }
 
@@ -49,7 +58,8 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating 
     
     private func reloadSettings() {
         self.settings = self.settingsHandler.getDefaultSettings()
-        if self.currentCurrency != self.settings.currency {
+        
+        if self.currentCurrency != nil && self.currentCurrency != self.settings.currency {
             self.clearCoinPrices()
             self.reloadFilteredData()
         }
@@ -82,7 +92,12 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating 
     }
     
     // MARK: - Refreshing
-        
+    
+    func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
+        self.baseTableView.showLoadingPlaceholder()
+        self.loadCoinsList()
+    }
+    
     @objc func refreshTableView(refreshControl: UIRefreshControl) {
         self.loadCoinsList()
     }
@@ -90,10 +105,17 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating 
     // MARK: - Loading data
     
     private func loadCoinsList() {
-        self.restClient.loadCoinsList { (coins) in
+        self.restClient.loadCoinsList(callback: { (coins) in
             DispatchQueue.main.async {
-                self.coinsDataSource = coins
                 self.refreshControl?.endRefreshing()
+                self.coinsDataSource = coins
+            }
+        }) { (error) in
+            if let baseTableView = self.tableView as? BaseTableView {
+                DispatchQueue.main.async {
+                    self.refreshControl?.endRefreshing()
+                    baseTableView.showErrorPlaceholder()
+                }
             }
         }
     }
@@ -124,7 +146,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating 
     }
 
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

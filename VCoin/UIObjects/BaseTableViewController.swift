@@ -21,7 +21,6 @@ class BaseTableViewController : UITableViewController, UIGestureRecognizerDelega
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
         
-        self.removeTableViewCellSeparator()
         self.removeNavigationBarSeparator()
         
         NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
