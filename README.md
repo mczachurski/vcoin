@@ -8,6 +8,7 @@ Main features:
 - prices displayed in more then 100 currencies (USD, EUR, GBP, CHF, etc.)
 - minimal design
 - dark/white themes
+- widget presenting current prices (taking into account user favorite currencies)
 
 <img src="https://raw.githubusercontent.com/mczachurski/vcoin/develop/Resources/screen-dark-01.png" width="200" > <img src="https://raw.githubusercontent.com/mczachurski/vcoin/develop/Resources/screen-dark-02.png" width="200" > <img src="https://raw.githubusercontent.com/mczachurski/vcoin/develop/Resources/screen-white-01.png" width="200" > <img src="https://raw.githubusercontent.com/mczachurski/vcoin/develop/Resources/screen-white-02.png" width="200" >
 
