@@ -74,7 +74,8 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating 
         if self.filtr == "" {
             self.filteredDataSource = self.coinsDataSource
         } else {
-            self.filteredDataSource = self.coinsDataSource.filter() { $0.FullName?.range(of: self.filtr) != nil }
+            let uppercasedFilter = self.filtr.uppercased()
+            self.filteredDataSource = self.coinsDataSource.filter() { $0.FullName?.uppercased().range(of: uppercasedFilter) != nil }
         }
         
         self.tableView.reloadData()

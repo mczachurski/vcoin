@@ -9,12 +9,18 @@
 import UIKit
 import VCoinKit
 
-class CurrencyTableViewController: BaseTableViewController {
+class CurrencyTableViewController: BaseTableViewController, UISearchResultsUpdating {
+    
+    private var filtr = ""
+    private var filteredCurrencies: [Currency] = []
     
     // MARK: View loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.addSearchControl(searchResultsUpdater: self)
+        self.filteredCurrencies = CurrencyLocale.allCurrenciesList
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,16 +31,36 @@ class CurrencyTableViewController: BaseTableViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - Searching
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        self.filtr = searchController.searchBar.text!
+        self.reloadFilteredData()
+    }
+    
+    private func reloadFilteredData() {
+        if self.filtr == "" {
+            self.filteredCurrencies = CurrencyLocale.allCurrenciesList
+        } else {
+            let uppercasedFilter = self.filtr.uppercased()
+            self.filteredCurrencies = CurrencyLocale.allCurrenciesList.filter() {
+                $0.code.uppercased().range(of: uppercasedFilter) != nil || $0.name.uppercased().range(of: uppercasedFilter) != nil
+            }
+        }
+        
+        self.tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CurrencyLocale.allCurrenciesList.count
+        return self.filteredCurrencies.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "currencyitem", for: indexPath) 
         
-        let currency = CurrencyLocale.allCurrenciesList[indexPath.row]
+        let currency = self.filteredCurrencies[indexPath.row]
         cell.textLabel?.text = currency.code
         cell.detailTextLabel?.text = currency.name
         
