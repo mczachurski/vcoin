@@ -39,6 +39,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
         self.addRefreshControl(target: self, action: #selector(refreshTableView))
         
         self.baseTableView.placeholderDelegate = self
+        self.baseTableView.tintColor = UIColor.main
         self.baseTableView.showLoadingPlaceholder()
         self.loadCoinsList()
     }
@@ -95,6 +96,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     
     func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
         if placeholder.key == PlaceholderKey.loadingKey {
+            self.coinsDataSource = []
             self.baseTableView.showNoResultsPlaceholder()
         }
         else {

@@ -106,7 +106,7 @@ class CustomLineChartView : LineChartView {
     
     private func setNoDataText(title: String) {
         self.noDataText = title
-        self.noDataTextColor = .white
+        self.noDataTextColor = .gray
         self.notifyDataSetChanged()
     }
     
