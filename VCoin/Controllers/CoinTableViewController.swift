@@ -94,8 +94,13 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     // MARK: - Refreshing
     
     func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
-        self.baseTableView.showLoadingPlaceholder()
-        self.loadCoinsList()
+        if placeholder.key == PlaceholderKey.loadingKey {
+            self.baseTableView.showNoResultsPlaceholder()
+        }
+        else {
+            self.baseTableView.showLoadingPlaceholder()
+            self.loadCoinsList()
+        }
     }
     
     @objc func refreshTableView(refreshControl: UIRefreshControl) {

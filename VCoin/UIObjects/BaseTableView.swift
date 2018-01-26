@@ -10,7 +10,4 @@ import Foundation
 import HGPlaceholders
 
 class BaseTableView : TableView {
-    override func reloadData() {
-        super.reloadData()
-    }
 }
