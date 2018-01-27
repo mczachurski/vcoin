@@ -115,7 +115,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     
     private func loadCoinsList() {
         
-        if reachability?.connection == .none {
+        if reachability?.connection == Reachability.Connection.none {
             self.baseTableView.showNoConnectionPlaceholder()
             return
         }
