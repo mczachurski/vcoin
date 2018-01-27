@@ -114,14 +114,16 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     private func loadCoinsList() {
         self.restClient.loadCoinsList(callback: { (coins) in
             DispatchQueue.main.async {
-                self.refreshControl?.endRefreshing()
                 self.coinsDataSource = coins
+                if self.refreshControl?.isRefreshing ?? false {
+                    self.refreshControl?.endRefreshing()
+                }
             }
         }) { (error) in
-            if let baseTableView = self.tableView as? BaseTableView {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                self.baseTableView.showErrorPlaceholder()
+                if self.refreshControl?.isRefreshing ?? false {
                     self.refreshControl?.endRefreshing()
-                    baseTableView.showErrorPlaceholder()
                 }
             }
         }
