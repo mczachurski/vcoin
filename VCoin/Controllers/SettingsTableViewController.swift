@@ -13,11 +13,14 @@ class SettingsTableViewController: BaseTableViewController {
     @IBOutlet weak var currencyOutlet: UILabel!
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
     @IBOutlet weak var darkModeLabelOutlet: UILabel!
+    @IBOutlet weak var versionLabelOutlet: UILabel!
     
     // MARK: - View loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.versionLabelOutlet.text = getAppVersion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +32,12 @@ class SettingsTableViewController: BaseTableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Application version
+    
+    func getAppVersion() -> String {
+        return "\(Bundle.main.infoDictionary!["CFBundleShortVersionString"] ?? "")"
     }
     
     // MARK: - Theme style
@@ -71,6 +80,9 @@ class SettingsTableViewController: BaseTableViewController {
             "https://github.com/mczachurski/vcoin".openInBrowser()
         }
         else if indexPath.section == 1 && indexPath.row == 2 {
+            "https://github.com/mczachurski/vcoin/issues".openInBrowser()
+        }
+        else if indexPath.section == 1 && indexPath.row == 3 {
             "https://twitter.com/mczachurski".openInBrowser()
         }
     }

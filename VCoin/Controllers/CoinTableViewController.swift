@@ -9,6 +9,7 @@
 import UIKit
 import VCoinKit
 import HGPlaceholders
+import Reachability
 
 class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating, PlaceholderDelegate {
     
@@ -26,8 +27,9 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     
     private var filteredDataSource: [Coin] = []
     private var favouritesHandler = FavouritesHandler()
-    private var filtr = ""
     private var restClient = RestClient()
+    private var reachability = Reachability()
+    private var filtr = ""
     private var currentCurrency:String!
     
     // MARK: - View loading
@@ -112,6 +114,12 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     // MARK: - Loading data
     
     private func loadCoinsList() {
+        
+        if reachability?.connection == .none {
+            self.baseTableView.showNoConnectionPlaceholder()
+            return
+        }
+        
         self.restClient.loadCoinsList(callback: { (coins) in
             DispatchQueue.main.async {
                 self.coinsDataSource = coins

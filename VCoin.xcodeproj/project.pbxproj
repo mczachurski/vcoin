@@ -20,6 +20,7 @@
 		F810C44420011984001BE909 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F810C44320011984001BE909 /* Assets.xcassets */; };
 		F810C44720011984001BE909 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F810C44520011984001BE909 /* LaunchScreen.storyboard */; };
 		F810C46B200119F1001BE909 /* CoinTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C46A200119F1001BE909 /* CoinTableViewController.swift */; };
+		F8110829201CEF69004F139E /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8110828201CEF69004F139E /* Reachability.framework */; };
 		F8271FE520165A29000DAB2B /* VCoinKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F83C83A8201650E7003C0D78 /* VCoinKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F8271FEA20165CCE000DAB2B /* CoinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8271FE920165CCE000DAB2B /* CoinListTableViewCell.swift */; };
 		F8271FEC20165D39000DAB2B /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8839E13200935DE005B056A /* Double.swift */; };
@@ -122,6 +123,7 @@
 		F810C44820011984001BE909 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F810C46A200119F1001BE909 /* CoinTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewController.swift; sourceTree = "<group>"; };
 		F810C46F20011D82001BE909 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		F8110828201CEF69004F139E /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		F8271FE920165CCE000DAB2B /* CoinListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinListTableViewCell.swift; sourceTree = "<group>"; };
 		F82D16152012405D00071216 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		F82D16172012419200071216 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				F8039991201A537A00D3F6CF /* HGPlaceholders.framework in Frameworks */,
 				F84CB8BA200B79ED00A4AD3F /* Charts.framework in Frameworks */,
 				F84CB8BB200B79F000A4AD3F /* SwipeMenuViewController.framework in Frameworks */,
+				F8110829201CEF69004F139E /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				F84E1ACE2013B77200E06DAE /* README.md */,
+				F8110828201CEF69004F139E /* Reachability.framework */,
 				F8039990201A537A00D3F6CF /* HGPlaceholders.framework */,
 				F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */,
 				F8FF599A2006B5EE00489434 /* Charts.framework */,
@@ -544,11 +548,13 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwipeMenuViewController.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HGPlaceholders.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwipeMenuViewController.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HGPlaceholders.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Reachability.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
