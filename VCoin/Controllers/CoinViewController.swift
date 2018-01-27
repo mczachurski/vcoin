@@ -184,4 +184,14 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
             }
         }
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "coinmarkets" {
+            if let destination = segue.destination as? MarketsTableViewController {
+                destination.coin = self.coin
+            }
+        }
+    }
 }

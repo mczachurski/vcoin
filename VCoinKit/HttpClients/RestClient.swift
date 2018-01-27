@@ -55,10 +55,14 @@ public class RestClient {
     }
     
     public func loadCoinPrice(symbol: String, currency: String, callback: @escaping (Double?) -> ()) {
+        loadCoinPrice(symbol: symbol, currency: currency, market: "CCCAGG", callback: callback)
+    }
+    
+    public func loadCoinPrice(symbol: String, currency: String, market: String, callback: @escaping (Double?) -> ()) {
         
         var price: Double? = nil
         
-        let priceRequest = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/price?fsym=\(symbol)&tsyms=\(currency)&e=CCCAGG")!)
+        let priceRequest = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/price?fsym=\(symbol)&tsyms=\(currency)&e=\(market)")!)
         let session = URLSession.shared
         let priceTask = session.dataTask(with: priceRequest, completionHandler: { priceData, response, error -> Void in
             

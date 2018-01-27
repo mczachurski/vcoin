@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class CurrencyLocale {
+public class Currencies {
     
-    public static var allCurrenciesDictionary:[String:Currency] = CurrencyLocale.initialzieCurrenciesDictionary()
+    public static var allCurrenciesDictionary:[String:Currency] = Currencies.initialzieCurrenciesDictionary()
     
     public static var allCurrenciesList = [
         Currency(code: "AED", locale: "ar-AE", name: "Arab Emirates Dirham"),
@@ -123,7 +123,7 @@ public class CurrencyLocale {
     
     private class func initialzieCurrenciesDictionary() -> [String:Currency] {
         var currencies:[String:Currency] = [:]
-        for currency in CurrencyLocale.allCurrenciesList {
+        for currency in Currencies.allCurrenciesList {
             currencies[currency.code] = currency
         }
         

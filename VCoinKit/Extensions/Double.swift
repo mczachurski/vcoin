@@ -12,10 +12,11 @@ extension Double {
     public func toFormattedPrice(currency: String) -> String {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
+        currencyFormatter.maximumFractionDigits = 4
         currencyFormatter.numberStyle = NumberFormatter.Style.currency
         
         var locale = "en-US"
-        if let currency = CurrencyLocale.allCurrenciesDictionary[currency] {
+        if let currency = Currencies.allCurrenciesDictionary[currency] {
             locale = currency.locale
         }
 

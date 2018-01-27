@@ -35,7 +35,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.addSearchControl(searchResultsUpdater: self)
+        self.addSearchControl(placeholder: "Search currencies", searchResultsUpdater: self)
         self.addRefreshControl(target: self, action: #selector(refreshTableView))
         
         self.baseTableView.placeholderDelegate = self

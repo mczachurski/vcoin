@@ -14,12 +14,12 @@ extension UITableViewController {
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
     
-    public func addSearchControl(searchResultsUpdater: UISearchResultsUpdating) {
+    public func addSearchControl(placeholder: String, searchResultsUpdater: UISearchResultsUpdating) {
         let searchController = UISearchController(searchResultsController: nil)
         
         searchController.searchResultsUpdater = searchResultsUpdater
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search currencies"
+        searchController.searchBar.placeholder = placeholder
         searchController.searchBar.barTintColor = UIColor.main
         searchController.searchBar.tintColor = UIColor.main
         navigationItem.searchController = searchController

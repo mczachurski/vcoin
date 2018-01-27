@@ -19,8 +19,8 @@ class CurrencyTableViewController: BaseTableViewController, UISearchResultsUpdat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.addSearchControl(searchResultsUpdater: self)
-        self.filteredCurrencies = CurrencyLocale.allCurrenciesList
+        self.addSearchControl(placeholder: "Search currencies", searchResultsUpdater: self)
+        self.filteredCurrencies = Currencies.allCurrenciesList
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,10 +40,10 @@ class CurrencyTableViewController: BaseTableViewController, UISearchResultsUpdat
     
     private func reloadFilteredData() {
         if self.filtr == "" {
-            self.filteredCurrencies = CurrencyLocale.allCurrenciesList
+            self.filteredCurrencies = Currencies.allCurrenciesList
         } else {
             let uppercasedFilter = self.filtr.uppercased()
-            self.filteredCurrencies = CurrencyLocale.allCurrenciesList.filter() {
+            self.filteredCurrencies = Currencies.allCurrenciesList.filter() {
                 $0.code.uppercased().range(of: uppercasedFilter) != nil || $0.name.uppercased().range(of: uppercasedFilter) != nil
             }
         }
