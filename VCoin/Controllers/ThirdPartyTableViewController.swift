@@ -47,9 +47,4 @@ class ThirdPartyTableViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
-        cell.detailTextLabel?.textColor = UIColor.lightGray
-    }
 }

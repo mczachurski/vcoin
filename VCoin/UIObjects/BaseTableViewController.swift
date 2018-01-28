@@ -84,14 +84,14 @@ class BaseTableViewController : UITableViewController, UIGestureRecognizerDelega
         
         if self.settings.isDarkMode {
             cell.textLabel?.textColor = UIColor.white
-            cell.detailTextLabel?.textColor = UIColor.white
+            cell.detailTextLabel?.textColor = UIColor.lightGray
             cell.backgroundColor = UIColor.black
             
             cell.setSelectedColor(color: UIColor.darkBackground)
         }
         else {
             cell.textLabel?.textColor = UIColor.black
-            cell.detailTextLabel?.textColor = UIColor.black
+            cell.detailTextLabel?.textColor = UIColor.lightGray
             cell.backgroundColor = UIColor.white
             
             cell.setSelectedColor(color: UIColor.lightBackground)
