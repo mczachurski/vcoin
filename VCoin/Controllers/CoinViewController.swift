@@ -189,6 +189,11 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "coinmarkets" {
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = self.coin.CoinName
+            navigationItem.backBarButtonItem = backItem
+            
             if let destination = segue.destination as? MarketsTableViewController {
                 destination.coin = self.coin
             }

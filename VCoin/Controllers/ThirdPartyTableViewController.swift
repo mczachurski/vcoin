@@ -35,9 +35,21 @@ class ThirdPartyTableViewController: BaseTableViewController {
             "https://github.com/danielgindi/Charts".openInBrowser()
         case 2:
             "https://github.com/yysskk/SwipeMenuViewController".openInBrowser()
+        case 3:
+            "https://github.com/HamzaGhazouani/HGPlaceholders".openInBrowser()
+        case 4:
+            "https://github.com/ashleymills/Reachability.swift".openInBrowser()
         default:
             break;
         }
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
 
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+        cell.detailTextLabel?.textColor = UIColor.lightGray
+    }
 }
