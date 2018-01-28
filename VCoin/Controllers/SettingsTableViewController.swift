@@ -8,8 +8,8 @@
 
 import UIKit
 
-class SettingsTableViewController: BaseTableViewController {
-    
+class SettingsTableViewController: BaseTableViewController, ChooseCurrencyProtocol {
+
     @IBOutlet weak var currencyOutlet: UILabel!
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
     @IBOutlet weak var darkModeLabelOutlet: UILabel!
@@ -91,9 +91,19 @@ class SettingsTableViewController: BaseTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "currencySegue" {
-            if let destination = segue.destination as? CurrencyTableViewController {
+            if let destination = segue.destination as? ChooseCurrencyTableViewController {
                 destination.settings = self.settings
+                destination.selectedCurrency = self.settings?.currency
+                
+                destination.delegate = self
             }
         }
+    }
+    
+    // MARK: - Choose currency protocol
+    
+    func chooseCurrency(selected: String?) {
+        self.settings.currency = selected
+        CoreDataHandler.shared.saveContext()
     }
 }

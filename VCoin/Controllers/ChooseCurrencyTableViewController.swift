@@ -9,7 +9,14 @@
 import UIKit
 import VCoinKit
 
-class CurrencyTableViewController: BaseTableViewController, UISearchResultsUpdating {
+protocol ChooseCurrencyProtocol : NSObjectProtocol {
+    func chooseCurrency(selected: String?)
+}
+
+class ChooseCurrencyTableViewController: BaseTableViewController, UISearchResultsUpdating {
+    
+    public var selectedCurrency:String?
+    public weak var delegate: ChooseCurrencyProtocol?
     
     private var filtr = ""
     private var filteredCurrencies: [Currency] = []
@@ -64,7 +71,7 @@ class CurrencyTableViewController: BaseTableViewController, UISearchResultsUpdat
         cell.textLabel?.text = currency.code
         cell.detailTextLabel?.text = currency.name
         
-        if cell.textLabel?.text == self.settings.currency {
+        if cell.textLabel?.text == self.selectedCurrency {
             cell.accessoryType = .checkmark
         }
         else {
@@ -76,9 +83,7 @@ class CurrencyTableViewController: BaseTableViewController, UISearchResultsUpdat
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        
-        self.settings.currency = cell?.textLabel?.text
-        CoreDataHandler.shared.saveContext()
+        self.delegate?.chooseCurrency(selected: cell?.textLabel?.text)
         
         self.navigationController?.popViewController(animated: true)
     }
