@@ -8,10 +8,19 @@
 
 import UIKit
 
-class WalletTableViewController: BaseTableViewController {
+class WalletTableViewController: BaseTableViewController, WalletItemChangedDelegate {
 
+    private var walletItemsHandler = WalletItemsHandler()
+    private var walletItems: [WalletItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.walletItems = self.walletItemsHandler.getWalletItems()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,22 +30,49 @@ class WalletTableViewController: BaseTableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.walletItems.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "walletitemcell", for: indexPath)
 
         // Configure the cell...
-
+        let walletItem = self.walletItems[indexPath.row]
+        cell.textLabel?.text = walletItem.amount.toFormattedPrice(currency: self.settings.currency!)
+        
         return cell
     }
-    */
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editWalletItemSegue" {
+            if let destination = segue.destination.childViewControllers.first as? WalletItemTableViewController {
+                if let selectedPath = self.tableView.indexPathForSelectedRow {
+                    destination.walletItem = self.walletItems[selectedPath.row]
+                }
+                
+                destination.delegate = self
+            }
+        }
+        else if segue.identifier == "newWalletItemSegue" {
+            if let destination = segue.destination.childViewControllers.first as? WalletItemTableViewController {                
+                destination.delegate = self
+            }
+        }
+    }
+    
+    // MARK: - Changed values delegate
+    
+    func wallet(changed: WalletItem) {
+        
+        CoreDataHandler.shared.saveContext()
+        
+        self.walletItems = self.walletItemsHandler.getWalletItems()
+        self.tableView.reloadData()
+    }
 }
