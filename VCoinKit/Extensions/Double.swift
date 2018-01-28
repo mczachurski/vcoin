@@ -9,10 +9,15 @@
 import Foundation
 
 extension Double {
+    
     public func toFormattedPrice(currency: String) -> String {
+        return self.toFormattedPrice(currency: currency, maximumFractionDigits: 4)
+    }
+    
+    public func toFormattedPrice(currency: String, maximumFractionDigits: Int) -> String {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
-        currencyFormatter.maximumFractionDigits = 4
+        currencyFormatter.maximumFractionDigits = maximumFractionDigits
         currencyFormatter.numberStyle = NumberFormatter.Style.currency
         
         var locale = "en-US"

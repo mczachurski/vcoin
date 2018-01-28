@@ -130,11 +130,11 @@
                                             <rect key="frame" x="20" y="15" width="335" height="100"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7g6-eC-7W2">
-                                                    <rect key="frame" x="8" y="21" width="73.5" height="35"/>
+                                                    <rect key="frame" x="8" y="21" width="51" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="gA8-ca-J4f"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="32"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -148,11 +148,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBD-co-2nh">
-                                                    <rect key="frame" x="253.5" y="21" width="73.5" height="35"/>
+                                                    <rect key="frame" x="276" y="21" width="51" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="sWE-nv-XAG"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="32"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

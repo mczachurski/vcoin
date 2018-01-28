@@ -79,6 +79,12 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDele
         self.amountValueOutlet.textColor = UIColor.black
     }
     
+    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

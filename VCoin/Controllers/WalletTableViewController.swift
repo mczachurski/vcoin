@@ -46,12 +46,20 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
 
         // Configure the cell...
         let walletItem = self.walletItems[indexPath.row]
-
-        cell.coinSymbolOutlet.text = walletItem.coinSymbol
-        cell.coinsAmountOutlet.text = String(walletItem.amount)
-        cell.currencyAmountOutlet.text = 122.2.toFormattedPrice(currency: walletItem.currency!)
-        cell.currencySymbolOutlet.text = walletItem.currency
-        cell.marketOutlet.text = walletItem.marketCode
+        cell.walletItem = walletItem
+        
+        if indexPath.row == 0 {
+            cell.customBacgroundColor = UIColor.main
+        }
+        if indexPath.row == 1 {
+            cell.customBacgroundColor = UIColor(red: 254.0 / 255.0, green: 100.0 / 255.0, blue: 124.0 / 255.0, alpha: 1.0)
+        }
+        else if indexPath.row == 2 {
+            cell.customBacgroundColor = UIColor(red: 73.0 / 255.0, green: 99.0 / 255.0, blue: 174.0 / 255.0, alpha: 1.0)
+        }
+        else if indexPath.row == 3 {
+            cell.customBacgroundColor = UIColor(red: 44.0 / 255.0, green: 209.0 / 255.0, blue: 220.0 / 255.0, alpha: 1.0)
+        }
         
         return cell
     }
