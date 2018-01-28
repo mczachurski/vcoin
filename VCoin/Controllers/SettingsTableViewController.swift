@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableViewController: BaseTableViewController, ChooseCurrencyProtocol {
+class SettingsTableViewController: BaseTableViewController, ChooseCurrencyDelegate {
 
     @IBOutlet weak var currencyOutlet: UILabel!
     @IBOutlet weak var darkModeSwitchOutlet: UISwitch!

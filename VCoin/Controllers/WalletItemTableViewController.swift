@@ -8,18 +8,37 @@
 
 import UIKit
 
-class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyProtocol, ChooseMarketProtocol {
+protocol WalletItemChangedDelegate : NSObjectProtocol {
+    func wallet(changed: WalletItem)
+}
+
+class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDelegate, ChooseMarketDelegate, ChooseCryptocurrencyDelegate {
 
     @IBOutlet weak var cryptoCodeOutlet: UILabel!
-    @IBOutlet weak var amountOutlet: UILabel!
     @IBOutlet weak var marketCodeOutlet: UILabel!
     @IBOutlet weak var currencyOutlet: UILabel!
+    @IBOutlet weak var amountLabelOutlet: UILabel!
+    @IBOutlet weak var amountValueOutlet: UITextField!
     
+    public weak var delegate: WalletItemChangedDelegate?
+    
+    public var walletItem: WalletItem?
+
+    private var walletItemsHandler = WalletItemsHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.marketCodeOutlet.text = self.walletItem?.marketCode
+        self.currencyOutlet.text = self.walletItem?.currency
+        self.cryptoCodeOutlet.text = self.walletItem?.coinSymbol
+        
+        self.amountValueOutlet.text = ""
+        if let amount = self.walletItem?.amount {
+            self.amountValueOutlet.text = String(amount)
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -31,20 +50,34 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyProt
     }
     
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
+        
+        if self.walletItem == nil {
+            self.walletItem = self.walletItemsHandler.createWalletItemEntity()
+        }
+        
+        walletItem?.amount = Double(self.amountValueOutlet.text ?? "0")!
+        walletItem?.marketCode = self.marketCodeOutlet.text
+        walletItem?.currency = self.currencyOutlet.text
+        walletItem?.coinSymbol = self.cryptoCodeOutlet.text
+        
+        self.delegate?.wallet(changed: walletItem!)
+        
         self.dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - Table view data source
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    // MARK: - Theme style
+    
+    override func enableDarkMode() {
+        super.enableDarkMode()
+        self.amountLabelOutlet.textColor = UIColor.white
+        self.amountValueOutlet.textColor = UIColor.white
     }
-    */
+    
+    override func disableDarkMode() {
+        super.disableDarkMode()
+        self.amountLabelOutlet.textColor = UIColor.black
+        self.amountValueOutlet.textColor = UIColor.black
+    }
     
     // MARK: - Navigation
     
@@ -64,7 +97,11 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyProt
             }
         }
         else if segue.identifier == "cryptoSegue" {
-            
+            if let destination = segue.destination as? ChooseCryptocurrencyTableViewController {
+                destination.settings = self.settings
+                destination.selectedCryptocurrency = self.cryptoCodeOutlet.text
+                destination.delegate = self
+            }
         }
     }
     
@@ -76,5 +113,9 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyProt
     
     func chooseMarket(selected: String?) {
         self.marketCodeOutlet.text = selected
+    }
+    
+    func chooseCryptocurrency(selected: String?) {
+        self.cryptoCodeOutlet.text = selected
     }
 }

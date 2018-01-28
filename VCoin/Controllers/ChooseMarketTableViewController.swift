@@ -9,14 +9,14 @@
 import UIKit
 import VCoinKit
 
-protocol ChooseMarketProtocol : NSObjectProtocol {
+protocol ChooseMarketDelegate : NSObjectProtocol {
     func chooseMarket(selected: String?)
 }
 
 class ChooseMarketTableViewController: BaseTableViewController, UISearchResultsUpdating {
 
     public var selectedMarket: String?
-    public weak var delegate: ChooseMarketProtocol?
+    public weak var delegate: ChooseMarketDelegate?
     
     private var markets:[Market] = []
     private var filteredMarkets:[Market] = []

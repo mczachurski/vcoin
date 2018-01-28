@@ -59,6 +59,8 @@
 		F8D4F7A320132A5800570910 /* TwoFingersGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4F7A220132A5800570910 /* TwoFingersGestureRecognizer.swift */; };
 		F8D63BE1201E0656009E63AD /* ChooseCryptocurrencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D63BE0201E0656009E63AD /* ChooseCryptocurrencyTableViewController.swift */; };
 		F8D63BE3201E0682009E63AD /* ChooseMarketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D63BE2201E0682009E63AD /* ChooseMarketTableViewController.swift */; };
+		F8D63BE9201E1CCB009E63AD /* WalletItemsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D63BE8201E1CCB009E63AD /* WalletItemsHandler.swift */; };
+		F8D63BEA201E1CCB009E63AD /* WalletItemsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D63BE8201E1CCB009E63AD /* WalletItemsHandler.swift */; };
 		F8D70177200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D70176200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift */; };
 		F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */; };
 		F8EBBB5B2017C41E006AA211 /* vcoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F810C44020011984001BE909 /* vcoin.xcdatamodeld */; };
@@ -163,6 +165,7 @@
 		F8D4F7A220132A5800570910 /* TwoFingersGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFingersGestureRecognizer.swift; sourceTree = "<group>"; };
 		F8D63BE0201E0656009E63AD /* ChooseCryptocurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCryptocurrencyTableViewController.swift; sourceTree = "<group>"; };
 		F8D63BE2201E0682009E63AD /* ChooseMarketTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMarketTableViewController.swift; sourceTree = "<group>"; };
+		F8D63BE8201E1CCB009E63AD /* WalletItemsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletItemsHandler.swift; sourceTree = "<group>"; };
 		F8D70176200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDifferenceDelegate.swift; sourceTree = "<group>"; };
 		F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListTableViewCell.swift; sourceTree = "<group>"; };
 		F8D7017C200E202A0005B6D8 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
@@ -342,6 +345,7 @@
 				F8690EF020110DEB004A0529 /* CoreDataHandler.swift */,
 				F8690EF320110F15004A0529 /* SettingsHandler.swift */,
 				F8EBBB5E2017CEA4006AA211 /* FavouritesHandler.swift */,
+				F8D63BE8201E1CCB009E63AD /* WalletItemsHandler.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -607,6 +611,7 @@
 				F8690EEB20110496004A0529 /* SettingsTableViewController.swift in Sources */,
 				F82D161D20128B9800071216 /* BaseViewController.swift in Sources */,
 				F829F9B4201DC80100730918 /* WalletItemTableViewController.swift in Sources */,
+				F8D63BE9201E1CCB009E63AD /* WalletItemsHandler.swift in Sources */,
 				F8D1E2B6200DE3AB00C53E47 /* SwipeMenuView.swift in Sources */,
 				F810C46B200119F1001BE909 /* CoinTableViewController.swift in Sources */,
 				F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */,
@@ -638,6 +643,7 @@
 			files = (
 				F8EBBB5C2017C667006AA211 /* CoreDataHandler.swift in Sources */,
 				F8EBBB5D2017C667006AA211 /* SettingsHandler.swift in Sources */,
+				F8D63BEA201E1CCB009E63AD /* WalletItemsHandler.swift in Sources */,
 				F8EBBB602017CEA4006AA211 /* FavouritesHandler.swift in Sources */,
 				F8EBBB5B2017C41E006AA211 /* vcoin.xcdatamodeld in Sources */,
 				F8271FEA20165CCE000DAB2B /* CoinListTableViewCell.swift in Sources */,

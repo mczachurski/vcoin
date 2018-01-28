@@ -9,14 +9,14 @@
 import UIKit
 import VCoinKit
 
-protocol ChooseCurrencyProtocol : NSObjectProtocol {
+protocol ChooseCurrencyDelegate : NSObjectProtocol {
     func chooseCurrency(selected: String?)
 }
 
 class ChooseCurrencyTableViewController: BaseTableViewController, UISearchResultsUpdating {
     
     public var selectedCurrency:String?
-    public weak var delegate: ChooseCurrencyProtocol?
+    public weak var delegate: ChooseCurrencyDelegate?
     
     private var filtr = ""
     private var filteredCurrencies: [Currency] = []
