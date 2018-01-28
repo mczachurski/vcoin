@@ -29,6 +29,10 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
 
     // MARK: - Table view data source
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -38,11 +42,16 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "walletitemcell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "walletitemcell", for: indexPath) as! WalletItemTableViewCell
 
         // Configure the cell...
         let walletItem = self.walletItems[indexPath.row]
-        cell.textLabel?.text = walletItem.amount.toFormattedPrice(currency: self.settings.currency!)
+
+        cell.coinSymbolOutlet.text = walletItem.coinSymbol
+        cell.coinsAmountOutlet.text = String(walletItem.amount)
+        cell.currencyAmountOutlet.text = 122.2.toFormattedPrice(currency: walletItem.currency!)
+        cell.currencySymbolOutlet.text = walletItem.currency
+        cell.marketOutlet.text = walletItem.marketCode
         
         return cell
     }
