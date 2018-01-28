@@ -30,7 +30,7 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 80
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,22 +44,9 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "walletitemcell", for: indexPath) as! WalletItemTableViewCell
 
-        // Configure the cell...
         let walletItem = self.walletItems[indexPath.row]
         cell.walletItem = walletItem
-        
-        if indexPath.row == 0 {
-            cell.customBacgroundColor = UIColor.main
-        }
-        if indexPath.row == 1 {
-            cell.customBacgroundColor = UIColor(red: 254.0 / 255.0, green: 100.0 / 255.0, blue: 124.0 / 255.0, alpha: 1.0)
-        }
-        else if indexPath.row == 2 {
-            cell.customBacgroundColor = UIColor(red: 73.0 / 255.0, green: 99.0 / 255.0, blue: 174.0 / 255.0, alpha: 1.0)
-        }
-        else if indexPath.row == 3 {
-            cell.customBacgroundColor = UIColor(red: 44.0 / 255.0, green: 209.0 / 255.0, blue: 220.0 / 255.0, alpha: 1.0)
-        }
+        cell.isDarkMode = self.settings.isDarkMode
         
         return cell
     }

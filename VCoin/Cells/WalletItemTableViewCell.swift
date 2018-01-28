@@ -21,42 +21,33 @@ class WalletItemTableViewCell: UITableViewCell {
             reloadPrice()
         }
     }
-    
-    public var customBacgroundColor: UIColor! {
+
+    public var isDarkMode: Bool? {
         didSet {
-            self.itemBackgroundOutlet.backgroundColor = self.customBacgroundColor
-            self.itemBackgroundOutlet.layer.shadowColor = self.customBacgroundColor.cgColor
-            self.itemBackgroundOutlet.layer.shadowOffset = CGSize(width: 4, height: 4)
-            self.itemBackgroundOutlet.layer.shadowOpacity = 0.3
-            self.itemBackgroundOutlet.layer.shadowRadius = 3
+            if isDarkMode ?? true {
+                self.coinsAmountOutlet.textColor = UIColor.white
+                self.currencyAmountOutlet.textColor = UIColor.white
+                self.imageOutlet.image = UIImage(named: "exchange-white")
+            }
+            else {
+                self.coinsAmountOutlet.textColor = UIColor.black
+                self.currencyAmountOutlet.textColor = UIColor.black
+                self.imageOutlet.image = UIImage(named: "exchange-black")
+            }
         }
     }
     
-    @IBOutlet private weak var itemBackgroundOutlet: UIView!
     @IBOutlet private weak var coinsAmountOutlet: UILabel!
     @IBOutlet private weak var coinSymbolOutlet: UILabel!
     @IBOutlet private weak var currencyAmountOutlet: UILabel!
     @IBOutlet private weak var currencySymbolOutlet: UILabel!
     @IBOutlet private weak var marketOutlet: UILabel!
+    @IBOutlet private weak var imageOutlet: UIImageView!
     
     private var restClient = RestClient()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.itemBackgroundOutlet.layer.cornerRadius = 12.0
-        self.itemBackgroundOutlet.clipsToBounds = false
-        
-        /*
-        let gradientLayer:CAGradientLayer = CAGradientLayer()
-        gradientLayer.cornerRadius = 12.0
-        gradientLayer.frame.size = self.itemBackgroundOutlet.frame.size
-        gradientLayer.colors = [UIColor.white.cgColor, UIColor.main.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-        
-        self.itemBackgroundOutlet.layer.insertSublayer(gradientLayer, at: 0)
-        */
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
