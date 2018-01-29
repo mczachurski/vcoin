@@ -84,6 +84,19 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+            let walletItem = self.walletItems[indexPath.row]
+            self.walletItemsHandler.deleteWalletItemEntity(walletItem: walletItem)
+            CoreDataHandler.shared.saveContext()
+            
+            self.walletItems = self.walletItemsHandler.getWalletItems()
+            self.tableView.reloadData()
+        })
+        
+        return [deleteAction]
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
