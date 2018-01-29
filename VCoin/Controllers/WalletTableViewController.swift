@@ -7,14 +7,25 @@
 //
 
 import UIKit
+import HGPlaceholders
 
-class WalletTableViewController: BaseTableViewController, WalletItemChangedDelegate {
+class WalletTableViewController: BaseTableViewController, WalletItemChangedDelegate, PlaceholderDelegate {
 
     private var walletItemsHandler = WalletItemsHandler()
     private var walletItems: [WalletItem] = []
     
+    private var baseTableView:BaseTableView {
+        get {
+            return self.tableView as! BaseTableView
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        let placeholder = customPlaceholder()
+        self.baseTableView.placeholdersProvider = PlaceholdersProvider(placeholders: placeholder)
+        self.baseTableView.placeholderDelegate = self
         
         self.walletItems = self.walletItemsHandler.getWalletItems()
     }
@@ -25,6 +36,28 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Placeholders
+    
+    func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
+        if placeholder.key == PlaceholderKey.noResultsKey {
+            self.performSegue(withIdentifier: "newWalletItemSegue", sender:self)
+        }
+    }
+    
+    private func customPlaceholder() -> Placeholder {
+        var customPlaceholderStyle = PlaceholderStyle()
+        customPlaceholderStyle.titleColor = .darkGray
+        
+        var customPlaceholderData = PlaceholderData()
+        customPlaceholderData.title = NSLocalizedString("No data", comment: "")
+        customPlaceholderData.subtitle = NSLocalizedString("If you want to see something more then this picture\nadd a new exchange data", comment: "")
+        customPlaceholderData.image = UIImage(named: "empty-wallet")
+        customPlaceholderData.action = NSLocalizedString("New exchange", comment: "")
+        
+        let placeholder = Placeholder(data: customPlaceholderData, style: customPlaceholderStyle, key: PlaceholderKey.noResultsKey)
+        return placeholder
     }
 
     // MARK: - Table view data source
