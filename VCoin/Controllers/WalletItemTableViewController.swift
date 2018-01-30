@@ -19,6 +19,7 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDele
     @IBOutlet weak var currencyOutlet: UILabel!
     @IBOutlet weak var amountLabelOutlet: UILabel!
     @IBOutlet weak var amountValueOutlet: UITextField!
+    @IBOutlet weak var saveButtonOutlet: UIBarButtonItem!
     
     public weak var delegate: WalletItemChangedDelegate?
     
@@ -29,18 +30,44 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.marketCodeOutlet.text = self.walletItem?.marketCode
-        self.currencyOutlet.text = self.walletItem?.currency
+        
         self.cryptoCodeOutlet.text = self.walletItem?.coinSymbol
+        self.currencyOutlet.text = self.walletItem?.currency
+        self.marketCodeOutlet.text = self.walletItem?.marketCode
         
         self.amountValueOutlet.text = ""
         if let amount = self.walletItem?.amount {
             self.amountValueOutlet.text = String(amount)
         }
+        
+        self.validateInputs()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.currencyOutlet.text.isNilOrEmpty {
+            self.currencyOutlet.text = self.settings.currency
+        }
+        
+        if self.marketCodeOutlet.text.isNilOrEmpty {
+            self.marketCodeOutlet.text = "CCCAGG"
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    private func validateInputs() {
+        
+        if self.marketCodeOutlet.text.isNilOrEmpty || self.currencyOutlet.text.isNilOrEmpty ||
+            self.cryptoCodeOutlet.text.isNilOrEmpty || self.amountValueOutlet.text.isNilOrEmpty {
+            self.saveButtonOutlet.isEnabled = false
+            return
+        }
+        
+        self.saveButtonOutlet.isEnabled = true
     }
     
     // MARK: - Actions
@@ -55,7 +82,13 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDele
             self.walletItem = self.walletItemsHandler.createWalletItemEntity()
         }
         
-        walletItem?.amount = Double(self.amountValueOutlet.text ?? "0")!
+        if let amountTextValue = self.amountValueOutlet.text {
+            walletItem?.amount = amountTextValue.doubleValue
+        }
+        else {
+            walletItem?.amount = 0.0
+        }
+        
         walletItem?.marketCode = self.marketCodeOutlet.text
         walletItem?.currency = self.currencyOutlet.text
         walletItem?.coinSymbol = self.cryptoCodeOutlet.text
@@ -63,6 +96,10 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDele
         self.delegate?.wallet(changed: walletItem!)
         
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func amountChangedAction(_ sender: UITextField) {
+        self.validateInputs()
     }
     
     // MARK: - Theme style
@@ -83,6 +120,12 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDele
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            self.amountValueOutlet.becomeFirstResponder()
+        }
     }
     
     // MARK: - Navigation
@@ -115,13 +158,16 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDele
     
     func chooseCurrency(selected: String?) {
         self.currencyOutlet.text = selected
+        self.validateInputs()
     }
     
     func chooseMarket(selected: String?) {
         self.marketCodeOutlet.text = selected
+        self.validateInputs()
     }
     
     func chooseCryptocurrency(selected: String?) {
         self.cryptoCodeOutlet.text = selected
+        self.validateInputs()
     }
 }

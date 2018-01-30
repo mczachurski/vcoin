@@ -22,7 +22,9 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        self.addRefreshControl(target: self, action: #selector(refreshTableView))
+        
         let placeholder = customPlaceholder()
         self.baseTableView.placeholdersProvider = PlaceholdersProvider(placeholders: placeholder)
         self.baseTableView.placeholderDelegate = self
@@ -38,6 +40,13 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - Refreshing
+    
+    @objc func refreshTableView(refreshControl: UIRefreshControl) {
+        self.tableView.reloadData()
+        self.refreshControl?.perform(#selector(UIRefreshControl.endRefreshing), with: nil, afterDelay: 0.1)
+    }
+    
     // MARK: - Placeholders
     
     func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
@@ -49,6 +58,9 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     private func customPlaceholder() -> Placeholder {
         var customPlaceholderStyle = PlaceholderStyle()
         customPlaceholderStyle.titleColor = .darkGray
+        
+        customPlaceholderStyle.shouldShowTableViewHeader = true
+        customPlaceholderStyle.shouldShowTableViewFooter = true
         
         var customPlaceholderData = PlaceholderData()
         customPlaceholderData.title = NSLocalizedString("No data", comment: "")
