@@ -1,5 +1,5 @@
 //
-//  WalletTableViewController.swift
+//  ExchangesTableViewController.swift
 //  VCoin
 //
 //  Created by Marcin Czachurski on 28.01.2018.
@@ -9,10 +9,10 @@
 import UIKit
 import HGPlaceholders
 
-class WalletTableViewController: BaseTableViewController, WalletItemChangedDelegate, PlaceholderDelegate {
+class ExchangesTableViewController: BaseTableViewController, ExchangeItemChangedDelegate, PlaceholderDelegate {
 
-    private var walletItemsHandler = WalletItemsHandler()
-    private var walletItems: [WalletItem] = []
+    private var exchangeItemsHandler = ExchangeItemsHandler()
+    private var exchangeItems: [ExchangeItem] = []
     
     private var baseTableView:BaseTableView {
         get {
@@ -29,7 +29,7 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
         self.baseTableView.placeholdersProvider = PlaceholdersProvider(placeholders: placeholder)
         self.baseTableView.placeholderDelegate = self
         
-        self.walletItems = self.walletItemsHandler.getWalletItems()
+        self.exchangeItems = self.exchangeItemsHandler.getExchangeItems()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +55,7 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     
     func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
         if placeholder.key == PlaceholderKey.noResultsKey {
-            self.performSegue(withIdentifier: "newWalletItemSegue", sender:self)
+            self.performSegue(withIdentifier: "newExchangeItemSegue", sender:self)
         }
     }
     
@@ -69,7 +69,7 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
         var customPlaceholderData = PlaceholderData()
         customPlaceholderData.title = NSLocalizedString("No data", comment: "")
         customPlaceholderData.subtitle = NSLocalizedString("If you want to see something more then this picture\nadd a new exchange data", comment: "")
-        customPlaceholderData.image = UIImage(named: "empty-wallet")
+        customPlaceholderData.image = UIImage(named: "empty-exchanges")
         customPlaceholderData.action = NSLocalizedString("New exchange", comment: "")
         
         let placeholder = Placeholder(data: customPlaceholderData, style: customPlaceholderStyle, key: PlaceholderKey.noResultsKey)
@@ -87,14 +87,14 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.walletItems.count
+        return self.exchangeItems.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "walletitemcell", for: indexPath) as! WalletItemTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "exchangeitemcell", for: indexPath) as! ExchangeItemTableViewCell
 
-        let walletItem = self.walletItems[indexPath.row]
-        cell.walletItem = walletItem
+        let exchangeItem = self.exchangeItems[indexPath.row]
+        cell.exchangeItem = exchangeItem
         cell.isDarkMode = self.settings.isDarkMode
         
         return cell
@@ -102,11 +102,11 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
-            let walletItem = self.walletItems[indexPath.row]
-            self.walletItemsHandler.deleteWalletItemEntity(walletItem: walletItem)
+            let exchangeItem = self.exchangeItems[indexPath.row]
+            self.exchangeItemsHandler.deleteExchangeItemEntity(exchangeItem: exchangeItem)
             CoreDataHandler.shared.saveContext()
             
-            self.walletItems = self.walletItemsHandler.getWalletItems()
+            self.exchangeItems = self.exchangeItemsHandler.getExchangeItems()
             self.tableView.reloadData()
         })
         
@@ -116,17 +116,17 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editWalletItemSegue" {
-            if let destination = segue.destination.childViewControllers.first as? WalletItemTableViewController {
+        if segue.identifier == "editExchangeItemSegue" {
+            if let destination = segue.destination.childViewControllers.first as? ExchangeItemTableViewController {
                 if let selectedPath = self.tableView.indexPathForSelectedRow {
-                    destination.walletItem = self.walletItems[selectedPath.row]
+                    destination.exchangeItem = self.exchangeItems[selectedPath.row]
                 }
                 
                 destination.delegate = self
             }
         }
-        else if segue.identifier == "newWalletItemSegue" {
-            if let destination = segue.destination.childViewControllers.first as? WalletItemTableViewController {                
+        else if segue.identifier == "newExchangeItemSegue" {
+            if let destination = segue.destination.childViewControllers.first as? ExchangeItemTableViewController {
                 destination.delegate = self
             }
         }
@@ -134,11 +134,11 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     
     // MARK: - Changed values delegate
     
-    func wallet(changed: WalletItem) {
+    func exchange(changed: ExchangeItem) {
         
         CoreDataHandler.shared.saveContext()
         
-        self.walletItems = self.walletItemsHandler.getWalletItems()
+        self.exchangeItems = self.exchangeItemsHandler.getExchangeItems()
         self.tableView.reloadData()
     }
 }

@@ -113,7 +113,7 @@
         <!--Exchanges-->
         <scene sceneID="EVa-th-xhx">
             <objects>
-                <tableViewController id="lqS-jp-mo3" customClass="WalletTableViewController" customModule="VCoin" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="lqS-jp-mo3" customClass="ExchangesTableViewController" customModule="VCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="G3C-mh-SBY" customClass="BaseTableView" customModule="VCoin" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,7 +121,7 @@
                         <color key="tintColor" red="0.94117647059999998" green="0.39607843139999999" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.94117647059999998" green="0.39607843139999999" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="walletitemcell" rowHeight="80" id="h7z-6X-g3n" customClass="WalletItemTableViewCell" customModule="VCoin" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="exchangeitemcell" rowHeight="80" id="h7z-6X-g3n" customClass="ExchangeItemTableViewCell" customModule="VCoin" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h7z-6X-g3n" id="xMN-2R-FXW">
@@ -208,7 +208,7 @@
                                     <outlet property="currencySymbolOutlet" destination="577-F7-fuN" id="D8v-C9-nuF"/>
                                     <outlet property="imageOutlet" destination="9Fj-vI-5F2" id="WuO-rG-E6o"/>
                                     <outlet property="marketOutlet" destination="bzt-c5-Fu8" id="cOR-HY-f3C"/>
-                                    <segue destination="bDE-py-Z0W" kind="showDetail" identifier="editWalletItemSegue" id="4Vm-kO-fSr"/>
+                                    <segue destination="bDE-py-Z0W" kind="showDetail" identifier="editExchangeItemSegue" id="4Vm-kO-fSr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -220,7 +220,7 @@
                     <navigationItem key="navigationItem" title="Exchanges" id="aiT-Gi-2RK">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="P4R-UT-2T3">
                             <connections>
-                                <segue destination="bDE-py-Z0W" kind="showDetail" identifier="newWalletItemSegue" id="4Wg-QJ-Ff6"/>
+                                <segue destination="bDE-py-Z0W" kind="showDetail" identifier="newExchangeItemSegue" id="4Wg-QJ-Ff6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -232,7 +232,7 @@
         <!--Exchange-->
         <scene sceneID="e9Z-gP-uf8">
             <objects>
-                <tableViewController id="YSE-eN-WRw" customClass="WalletItemTableViewController" customModule="VCoin" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="YSE-eN-WRw" customClass="ExchangeItemTableViewController" customModule="VCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bZN-Rq-iZa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1219,6 +1219,6 @@
         <image name="star-not-selected" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4Wg-QJ-Ff6"/>
+        <segue reference="4Vm-kO-fSr"/>
     </inferredMetricsTieBreakers>
 </document>

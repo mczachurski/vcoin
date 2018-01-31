@@ -1,5 +1,5 @@
 //
-//  WalletItemTableViewController.swift
+//  ExchangeItemChangedDelegate.swift
 //  VCoin
 //
 //  Created by Marcin Czachurski on 28.01.2018.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol WalletItemChangedDelegate : NSObjectProtocol {
-    func wallet(changed: WalletItem)
+protocol ExchangeItemChangedDelegate : NSObjectProtocol {
+    func exchange(changed: ExchangeItem)
 }
 
-class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDelegate, ChooseMarketDelegate, ChooseCryptocurrencyDelegate {
+class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDelegate, ChooseMarketDelegate, ChooseCryptocurrencyDelegate {
 
     @IBOutlet weak var cryptoCodeOutlet: UILabel!
     @IBOutlet weak var marketCodeOutlet: UILabel!
@@ -21,22 +21,22 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDele
     @IBOutlet weak var amountValueOutlet: UITextField!
     @IBOutlet weak var saveButtonOutlet: UIBarButtonItem!
     
-    public weak var delegate: WalletItemChangedDelegate?
+    public weak var delegate: ExchangeItemChangedDelegate?
     
-    public var walletItem: WalletItem?
+    public var exchangeItem: ExchangeItem?
 
-    private var walletItemsHandler = WalletItemsHandler()
+    private var exchangeItemsHandler = ExchangeItemsHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        self.cryptoCodeOutlet.text = self.walletItem?.coinSymbol
-        self.currencyOutlet.text = self.walletItem?.currency
-        self.marketCodeOutlet.text = self.walletItem?.marketCode
+        self.cryptoCodeOutlet.text = self.exchangeItem?.coinSymbol
+        self.currencyOutlet.text = self.exchangeItem?.currency
+        self.marketCodeOutlet.text = self.exchangeItem?.marketCode
         
         self.amountValueOutlet.text = ""
-        if let amount = self.walletItem?.amount {
+        if let amount = self.exchangeItem?.amount {
             self.amountValueOutlet.text = String(amount)
         }
         
@@ -78,22 +78,22 @@ class WalletItemTableViewController: BaseTableViewController, ChooseCurrencyDele
     
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
         
-        if self.walletItem == nil {
-            self.walletItem = self.walletItemsHandler.createWalletItemEntity()
+        if self.exchangeItem == nil {
+            self.exchangeItem = self.exchangeItemsHandler.createExchangeItemEntity()
         }
         
         if let amountTextValue = self.amountValueOutlet.text {
-            walletItem?.amount = amountTextValue.doubleValue
+            exchangeItem?.amount = amountTextValue.doubleValue
         }
         else {
-            walletItem?.amount = 0.0
+            exchangeItem?.amount = 0.0
         }
         
-        walletItem?.marketCode = self.marketCodeOutlet.text
-        walletItem?.currency = self.currencyOutlet.text
-        walletItem?.coinSymbol = self.cryptoCodeOutlet.text
+        exchangeItem?.marketCode = self.marketCodeOutlet.text
+        exchangeItem?.currency = self.currencyOutlet.text
+        exchangeItem?.coinSymbol = self.cryptoCodeOutlet.text
         
-        self.delegate?.wallet(changed: walletItem!)
+        self.delegate?.exchange(changed: exchangeItem!)
         
         self.dismiss(animated: true, completion: nil)
     }

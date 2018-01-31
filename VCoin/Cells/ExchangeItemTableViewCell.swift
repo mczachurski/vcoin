@@ -1,5 +1,5 @@
 //
-//  WalletItemTableViewCell.swift
+//  ExchangeItemTableViewCell.swift
 //  VCoin
 //
 //  Created by Marcin Czachurski on 28.01.2018.
@@ -9,15 +9,15 @@
 import UIKit
 import VCoinKit
 
-class WalletItemTableViewCell: UITableViewCell {
+class ExchangeItemTableViewCell: UITableViewCell {
 
-    public var walletItem: WalletItem! {
+    public var exchangeItem: ExchangeItem! {
         didSet {
-            self.coinSymbolOutlet.text = self.walletItem.coinSymbol
-            self.coinsAmountOutlet.text = String(self.walletItem.amount)
+            self.coinSymbolOutlet.text = self.exchangeItem.coinSymbol
+            self.coinsAmountOutlet.text = String(self.exchangeItem.amount)
             self.currencyAmountOutlet.text = "..."
-            self.currencySymbolOutlet.text = self.walletItem.currency
-            self.marketOutlet.text = self.walletItem.marketCode
+            self.currencySymbolOutlet.text = self.exchangeItem.currency
+            self.marketOutlet.text = self.exchangeItem.marketCode
             reloadPrice()
         }
     }
@@ -55,11 +55,11 @@ class WalletItemTableViewCell: UITableViewCell {
     }
 
     private func reloadPrice() {
-        restClient.loadCoinPrice(symbol: self.walletItem.coinSymbol!, currency: self.walletItem.currency!, market: self.walletItem.marketCode!) { (value) in
+        restClient.loadCoinPrice(symbol: self.exchangeItem.coinSymbol!, currency: self.exchangeItem.currency!, market: self.exchangeItem.marketCode!) { (value) in
             if value != nil {
-                let price = value! * self.walletItem.amount
+                let price = value! * self.exchangeItem.amount
                 DispatchQueue.main.async {
-                    self.currencyAmountOutlet.text = price.toFormattedPrice(currency: self.walletItem.currency!, maximumFractionDigits: 2)
+                    self.currencyAmountOutlet.text = price.toFormattedPrice(currency: self.exchangeItem.currency!, maximumFractionDigits: 2)
                 }
             }
             else {
