@@ -43,8 +43,12 @@ class WalletTableViewController: BaseTableViewController, WalletItemChangedDeleg
     // MARK: - Refreshing
     
     @objc func refreshTableView(refreshControl: UIRefreshControl) {
+        self.perform(#selector(reloadTableViewData), with: nil, afterDelay: 1.5)
+        self.refreshControl?.perform(#selector(UIRefreshControl.endRefreshing), with: nil, afterDelay: 1.0)
+    }
+    
+    @objc func reloadTableViewData() {
         self.tableView.reloadData()
-        self.refreshControl?.perform(#selector(UIRefreshControl.endRefreshing), with: nil, afterDelay: 0.1)
     }
     
     // MARK: - Placeholders
