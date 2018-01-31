@@ -20,6 +20,8 @@ class ExchangesTableViewController: BaseTableViewController, ExchangeItemChanged
         }
     }
     
+    // MARK: - View loading
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

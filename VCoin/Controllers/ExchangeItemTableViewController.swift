@@ -27,6 +27,8 @@ class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDe
 
     private var exchangeItemsHandler = ExchangeItemsHandler()
     
+    // MARK: - View loading
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,6 +60,8 @@ class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDe
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    // MARK: - Validation
     
     private func validateInputs() {
         
