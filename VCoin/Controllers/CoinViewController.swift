@@ -17,6 +17,7 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
     
     private var charts:[Int:CustomLineChartView] = [:]
     private var favouritesHandler = FavouritesHandler()
+    private var alersHandler = AlertsHandler()
     private var isFavourite = false
     
     @IBOutlet weak var coinName: UILabel!
@@ -24,6 +25,7 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
     @IBOutlet weak var coinPrice: UILabel!
     @IBOutlet weak var coinDifference: UILabel!
     @IBOutlet weak var favouriteButtonOutlet: UIBarButtonItem!
+    @IBOutlet weak var alarmButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var historicDate: UILabel!
     @IBOutlet weak var historicPrice: UILabel!
     
@@ -55,6 +57,7 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
         self.historicDate.text = ""
         
         self.setFavouriteButton()
+        self.setAlarmButton()
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,6 +86,16 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
         }
         else {
             self.favouriteButtonOutlet.image = UIImage(named: "star-not-selected")
+        }
+    }
+    
+    private func setAlarmButton() {
+        let alerts = alersHandler.getAlerts(coinSymbol: self.coin.Symbol)
+        if alerts.count == 0 {
+            self.alarmButtonOutlet.image = UIImage(named: "alarm-off")
+        }
+        else {
+            self.alarmButtonOutlet.image = UIImage(named: "alarm-on")
         }
     }
     
@@ -188,7 +201,7 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "coinmarkets" {
+        if segue.identifier == "coinMarketsSegue" {
             
             let backItem = UIBarButtonItem()
             backItem.title = self.coin.CoinName
@@ -196,6 +209,11 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
             
             if let destination = segue.destination as? MarketsTableViewController {
                 destination.coin = self.coin
+            }
+        }
+        else if segue.identifier == "alertsSegue" {
+            if let destination = segue.destination as? AlertsTableViewController {
+                destination.coinSymbol = self.coin.Symbol
             }
         }
     }

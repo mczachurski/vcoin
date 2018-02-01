@@ -30,7 +30,7 @@
 		F8271FF120165DD5000DAB2B /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84E1ACC201382F000E06DAE /* String.swift */; };
 		F829F9B2201DC4E600730918 /* ExchangesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F829F9B1201DC4E600730918 /* ExchangesTableViewController.swift */; };
 		F829F9B4201DC80100730918 /* ExchangeItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F829F9B3201DC80100730918 /* ExchangeItemTableViewController.swift */; };
-		F829F9B6201DCEEA00730918 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F829F9B5201DCEEA00730918 /* NotificationsTableViewController.swift */; };
+		F829F9B6201DCEEA00730918 /* AlertsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F829F9B5201DCEEA00730918 /* AlertsTableViewController.swift */; };
 		F82D16162012405D00071216 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D16152012405D00071216 /* BaseTableViewController.swift */; };
 		F82D16182012419200071216 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D16172012419200071216 /* NotificationName.swift */; };
 		F82D161D20128B9800071216 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D161C20128B9800071216 /* BaseViewController.swift */; };
@@ -64,6 +64,9 @@
 		F8D63BEC201E316F009E63AD /* ExchangeItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D63BEB201E316F009E63AD /* ExchangeItemTableViewCell.swift */; };
 		F8D70177200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D70176200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift */; };
 		F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */; };
+		F8DB286F20237D3D0042A431 /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB286E20237D3D0042A431 /* AlertTableViewCell.swift */; };
+		F8DB287120237FB30042A431 /* AlertsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB287020237FB30042A431 /* AlertsHandler.swift */; };
+		F8DB2873202386BB0042A431 /* AlertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB2872202386BB0042A431 /* AlertTableViewController.swift */; };
 		F8EBBB5B2017C41E006AA211 /* vcoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F810C44020011984001BE909 /* vcoin.xcdatamodeld */; };
 		F8EBBB5C2017C667006AA211 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EF020110DEB004A0529 /* CoreDataHandler.swift */; };
 		F8EBBB5D2017C667006AA211 /* SettingsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8690EF320110F15004A0529 /* SettingsHandler.swift */; };
@@ -135,7 +138,7 @@
 		F8271FE920165CCE000DAB2B /* CoinListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinListTableViewCell.swift; sourceTree = "<group>"; };
 		F829F9B1201DC4E600730918 /* ExchangesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesTableViewController.swift; sourceTree = "<group>"; };
 		F829F9B3201DC80100730918 /* ExchangeItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeItemTableViewController.swift; sourceTree = "<group>"; };
-		F829F9B5201DCEEA00730918 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
+		F829F9B5201DCEEA00730918 /* AlertsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsTableViewController.swift; sourceTree = "<group>"; };
 		F82D16152012405D00071216 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		F82D16172012419200071216 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		F82D161C20128B9800071216 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +175,9 @@
 		F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListTableViewCell.swift; sourceTree = "<group>"; };
 		F8D7017C200E202A0005B6D8 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		F8D7017E200E2D5C0005B6D8 /* UITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewController.swift; sourceTree = "<group>"; };
+		F8DB286E20237D3D0042A431 /* AlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
+		F8DB287020237FB30042A431 /* AlertsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsHandler.swift; sourceTree = "<group>"; };
+		F8DB2872202386BB0042A431 /* AlertTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewController.swift; sourceTree = "<group>"; };
 		F8EBBB5E2017CEA4006AA211 /* FavouritesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesHandler.swift; sourceTree = "<group>"; };
 		F8F97432200B3DC700FE864A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F8F97435200B43B100FE864A /* SwipeMenuViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeMenuViewController.framework; path = Carthage/Build/iOS/SwipeMenuViewController.framework; sourceTree = "<group>"; };
@@ -348,6 +354,7 @@
 				F8690EF320110F15004A0529 /* SettingsHandler.swift */,
 				F8EBBB5E2017CEA4006AA211 /* FavouritesHandler.swift */,
 				F8D63BE8201E1CCB009E63AD /* ExchangeItemsHandler.swift */,
+				F8DB287020237FB30042A431 /* AlertsHandler.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -377,6 +384,7 @@
 			children = (
 				F8D70179200E04DA0005B6D8 /* CoinListTableViewCell.swift */,
 				F8D63BEB201E316F009E63AD /* ExchangeItemTableViewCell.swift */,
+				F8DB286E20237D3D0042A431 /* AlertTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -399,7 +407,8 @@
 				F8017FAF201CB38100A6F668 /* MarketsTableViewController.swift */,
 				F829F9B1201DC4E600730918 /* ExchangesTableViewController.swift */,
 				F829F9B3201DC80100730918 /* ExchangeItemTableViewController.swift */,
-				F829F9B5201DCEEA00730918 /* NotificationsTableViewController.swift */,
+				F829F9B5201DCEEA00730918 /* AlertsTableViewController.swift */,
+				F8DB2872202386BB0042A431 /* AlertTableViewController.swift */,
 				F8690EEE20110C36004A0529 /* ChooseCurrencyTableViewController.swift */,
 				F8D63BE0201E0656009E63AD /* ChooseCryptocurrencyTableViewController.swift */,
 				F8D63BE2201E0682009E63AD /* ChooseMarketTableViewController.swift */,
@@ -596,6 +605,7 @@
 				F8EBBB5F2017CEA4006AA211 /* FavouritesHandler.swift in Sources */,
 				F8D63BE3201E0682009E63AD /* ChooseMarketTableViewController.swift in Sources */,
 				F84E1ACA20136A0000E06DAE /* TwoFingersGestureAction.swift in Sources */,
+				F8DB287120237FB30042A431 /* AlertsHandler.swift in Sources */,
 				F8271FF120165DD5000DAB2B /* String.swift in Sources */,
 				F8039993201A53A300D3F6CF /* BaseTableView.swift in Sources */,
 				F82D16182012419200071216 /* NotificationName.swift in Sources */,
@@ -603,12 +613,13 @@
 				F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */,
 				F84B4A5C20134F7A0034DBA1 /* Player.swift in Sources */,
 				F8D63BE1201E0656009E63AD /* ChooseCryptocurrencyTableViewController.swift in Sources */,
+				F8DB286F20237D3D0042A431 /* AlertTableViewCell.swift in Sources */,
 				F8D1E2B4200DDDA600C53E47 /* CustomLineChartView.swift in Sources */,
 				F829F9B2201DC4E600730918 /* ExchangesTableViewController.swift in Sources */,
 				F810C43A20011984001BE909 /* AppDelegate.swift in Sources */,
 				F8034C6820122C6D00D90103 /* ThirdPartyTableViewController.swift in Sources */,
 				F8D4F7A320132A5800570910 /* TwoFingersGestureRecognizer.swift in Sources */,
-				F829F9B6201DCEEA00730918 /* NotificationsTableViewController.swift in Sources */,
+				F829F9B6201DCEEA00730918 /* AlertsTableViewController.swift in Sources */,
 				F8D7017A200E04DA0005B6D8 /* CoinListTableViewCell.swift in Sources */,
 				F82D16162012405D00071216 /* BaseTableViewController.swift in Sources */,
 				F8690EEB20110496004A0529 /* SettingsTableViewController.swift in Sources */,
@@ -617,6 +628,7 @@
 				F829F9B4201DC80100730918 /* ExchangeItemTableViewController.swift in Sources */,
 				F8D63BE9201E1CCB009E63AD /* ExchangeItemsHandler.swift in Sources */,
 				F8D1E2B6200DE3AB00C53E47 /* SwipeMenuView.swift in Sources */,
+				F8DB2873202386BB0042A431 /* AlertTableViewController.swift in Sources */,
 				F810C46B200119F1001BE909 /* CoinTableViewController.swift in Sources */,
 				F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */,
 				F8690EEF20110C36004A0529 /* ChooseCurrencyTableViewController.swift in Sources */,

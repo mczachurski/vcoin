@@ -111,7 +111,8 @@ class ExchangesTableViewController: BaseTableViewController, ExchangeItemChanged
             self.exchangeItems = self.exchangeItemsHandler.getExchangeItems()
             self.tableView.reloadData()
         })
-        
+                
+        deleteAction.backgroundColor = UIColor.main
         return [deleteAction]
     }
     

@@ -22,7 +22,6 @@ class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDe
     @IBOutlet weak var saveButtonOutlet: UIBarButtonItem!
     
     public weak var delegate: ExchangeItemChangedDelegate?
-    
     public var exchangeItem: ExchangeItem?
 
     private var exchangeItemsHandler = ExchangeItemsHandler()
@@ -31,7 +30,6 @@ class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         self.cryptoCodeOutlet.text = self.exchangeItem?.coinSymbol
         self.currencyOutlet.text = self.exchangeItem?.currency
