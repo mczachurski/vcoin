@@ -52,6 +52,8 @@ class AlertTableViewController: BaseTableViewController, ChooseCurrencyDelegate,
         if self.marketOutlet.text.isNilOrEmpty {
             self.marketOutlet.text = "CCCAGG"
         }
+        
+        self.priceOutlet.becomeFirstResponder()
     }
     
     override func didReceiveMemoryWarning() {

@@ -40,6 +40,11 @@ class AlertTableViewCell: UITableViewCell {
     @IBOutlet weak var isEnabledOutlet: UISwitch!
     
     
+    @IBAction func isEnabledChangedAction(_ sender: UISwitch) {
+        self.alert.isEnabled = sender.isOn
+        CoreDataHandler.shared.saveContext()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

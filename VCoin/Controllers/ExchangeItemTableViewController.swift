@@ -53,6 +53,8 @@ class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDe
         if self.marketCodeOutlet.text.isNilOrEmpty {
             self.marketCodeOutlet.text = "CCCAGG"
         }
+        
+        self.amountValueOutlet.becomeFirstResponder()
     }
     
     override func didReceiveMemoryWarning() {

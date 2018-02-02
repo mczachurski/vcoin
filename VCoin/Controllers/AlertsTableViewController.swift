@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HGPlaceholders
 
-class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate {
+class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, PlaceholderDelegate {
 
     private var alertsHandler = AlertsHandler()
     private var alerts: [Alert] = []
@@ -23,11 +24,40 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let placeholder = customPlaceholder()
+        self.baseTableView.placeholdersProvider = PlaceholdersProvider(placeholders: placeholder)
+        self.baseTableView.placeholderDelegate = self
+        
         self.alerts = self.alertsHandler.getAlerts(coinSymbol: self.coinSymbol)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Placeholders
+    
+    func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
+        if placeholder.key == PlaceholderKey.noResultsKey {
+            self.performSegue(withIdentifier: "newAlertSegue", sender:self)
+        }
+    }
+    
+    private func customPlaceholder() -> Placeholder {
+        var customPlaceholderStyle = PlaceholderStyle()
+        customPlaceholderStyle.titleColor = .darkGray
+        
+        customPlaceholderStyle.shouldShowTableViewHeader = true
+        customPlaceholderStyle.shouldShowTableViewFooter = true
+        
+        var customPlaceholderData = PlaceholderData()
+        customPlaceholderData.title = NSLocalizedString("No data", comment: "")
+        customPlaceholderData.subtitle = NSLocalizedString("If you want to see something more then this picture\nadd a new alert", comment: "")
+        customPlaceholderData.image = UIImage(named: "empty-alerts")
+        customPlaceholderData.action = NSLocalizedString("New alert", comment: "")
+        
+        let placeholder = Placeholder(data: customPlaceholderData, style: customPlaceholderStyle, key: PlaceholderKey.noResultsKey)
+        return placeholder
     }
     
     // MARK: - Table view data source
