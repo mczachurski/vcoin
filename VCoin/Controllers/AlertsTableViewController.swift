@@ -29,7 +29,7 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -49,6 +49,7 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate {
         
         let alert = self.alerts[indexPath.row]
         cell.alert = alert
+        cell.isDarkMode = self.settings.isDarkMode
 
         return cell
     }
