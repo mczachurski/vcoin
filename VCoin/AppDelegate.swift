@@ -43,5 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         CoreDataHandler.shared.saveContext()
     }
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let notifications = Notifications()
+        notifications.sendNotification()
+    }
 }
 

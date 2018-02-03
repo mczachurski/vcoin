@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VCoinKit
 
 protocol AlertChangedDelegate : NSObjectProtocol {
     func alert(changed: Alert)
@@ -21,7 +22,7 @@ class AlertTableViewController: BaseTableViewController, ChooseCurrencyDelegate,
     @IBOutlet weak var saveButtonOutlet: UIBarButtonItem!
     
     public weak var delegate: AlertChangedDelegate?
-    public var coinSymbol: String!
+    public var coin: Coin!
     public var alert: Alert?
     
     private var alertsHandler = AlertsHandler()
@@ -103,7 +104,8 @@ class AlertTableViewController: BaseTableViewController, ChooseCurrencyDelegate,
         
         alert?.marketCode = self.marketOutlet.text
         alert?.currency = self.currencyOutlet.text
-        alert?.coinSymbol = self.coinSymbol
+        alert?.coinSymbol = self.coin.Symbol
+        alert?.isPriceLower = alert?.price ?? 0.0 <= self.coin.Price ?? 0.0
         
         self.delegate?.alert(changed: alert!)
         self.dismiss(animated: true, completion: nil)

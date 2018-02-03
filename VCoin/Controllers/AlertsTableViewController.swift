@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import UserNotifications
 import HGPlaceholders
+import VCoinKit
 
 class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, PlaceholderDelegate {
 
     private var alertsHandler = AlertsHandler()
     private var alerts: [Alert] = []
-    public var coinSymbol: String!
+    public var coin: Coin!
     
     private var baseTableView:BaseTableView {
         get {
@@ -28,7 +30,7 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, 
         self.baseTableView.placeholdersProvider = PlaceholdersProvider(placeholders: placeholder)
         self.baseTableView.placeholderDelegate = self
         
-        self.alerts = self.alertsHandler.getAlerts(coinSymbol: self.coinSymbol)
+        self.alerts = self.alertsHandler.getAlerts(coinSymbol: self.coin.Symbol)
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,7 +92,7 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, 
             self.alertsHandler.deleteAlertEntity(alert: alert)
             CoreDataHandler.shared.saveContext()
             
-            self.alerts = self.alertsHandler.getAlerts(coinSymbol: self.coinSymbol)
+            self.alerts = self.alertsHandler.getAlerts(coinSymbol: self.coin.Symbol)
             self.tableView.reloadData()
         })
         
@@ -107,13 +109,13 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, 
                     destination.alert = self.alerts[selectedPath.row]
                 }
                 
-                destination.coinSymbol = self.coinSymbol
+                destination.coin = self.coin
                 destination.delegate = self
             }
         }
         else if segue.identifier == "newAlertSegue" {
             if let destination = segue.destination.childViewControllers.first as? AlertTableViewController {
-                destination.coinSymbol = self.coinSymbol
+                destination.coin = self.coin
                 destination.delegate = self
             }
         }
@@ -125,7 +127,14 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, 
         
         CoreDataHandler.shared.saveContext()
         
-        self.alerts = self.alertsHandler.getAlerts(coinSymbol: self.coinSymbol)
+        self.alerts = self.alertsHandler.getAlerts(coinSymbol: self.coin.Symbol)
         self.tableView.reloadData()
+        
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: [.alert,.sound,.badge],
+            completionHandler: { (granted,error) in
+                print("Authorization was granted: \(granted)")
+            }
+        )
     }
 }

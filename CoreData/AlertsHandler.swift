@@ -22,6 +22,22 @@ class AlertsHandler {
         context.delete(alert)
     }
     
+    func getAlerts() -> [Alert] {
+        var alerts:[Alert] = []
+        
+        let context = CoreDataHandler.shared.getManagedObjectContext()
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Alert")        
+        do {
+            alerts = try context.fetch(fetchRequest) as! [Alert]
+        }
+        catch {
+            print("Error during fetching Alert")
+        }
+        
+        return alerts
+    }
+    
     func getAlerts(coinSymbol: String) -> [Alert] {
         var alerts:[Alert] = []
         

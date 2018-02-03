@@ -21,6 +21,7 @@
 		F810C44720011984001BE909 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F810C44520011984001BE909 /* LaunchScreen.storyboard */; };
 		F810C46B200119F1001BE909 /* CoinTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810C46A200119F1001BE909 /* CoinTableViewController.swift */; };
 		F8110829201CEF69004F139E /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8110828201CEF69004F139E /* Reachability.framework */; };
+		F816BD3020261DE30045482B /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F816BD2F20261DE30045482B /* Notifications.swift */; };
 		F8271FE520165A29000DAB2B /* VCoinKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F83C83A8201650E7003C0D78 /* VCoinKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F8271FEA20165CCE000DAB2B /* CoinListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8271FE920165CCE000DAB2B /* CoinListTableViewCell.swift */; };
 		F8271FEC20165D39000DAB2B /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8839E13200935DE005B056A /* Double.swift */; };
@@ -135,6 +136,7 @@
 		F810C46A200119F1001BE909 /* CoinTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewController.swift; sourceTree = "<group>"; };
 		F810C46F20011D82001BE909 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		F8110828201CEF69004F139E /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
+		F816BD2F20261DE30045482B /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		F8271FE920165CCE000DAB2B /* CoinListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinListTableViewCell.swift; sourceTree = "<group>"; };
 		F829F9B1201DC4E600730918 /* ExchangesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesTableViewController.swift; sourceTree = "<group>"; };
 		F829F9B3201DC80100730918 /* ExchangeItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeItemTableViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				F82EF01B201707B1003B249F /* VCoin.entitlements */,
+				F816BD2E20261DCB0045482B /* Notifications */,
 				F84E1ACB20136B2600E06DAE /* Gestures */,
 				F84B4A5D20134FAA0034DBA1 /* Sounds */,
 				F82D16192012679700071216 /* UIObjects */,
@@ -275,6 +278,14 @@
 				F8017FB5201CB4B000A6F668 /* Markets.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F816BD2E20261DCB0045482B /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				F816BD2F20261DE30045482B /* Notifications.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		F8271FEB20165CF6000DAB2B /* Extensions */ = {
@@ -504,6 +515,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 						};
 					};
 					F83C83A7201650E7003C0D78 = {
@@ -613,6 +627,7 @@
 				F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */,
 				F84B4A5C20134F7A0034DBA1 /* Player.swift in Sources */,
 				F8D63BE1201E0656009E63AD /* ChooseCryptocurrencyTableViewController.swift in Sources */,
+				F816BD3020261DE30045482B /* Notifications.swift in Sources */,
 				F8DB286F20237D3D0042A431 /* AlertTableViewCell.swift in Sources */,
 				F8D1E2B4200DDDA600C53E47 /* CustomLineChartView.swift in Sources */,
 				F829F9B2201DC4E600730918 /* ExchangesTableViewController.swift in Sources */,

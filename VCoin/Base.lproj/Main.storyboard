@@ -1042,15 +1042,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200 zł" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsl-5A-itQ">
-                                            <rect key="frame" x="16" y="41" width="47" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="ozg-gT-ULo"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7g-6F-DwZ">
                                             <rect key="frame" x="16" y="19" width="38" height="21"/>
                                             <constraints>
@@ -1080,24 +1071,46 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="higher then" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu3-PJ-c4q">
+                                            <rect key="frame" x="16" y="40" width="65" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="uf7-vR-cd8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200 zł" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsl-5A-itQ">
+                                            <rect key="frame" x="89" y="40" width="47" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="3p8-Fy-jqf"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="vno-vs-3Hp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vsl-5A-itQ" secondAttribute="trailing" constant="8" id="0yb-wj-qSK"/>
                                         <constraint firstItem="W7g-6F-DwZ" firstAttribute="leading" secondItem="C7U-9o-iiI" secondAttribute="leadingMargin" id="5Sp-6u-Qgh"/>
+                                        <constraint firstItem="hu3-PJ-c4q" firstAttribute="leading" secondItem="C7U-9o-iiI" secondAttribute="leadingMargin" id="85H-tU-eyG"/>
                                         <constraint firstItem="vno-vs-3Hp" firstAttribute="centerY" secondItem="C7U-9o-iiI" secondAttribute="centerY" id="9mo-Ir-UOB"/>
                                         <constraint firstItem="W7g-6F-DwZ" firstAttribute="top" secondItem="C7U-9o-iiI" secondAttribute="topMargin" constant="8" id="DNK-OZ-DeX"/>
                                         <constraint firstItem="EIn-zs-yQp" firstAttribute="centerY" secondItem="C7U-9o-iiI" secondAttribute="centerY" id="J5c-u6-trU"/>
+                                        <constraint firstItem="vsl-5A-itQ" firstAttribute="leading" secondItem="hu3-PJ-c4q" secondAttribute="trailing" constant="8" id="JJT-cA-tYu"/>
                                         <constraint firstItem="EIn-zs-yQp" firstAttribute="leading" secondItem="vno-vs-3Hp" secondAttribute="trailing" constant="8" id="L4M-hr-B2G"/>
+                                        <constraint firstItem="vsl-5A-itQ" firstAttribute="top" secondItem="C7U-9o-iiI" secondAttribute="topMargin" constant="29" id="R4Z-a5-vFt"/>
                                         <constraint firstItem="vno-vs-3Hp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="W7g-6F-DwZ" secondAttribute="trailing" constant="8" id="RP8-rw-djT"/>
                                         <constraint firstAttribute="trailing" secondItem="EIn-zs-yQp" secondAttribute="trailing" constant="14" id="YQ3-Lt-0td"/>
-                                        <constraint firstItem="vno-vs-3Hp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vsl-5A-itQ" secondAttribute="trailing" constant="8" id="bcB-bI-3yE"/>
-                                        <constraint firstItem="vsl-5A-itQ" firstAttribute="top" secondItem="W7g-6F-DwZ" secondAttribute="bottom" constant="1" id="noZ-mC-yJ1"/>
-                                        <constraint firstItem="vsl-5A-itQ" firstAttribute="leading" secondItem="C7U-9o-iiI" secondAttribute="leadingMargin" id="var-zq-0Ea"/>
+                                        <constraint firstItem="hu3-PJ-c4q" firstAttribute="top" secondItem="W7g-6F-DwZ" secondAttribute="bottom" id="pFx-Xz-qYm"/>
+                                        <constraint firstItem="vsl-5A-itQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hu3-PJ-c4q" secondAttribute="trailing" constant="8" id="piS-40-w6X"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="coinSymbolOutlet" destination="W7g-6F-DwZ" id="dyo-Ep-ebp"/>
                                     <outlet property="isEnabledOutlet" destination="EIn-zs-yQp" id="Hhk-Ge-kie"/>
+                                    <outlet property="isLowerPriceOutlet" destination="hu3-PJ-c4q" id="Hke-Tb-gR0"/>
                                     <outlet property="marketNameOutlet" destination="vno-vs-3Hp" id="88A-4W-o0C"/>
                                     <outlet property="priceOutlet" destination="vsl-5A-itQ" id="rBK-KT-mbl"/>
                                     <segue destination="5Hw-ki-pyP" kind="showDetail" identifier="editAlertSegue" id="nO1-FF-rmB"/>

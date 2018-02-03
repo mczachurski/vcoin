@@ -213,7 +213,7 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
         }
         else if segue.identifier == "alertsSegue" {
             if let destination = segue.destination as? AlertsTableViewController {
-                destination.coinSymbol = self.coin.Symbol
+                destination.coin = self.coin
             }
         }
     }

@@ -16,6 +16,13 @@ class AlertTableViewCell: UITableViewCell {
             self.priceOutlet.text = self.alert.price.toFormattedPrice(currency: self.alert.currency!)
             self.marketNameOutlet.text = self.alert.marketCode
             self.isEnabledOutlet.isOn = self.alert.isEnabled
+            
+            if self.alert.isPriceLower {
+                self.isLowerPriceOutlet.text = "lower then"
+            }
+            else {
+                self.isLowerPriceOutlet.text = "higher then"
+            }
         }
     }
     
@@ -38,6 +45,7 @@ class AlertTableViewCell: UITableViewCell {
     @IBOutlet weak var priceOutlet: UILabel!
     @IBOutlet weak var marketNameOutlet: UILabel!
     @IBOutlet weak var isEnabledOutlet: UISwitch!
+    @IBOutlet weak var isLowerPriceOutlet: UILabel!
     
     
     @IBAction func isEnabledChangedAction(_ sender: UISwitch) {
