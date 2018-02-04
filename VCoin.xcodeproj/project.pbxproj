@@ -35,6 +35,7 @@
 		F82D16162012405D00071216 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D16152012405D00071216 /* BaseTableViewController.swift */; };
 		F82D16182012419200071216 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D16172012419200071216 /* NotificationName.swift */; };
 		F82D161D20128B9800071216 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D161C20128B9800071216 /* BaseViewController.swift */; };
+		F83A89292026FFAB009C9181 /* PriceAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A89272026FF03009C9181 /* PriceAlert.swift */; };
 		F83C83BA201650E7003C0D78 /* VCoinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F83C83AA201650E7003C0D78 /* VCoinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F83C83CC20165193003C0D78 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83C83CB20165193003C0D78 /* NotificationCenter.framework */; };
 		F83C83CF20165193003C0D78 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83C83CE20165193003C0D78 /* TodayViewController.swift */; };
@@ -146,6 +147,7 @@
 		F82D161C20128B9800071216 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F82EF01B201707B1003B249F /* VCoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VCoin.entitlements; sourceTree = "<group>"; };
 		F82EF01C201707C0003B249F /* VCoinWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VCoinWidget.entitlements; sourceTree = "<group>"; };
+		F83A89272026FF03009C9181 /* PriceAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceAlert.swift; sourceTree = "<group>"; };
 		F83C83A8201650E7003C0D78 /* VCoinKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VCoinKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F83C83AA201650E7003C0D78 /* VCoinKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCoinKit.h; sourceTree = "<group>"; };
 		F83C83AB201650E7003C0D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 		F816BD2E20261DCB0045482B /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				F83A89272026FF03009C9181 /* PriceAlert.swift */,
 				F816BD2F20261DE30045482B /* Notifications.swift */,
 			);
 			path = Notifications;
@@ -646,6 +649,7 @@
 				F8DB2873202386BB0042A431 /* AlertTableViewController.swift in Sources */,
 				F810C46B200119F1001BE909 /* CoinTableViewController.swift in Sources */,
 				F84D440F200238C2000578E5 /* CoinViewController.swift in Sources */,
+				F83A89292026FFAB009C9181 /* PriceAlert.swift in Sources */,
 				F8690EEF20110C36004A0529 /* ChooseCurrencyTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

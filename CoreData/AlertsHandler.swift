@@ -22,12 +22,22 @@ class AlertsHandler {
         context.delete(alert)
     }
     
-    func getAlerts() -> [Alert] {
+    func getActiveAlerts() -> [Alert] {
         var alerts:[Alert] = []
         
         let context = CoreDataHandler.shared.getManagedObjectContext()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Alert")
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Alert")        
+        let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        
+        var date = Date()
+        date = date.addingTimeInterval(-1*24*60*60)
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        let minimumAlertDate = calendar.date(from: components)
+        
+        let predicate = NSPredicate(format: "isEnabled == YES && (alertSentDate == nil || alertSentDate < %@)", argumentArray: [minimumAlertDate!])
+        fetchRequest.predicate = predicate
+        
         do {
             alerts = try context.fetch(fetchRequest) as! [Alert]
         }

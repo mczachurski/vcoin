@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Alert" representedClassName="Alert" syncable="YES" codeGenerationType="class">
+        <attribute name="alertSentDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="coinSymbol" attributeType="String" syncable="YES"/>
         <attribute name="currency" attributeType="String" syncable="YES"/>
         <attribute name="isEnabled" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
@@ -22,7 +23,7 @@
         <attribute name="isDarkMode" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Alert" positionX="-63" positionY="18" width="128" height="135"/>
+        <element name="Alert" positionX="-63" positionY="18" width="128" height="150"/>
         <element name="ExchangeItem" positionX="-63" positionY="0" width="128" height="105"/>
         <element name="Favourite" positionX="-63" positionY="0" width="128" height="60"/>
         <element name="Settings" positionX="-63" positionY="-18" width="128" height="75"/>
