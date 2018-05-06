@@ -12,7 +12,7 @@ public class Market {
     public var name: String
     public var code: String
     public var price: Double?
-    
+
     public init(name: String, code: String) {
         self.name = name
         self.code = code

@@ -9,22 +9,22 @@
 import Foundation
 
 public enum Processing {
-    case InQueue, Processing, Finished
+    case inQueue, processing, finished
 }
 
 public class PriceAlert {
-    
+
     public var currency: String
     public var marketCode: String
     public var coinSymbol: String
-    
+
     public var price: Double?
     public var processing: Processing
-    
+
     init(currency: String, markedCode: String, coinSymbol: String) {
         self.currency = currency
         self.marketCode = markedCode
         self.coinSymbol = coinSymbol
-        self.processing = Processing.InQueue
+        self.processing = Processing.inQueue
     }
 }

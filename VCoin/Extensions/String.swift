@@ -19,17 +19,17 @@ extension Optional where Wrapped: OptionalString {
 }
 
 extension String {
-    
+
     func openInBrowser() {
         if let url = URL(string: self) {
-            UIApplication.shared.open(url , options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
-    
+
     var doubleValue: Double {
         let numberFormatter = NumberFormatter()
         numberFormatter.decimalSeparator = "."
-        
+
         if let result = numberFormatter.number(from: self) {
             return result.doubleValue
         } else {
@@ -38,7 +38,7 @@ extension String {
                 return result.doubleValue
             }
         }
-        
+
         return 0
     }
 }

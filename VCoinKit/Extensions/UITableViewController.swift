@@ -13,10 +13,10 @@ extension UITableViewController {
     public func removeNavigationBarSeparator() {
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
-    
+
     public func addSearchControl(placeholder: String, searchResultsUpdater: UISearchResultsUpdating) {
         let searchController = UISearchController(searchResultsController: nil)
-        
+
         searchController.searchResultsUpdater = searchResultsUpdater
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = placeholder
@@ -25,22 +25,22 @@ extension UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
-    
+
     public func addRefreshControl(target: Any?, action: Selector) {
         self.extendedLayoutIncludesOpaqueBars = true
-        
+
         let refreshControl = UIRefreshControl()
-        
+
         var attributes = [NSAttributedStringKey: AnyObject]()
         attributes[NSAttributedStringKey.foregroundColor] = UIColor.gray
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
-        
+
         refreshControl.tintColor = UIColor.gray
-        
+
         refreshControl.addTarget(target, action: action, for: .valueChanged)
         self.refreshControl = refreshControl
     }
-    
+
     public func unselectSelectedRow() {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: true)

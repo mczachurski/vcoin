@@ -11,7 +11,7 @@ import UIKit
 class ThirdPartyTableViewController: BaseTableViewController {
 
     // MARK: - View loading
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -19,7 +19,7 @@ class ThirdPartyTableViewController: BaseTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -27,8 +27,7 @@ class ThirdPartyTableViewController: BaseTableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch(indexPath.row)
-        {
+        switch indexPath.row {
         case 0:
             "https://www.cryptocompare.com".openInBrowser()
         case 1:
@@ -40,10 +39,10 @@ class ThirdPartyTableViewController: BaseTableViewController {
         case 4:
             "https://github.com/ashleymills/Reachability.swift".openInBrowser()
         default:
-            break;
+            break
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }

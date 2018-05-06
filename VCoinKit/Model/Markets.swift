@@ -9,7 +9,7 @@
 import Foundation
 
 public class Markets {
-    
+
     public static var allMarketsList = [
         Market(name: "Abucoins", code: "Abucoins"),
         Market(name: "ANXBTC", code: "ANXBTC"),

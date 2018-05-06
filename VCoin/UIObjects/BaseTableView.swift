@@ -9,5 +9,5 @@
 import Foundation
 import HGPlaceholders
 
-class BaseTableView : TableView {
+class BaseTableView: TableView {
 }

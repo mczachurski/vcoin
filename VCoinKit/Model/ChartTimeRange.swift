@@ -8,8 +8,8 @@
 
 import Foundation
 
-public enum ChartTimeRange : String {
+public enum ChartTimeRange: String {
     case hour = "Hour", day = "Day", week = "Week", month = "Month", year = "Year"
-    
+
     public static let allValues = [hour, day, week, month, year]
 }

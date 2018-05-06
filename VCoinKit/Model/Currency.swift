@@ -12,7 +12,7 @@ public class Currency {
     public var code: String
     public var locale: String
     public var name: String
-    
+
     public init(code: String, locale: String, name: String) {
         self.code = code
         self.locale = locale

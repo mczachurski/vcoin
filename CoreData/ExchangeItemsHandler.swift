@@ -10,30 +10,30 @@ import Foundation
 import CoreData
 
 class ExchangeItemsHandler {
-    
-    func createExchangeItemEntity() -> ExchangeItem
-    {
+
+    func createExchangeItemEntity() -> ExchangeItem {
         let context = CoreDataHandler.shared.getManagedObjectContext()
         return ExchangeItem(context: context)
     }
-    
+
     func deleteExchangeItemEntity(exchangeItem: ExchangeItem) {
         let context = CoreDataHandler.shared.getManagedObjectContext()
         context.delete(exchangeItem)
     }
-    
+
     func getExchangeItems() -> [ExchangeItem] {
-        var exchangeItems:[ExchangeItem] = []
-        
+        var exchangeItems: [ExchangeItem] = []
+
         let context = CoreDataHandler.shared.getManagedObjectContext()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ExchangeItem")
         do {
-            exchangeItems = try context.fetch(fetchRequest) as! [ExchangeItem]
-        }
-        catch {
+            if let list = try context.fetch(fetchRequest) as? [ExchangeItem] {
+                exchangeItems = list
+            }
+        } catch {
             print("Error during fetching ExchangeItem")
         }
-        
+
         return exchangeItems
     }
 }

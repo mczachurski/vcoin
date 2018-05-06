@@ -9,9 +9,9 @@
 import Foundation
 
 public class Currencies {
-    
-    public static var allCurrenciesDictionary:[String:Currency] = Currencies.initialzieCurrenciesDictionary()
-    
+
+    public static var allCurrenciesDictionary: [String: Currency] = Currencies.initialzieCurrenciesDictionary()
+
     public static var allCurrenciesList = [
         Currency(code: "AED", locale: "ar-AE", name: "Arab Emirates Dirham"),
         Currency(code: "AFN", locale: "fa-AF", name: "Afghanistan Afghani"),
@@ -120,13 +120,13 @@ public class Currencies {
         Currency(code: "ZAR", locale: "zu-ZA", name: "South African Rand"),
         Currency(code: "ZMW", locale: "en-ZM", name: "Zambian Kwacha")
     ]
-    
-    private class func initialzieCurrenciesDictionary() -> [String:Currency] {
-        var currencies:[String:Currency] = [:]
+
+    private class func initialzieCurrenciesDictionary() -> [String: Currency] {
+        var currencies: [String: Currency] = [:]
         for currency in Currencies.allCurrenciesList {
             currencies[currency.code] = currency
         }
-        
+
         return currencies
     }
 }

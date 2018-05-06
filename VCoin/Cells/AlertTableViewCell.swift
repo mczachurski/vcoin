@@ -16,43 +16,40 @@ class AlertTableViewCell: UITableViewCell {
             self.priceOutlet.text = self.alert.price.toFormattedPrice(currency: self.alert.currency!)
             self.marketNameOutlet.text = self.alert.marketCode
             self.isEnabledOutlet.isOn = self.alert.isEnabled
-            
+
             if self.alert.isPriceLower {
                 self.isLowerPriceOutlet.text = "lower then"
-            }
-            else {
+            } else {
                 self.isLowerPriceOutlet.text = "higher then"
             }
         }
     }
-    
+
     public var isDarkMode: Bool? {
         didSet {
             if isDarkMode ?? true {
                 self.coinSymbolOutlet.textColor = UIColor.white
                 self.priceOutlet.textColor = UIColor.white
                 self.marketNameOutlet.textColor = UIColor.white
-            }
-            else {
+            } else {
                 self.coinSymbolOutlet.textColor = UIColor.black
                 self.priceOutlet.textColor = UIColor.black
                 self.marketNameOutlet.textColor = UIColor.black
             }
         }
     }
-    
+
     @IBOutlet weak var coinSymbolOutlet: UILabel!
     @IBOutlet weak var priceOutlet: UILabel!
     @IBOutlet weak var marketNameOutlet: UILabel!
     @IBOutlet weak var isEnabledOutlet: UISwitch!
     @IBOutlet weak var isLowerPriceOutlet: UILabel!
-    
-    
+
     @IBAction func isEnabledChangedAction(_ sender: UISwitch) {
         self.alert.isEnabled = sender.isOn
         CoreDataHandler.shared.saveContext()
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

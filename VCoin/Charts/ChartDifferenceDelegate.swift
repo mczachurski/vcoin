@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ChartDifferenceDelegate {
+protocol ChartDifferenceDelegate: class {
     func differenceWasCalculated(chartView: CustomLineChartView, percentageDifference: Double)
 }

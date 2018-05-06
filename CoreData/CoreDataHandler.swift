@@ -13,20 +13,19 @@ import UIKit
 class CoreDataHandler {
 
     public static let shared = CoreDataHandler()
-    
+
     private init() {
     }
-    
+
     // MARK: - Core Data Context
-    
-    public func getManagedObjectContext() -> NSManagedObjectContext
-    {
+
+    public func getManagedObjectContext() -> NSManagedObjectContext {
         let persistentContainer = self.persistentContainer
         return persistentContainer.viewContext
     }
-    
+
     // MARK: - Core Data Stack
-    
+
     private lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -35,16 +34,17 @@ class CoreDataHandler {
          error conditions that could cause the creation of the store to fail.
          */
         let container = NSPersistentContainer(name: "vcoin")
-        
+
         var url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.vcoindata")!
         var dbUrl = url.appendingPathComponent("Data.sqlite")
         container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: dbUrl)]
-        
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
+                // fatalError() causes the application to generate a crash log and terminate.
+                // You should not use this function in a shipping application, although it may be useful during development.
+
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -58,9 +58,9 @@ class CoreDataHandler {
         })
         return container
     }()
-    
+
     // MARK: - Core Data Saving
-    
+
     public func saveContext () {
         let context = self.persistentContainer.viewContext
         if context.hasChanges {
@@ -68,7 +68,9 @@ class CoreDataHandler {
                 try context.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                // fatalError() causes the application to generate a crash log and terminate.
+                // You should not use this function in a shipping application, although it may be useful during development.
+
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }

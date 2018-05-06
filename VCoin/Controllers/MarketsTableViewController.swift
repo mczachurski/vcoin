@@ -11,39 +11,39 @@ import VCoinKit
 
 class MarketsTableViewController: BaseTableViewController, UISearchResultsUpdating {
 
-    public var coin:Coin!
-    
+    public var coin: Coin!
+
     private var restClient = RestClient()
-    private var markets:[Market] = []
-    private var filteredMarkets:[Market] = []
+    private var markets: [Market] = []
+    private var filteredMarkets: [Market] = []
     private var filtr = ""
-    
+
     // MARK: View loading
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.addSearchControl(placeholder: "Search markets", searchResultsUpdater: self)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         self.markets = []
         for market in Markets.allMarketsList {
             self.markets.append(Market(name: market.name, code: market.code))
         }
-        
+
         self.filteredMarkets = self.markets
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     // MARK: - Loading data
-    
-    private func loadCoinPrice(market:Market, cell: UITableViewCell, index: Int) {
+
+    private func loadCoinPrice(market: Market, cell: UITableViewCell, index: Int) {
         self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!, market: market.code) { (price) in
             if price != nil {
                 market.price = price
@@ -58,25 +58,25 @@ class MarketsTableViewController: BaseTableViewController, UISearchResultsUpdati
     }
 
     // MARK: - Searching
-    
+
     func updateSearchResults(for searchController: UISearchController) {
         self.filtr = searchController.searchBar.text!
         self.reloadFilteredData()
     }
-    
+
     private func reloadFilteredData() {
         if self.filtr == "" {
             self.filteredMarkets = self.markets
         } else {
             let uppercasedFilter = self.filtr.uppercased()
-            self.filteredMarkets = self.markets.filter() {
+            self.filteredMarkets = self.markets.filter {
                 $0.code.uppercased().range(of: uppercasedFilter) != nil || $0.name.uppercased().range(of: uppercasedFilter) != nil
             }
         }
-        
+
         self.tableView.reloadData()
     }
-    
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -86,7 +86,7 @@ class MarketsTableViewController: BaseTableViewController, UISearchResultsUpdati
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredMarkets.count
     }
@@ -94,15 +94,14 @@ class MarketsTableViewController: BaseTableViewController, UISearchResultsUpdati
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "marketcell", for: indexPath)
         cell.tag = indexPath.row
-        
+
         let market = self.filteredMarkets[indexPath.row]
         cell.textLabel?.text = market.name
         cell.detailTextLabel?.text = "-"
-        
+
         if let price = market.price {
             cell.detailTextLabel?.text = price.toFormattedPrice(currency: self.settings.currency!)
-        }
-        else {
+        } else {
             self.loadCoinPrice(market: market, cell: cell, index: indexPath.row)
         }
 

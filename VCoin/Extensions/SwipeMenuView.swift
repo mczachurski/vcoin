@@ -20,7 +20,7 @@ extension SwipeMenuView {
         options.tabView.itemView.textColor = UIColor.gray
         options.tabView.itemView.selectedTextColor = UIColor.main
         options.contentScrollView.backgroundColor = UIColor.black
-        
+
         self.reloadData(options: options)
     }
 }

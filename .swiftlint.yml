@@ -1,0 +1,15 @@
+included: # paths to include during linting. `--path` is ignored if present.
+  - CoreData
+  - VCoin
+  - VCoinKit
+  - VCoinWidget
+line_length: 180
+force_try:
+  severity: warning # explicitly
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
+identifier_name:
+  excluded: # excluded via string array
+    - id
+    - Id
+    - x
+    - y
