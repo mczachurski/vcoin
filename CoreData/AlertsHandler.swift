@@ -12,7 +12,7 @@ import Foundation
 class AlertsHandler {
     private let timeInterval: TimeInterval = -1 * 24 * 60 * 60
 
-    func createAlertntity() -> Alert {
+    func createAlertEntity() -> Alert {
         let context = CoreDataHandler.shared.getManagedObjectContext()
         return Alert(context: context)
     }

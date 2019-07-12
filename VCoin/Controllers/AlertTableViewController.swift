@@ -89,23 +89,13 @@ class AlertTableViewController: BaseTableViewController, ChooseCurrencyDelegate,
     // MARK: - Actions
 
     @IBAction private func saveAction(_ sender: UIBarButtonItem) {
-        if self.alert == nil {
-            self.alert = self.alertsHandler.createAlertntity()
-        }
-
-        if let priceTextValue = self.priceOutlet.text {
-            alert?.price = priceTextValue.doubleValue
+        if let alert = self.alert {
+            self.save(alert: alert)
         } else {
-            alert?.price = 0.0
+            let alert = self.alertsHandler.createAlertEntity()
+            self.alert = alert
+            self.save(alert: alert)
         }
-
-        alert?.marketCode = self.marketOutlet.text
-        alert?.currency = self.currencyOutlet.text
-        alert?.coinSymbol = self.coin.Symbol
-        alert?.isPriceLower = alert?.price ?? 0.0 <= self.coin.Price ?? 0.0
-
-        self.delegate?.alert(changed: alert!)
-        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction private func cancelAction(_ sender: UIBarButtonItem) {
@@ -114,6 +104,25 @@ class AlertTableViewController: BaseTableViewController, ChooseCurrencyDelegate,
 
     @IBAction private func priceChangedAction(_ sender: UITextField) {
         self.validateInputs()
+    }
+
+    private func save(alert: Alert) {
+        if let priceTextValue = self.priceOutlet.text {
+            alert.price = priceTextValue.doubleValue
+        } else {
+            alert.price = 0.0
+        }
+
+        if let marketCode = self.marketOutlet.text, let currency = self.currencyOutlet.text {
+            alert.marketCode = marketCode
+            alert.currency = currency
+        }
+
+        alert.coinSymbol = self.coin.Symbol
+        alert.isPriceLower = alert.price <= (self.coin.Price ?? 0.0)
+
+        self.delegate?.alert(changed: alert)
+        self.dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Table view data source

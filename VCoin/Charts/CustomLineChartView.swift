@@ -30,9 +30,12 @@ class CustomLineChartView: LineChartView {
     }
 
     func loadCharViewData(symbol: String, currency: String) {
-        self.restClient.loadCharViewData(chartRange: self.chartRange, symbol: symbol, currency: currency) { chartValues in
+        self.restClient.loadCharViewData(chartRange: self.chartRange,
+                                         symbol: symbol,
+                                         currency: currency,
+                                         callback: { chartValues in
             self.renderChartViewData(coinValues: chartValues)
-        }
+        })
     }
 
     private func renderChartViewData(coinValues: [AnyObject]) {

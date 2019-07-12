@@ -12,7 +12,7 @@ class AlertTableViewCell: UITableViewCell {
     var alert: Alert! {
         didSet {
             self.coinSymbolOutlet.text = self.alert.coinSymbol
-            self.priceOutlet.text = self.alert.price.toFormattedPrice(currency: self.alert.currency!)
+            self.priceOutlet.text = self.alert.price.toFormattedPrice(currency: self.alert.currency)
             self.marketNameOutlet.text = self.alert.marketCode
             self.isEnabledOutlet.isOn = self.alert.isEnabled
 

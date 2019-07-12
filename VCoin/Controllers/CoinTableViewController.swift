@@ -76,8 +76,10 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     // MARK: - Searching
 
     func updateSearchResults(for searchController: UISearchController) {
-        self.filtr = searchController.searchBar.text!
-        self.reloadFilteredData()
+        if let filtr = searchController.searchBar.text {
+            self.filtr = filtr
+            self.reloadFilteredData()
+        }
     }
 
     private func reloadFilteredData() {
@@ -134,7 +136,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     }
 
     private func loadCoinPrice(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!) { price in
+        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency, callback: { price in
             coin.Price = price
             DispatchQueue.main.async {
                 if cell.tag == index {
@@ -142,11 +144,11 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
                     cell.setNeedsLayout()
                 }
             }
-        }
+        })
     }
 
     private func loadCoinChange(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinChange(symbol: coin.Symbol) { priceChange in
+        self.restClient.loadCoinChange(symbol: coin.Symbol, callback: { priceChange in
             coin.ChangePercentagePerDay = priceChange
             DispatchQueue.main.async {
                 if cell.tag == index {
@@ -154,7 +156,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
                     cell.setNeedsLayout()
                 }
             }
-        }
+        })
     }
 
     // MARK: - Table view data source

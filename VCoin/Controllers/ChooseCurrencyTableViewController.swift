@@ -40,8 +40,10 @@ class ChooseCurrencyTableViewController: BaseTableViewController, UISearchResult
     // MARK: - Searching
 
     func updateSearchResults(for searchController: UISearchController) {
-        self.filtr = searchController.searchBar.text!
-        self.reloadFilteredData()
+        if let filtr = searchController.searchBar.text {
+            self.filtr = filtr
+            self.reloadFilteredData()
+        }
     }
 
     private func reloadFilteredData() {

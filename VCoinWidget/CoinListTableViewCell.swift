@@ -23,7 +23,7 @@ class CoinListTableViewCell: UITableViewCell {
 
     var coinPrice: Double? {
         didSet {
-            self.coinPriceLabel?.text = self.coinPrice?.toFormattedPrice(currency: self.currency!) ?? "-"
+            self.coinPriceLabel?.text = self.coinPrice?.toFormattedPrice(currency: self.currency ?? "?") ?? "-"
         }
     }
 

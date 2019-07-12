@@ -21,7 +21,9 @@ class Notifications {
         for alert in alerts {
             let alertKey = self.getKey(alert: alert)
             if priceAlerts[alertKey] == nil {
-                priceAlerts[alertKey] = PriceAlert(currency: alert.currency!, markedCode: alert.marketCode!, coinSymbol: alert.coinSymbol!)
+                priceAlerts[alertKey] = PriceAlert(currency: alert.currency,
+                                                   markedCode: alert.marketCode,
+                                                   coinSymbol: alert.coinSymbol)
             }
         }
 
@@ -65,32 +67,32 @@ class Notifications {
     }
 
     private func processAlert(alert: Alert, price: Double?) {
-        if price == nil {
+        guard let price = price else {
             return
         }
 
-        if alert.isPriceLower && price! < alert.price {
+        if alert.isPriceLower && price < alert.price {
             let center = UNUserNotificationCenter.current()
             center.getNotificationSettings { settings in
                 if settings.authorizationStatus == .authorized {
-                    let body = "Currency price is \(price!.toFormattedPrice(currency: alert.currency!)) lower then: \(alert.price.toFormattedPrice(currency: alert.currency!))"
+                    let body = "Currency price is \(price.toFormattedPrice(currency: alert.currency)) lower then: \(alert.price.toFormattedPrice(currency: alert.currency))"
 
                     self.sendNotification(center: center,
-                                          title: alert.coinSymbol!,
+                                          title: alert.coinSymbol,
                                           body: body)
 
                     alert.alertSentDate = Date()
                     CoreDataHandler.shared.saveContext()
                 }
             }
-        } else if !alert.isPriceLower && price! > alert.price {
+        } else if !alert.isPriceLower && price > alert.price {
             let center = UNUserNotificationCenter.current()
             center.getNotificationSettings { settings in
                 if settings.authorizationStatus == .authorized {
-                    let body = "Currency price is \(price!.toFormattedPrice(currency: alert.currency!)) higher then: \(alert.price.toFormattedPrice(currency: alert.currency!))"
+                    let body = "Currency price is \(price.toFormattedPrice(currency: alert.currency)) higher then: \(alert.price.toFormattedPrice(currency: alert.currency))"
 
                     self.sendNotification(center: center,
-                                          title: alert.coinSymbol!,
+                                          title: alert.coinSymbol,
                                           body: body)
 
                     alert.alertSentDate = Date()
@@ -119,7 +121,7 @@ class Notifications {
     }
 
     private func getKey(alert: Alert) -> String {
-        return self.getKey(currency: alert.currency!, markedCode: alert.marketCode!, coinSymbol: alert.coinSymbol!)
+        return self.getKey(currency: alert.currency, markedCode: alert.marketCode, coinSymbol: alert.coinSymbol)
     }
 
     private func getKey(currency: String, markedCode: String, coinSymbol: String) -> String {

@@ -43,24 +43,29 @@ class MarketsTableViewController: BaseTableViewController, UISearchResultsUpdati
     // MARK: - Loading data
 
     private func loadCoinPrice(market: Market, cell: UITableViewCell, index: Int) {
-        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!, market: market.code) { price in
+        self.restClient.loadCoinPrice(symbol: coin.Symbol,
+                                      currency: self.settings.currency,
+                                      market: market.code,
+                                      callback: { price in
             if price != nil {
                 market.price = price
                 DispatchQueue.main.async {
                     if cell.tag == index {
-                        cell.detailTextLabel?.text = market.price?.toFormattedPrice(currency: self.settings.currency!)
+                        cell.detailTextLabel?.text = market.price?.toFormattedPrice(currency: self.settings.currency)
                         cell.setNeedsLayout()
                     }
                 }
             }
-        }
+        })
     }
 
     // MARK: - Searching
 
     func updateSearchResults(for searchController: UISearchController) {
-        self.filtr = searchController.searchBar.text!
-        self.reloadFilteredData()
+        if let filtr = searchController.searchBar.text {
+            self.filtr = filtr
+            self.reloadFilteredData()
+        }
     }
 
     private func reloadFilteredData() {
@@ -99,7 +104,7 @@ class MarketsTableViewController: BaseTableViewController, UISearchResultsUpdati
         cell.detailTextLabel?.text = "-"
 
         if let price = market.price {
-            cell.detailTextLabel?.text = price.toFormattedPrice(currency: self.settings.currency!)
+            cell.detailTextLabel?.text = price.toFormattedPrice(currency: self.settings.currency)
         } else {
             self.loadCoinPrice(market: market, cell: cell, index: indexPath.row)
         }

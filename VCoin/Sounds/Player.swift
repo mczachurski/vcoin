@@ -20,9 +20,10 @@ class Player {
 
             try AVAudioSession.sharedInstance().setActive(true, options: [])
 
-            let asset = NSDataAsset(name: name)!
-            audioPlayer = try AVAudioPlayer(data: asset.data, fileTypeHint: AVFileType.wav.rawValue)
-            audioPlayer?.play()
+            if let asset = NSDataAsset(name: name) {
+                audioPlayer = try AVAudioPlayer(data: asset.data, fileTypeHint: AVFileType.wav.rawValue)
+                audioPlayer?.play()
+            }
         } catch let error {
             print(error.localizedDescription)
         }

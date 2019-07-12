@@ -64,7 +64,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             if !favourites.isEmpty {
                 for favourite in favourites {
                     let favouriteCoin = coins.filter({ coin -> Bool in
-                        return coin.Symbol == favourite.coinSymbol!
+                        return coin.Symbol == favourite.coinSymbol
                     })
 
                     if favouriteCoin.count == 1, let favourite = favouriteCoin.first {
@@ -96,7 +96,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
 
     private func loadCoinPrice(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!) { price in
+        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency, callback: { price in
             coin.Price = price
             DispatchQueue.main.async {
                 if cell.tag == index {
@@ -104,11 +104,11 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
                     cell.setNeedsLayout()
                 }
             }
-        }
+        })
     }
 
     private func loadCoinChange(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinChange(symbol: coin.Symbol) { priceChange in
+        self.restClient.loadCoinChange(symbol: coin.Symbol, callback: { priceChange in
             coin.ChangePercentagePerDay = priceChange
             DispatchQueue.main.async {
                 if cell.tag == index {
@@ -116,7 +116,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
                     cell.setNeedsLayout()
                 }
             }
-        }
+        })
     }
 
     // MARK: - Table view data source

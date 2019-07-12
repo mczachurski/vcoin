@@ -79,22 +79,29 @@ class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDe
     }
 
     @IBAction private func saveAction(_ sender: UIBarButtonItem) {
-        if self.exchangeItem == nil {
-            self.exchangeItem = self.exchangeItemsHandler.createExchangeItemEntity()
-        }
-
-        if let amountTextValue = self.amountValueOutlet.text {
-            exchangeItem?.amount = amountTextValue.doubleValue
+        if let exchangeItem = self.exchangeItem {
+            self.save(exchangeItem: exchangeItem)
         } else {
-            exchangeItem?.amount = 0.0
+            let exchangeItem = self.exchangeItemsHandler.createExchangeItemEntity()
+            self.exchangeItem = exchangeItem
+            self.save(exchangeItem: exchangeItem)
+        }
+    }
+
+    private func save(exchangeItem: ExchangeItem) {
+        if let amountTextValue = self.amountValueOutlet.text {
+            exchangeItem.amount = amountTextValue.doubleValue
+        } else {
+            exchangeItem.amount = 0.0
         }
 
-        exchangeItem?.marketCode = self.marketCodeOutlet.text
-        exchangeItem?.currency = self.currencyOutlet.text
-        exchangeItem?.coinSymbol = self.cryptoCodeOutlet.text
+        if let marketCode = self.marketCodeOutlet.text, let currency = self.currencyOutlet.text, let coinSymbol = self.cryptoCodeOutlet.text {
+            exchangeItem.marketCode = marketCode
+            exchangeItem.currency = currency
+            exchangeItem.coinSymbol = coinSymbol
+        }
 
-        self.delegate?.exchange(changed: exchangeItem!)
-
+        self.delegate?.exchange(changed: exchangeItem)
         self.dismiss(animated: true, completion: nil)
     }
 

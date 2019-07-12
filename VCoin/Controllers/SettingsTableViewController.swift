@@ -100,7 +100,9 @@ class SettingsTableViewController: BaseTableViewController, ChooseCurrencyDelega
     // MARK: - Choose currency protocol
 
     func chooseCurrency(selected: String?) {
-        self.settings.currency = selected
-        CoreDataHandler.shared.saveContext()
+        if let currency = selected {
+            self.settings.currency = currency
+            CoreDataHandler.shared.saveContext()
+        }
     }
 }

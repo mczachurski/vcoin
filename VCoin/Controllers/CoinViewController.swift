@@ -47,7 +47,7 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
 
         self.coinName.text = self.coin.CoinName
         self.coinShort.text = self.coin.Symbol
-        self.coinPrice.text = self.coin.Price?.toFormattedPrice(currency: self.settings.currency!)
+        self.coinPrice.text = self.coin.Price?.toFormattedPrice(currency: self.settings.currency)
 
         self.coinDifference.text = (0.0).toFormattedPercent()
         self.coinDifference.textColor = .greenPastel
@@ -132,7 +132,7 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
             self.historicDate.text = dateFormatter.string(from: time)
         }
 
-        self.historicPrice.text = value.toFormattedPrice(currency: self.settings.currency!)
+        self.historicPrice.text = value.toFormattedPrice(currency: self.settings.currency)
     }
 
     func chartValueNothingSelected(_ chartView: ChartViewBase) {
@@ -173,7 +173,7 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
         let lineChartView = CustomLineChartView(chartRange: chartRange, delegate: self, percentageDelegate: self)
         self.charts[index] = lineChartView
 
-        lineChartView.loadCharViewData(symbol: self.coin.Symbol, currency: self.settings.currency!)
+        lineChartView.loadCharViewData(symbol: self.coin.Symbol, currency: self.settings.currency)
 
         let viewController = UIViewController()
         viewController.view = lineChartView
