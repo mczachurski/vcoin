@@ -1,15 +1,16 @@
 //
 //  AlertsHandler.swift
-//  VCoin
+//  vcoin
 //
-//  Created by Marcin Czachurski on 01.02.2018.
+//  Created by Marcin Czachurski on 18.01.2018.
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 class AlertsHandler {
+    private let timeInterval: TimeInterval = -1 * 24 * 60 * 60
 
     func createAlertntity() -> Alert {
         let context = CoreDataHandler.shared.getManagedObjectContext()
@@ -30,12 +31,15 @@ class AlertsHandler {
         let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
 
         var date = Date()
-        date = date.addingTimeInterval(-1*24*60*60)
+        date = date.addingTimeInterval(self.timeInterval)
         let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-        let minimumAlertDate = calendar.date(from: components)
+
+        guard let minimumAlertDate = calendar.date(from: components) else {
+            return alerts
+        }
 
         let predicate = NSPredicate(format: "isEnabled == YES && (alertSentDate == nil || alertSentDate < %@)",
-                                    argumentArray: [minimumAlertDate!])
+                                    argumentArray: [minimumAlertDate])
         fetchRequest.predicate = predicate
 
         do {

@@ -14,16 +14,15 @@ protocol AlertChangedDelegate: NSObjectProtocol {
 }
 
 class AlertTableViewController: BaseTableViewController, ChooseCurrencyDelegate, ChooseMarketDelegate {
+    @IBOutlet private weak var priceLabelOutlet: UILabel!
+    @IBOutlet private weak var priceOutlet: UITextField!
+    @IBOutlet private weak var currencyOutlet: UILabel!
+    @IBOutlet private weak var marketOutlet: UILabel!
+    @IBOutlet private weak var saveButtonOutlet: UIBarButtonItem!
 
-    @IBOutlet weak var priceLabelOutlet: UILabel!
-    @IBOutlet weak var priceOutlet: UITextField!
-    @IBOutlet weak var currencyOutlet: UILabel!
-    @IBOutlet weak var marketOutlet: UILabel!
-    @IBOutlet weak var saveButtonOutlet: UIBarButtonItem!
-
-    public weak var delegate: AlertChangedDelegate?
-    public var coin: Coin!
-    public var alert: Alert?
+    weak var delegate: AlertChangedDelegate?
+    var coin: Coin!
+    var alert: Alert?
 
     private var alertsHandler = AlertsHandler()
 
@@ -64,7 +63,6 @@ class AlertTableViewController: BaseTableViewController, ChooseCurrencyDelegate,
     // MARK: - Validation
 
     private func validateInputs() {
-
         if self.marketOutlet.text.isNilOrEmpty || self.currencyOutlet.text.isNilOrEmpty ||
             self.priceOutlet.text.isNilOrEmpty {
             self.saveButtonOutlet.isEnabled = false
@@ -90,7 +88,7 @@ class AlertTableViewController: BaseTableViewController, ChooseCurrencyDelegate,
 
     // MARK: - Actions
 
-    @IBAction func saveAction(_ sender: UIBarButtonItem) {
+    @IBAction private func saveAction(_ sender: UIBarButtonItem) {
         if self.alert == nil {
             self.alert = self.alertsHandler.createAlertntity()
         }
@@ -110,11 +108,11 @@ class AlertTableViewController: BaseTableViewController, ChooseCurrencyDelegate,
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func cancelAction(_ sender: UIBarButtonItem) {
+    @IBAction private func cancelAction(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func priceChangedAction(_ sender: UITextField) {
+    @IBAction private func priceChangedAction(_ sender: UITextField) {
         self.validateInputs()
     }
 

@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
-
     var settingsHandler = SettingsHandler()
     var settings: Settings!
     var twoFingersGestureAction = TwoFingersGestureAction()
@@ -52,20 +51,22 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
 
     // MARK: - Theme
 
-    @objc func darkModeEnabled(_ notification: Notification) {
+    @objc
+    func darkModeEnabled(_ notification: Notification) {
         enableDarkMode()
     }
 
-    @objc func darkModeDisabled(_ notification: Notification) {
+    @objc
+    func darkModeDisabled(_ notification: Notification) {
         disableDarkMode()
     }
 
-    open func enableDarkMode() {
+    func enableDarkMode() {
         self.view.backgroundColor = UIColor.black
         self.navigationController?.navigationBar.barStyle = .black
     }
 
-    open func disableDarkMode() {
+    func disableDarkMode() {
         self.view.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.barStyle = .default
     }

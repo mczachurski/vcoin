@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import UIKit.UIGestureRecognizerSubclass
 
 enum TwoFingersMove {
     case moveUp
@@ -17,8 +16,7 @@ enum TwoFingersMove {
 }
 
 class TwoFingersGestureRecognizer: UIGestureRecognizer {
-
-    public var fingersDirection = TwoFingersMove.unknown
+    var fingersDirection = TwoFingersMove.unknown
 
     private var firstTouchedPoints: [CGPoint] = []
     private var secondTouchedPoints: [CGPoint] = []
@@ -91,7 +89,7 @@ class TwoFingersGestureRecognizer: UIGestureRecognizer {
 
     private func twoFingersMoveDown() -> Bool {
         var firstFingerWasMoveDown = false
-        if firstTouchedPoints.count > 1 &&  firstTouchedPoints[0].y < firstTouchedPoints[firstTouchedPoints.count - 1].y {
+        if firstTouchedPoints.count > 1 && firstTouchedPoints[0].y < firstTouchedPoints[firstTouchedPoints.count - 1].y {
             firstFingerWasMoveDown = true
         }
 

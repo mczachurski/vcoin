@@ -19,7 +19,6 @@ extension Optional where Wrapped: OptionalString {
 }
 
 extension String {
-
     func openInBrowser() {
         if let url = URL(string: self) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

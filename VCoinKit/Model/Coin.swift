@@ -9,7 +9,6 @@
 import Foundation
 
 public class Coin {
-
     // swiftlint:disable identifier_name
     public var Algorithm: String?
     public var CoinName: String?
@@ -31,7 +30,6 @@ public class Coin {
     // swiftlint:enable identifier_name
 
     public init(data: [String: Any]) {
-
         if let symbol = data["Symbol"] as? String {
             Symbol = symbol
         }

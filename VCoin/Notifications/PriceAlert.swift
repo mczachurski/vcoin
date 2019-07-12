@@ -8,18 +8,17 @@
 
 import Foundation
 
-public enum Processing {
+enum Processing {
     case inQueue, processing, finished
 }
 
-public class PriceAlert {
+class PriceAlert {
+    var currency: String
+    var marketCode: String
+    var coinSymbol: String
 
-    public var currency: String
-    public var marketCode: String
-    public var coinSymbol: String
-
-    public var price: Double?
-    public var processing: Processing
+    var price: Double?
+    var processing: Processing
 
     init(currency: String, markedCode: String, coinSymbol: String) {
         self.currency = currency

@@ -6,11 +6,10 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 class ExchangeItemsHandler {
-
     func createExchangeItemEntity() -> ExchangeItem {
         let context = CoreDataHandler.shared.getManagedObjectContext()
         return ExchangeItem(context: context)

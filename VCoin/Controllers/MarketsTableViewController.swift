@@ -10,8 +10,7 @@ import UIKit
 import VCoinKit
 
 class MarketsTableViewController: BaseTableViewController, UISearchResultsUpdating {
-
-    public var coin: Coin!
+    var coin: Coin!
 
     private var restClient = RestClient()
     private var markets: [Market] = []
@@ -44,7 +43,7 @@ class MarketsTableViewController: BaseTableViewController, UISearchResultsUpdati
     // MARK: - Loading data
 
     private func loadCoinPrice(market: Market, cell: UITableViewCell, index: Int) {
-        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!, market: market.code) { (price) in
+        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!, market: market.code) { price in
             if price != nil {
                 market.price = price
                 DispatchQueue.main.async {
@@ -65,7 +64,7 @@ class MarketsTableViewController: BaseTableViewController, UISearchResultsUpdati
     }
 
     private func reloadFilteredData() {
-        if self.filtr == "" {
+        if self.filtr.isEmpty {
             self.filteredMarkets = self.markets
         } else {
             let uppercasedFilter = self.filtr.uppercased()

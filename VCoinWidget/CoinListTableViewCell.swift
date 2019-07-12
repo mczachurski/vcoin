@@ -9,26 +9,25 @@
 import UIKit
 
 class CoinListTableViewCell: UITableViewCell {
-
     @IBOutlet weak private var coinNameLabel: UILabel!
     @IBOutlet weak private var coinPriceLabel: UILabel!
     @IBOutlet weak private var coinChangeLabel: UILabel!
 
-    public var currency: String?
+    var currency: String?
 
-    public var coinName: String? {
+    var coinName: String? {
         didSet {
             self.coinNameLabel?.text = self.coinName
         }
     }
 
-    public var coinPrice: Double? {
+    var coinPrice: Double? {
         didSet {
             self.coinPriceLabel?.text = self.coinPrice?.toFormattedPrice(currency: self.currency!) ?? "-"
         }
     }
 
-    public var coinChange: Double? {
+    var coinChange: Double? {
         didSet {
             self.coinChangeLabel?.text = self.coinChange?.toFormattedPercent() ?? "-"
 

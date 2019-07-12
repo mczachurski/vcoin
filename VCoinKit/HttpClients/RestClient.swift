@@ -9,7 +9,6 @@
 import Foundation
 
 public class RestClient {
-
     public init() {
     }
 
@@ -19,7 +18,6 @@ public class RestClient {
         let request = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/all/coinlist")!)
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, _, error -> Void in
-
             if let errorMessage = error {
                 print(errorMessage.localizedDescription)
                 errorCallback(errorMessage.localizedDescription)
@@ -29,7 +27,6 @@ public class RestClient {
             do {
                 if let jsonData = data, let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
                     if let coinsDict = json["Data"] as? [String: Any] {
-
                         for (_, data) in coinsDict {
                             if let coinData = data as? [String: Any] {
                                 let coin = Coin(data: coinData)
@@ -59,13 +56,11 @@ public class RestClient {
     }
 
     public func loadCoinPrice(symbol: String, currency: String, market: String, callback: @escaping (Double?) -> Void) {
-
-        var price: Double? = nil
+        var price: Double?
 
         let priceRequest = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/price?fsym=\(symbol)&tsyms=\(currency)&e=\(market)")!)
         let session = URLSession.shared
         let priceTask = session.dataTask(with: priceRequest, completionHandler: { priceData, _, error -> Void in
-
             if let errorMessage = error {
                 print(errorMessage.localizedDescription)
                 callback(price)
@@ -87,13 +82,11 @@ public class RestClient {
     }
 
     public func loadCoinChange(symbol: String, callback: @escaping (Double?) -> Void) {
-
-        var priceChange: Double? = nil
+        var priceChange: Double?
 
         let priceRequest = URLRequest(url: URL(string: "https://min-api.cryptocompare.com/data/generateAvg?fsym=\(symbol)&tsym=USD&e=CCCAGG")!)
         let session = URLSession.shared
         let priceTask = session.dataTask(with: priceRequest, completionHandler: { priceData, _, error -> Void in
-
             if let errorMessage = error {
                 print(errorMessage.localizedDescription)
                 callback(priceChange)
@@ -138,7 +131,6 @@ public class RestClient {
         let request = URLRequest(url: URL(string: apiUrl)!)
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, _, error -> Void in
-
             if let errorMessage = error {
                 print(errorMessage.localizedDescription)
                 callback(coinsValues)

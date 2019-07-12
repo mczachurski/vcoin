@@ -13,16 +13,15 @@ protocol ExchangeItemChangedDelegate: NSObjectProtocol {
 }
 
 class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDelegate, ChooseMarketDelegate, ChooseCryptocurrencyDelegate {
+    @IBOutlet private weak var cryptoCodeOutlet: UILabel!
+    @IBOutlet private weak var marketCodeOutlet: UILabel!
+    @IBOutlet private weak var currencyOutlet: UILabel!
+    @IBOutlet private weak var amountLabelOutlet: UILabel!
+    @IBOutlet private weak var amountValueOutlet: UITextField!
+    @IBOutlet private weak var saveButtonOutlet: UIBarButtonItem!
 
-    @IBOutlet weak var cryptoCodeOutlet: UILabel!
-    @IBOutlet weak var marketCodeOutlet: UILabel!
-    @IBOutlet weak var currencyOutlet: UILabel!
-    @IBOutlet weak var amountLabelOutlet: UILabel!
-    @IBOutlet weak var amountValueOutlet: UITextField!
-    @IBOutlet weak var saveButtonOutlet: UIBarButtonItem!
-
-    public weak var delegate: ExchangeItemChangedDelegate?
-    public var exchangeItem: ExchangeItem?
+    weak var delegate: ExchangeItemChangedDelegate?
+    var exchangeItem: ExchangeItem?
 
     private var exchangeItemsHandler = ExchangeItemsHandler()
 
@@ -64,7 +63,6 @@ class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDe
     // MARK: - Validation
 
     private func validateInputs() {
-
         if self.marketCodeOutlet.text.isNilOrEmpty || self.currencyOutlet.text.isNilOrEmpty ||
             self.cryptoCodeOutlet.text.isNilOrEmpty || self.amountValueOutlet.text.isNilOrEmpty {
             self.saveButtonOutlet.isEnabled = false
@@ -76,12 +74,11 @@ class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDe
 
     // MARK: - Actions
 
-    @IBAction func cancelAction(_ sender: UIBarButtonItem) {
+    @IBAction private func cancelAction(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func saveAction(_ sender: UIBarButtonItem) {
-
+    @IBAction private func saveAction(_ sender: UIBarButtonItem) {
         if self.exchangeItem == nil {
             self.exchangeItem = self.exchangeItemsHandler.createExchangeItemEntity()
         }
@@ -101,7 +98,7 @@ class ExchangeItemTableViewController: BaseTableViewController, ChooseCurrencyDe
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func amountChangedAction(_ sender: UITextField) {
+    @IBAction private func amountChangedAction(_ sender: UITextField) {
         self.validateInputs()
     }
 

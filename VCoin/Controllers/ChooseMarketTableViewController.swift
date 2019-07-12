@@ -14,9 +14,8 @@ protocol ChooseMarketDelegate: NSObjectProtocol {
 }
 
 class ChooseMarketTableViewController: BaseTableViewController, UISearchResultsUpdating {
-
-    public var selectedMarket: String?
-    public weak var delegate: ChooseMarketDelegate?
+    var selectedMarket: String?
+    weak var delegate: ChooseMarketDelegate?
 
     private var markets: [Market] = []
     private var filteredMarkets: [Market] = []
@@ -53,7 +52,7 @@ class ChooseMarketTableViewController: BaseTableViewController, UISearchResultsU
     }
 
     private func reloadFilteredData() {
-        if self.filtr == "" {
+        if self.filtr.isEmpty {
             self.filteredMarkets = self.markets
         } else {
             let uppercasedFilter = self.filtr.uppercased()

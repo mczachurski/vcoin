@@ -6,11 +6,10 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import UIKit
 import HGPlaceholders
+import UIKit
 
 class ExchangesTableViewController: BaseTableViewController, ExchangeItemChangedDelegate, PlaceholderDelegate {
-
     private var exchangeItemsHandler = ExchangeItemsHandler()
     private var exchangeItems: [ExchangeItem] = []
 
@@ -42,12 +41,14 @@ class ExchangesTableViewController: BaseTableViewController, ExchangeItemChanged
 
     // MARK: - Refreshing
 
-    @objc func refreshTableView(refreshControl: UIRefreshControl) {
+    @objc
+    func refreshTableView(refreshControl: UIRefreshControl) {
         self.perform(#selector(reloadTableViewData), with: nil, afterDelay: 1.5)
         self.refreshControl?.perform(#selector(UIRefreshControl.endRefreshing), with: nil, afterDelay: 1.0)
     }
 
-    @objc func reloadTableViewData() {
+    @objc
+    func reloadTableViewData() {
         self.tableView.reloadData()
     }
 
@@ -91,7 +92,6 @@ class ExchangesTableViewController: BaseTableViewController, ExchangeItemChanged
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "exchangeitemcell", for: indexPath)
         guard let exchangeItemTableViewCell = cell as? ExchangeItemTableViewCell else {
             return cell
@@ -105,7 +105,7 @@ class ExchangesTableViewController: BaseTableViewController, ExchangeItemChanged
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default,
+        let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default,
                                                 title: "Delete",
                                                 handler: { (_: UITableViewRowAction, indexPath: IndexPath) -> Void in
             let exchangeItem = self.exchangeItems[indexPath.row]
@@ -124,7 +124,7 @@ class ExchangesTableViewController: BaseTableViewController, ExchangeItemChanged
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editExchangeItemSegue" {
-            if let destination = segue.destination.childViewControllers.first as? ExchangeItemTableViewController {
+            if let destination = segue.destination.children.first as? ExchangeItemTableViewController {
                 if let selectedPath = self.tableView.indexPathForSelectedRow {
                     destination.exchangeItem = self.exchangeItems[selectedPath.row]
                 }
@@ -132,7 +132,7 @@ class ExchangesTableViewController: BaseTableViewController, ExchangeItemChanged
                 destination.delegate = self
             }
         } else if segue.identifier == "newExchangeItemSegue" {
-            if let destination = segue.destination.childViewControllers.first as? ExchangeItemTableViewController {
+            if let destination = segue.destination.children.first as? ExchangeItemTableViewController {
                 destination.delegate = self
             }
         }
@@ -141,7 +141,6 @@ class ExchangesTableViewController: BaseTableViewController, ExchangeItemChanged
     // MARK: - Changed values delegate
 
     func exchange(changed: ExchangeItem) {
-
         CoreDataHandler.shared.saveContext()
 
         self.exchangeItems = self.exchangeItemsHandler.getExchangeItems()

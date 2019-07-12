@@ -14,9 +14,8 @@ protocol ChooseCurrencyDelegate: NSObjectProtocol {
 }
 
 class ChooseCurrencyTableViewController: BaseTableViewController, UISearchResultsUpdating {
-
-    public var selectedCurrency: String?
-    public weak var delegate: ChooseCurrencyDelegate?
+    var selectedCurrency: String?
+    weak var delegate: ChooseCurrencyDelegate?
 
     private var filtr = ""
     private var filteredCurrencies: [Currency] = []
@@ -46,7 +45,7 @@ class ChooseCurrencyTableViewController: BaseTableViewController, UISearchResult
     }
 
     private func reloadFilteredData() {
-        if self.filtr == "" {
+        if self.filtr.isEmpty {
             self.filteredCurrencies = Currencies.allCurrenciesList
         } else {
             let uppercasedFilter = self.filtr.uppercased()

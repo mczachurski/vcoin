@@ -1,16 +1,15 @@
 //
 //  FavouritesHandler.swift
-//  VCoin
+//  vcoin
 //
-//  Created by Marcin Czachurski on 23.01.2018.
+//  Created by Marcin Czachurski on 18.01.2018.
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 class FavouritesHandler {
-
     func createFavouriteEntity() -> Favourite {
         let context = CoreDataHandler.shared.getManagedObjectContext()
         return Favourite(context: context)
@@ -18,7 +17,7 @@ class FavouritesHandler {
 
     func deleteFavouriteEntity(symbol: String) {
         let favourites = self.getFavourites()
-        let filtered = favourites.filter { (favourite) -> Bool in
+        let filtered = favourites.filter { favourite -> Bool in
             return favourite.coinSymbol == symbol
         }
 
@@ -31,7 +30,7 @@ class FavouritesHandler {
     func isFavourite(symbol: String) -> Bool {
         let favourites = self.getFavourites()
 
-        let exists = favourites.contains { (favourite) -> Bool in
+        let exists = favourites.contains { favourite -> Bool in
             return favourite.coinSymbol == symbol
         }
 

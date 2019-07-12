@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class BaseTableViewController: UITableViewController, UIGestureRecognizerDelegate {
-
     var settingsHandler = SettingsHandler()
     var settings: Settings!
     var twoFingersGestureAction = TwoFingersGestureAction()
@@ -56,24 +55,26 @@ class BaseTableViewController: UITableViewController, UIGestureRecognizerDelegat
 
     // MARK: - Theme
 
-    @objc func darkModeEnabled(_ notification: Notification) {
+    @objc
+    func darkModeEnabled(_ notification: Notification) {
         enableDarkMode()
         self.tableView.reloadData()
     }
 
-    @objc func darkModeDisabled(_ notification: Notification) {
+    @objc
+    func darkModeDisabled(_ notification: Notification) {
         disableDarkMode()
         self.tableView.reloadData()
     }
 
-    open func enableDarkMode() {
+    func enableDarkMode() {
         self.view.backgroundColor = UIColor.black
         self.tableView.backgroundColor = UIColor.black
         self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.view.backgroundColor = UIColor.black
     }
 
-    open func disableDarkMode() {
+    func disableDarkMode() {
         self.view.backgroundColor = UIColor.white
         self.tableView.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.barStyle = .default
@@ -83,7 +84,6 @@ class BaseTableViewController: UITableViewController, UIGestureRecognizerDelegat
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
         if self.settings.isDarkMode {
             cell.textLabel?.textColor = UIColor.white
             cell.detailTextLabel?.textColor = UIColor.lightGray

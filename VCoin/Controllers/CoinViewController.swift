@@ -6,30 +6,29 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import UIKit
 import Charts
 import SwipeMenuViewController
+import UIKit
 import VCoinKit
 
 class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifferenceDelegate, SwipeMenuViewDelegate, SwipeMenuViewDataSource {
-
-    public var coin: Coin!
+    var coin: Coin!
 
     private var charts: [Int: CustomLineChartView] = [:]
     private var favouritesHandler = FavouritesHandler()
     private var alersHandler = AlertsHandler()
     private var isFavourite = false
 
-    @IBOutlet weak var coinName: UILabel!
-    @IBOutlet weak var coinShort: UILabel!
-    @IBOutlet weak var coinPrice: UILabel!
-    @IBOutlet weak var coinDifference: UILabel!
-    @IBOutlet weak var favouriteButtonOutlet: UIBarButtonItem!
-    @IBOutlet weak var alarmButtonOutlet: UIBarButtonItem!
-    @IBOutlet weak var historicDate: UILabel!
-    @IBOutlet weak var historicPrice: UILabel!
+    @IBOutlet private weak var coinName: UILabel!
+    @IBOutlet private weak var coinShort: UILabel!
+    @IBOutlet private weak var coinPrice: UILabel!
+    @IBOutlet private weak var coinDifference: UILabel!
+    @IBOutlet private weak var favouriteButtonOutlet: UIBarButtonItem!
+    @IBOutlet private weak var alarmButtonOutlet: UIBarButtonItem!
+    @IBOutlet private weak var historicDate: UILabel!
+    @IBOutlet private weak var historicPrice: UILabel!
 
-    @IBOutlet weak var swipeMenuView: SwipeMenuView! {
+    @IBOutlet private weak var swipeMenuView: SwipeMenuView! {
         didSet {
             swipeMenuView.delegate = self
             swipeMenuView.dataSource = self
@@ -66,7 +65,7 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
 
     // MARK: - Favourites
 
-    @IBAction func toggleFavourites(_ sender: UIBarButtonItem) {
+    @IBAction private func toggleFavourites(_ sender: UIBarButtonItem) {
         if self.isFavourite {
             self.favouritesHandler.deleteFavouriteEntity(symbol: coin.Symbol)
         } else {
@@ -89,7 +88,7 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
 
     private func setAlarmButton() {
         let alerts = alersHandler.getAlerts(coinSymbol: self.coin.Symbol)
-        if alerts.count == 0 {
+        if alerts.isEmpty {
             self.alarmButtonOutlet.image = UIImage(named: "alarm-off")
         } else {
             self.alarmButtonOutlet.image = UIImage(named: "alarm-on")
@@ -198,7 +197,6 @@ class CoinViewController: BaseViewController, ChartViewDelegate, ChartDifference
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "coinMarketsSegue" {
-
             let backItem = UIBarButtonItem()
             backItem.title = self.coin.CoinName
             navigationItem.backBarButtonItem = backItem

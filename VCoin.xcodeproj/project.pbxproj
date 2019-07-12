@@ -33,7 +33,7 @@
 		F829F9B4201DC80100730918 /* ExchangeItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F829F9B3201DC80100730918 /* ExchangeItemTableViewController.swift */; };
 		F829F9B6201DCEEA00730918 /* AlertsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F829F9B5201DCEEA00730918 /* AlertsTableViewController.swift */; };
 		F82D16162012405D00071216 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D16152012405D00071216 /* BaseTableViewController.swift */; };
-		F82D16182012419200071216 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D16172012419200071216 /* NotificationName.swift */; };
+		F82D16182012419200071216 /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D16172012419200071216 /* Notification.Name.swift */; };
 		F82D161D20128B9800071216 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D161C20128B9800071216 /* BaseViewController.swift */; };
 		F83A89292026FFAB009C9181 /* PriceAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A89272026FF03009C9181 /* PriceAlert.swift */; };
 		F83C83BA201650E7003C0D78 /* VCoinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F83C83AA201650E7003C0D78 /* VCoinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -143,7 +143,7 @@
 		F829F9B3201DC80100730918 /* ExchangeItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeItemTableViewController.swift; sourceTree = "<group>"; };
 		F829F9B5201DCEEA00730918 /* AlertsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsTableViewController.swift; sourceTree = "<group>"; };
 		F82D16152012405D00071216 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
-		F82D16172012419200071216 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
+		F82D16172012419200071216 /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
 		F82D161C20128B9800071216 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F82EF01B201707B1003B249F /* VCoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VCoin.entitlements; sourceTree = "<group>"; };
 		F82EF01C201707C0003B249F /* VCoinWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VCoinWidget.entitlements; sourceTree = "<group>"; };
@@ -380,7 +380,7 @@
 			children = (
 				F84E1ACC201382F000E06DAE /* String.swift */,
 				F8D1E2B5200DE3AB00C53E47 /* SwipeMenuView.swift */,
-				F82D16172012419200071216 /* NotificationName.swift */,
+				F82D16172012419200071216 /* Notification.Name.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -516,6 +516,7 @@
 				TargetAttributes = {
 					F810C43520011984001BE909 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -528,10 +529,12 @@
 					};
 					F83C83A7201650E7003C0D78 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					F83C83C920165193003C0D78 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -609,7 +612,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		F882AED3209F75EE00364B4D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -622,7 +625,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -641,7 +644,7 @@
 				F8DB287120237FB30042A431 /* AlertsHandler.swift in Sources */,
 				F8271FF120165DD5000DAB2B /* String.swift in Sources */,
 				F8039993201A53A300D3F6CF /* BaseTableView.swift in Sources */,
-				F82D16182012419200071216 /* NotificationName.swift in Sources */,
+				F82D16182012419200071216 /* Notification.Name.swift in Sources */,
 				F8D70177200DEC9D0005B6D8 /* ChartDifferenceDelegate.swift in Sources */,
 				F810C44220011984001BE909 /* vcoin.xcdatamodeld in Sources */,
 				F84B4A5C20134F7A0034DBA1 /* Player.swift in Sources */,
@@ -863,16 +866,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VCoin/VCoin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5UJ67W372Y;
+				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = vcoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.sltch.vcoin;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -884,16 +887,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VCoin/VCoin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5UJ67W372Y;
+				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = vcoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.sltch.vcoin;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -906,7 +909,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 5UJ67W372Y;
+				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -916,7 +919,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.sltch.vcoin.VCoinKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -931,7 +934,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 5UJ67W372Y;
+				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -941,7 +944,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.sltch.vcoin.VCoinKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -953,13 +956,13 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = VCoinWidget/VCoinWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5UJ67W372Y;
+				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VCoinWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.sltch.vcoin.VCoinWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -969,13 +972,13 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = VCoinWidget/VCoinWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5UJ67W372Y;
+				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VCoinWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.sltch.vcoin.VCoinWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

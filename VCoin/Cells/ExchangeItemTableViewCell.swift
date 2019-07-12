@@ -10,8 +10,7 @@ import UIKit
 import VCoinKit
 
 class ExchangeItemTableViewCell: UITableViewCell {
-
-    public var exchangeItem: ExchangeItem! {
+    var exchangeItem: ExchangeItem! {
         didSet {
             self.coinSymbolOutlet.text = self.exchangeItem.coinSymbol
             self.coinsAmountOutlet.text = String(self.exchangeItem.amount)
@@ -22,7 +21,7 @@ class ExchangeItemTableViewCell: UITableViewCell {
         }
     }
 
-    public var isDarkMode: Bool? {
+    var isDarkMode: Bool? {
         didSet {
             if isDarkMode ?? true {
                 self.coinsAmountOutlet.textColor = UIColor.white
@@ -54,8 +53,9 @@ class ExchangeItemTableViewCell: UITableViewCell {
     }
 
     private func reloadPrice() {
-        restClient.loadCoinPrice(symbol: self.exchangeItem.coinSymbol!, currency: self.exchangeItem.currency!,
-                                 market: self.exchangeItem.marketCode!) { (value) in
+        restClient.loadCoinPrice(symbol: self.exchangeItem.coinSymbol!,
+                                 currency: self.exchangeItem.currency!,
+                                 market: self.exchangeItem.marketCode!) { value in
             if value != nil {
                 let price = value! * self.exchangeItem.amount
                 DispatchQueue.main.async {

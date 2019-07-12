@@ -9,7 +9,6 @@
 import UIKit
 
 class ThirdPartyTableViewController: BaseTableViewController {
-
     // MARK: - View loading
 
     override func viewDidLoad() {

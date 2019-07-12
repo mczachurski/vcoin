@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-extension UITableViewCell {
-    public func setSelectedColor(color: UIColor) {
+public extension UITableViewCell {
+    func setSelectedColor(color: UIColor) {
         let bgColorView = UIView()
         bgColorView.backgroundColor = color
         self.selectedBackgroundView = bgColorView

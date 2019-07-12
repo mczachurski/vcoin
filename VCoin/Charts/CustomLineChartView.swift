@@ -6,15 +6,14 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import Foundation
 import Charts
+import Foundation
 import VCoinKit
 
 class CustomLineChartView: LineChartView {
-
-    public var percentageDifference: Double = 0.0
-    public weak var percentageDelegate: ChartDifferenceDelegate?
-    public var chartRange: ChartTimeRange = ChartTimeRange.hour
+    var percentageDifference: Double = 0.0
+    weak var percentageDelegate: ChartDifferenceDelegate?
+    var chartRange = ChartTimeRange.hour
 
     private var restClient = RestClient()
 
@@ -31,14 +30,13 @@ class CustomLineChartView: LineChartView {
     }
 
     func loadCharViewData(symbol: String, currency: String) {
-        self.restClient.loadCharViewData(chartRange: self.chartRange, symbol: symbol, currency: currency) { (chartValues) in
+        self.restClient.loadCharViewData(chartRange: self.chartRange, symbol: symbol, currency: currency) { chartValues in
             self.renderChartViewData(coinValues: chartValues)
         }
     }
 
     private func renderChartViewData(coinValues: [AnyObject]) {
-
-        if coinValues.count == 0 {
+        if coinValues.isEmpty {
             DispatchQueue.main.async {
                 self.setNoDataText(title: "No data to draw chart.")
             }
@@ -52,7 +50,6 @@ class CustomLineChartView: LineChartView {
         for (index, coinValue) in coinValues.enumerated() {
             if let coinValueDictionary = coinValue as? [String: Any] {
                 if let hight = coinValueDictionary["high"] as? Double {
-
                     let chartDataEntry = CustomChartDataEntry(x: Double(index + 1), y: hight, timestamp: coinValueDictionary["time"])
                     values.append(chartDataEntry)
 
@@ -77,7 +74,7 @@ class CustomLineChartView: LineChartView {
     }
 
     private func createLineChartDataSet(values: [ChartDataEntry]) -> LineChartDataSet {
-        let lineChartDataSet = LineChartDataSet(values: values, label: "DataSet 1")
+        let lineChartDataSet = LineChartDataSet(entries: values, label: "DataSet 1")
         lineChartDataSet.drawIconsEnabled = false
         lineChartDataSet.highlightLineDashLengths = [5, 2.5]
         lineChartDataSet.setColor(UIColor.main)
@@ -93,11 +90,11 @@ class CustomLineChartView: LineChartView {
         lineChartDataSet.drawCirclesEnabled = false
 
         let gradientColors = [UIColor.main(alpha: 0.0).cgColor, UIColor.main(alpha: 0.3).cgColor]
-        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
-
-        lineChartDataSet.fillAlpha = 1
-        lineChartDataSet.fill = Fill(linearGradient: gradient, angle: 90)
-        lineChartDataSet.drawFilledEnabled = true
+        if let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil) {
+            lineChartDataSet.fillAlpha = 1
+            lineChartDataSet.fill = Fill(linearGradient: gradient, angle: 90)
+            lineChartDataSet.drawFilledEnabled = true
+        }
 
         lineChartDataSet.mode = .cubicBezier
 

@@ -6,16 +6,15 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
+import HGPlaceholders
 import UIKit
 import UserNotifications
-import HGPlaceholders
 import VCoinKit
 
 class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, PlaceholderDelegate {
-
     private var alertsHandler = AlertsHandler()
     private var alerts: [Alert] = []
-    public var coin: Coin!
+    var coin: Coin!
 
     private var baseTableView: BaseTableView {
         return self.tableView as! BaseTableView // swiftlint:disable:this force_cast
@@ -75,7 +74,6 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, 
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "alertcellitem", for: indexPath)
         guard let alterTableViewCell = cell as? AlertTableViewCell else {
             return cell
@@ -89,7 +87,7 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, 
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default,
+        let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default,
                                                 title: "Delete",
                                                 handler: { (_: UITableViewRowAction, indexPath: IndexPath) -> Void in
             let alert = self.alerts[indexPath.row]
@@ -108,7 +106,7 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editAlertSegue" {
-            if let destination = segue.destination.childViewControllers.first as? AlertTableViewController {
+            if let destination = segue.destination.children.first as? AlertTableViewController {
                 if let selectedPath = self.tableView.indexPathForSelectedRow {
                     destination.alert = self.alerts[selectedPath.row]
                 }
@@ -117,7 +115,7 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, 
                 destination.delegate = self
             }
         } else if segue.identifier == "newAlertSegue" {
-            if let destination = segue.destination.childViewControllers.first as? AlertTableViewController {
+            if let destination = segue.destination.children.first as? AlertTableViewController {
                 destination.coin = self.coin
                 destination.delegate = self
             }
@@ -127,7 +125,6 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, 
     // MARK: - Changed values delegate
 
     func alert(changed: Alert) {
-
         CoreDataHandler.shared.saveContext()
 
         self.alerts = self.alertsHandler.getAlerts(coinSymbol: self.coin.Symbol)
@@ -135,7 +132,7 @@ class AlertsTableViewController: BaseTableViewController, AlertChangedDelegate, 
 
         UNUserNotificationCenter.current().requestAuthorization(
             options: [.alert, .sound, .badge],
-            completionHandler: { (granted, _) in
+            completionHandler: { granted, _ in
                 print("Authorization was granted: \(granted)")
             }
         )

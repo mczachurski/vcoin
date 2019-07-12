@@ -6,14 +6,12 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 import UIKit
 
 class SettingsHandler {
-
     func getDefaultSettings() -> Settings {
-
         var settingsList: [Settings] = []
 
         let context = CoreDataHandler.shared.getManagedObjectContext()
@@ -26,16 +24,14 @@ class SettingsHandler {
             print("Error during fetching favourites")
         }
 
-        var settings: Settings? = nil
-        if settingsList.count == 0 {
-            settings = self.createSettingsEntity()
-            CoreDataHandler.shared.saveContext()
+        if let settings = settingsList.first {
+            return settings
         } else {
-            settings = settingsList.first
+            let settings = self.createSettingsEntity()
+            CoreDataHandler.shared.saveContext()
+
+            return settings
         }
-
-        return settings!
-
     }
 
     private func createSettingsEntity() -> Settings {

@@ -11,12 +11,11 @@ import UserNotifications
 import VCoinKit
 
 class Notifications {
-
     private let alertsHandler = AlertsHandler()
     private let restClient = RestClient()
     private var priceAlerts: [String: PriceAlert] = [:]
 
-    public func sendNotification() {
+    func sendNotification() {
         let alerts = self.alertsHandler.getActiveAlerts()
 
         for alert in alerts {
@@ -31,8 +30,10 @@ class Notifications {
         for priceAlert in priceAlerts {
             priceAlert.value.processing = Processing.processing
 
-            self.restClient.loadCoinPrice(symbol: priceAlert.value.coinSymbol, currency: priceAlert.value.currency, market: priceAlert.value.marketCode, callback: { (price) in
-
+            self.restClient.loadCoinPrice(symbol: priceAlert.value.coinSymbol,
+                                          currency: priceAlert.value.currency,
+                                          market: priceAlert.value.marketCode,
+                                          callback: { price in
                 lock.lock()
 
                 priceAlert.value.price = price
@@ -47,12 +48,11 @@ class Notifications {
     }
 
     private func allAlertsFinished() -> Bool {
-
-        let notFinishedAlerts = priceAlerts.filter { (_, value) -> Bool in
+        let notFinishedAlerts = priceAlerts.filter { _, value -> Bool in
             return value.processing != Processing.finished
         }
 
-        return notFinishedAlerts.count == 0
+        return notFinishedAlerts.isEmpty
     }
 
     private func processAlerts(alerts: [Alert]) {
@@ -70,11 +70,9 @@ class Notifications {
         }
 
         if alert.isPriceLower && price! < alert.price {
-
             let center = UNUserNotificationCenter.current()
-            center.getNotificationSettings { (settings) in
+            center.getNotificationSettings { settings in
                 if settings.authorizationStatus == .authorized {
-
                     let body = "Currency price is \(price!.toFormattedPrice(currency: alert.currency!)) lower then: \(alert.price.toFormattedPrice(currency: alert.currency!))"
 
                     self.sendNotification(center: center,
@@ -86,11 +84,9 @@ class Notifications {
                 }
             }
         } else if !alert.isPriceLower && price! > alert.price {
-
             let center = UNUserNotificationCenter.current()
-            center.getNotificationSettings { (settings) in
+            center.getNotificationSettings { settings in
                 if settings.authorizationStatus == .authorized {
-
                     let body = "Currency price is \(price!.toFormattedPrice(currency: alert.currency!)) higher then: \(alert.price.toFormattedPrice(currency: alert.currency!))"
 
                     self.sendNotification(center: center,
@@ -108,14 +104,14 @@ class Notifications {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
-        content.sound = UNNotificationSound.default()
+        content.sound = UNNotificationSound.default
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
 
         let identifier = "VCoinLocalNotification"
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 
-        center.add(request, withCompletionHandler: { (error) in
+        center.add(request, withCompletionHandler: { error in
             if let error = error {
                 print("Error during sending notification \(error)")
             }

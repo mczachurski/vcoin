@@ -9,11 +9,10 @@
 import UIKit
 
 class SettingsTableViewController: BaseTableViewController, ChooseCurrencyDelegate {
-
-    @IBOutlet weak var currencyOutlet: UILabel!
-    @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
-    @IBOutlet weak var darkModeLabelOutlet: UILabel!
-    @IBOutlet weak var versionLabelOutlet: UILabel!
+    @IBOutlet private weak var currencyOutlet: UILabel!
+    @IBOutlet private weak var darkModeSwitchOutlet: UISwitch!
+    @IBOutlet private weak var darkModeLabelOutlet: UILabel!
+    @IBOutlet private weak var versionLabelOutlet: UILabel!
 
     // MARK: - View loading
 
@@ -37,7 +36,7 @@ class SettingsTableViewController: BaseTableViewController, ChooseCurrencyDelega
     // MARK: - Application version
 
     func getAppVersion() -> String {
-        return "\(Bundle.main.infoDictionary!["CFBundleShortVersionString"] ?? "")"
+        return "\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "")"
     }
 
     // MARK: - Theme style
@@ -56,14 +55,14 @@ class SettingsTableViewController: BaseTableViewController, ChooseCurrencyDelega
 
     // MARK: - Actions
 
-    @IBAction func toggleDarkModeSwitch(_ sender: UISwitch) {
+    @IBAction private func toggleDarkModeSwitch(_ sender: UISwitch) {
         self.settings?.isDarkMode = sender.isOn
         CoreDataHandler.shared.saveContext()
 
         NotificationCenter.default.post(name: sender.isOn ? .darkModeEnabled : .darkModeDisabled, object: nil)
     }
 
-    @IBAction func doneAction(_ sender: Any) {
+    @IBAction private func doneAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 

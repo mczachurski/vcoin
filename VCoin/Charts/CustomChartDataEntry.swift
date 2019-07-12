@@ -6,13 +6,13 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import Foundation
 import Charts
+import Foundation
 
 class CustomChartDataEntry: ChartDataEntry {
-    public var time: Date?
+    var time: Date?
 
-    public init(x: Double, y: Double, timestamp: Any?) {
+    init(x: Double, y: Double, timestamp: Any?) {
         super.init(x: x, y: y)
 
         if let unixTimestamp = timestamp as? Double {

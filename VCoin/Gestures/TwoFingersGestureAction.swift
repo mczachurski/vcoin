@@ -9,7 +9,6 @@
 import Foundation
 
 class TwoFingersGestureAction {
-
     var settingsHandler = SettingsHandler()
     var settings: Settings!
     var player = Player()
@@ -18,9 +17,9 @@ class TwoFingersGestureAction {
         self.settings = self.settingsHandler.getDefaultSettings()
     }
 
-    @objc func gestureRecognizer(sender: TwoFingersGestureRecognizer) {
+    @objc
+    func gestureRecognizer(sender: TwoFingersGestureRecognizer) {
         if sender.state == .ended {
-
             if sender.fingersDirection == .moveDown && !self.settings.isDarkMode {
                 self.settings?.isDarkMode = true
                 CoreDataHandler.shared.saveContext()
@@ -38,5 +37,4 @@ class TwoFingersGestureAction {
             }
         }
     }
-
 }

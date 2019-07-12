@@ -6,12 +6,11 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import UIKit
 import NotificationCenter
+import UIKit
 import VCoinKit
 
 class TodayViewController: UITableViewController, NCWidgetProviding {
-
     private let restClient = RestClient()
     private let settingsHandler = SettingsHandler()
     private let favouritesHandler = FavouritesHandler()
@@ -29,6 +28,8 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         self.loadCoinsList()
     }
 
@@ -56,18 +57,18 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     // MARK: - Loading data
 
     private func loadCoinsList() {
-        self.restClient.loadCoinsList(callback: { (coins) in
+        self.restClient.loadCoinsList(callback: { coins in
             self.filteredDataSource = []
 
             let favourites = self.favouritesHandler.getFavourites()
-            if favourites.count > 0 {
+            if !favourites.isEmpty {
                 for favourite in favourites {
-                    let favouriteCoin = coins.filter({ (coin) -> Bool in
+                    let favouriteCoin = coins.filter({ coin -> Bool in
                         return coin.Symbol == favourite.coinSymbol!
                     })
 
-                    if favouriteCoin.count == 1 {
-                        self.filteredDataSource.append(favouriteCoin.first!)
+                    if favouriteCoin.count == 1, let favourite = favouriteCoin.first {
+                        self.filteredDataSource.append(favourite)
                     }
                 }
             }
@@ -77,11 +78,11 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
                     break
                 }
 
-                let filteredCoin = self.filteredDataSource.filter({ (filteredCoin) -> Bool in
+                let filteredCoin = self.filteredDataSource.filter({ filteredCoin -> Bool in
                     return filteredCoin.Symbol == coin.Symbol
                 })
 
-                if filteredCoin.count == 0 {
+                if filteredCoin.isEmpty {
                     self.filteredDataSource.append(coin)
                 }
             }
@@ -89,13 +90,13 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-        }, errorCallback: { (error) in
+        }, errorCallback: { error in
             print(error)
         })
     }
 
     private func loadCoinPrice(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!) { (price) in
+        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!) { price in
             coin.Price = price
             DispatchQueue.main.async {
                 if cell.tag == index {
@@ -107,8 +108,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
 
     private func loadCoinChange(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-
-        self.restClient.loadCoinChange(symbol: coin.Symbol) { (priceChange) in
+        self.restClient.loadCoinChange(symbol: coin.Symbol) { priceChange in
             coin.ChangePercentagePerDay = priceChange
             DispatchQueue.main.async {
                 if cell.tag == index {
@@ -134,7 +134,6 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "coinitem", for: indexPath)
         guard let coinListTableViewCell = cell as? CoinListTableViewCell else {
             return cell

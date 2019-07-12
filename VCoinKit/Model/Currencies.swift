@@ -9,7 +9,6 @@
 import Foundation
 
 public class Currencies {
-
     public static var allCurrenciesDictionary: [String: Currency] = Currencies.initialzieCurrenciesDictionary()
 
     public static var allCurrenciesList = [

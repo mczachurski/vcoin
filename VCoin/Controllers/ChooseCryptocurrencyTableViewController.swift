@@ -6,19 +6,18 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
+import HGPlaceholders
+import Reachability
 import UIKit
 import VCoinKit
-import Reachability
-import HGPlaceholders
 
 protocol ChooseCryptocurrencyDelegate: NSObjectProtocol {
     func chooseCryptocurrency(selected: String?)
 }
 
 class ChooseCryptocurrencyTableViewController: BaseTableViewController, UISearchResultsUpdating, PlaceholderDelegate {
-
-    public var selectedCryptocurrency: String?
-    public weak var delegate: ChooseCryptocurrencyDelegate?
+    var selectedCryptocurrency: String?
+    weak var delegate: ChooseCryptocurrencyDelegate?
 
     private var coinsDataSource: [Coin] = [] {
         didSet {
@@ -61,7 +60,7 @@ class ChooseCryptocurrencyTableViewController: BaseTableViewController, UISearch
     }
 
     private func reloadFilteredData() {
-        if self.filtr == "" {
+        if self.filtr.isEmpty {
             self.filteredDataSource = self.coinsDataSource
         } else {
             let uppercasedFilter = self.filtr.uppercased()
@@ -86,17 +85,16 @@ class ChooseCryptocurrencyTableViewController: BaseTableViewController, UISearch
     // MARK: - Loading data
 
     private func loadCoinsList() {
-
         if reachability?.connection == Reachability.Connection.none {
             self.baseTableView.showNoConnectionPlaceholder()
             return
         }
 
-        self.restClient.loadCoinsList(callback: { (coins) in
+        self.restClient.loadCoinsList(callback: { coins in
             DispatchQueue.main.async {
                 self.coinsDataSource = coins
             }
-        }, errorCallback: { (_) in
+        }, errorCallback: { _ in
             DispatchQueue.main.async {
                 self.baseTableView.showErrorPlaceholder()
             }

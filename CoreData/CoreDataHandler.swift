@@ -6,12 +6,11 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 import UIKit
 
-class CoreDataHandler {
-
+public class CoreDataHandler {
     public static let shared = CoreDataHandler()
 
     private init() {
@@ -35,11 +34,14 @@ class CoreDataHandler {
          */
         let container = NSPersistentContainer(name: "vcoin")
 
-        var url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.vcoindata")!
+        guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.mczachurski.vcoin") else {
+            fatalError("Container URL for application cannot be retrieved")
+        }
+
         var dbUrl = url.appendingPathComponent("Data.sqlite")
         container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: dbUrl)]
 
-        container.loadPersistentStores(completionHandler: { (_, error) in
+        container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate.

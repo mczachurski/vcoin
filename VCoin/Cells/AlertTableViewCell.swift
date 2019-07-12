@@ -9,8 +9,7 @@
 import UIKit
 
 class AlertTableViewCell: UITableViewCell {
-
-    public var alert: Alert! {
+    var alert: Alert! {
         didSet {
             self.coinSymbolOutlet.text = self.alert.coinSymbol
             self.priceOutlet.text = self.alert.price.toFormattedPrice(currency: self.alert.currency!)
@@ -25,7 +24,7 @@ class AlertTableViewCell: UITableViewCell {
         }
     }
 
-    public var isDarkMode: Bool? {
+    var isDarkMode: Bool? {
         didSet {
             if isDarkMode ?? true {
                 self.coinSymbolOutlet.textColor = UIColor.white
@@ -39,13 +38,13 @@ class AlertTableViewCell: UITableViewCell {
         }
     }
 
-    @IBOutlet weak var coinSymbolOutlet: UILabel!
-    @IBOutlet weak var priceOutlet: UILabel!
-    @IBOutlet weak var marketNameOutlet: UILabel!
-    @IBOutlet weak var isEnabledOutlet: UISwitch!
-    @IBOutlet weak var isLowerPriceOutlet: UILabel!
+    @IBOutlet private weak var coinSymbolOutlet: UILabel!
+    @IBOutlet private weak var priceOutlet: UILabel!
+    @IBOutlet private weak var marketNameOutlet: UILabel!
+    @IBOutlet private weak var isEnabledOutlet: UISwitch!
+    @IBOutlet private weak var isLowerPriceOutlet: UILabel!
 
-    @IBAction func isEnabledChangedAction(_ sender: UISwitch) {
+    @IBAction private func isEnabledChangedAction(_ sender: UISwitch) {
         self.alert.isEnabled = sender.isOn
         CoreDataHandler.shared.saveContext()
     }

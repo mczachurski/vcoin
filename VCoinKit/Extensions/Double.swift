@@ -8,13 +8,12 @@
 
 import Foundation
 
-extension Double {
-
-    public func toFormattedPrice(currency: String) -> String {
+public extension Double {
+    func toFormattedPrice(currency: String) -> String {
         return self.toFormattedPrice(currency: currency, maximumFractionDigits: 4)
     }
 
-    public func toFormattedPrice(currency: String, maximumFractionDigits: Int) -> String {
+    func toFormattedPrice(currency: String, maximumFractionDigits: Int) -> String {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.maximumFractionDigits = maximumFractionDigits
@@ -30,11 +29,11 @@ extension Double {
         return priceString ?? ""
     }
 
-    public func toFormattedPercent() -> String {
+    func toFormattedPercent() -> String {
         return String(self.rounded(toPlaces: 2)) + " %"
     }
 
-    public var absoluteValue: Double {
+    var absoluteValue: Double {
         if self > 0.0 {
             return self
         } else {
@@ -42,7 +41,7 @@ extension Double {
         }
     }
 
-    public func rounded(toPlaces places: Int) -> Double {
+    func rounded(toPlaces places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }

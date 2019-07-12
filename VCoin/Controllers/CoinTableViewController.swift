@@ -6,13 +6,12 @@
 //  Copyright © 2018 Marcin Czachurski. All rights reserved.
 //
 
-import UIKit
-import VCoinKit
 import HGPlaceholders
 import Reachability
+import UIKit
+import VCoinKit
 
 class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating, PlaceholderDelegate {
-
     private var coinsDataSource: [Coin] = [] {
         didSet {
             self.reloadFilteredData()
@@ -82,7 +81,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     }
 
     private func reloadFilteredData() {
-        if self.filtr == "" {
+        if self.filtr.isEmpty {
             self.filteredDataSource = self.coinsDataSource
         } else {
             let uppercasedFilter = self.filtr.uppercased()
@@ -104,27 +103,27 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
         }
     }
 
-    @objc func refreshTableView(refreshControl: UIRefreshControl) {
+    @objc
+    func refreshTableView(refreshControl: UIRefreshControl) {
         self.loadCoinsList()
     }
 
     // MARK: - Loading data
 
     private func loadCoinsList() {
-
         if reachability?.connection == Reachability.Connection.none {
             self.baseTableView.showNoConnectionPlaceholder()
             return
         }
 
-        self.restClient.loadCoinsList(callback: { (coins) in
+        self.restClient.loadCoinsList(callback: { coins in
             DispatchQueue.main.async {
                 self.coinsDataSource = coins
                 if self.refreshControl?.isRefreshing ?? false {
                     self.refreshControl?.endRefreshing()
                 }
             }
-        }, errorCallback: {(_) in
+        }, errorCallback: { _ in
             DispatchQueue.main.async {
                 self.baseTableView.showErrorPlaceholder()
                 if self.refreshControl?.isRefreshing ?? false {
@@ -135,7 +134,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     }
 
     private func loadCoinPrice(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!) { (price) in
+        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency!) { price in
             coin.Price = price
             DispatchQueue.main.async {
                 if cell.tag == index {
@@ -147,8 +146,7 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     }
 
     private func loadCoinChange(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-
-        self.restClient.loadCoinChange(symbol: coin.Symbol) { (priceChange) in
+        self.restClient.loadCoinChange(symbol: coin.Symbol) { priceChange in
             coin.ChangePercentagePerDay = priceChange
             DispatchQueue.main.async {
                 if cell.tag == index {
@@ -170,7 +168,6 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "coinitem", for: indexPath)
         guard let coinListTableViewCell = cell as? CoinListTableViewCell else {
             return cell
