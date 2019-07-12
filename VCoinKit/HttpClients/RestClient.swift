@@ -12,31 +12,29 @@ public class RestClient {
     public init() {
     }
 
-    public func loadCoinsList(callback: @escaping ([Coin]) -> Void, errorCallback: @escaping (String) -> Void) {
+    // MARK: - Load coin list
+
+    public func loadCoinsList(completionHandler: @escaping (Result<[Coin], RestClientError>) -> Void) {
         guard let url = URL(string: "https://min-api.cryptocompare.com/data/all/coinlist") else {
-            errorCallback("Wrong URL to currencies list")
+            completionHandler(.failure(.badUrl))
             return
         }
 
         let request = URLRequest(url: url)
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, _, error -> Void in
-            self.loadCoinsHandler(data: data, error: error, callback: callback, errorCallback: errorCallback)
+            if let error = error {
+                completionHandler(.failure(.networkFailure(error)))
+                return
+            }
+
+            self.loadCoinsHandler(data: data, completionHandler: completionHandler)
         })
 
         task.resume()
     }
 
-    private func loadCoinsHandler(data: Data?,
-                                  error: Error?,
-                                  callback: @escaping ([Coin]) -> Void,
-                                  errorCallback: @escaping (String) -> Void) {
-        if let errorMessage = error {
-            print(errorMessage.localizedDescription)
-            errorCallback(errorMessage.localizedDescription)
-            return
-        }
-
+    private func loadCoinsHandler(data: Data?, completionHandler: @escaping (Result<[Coin], RestClientError>) -> Void) {
         var downloadedCoins: [Coin] = []
 
         do {
@@ -65,41 +63,38 @@ public class RestClient {
                 }
             }
 
-            callback(downloadedCoins)
+            completionHandler(.success(downloadedCoins))
         } catch {
-            errorCallback("Currencies wasn't downloaded")
+            completionHandler(.failure(.badDataFormat(error)))
         }
     }
 
+    // MARK: - Load coin price
+
     public func loadCoinPrice(symbol: String,
                               currency: String,
-                              callback: @escaping (Double?) -> Void,
-                              errorCallback: ((String) -> Void)? = nil) {
+                              completionHandler: @escaping (Result<Double?, RestClientError>) -> Void) {
         loadCoinPrice(symbol: symbol,
                       currency: currency,
                       market: "CCCAGG",
-                      callback: callback,
-                      errorCallback: errorCallback)
+                      completionHandler: completionHandler)
     }
 
     public func loadCoinPrice(symbol: String,
                               currency: String,
                               market: String,
-                              callback: @escaping (Double?) -> Void,
-                              errorCallback: ((String) -> Void)? = nil) {
-        var price: Double?
-
+                              completionHandler: @escaping (Result<Double?, RestClientError>) -> Void) {
         guard let url = URL(string: "https://min-api.cryptocompare.com/data/price?fsym=\(symbol)&tsyms=\(currency)&e=\(market)") else {
-            errorCallback?("Wrong URL to currencies list")
+            completionHandler(.failure(.badUrl))
             return
         }
 
+        var price: Double?
         let priceRequest = URLRequest(url: url)
         let session = URLSession.shared
         let priceTask = session.dataTask(with: priceRequest, completionHandler: { priceData, _, error -> Void in
-            if let errorMessage = error {
-                print(errorMessage.localizedDescription)
-                callback(price)
+            if let error = error {
+                completionHandler(.failure(.networkFailure(error)))
                 return
             }
 
@@ -108,31 +103,30 @@ public class RestClient {
                     price = priceJson[currency]
                 }
 
-                callback(price)
+                completionHandler(.success(price))
             } catch {
-                print("loadCoinPrice error")
+                completionHandler(.failure(.badDataFormat(error)))
             }
         })
 
         priceTask.resume()
     }
 
-    public func loadCoinChange(symbol: String,
-                               callback: @escaping (Double?) -> Void,
-                               errorCallback: ((String) -> Void)? = nil) {
+    // MARK: - Load coin change
+
+    public func loadCoinChange(symbol: String, completionHandler: @escaping (Result<Double?, RestClientError>) -> Void) {
         var priceChange: Double?
 
         guard let url = URL(string: "https://min-api.cryptocompare.com/data/generateAvg?fsym=\(symbol)&tsym=USD&e=CCCAGG") else {
-            errorCallback?("Wrong URL to currencies list")
+            completionHandler(.failure(.badUrl))
             return
         }
 
         let priceRequest = URLRequest(url: url)
         let session = URLSession.shared
         let priceTask = session.dataTask(with: priceRequest, completionHandler: { priceData, _, error -> Void in
-            if let errorMessage = error {
-                print(errorMessage.localizedDescription)
-                callback(priceChange)
+            if let error = error {
+                completionHandler(.failure(.networkFailure(error)))
                 return
             }
 
@@ -145,20 +139,21 @@ public class RestClient {
                     }
                 }
 
-                callback(priceChange)
+                completionHandler(.success(priceChange))
             } catch {
-                print("loadCoinChange error")
+                completionHandler(.failure(.badDataFormat(error)))
             }
         })
 
         priceTask.resume()
     }
 
+    // MARK: - Load chart data
+
     public func loadCharViewData(chartRange: ChartTimeRange,
                                  symbol: String,
                                  currency: String,
-                                 callback: @escaping ([AnyObject]) -> Void,
-                                 errorCallback: ((String) -> Void)? = nil) {
+                                 completionHandler: @escaping (Result<[AnyObject], RestClientError>) -> Void) {
         var apiUrl = ""
         switch chartRange {
         case .hour:
@@ -176,16 +171,15 @@ public class RestClient {
         var coinsValues: [AnyObject] = []
 
         guard let url = URL(string: apiUrl) else {
-            errorCallback?("Wrong URL to currencies list")
+            completionHandler(.failure(.badUrl))
             return
         }
 
         let request = URLRequest(url: url)
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, _, error -> Void in
-            if let errorMessage = error {
-                print(errorMessage.localizedDescription)
-                callback(coinsValues)
+            if let error = error {
+                completionHandler(.failure(.networkFailure(error)))
                 return
             }
 
@@ -196,9 +190,9 @@ public class RestClient {
                     }
                 }
 
-                callback(coinsValues)
+                completionHandler(.success(coinsValues))
             } catch {
-                print("loadCharViewData error")
+                completionHandler(.failure(.badDataFormat(error)))
             }
         })
 

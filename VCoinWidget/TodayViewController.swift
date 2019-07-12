@@ -57,66 +57,83 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     // MARK: - Loading data
 
     private func loadCoinsList() {
-        self.restClient.loadCoinsList(callback: { coins in
-            self.filteredDataSource = []
-
-            let favourites = self.favouritesHandler.getFavourites()
-            if !favourites.isEmpty {
-                for favourite in favourites {
-                    let favouriteCoin = coins.filter({ coin -> Bool in
-                        return coin.Symbol == favourite.coinSymbol
-                    })
-
-                    if favouriteCoin.count == 1, let favourite = favouriteCoin.first {
-                        self.filteredDataSource.append(favourite)
-                    }
-                }
+        self.restClient.loadCoinsList { result in
+            switch result {
+            case .success(let coins):
+                self.loadCoinsListHandler(coins: coins)
+            case .failure(let error):
+                print(error.localizedDescription)
             }
+        }
+    }
 
-            for coin in coins {
-                if self.filteredDataSource.count == 8 {
-                    break
-                }
+    private func loadCoinsListHandler(coins: [Coin]) {
+        self.filteredDataSource = []
 
-                let filteredCoin = self.filteredDataSource.filter({ filteredCoin -> Bool in
-                    return filteredCoin.Symbol == coin.Symbol
+        let favourites = self.favouritesHandler.getFavourites()
+        if !favourites.isEmpty {
+            for favourite in favourites {
+                let favouriteCoin = coins.filter({ coin -> Bool in
+                    return coin.Symbol == favourite.coinSymbol
                 })
 
-                if filteredCoin.isEmpty {
-                    self.filteredDataSource.append(coin)
+                if favouriteCoin.count == 1, let favourite = favouriteCoin.first {
+                    self.filteredDataSource.append(favourite)
                 }
             }
+        }
 
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        for coin in coins {
+            if self.filteredDataSource.count == 8 {
+                break
             }
-        }, errorCallback: { error in
-            print(error)
-        })
+
+            let filteredCoin = self.filteredDataSource.filter({ filteredCoin -> Bool in
+                return filteredCoin.Symbol == coin.Symbol
+            })
+
+            if filteredCoin.isEmpty {
+                self.filteredDataSource.append(coin)
+            }
+        }
+
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     private func loadCoinPrice(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency, callback: { price in
-            coin.Price = price
-            DispatchQueue.main.async {
-                if cell.tag == index {
-                    cell.coinPrice = coin.Price
-                    cell.setNeedsLayout()
+        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency) { result in
+            switch result {
+            case .success(let price):
+                coin.Price = price
+                DispatchQueue.main.async {
+                    if cell.tag == index {
+                        cell.coinPrice = coin.Price
+                        cell.setNeedsLayout()
+                    }
                 }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-        })
+        }
     }
 
     private func loadCoinChange(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinChange(symbol: coin.Symbol, callback: { priceChange in
-            coin.ChangePercentagePerDay = priceChange
-            DispatchQueue.main.async {
-                if cell.tag == index {
-                    cell.coinChange = coin.ChangePercentagePerDay
-                    cell.setNeedsLayout()
+        self.restClient.loadCoinChange(symbol: coin.Symbol) { result in
+            switch result {
+            case .success(let priceChange):
+                coin.ChangePercentagePerDay = priceChange
+                DispatchQueue.main.async {
+                    if cell.tag == index {
+                        cell.coinChange = coin.ChangePercentagePerDay
+                        cell.setNeedsLayout()
+                    }
                 }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-        })
+        }
     }
 
     // MARK: - Table view data source

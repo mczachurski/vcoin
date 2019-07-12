@@ -45,18 +45,22 @@ class MarketsTableViewController: BaseTableViewController, UISearchResultsUpdati
     private func loadCoinPrice(market: Market, cell: UITableViewCell, index: Int) {
         self.restClient.loadCoinPrice(symbol: coin.Symbol,
                                       currency: self.settings.currency,
-                                      market: market.code,
-                                      callback: { price in
-            if price != nil {
-                market.price = price
-                DispatchQueue.main.async {
-                    if cell.tag == index {
-                        cell.detailTextLabel?.text = market.price?.toFormattedPrice(currency: self.settings.currency)
-                        cell.setNeedsLayout()
+                                      market: market.code) { result in
+            switch result {
+            case .success(let price):
+                if price != nil {
+                    market.price = price
+                    DispatchQueue.main.async {
+                        if cell.tag == index {
+                            cell.detailTextLabel?.text = market.price?.toFormattedPrice(currency: self.settings.currency)
+                            cell.setNeedsLayout()
+                        }
                     }
                 }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-        })
+        }
     }
 
     // MARK: - Searching

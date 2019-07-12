@@ -9,6 +9,6 @@
 import Foundation
 
 extension Notification.Name {
-    static let darkModeEnabled = Notification.Name("net.sltch.vcoin.notifications.darkModeEnabled")
-    static let darkModeDisabled = Notification.Name("net.sltch.vcoin.notifications.darkModeDisabled")
+    static let darkModeEnabled = Notification.Name("dev.mczachurski.vcoin.notifications.darkModeEnabled")
+    static let darkModeDisabled = Notification.Name("dev.mczachurski.vcoin.notifications.darkModeDisabled")
 }

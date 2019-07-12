@@ -34,18 +34,22 @@ class Notifications {
 
             self.restClient.loadCoinPrice(symbol: priceAlert.value.coinSymbol,
                                           currency: priceAlert.value.currency,
-                                          market: priceAlert.value.marketCode,
-                                          callback: { price in
-                lock.lock()
+                                          market: priceAlert.value.marketCode) { result in
+                switch result {
+                case .success(let price):
+                    lock.lock()
 
-                priceAlert.value.price = price
-                priceAlert.value.processing = Processing.finished
-                if self.allAlertsFinished() {
-                    self.processAlerts(alerts: alerts)
+                    priceAlert.value.price = price
+                    priceAlert.value.processing = Processing.finished
+                    if self.allAlertsFinished() {
+                        self.processAlerts(alerts: alerts)
+                    }
+
+                    lock.unlock()
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
-
-                lock.unlock()
-            })
+            }
         }
     }
 
@@ -74,31 +78,39 @@ class Notifications {
         if alert.isPriceLower && price < alert.price {
             let center = UNUserNotificationCenter.current()
             center.getNotificationSettings { settings in
-                if settings.authorizationStatus == .authorized {
-                    let body = "Currency price is \(price.toFormattedPrice(currency: alert.currency)) lower then: \(alert.price.toFormattedPrice(currency: alert.currency))"
-
-                    self.sendNotification(center: center,
-                                          title: alert.coinSymbol,
-                                          body: body)
-
-                    alert.alertSentDate = Date()
-                    CoreDataHandler.shared.saveContext()
-                }
+                self.notifyAboutLowerPrices(settings: settings, center: center, alert: alert, price: price)
             }
         } else if !alert.isPriceLower && price > alert.price {
             let center = UNUserNotificationCenter.current()
             center.getNotificationSettings { settings in
-                if settings.authorizationStatus == .authorized {
-                    let body = "Currency price is \(price.toFormattedPrice(currency: alert.currency)) higher then: \(alert.price.toFormattedPrice(currency: alert.currency))"
-
-                    self.sendNotification(center: center,
-                                          title: alert.coinSymbol,
-                                          body: body)
-
-                    alert.alertSentDate = Date()
-                    CoreDataHandler.shared.saveContext()
-                }
+                self.notifyAboutHigherPrices(settings: settings, center: center, alert: alert, price: price)
             }
+        }
+    }
+
+    private func notifyAboutLowerPrices(settings: UNNotificationSettings, center: UNUserNotificationCenter, alert: Alert, price: Double) {
+        if settings.authorizationStatus == .authorized {
+            let body = "Currency price is \(price.toFormattedPrice(currency: alert.currency)) lower then: \(alert.price.toFormattedPrice(currency: alert.currency))"
+
+            self.sendNotification(center: center,
+                                  title: alert.coinSymbol,
+                                  body: body)
+
+            alert.alertSentDate = Date()
+            CoreDataHandler.shared.saveContext()
+        }
+    }
+
+    private func notifyAboutHigherPrices(settings: UNNotificationSettings, center: UNUserNotificationCenter, alert: Alert, price: Double) {
+        if settings.authorizationStatus == .authorized {
+            let body = "Currency price is \(price.toFormattedPrice(currency: alert.currency)) higher then: \(alert.price.toFormattedPrice(currency: alert.currency))"
+
+            self.sendNotification(center: center,
+                                  title: alert.coinSymbol,
+                                  body: body)
+
+            alert.alertSentDate = Date()
+            CoreDataHandler.shared.saveContext()
         }
     }
 

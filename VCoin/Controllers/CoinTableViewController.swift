@@ -118,45 +118,59 @@ class CoinTableViewController: BaseTableViewController, UISearchResultsUpdating,
             return
         }
 
-        self.restClient.loadCoinsList(callback: { coins in
-            DispatchQueue.main.async {
-                self.coinsDataSource = coins
-                if self.refreshControl?.isRefreshing ?? false {
-                    self.refreshControl?.endRefreshing()
+        self.restClient.loadCoinsList { result in
+            switch result {
+            case .success(let coins):
+                DispatchQueue.main.async {
+                    self.coinsDataSource = coins
+                    if self.refreshControl?.isRefreshing ?? false {
+                        self.refreshControl?.endRefreshing()
+                    }
+                }
+            case .failure:
+                DispatchQueue.main.async {
+                    self.baseTableView.showErrorPlaceholder()
+                    if self.refreshControl?.isRefreshing ?? false {
+                        self.refreshControl?.endRefreshing()
+                    }
                 }
             }
-        }, errorCallback: { _ in
-            DispatchQueue.main.async {
-                self.baseTableView.showErrorPlaceholder()
-                if self.refreshControl?.isRefreshing ?? false {
-                    self.refreshControl?.endRefreshing()
-                }
-            }
-        })
+        }
     }
 
     private func loadCoinPrice(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinPrice(symbol: coin.Symbol, currency: self.settings.currency, callback: { price in
-            coin.Price = price
-            DispatchQueue.main.async {
-                if cell.tag == index {
-                    cell.coinPrice = coin.Price
-                    cell.setNeedsLayout()
+        self.restClient.loadCoinPrice(symbol: coin.Symbol,
+                                      currency: self.settings.currency) { result in
+            switch result {
+            case .success(let price):
+                coin.Price = price
+                DispatchQueue.main.async {
+                    if cell.tag == index {
+                        cell.coinPrice = coin.Price
+                        cell.setNeedsLayout()
+                    }
                 }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-        })
+        }
     }
 
     private func loadCoinChange(coin: Coin, cell: CoinListTableViewCell, index: Int) {
-        self.restClient.loadCoinChange(symbol: coin.Symbol, callback: { priceChange in
-            coin.ChangePercentagePerDay = priceChange
-            DispatchQueue.main.async {
-                if cell.tag == index {
-                    cell.coinChange = coin.ChangePercentagePerDay
-                    cell.setNeedsLayout()
+        self.restClient.loadCoinChange(symbol: coin.Symbol) { result in
+            switch result {
+            case .success(let priceChange):
+                coin.ChangePercentagePerDay = priceChange
+                DispatchQueue.main.async {
+                    if cell.tag == index {
+                        cell.coinChange = coin.ChangePercentagePerDay
+                        cell.setNeedsLayout()
+                    }
                 }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-        })
+        }
     }
 
     // MARK: - Table view data source

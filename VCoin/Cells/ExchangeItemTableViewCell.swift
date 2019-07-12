@@ -53,19 +53,24 @@ class ExchangeItemTableViewCell: UITableViewCell {
     }
 
     private func reloadPrice() {
-        restClient.loadCoinPrice(symbol: self.exchangeItem.coinSymbol,
-                                 currency: self.exchangeItem.currency,
-                                 market: self.exchangeItem.marketCode, callback: { value in
-            if let valueUnwrapped = value {
-                let price = valueUnwrapped * self.exchangeItem.amount
-                DispatchQueue.main.async {
-                    self.currencyAmountOutlet.text = price.toFormattedPrice(currency: self.exchangeItem.currency, maximumFractionDigits: 2)
+        self.restClient.loadCoinPrice(symbol: self.exchangeItem.coinSymbol,
+                                      currency: self.exchangeItem.currency,
+                                      market: self.exchangeItem.marketCode) { result in
+            switch result {
+            case .success(let value):
+                if let valueUnwrapped = value {
+                    let price = valueUnwrapped * self.exchangeItem.amount
+                    DispatchQueue.main.async {
+                        self.currencyAmountOutlet.text = price.toFormattedPrice(currency: self.exchangeItem.currency, maximumFractionDigits: 2)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.currencyAmountOutlet.text = "-"
+                    }
                 }
-            } else {
-                DispatchQueue.main.async {
-                    self.currencyAmountOutlet.text = "-"
-                }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-        })
+        }
     }
 }

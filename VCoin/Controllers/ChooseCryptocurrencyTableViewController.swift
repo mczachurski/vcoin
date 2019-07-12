@@ -92,15 +92,18 @@ class ChooseCryptocurrencyTableViewController: BaseTableViewController, UISearch
             return
         }
 
-        self.restClient.loadCoinsList(callback: { coins in
-            DispatchQueue.main.async {
-                self.coinsDataSource = coins
+        self.restClient.loadCoinsList { result in
+            switch result {
+            case .success(let coins):
+                DispatchQueue.main.async {
+                    self.coinsDataSource = coins
+                }
+            case .failure:
+                DispatchQueue.main.async {
+                    self.baseTableView.showErrorPlaceholder()
+                }
             }
-        }, errorCallback: { _ in
-            DispatchQueue.main.async {
-                self.baseTableView.showErrorPlaceholder()
-            }
-        })
+        }
     }
 
     // MARK: - Table view data source
