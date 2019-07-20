@@ -9,10 +9,10 @@
 import UIKit
 
 class CoinListTableViewCell: UITableViewCell {
-    @IBOutlet weak private var coinNameLabel: UILabel!
-    @IBOutlet weak private var coinPriceLabel: UILabel!
-    @IBOutlet weak private var coinChangeLabel: UILabel!
-    @IBOutlet weak private var coinFavouriteImage: UIImageView!
+    @IBOutlet private weak var coinNameLabel: UILabel!
+    @IBOutlet private weak var coinPriceLabel: UILabel!
+    @IBOutlet private weak var coinChangeLabel: UILabel!
+    @IBOutlet private weak var coinFavouriteImage: UIImageView!
 
     var currency: String?
 

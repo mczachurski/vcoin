@@ -39,7 +39,9 @@ class AlertsHandler {
         }
 
         let predicate = NSPredicate(format: "isEnabled == YES && (alertSentDate == nil || alertSentDate < %@)",
-                                    argumentArray: [minimumAlertDate])
+                                    argumentArray: [minimumAlertDate]
+        )
+
         fetchRequest.predicate = predicate
 
         do {
