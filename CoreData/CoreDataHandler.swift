@@ -13,58 +13,67 @@ import UIKit
 public class CoreDataHandler {
     public static let shared = CoreDataHandler()
 
-    private init() {
-    }
+    public static var preview: CoreDataHandler = {
+        let result = CoreDataHandler(inMemory: true)
+        let viewContext = result.container.viewContext
+        
+        let favouriteItem1 = Favourite(context: viewContext)
+        favouriteItem1.coinSymbol = "ETH"
 
-    // MARK: - Core Data Context
+        let favouriteItem2 = Favourite(context: viewContext)
+        favouriteItem2.coinSymbol = "BTC"
 
-    public func getManagedObjectContext() -> NSManagedObjectContext {
-        let persistentContainer = self.persistentContainer
-        return persistentContainer.viewContext
-    }
+        let favouriteItem3 = Favourite(context: viewContext)
+        favouriteItem3.coinSymbol = "DGC"
+        
+        do {
+            try viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+ 
+        return result
+    }()
+    
+    public let container: NSPersistentContainer
+    
+    init(inMemory: Bool = false) {
+        container = NSPersistentContainer(name: "vcoin")
 
-    // MARK: - Core Data Stack
+        if inMemory {
+            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        } else {
+            guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.mczachurski.vcoin") else {
+                fatalError("Container URL for application cannot be retrieved")
+            }
 
-    private lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-         */
-        let container = NSPersistentContainer(name: "vcoin")
-
-        guard let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.mczachurski.vcoin") else {
-            fatalError("Container URL for application cannot be retrieved")
+            let dbUrl = url.appendingPathComponent("Data.sqlite")
+            container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: dbUrl)]
         }
 
-        var dbUrl = url.appendingPathComponent("Data.sqlite")
-        container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: dbUrl)]
-
-        container.loadPersistentStores(completionHandler: { _, error in
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate.
-                // You should not use this function in a shipping application, although it may be useful during development.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
 
                 /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
+                Typical reasons for an error here include:
+                * The parent directory does not exist, cannot be created, or disallows writing.
+                * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+                * The device is out of space.
+                * The store could not be migrated to the current model version.
+                Check the error message to determine what the actual problem was.
+                */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        return container
-    }()
+    }
 
-    // MARK: - Core Data Saving
-
-    public func saveContext () {
-        let context = self.persistentContainer.viewContext
+    public func save() {
+        let context = self.container.viewContext
         if context.hasChanges {
             do {
                 try context.save()

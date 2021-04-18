@@ -13,19 +13,19 @@ class AlertsHandler {
     private let timeInterval: TimeInterval = -1 * 24 * 60 * 60
 
     func createAlertEntity() -> Alert {
-        let context = CoreDataHandler.shared.getManagedObjectContext()
+        let context = CoreDataHandler.shared.container.viewContext
         return Alert(context: context)
     }
 
     func deleteAlertEntity(alert: Alert) {
-        let context = CoreDataHandler.shared.getManagedObjectContext()
+        let context = CoreDataHandler.shared.container.viewContext
         context.delete(alert)
     }
 
     func getActiveAlerts() -> [Alert] {
         var alerts: [Alert] = []
 
-        let context = CoreDataHandler.shared.getManagedObjectContext()
+        let context = CoreDataHandler.shared.container.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Alert")
 
         let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
@@ -58,7 +58,7 @@ class AlertsHandler {
     func getAlerts(coinSymbol: String) -> [Alert] {
         var alerts: [Alert] = []
 
-        let context = CoreDataHandler.shared.getManagedObjectContext()
+        let context = CoreDataHandler.shared.container.viewContext
 
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Alert")
         let predicate = NSPredicate(format: "coinSymbol == %@", coinSymbol)

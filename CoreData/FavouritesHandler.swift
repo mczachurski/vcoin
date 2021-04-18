@@ -11,7 +11,7 @@ import Foundation
 
 class FavouritesHandler {
     func createFavouriteEntity() -> Favourite {
-        let context = CoreDataHandler.shared.getManagedObjectContext()
+        let context = CoreDataHandler.shared.container.viewContext
         return Favourite(context: context)
     }
 
@@ -21,7 +21,7 @@ class FavouritesHandler {
             return favourite.coinSymbol == symbol
         }
 
-        let context = CoreDataHandler.shared.getManagedObjectContext()
+        let context = CoreDataHandler.shared.container.viewContext
         for favourite in filtered {
             context.delete(favourite)
         }
@@ -40,7 +40,7 @@ class FavouritesHandler {
     func getFavourites() -> [Favourite] {
         var favourites: [Favourite] = []
 
-        let context = CoreDataHandler.shared.getManagedObjectContext()
+        let context = CoreDataHandler.shared.container.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
         do {
             if let list = try context.fetch(fetchRequest) as? [Favourite] {

@@ -14,7 +14,7 @@ class SettingsHandler {
     func getDefaultSettings() -> Settings {
         var settingsList: [Settings] = []
 
-        let context = CoreDataHandler.shared.getManagedObjectContext()
+        let context = CoreDataHandler.shared.container.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
         do {
             if let list = try context.fetch(fetchRequest) as? [Settings] {
@@ -28,14 +28,14 @@ class SettingsHandler {
             return settings
         } else {
             let settings = self.createSettingsEntity()
-            CoreDataHandler.shared.saveContext()
+            CoreDataHandler.shared.save()
 
             return settings
         }
     }
 
     private func createSettingsEntity() -> Settings {
-        let context = CoreDataHandler.shared.getManagedObjectContext()
+        let context = CoreDataHandler.shared.container.viewContext
         return Settings(context: context)
     }
 }
