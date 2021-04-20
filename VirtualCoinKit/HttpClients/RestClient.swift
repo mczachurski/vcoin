@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class RestClient: ObservableObject {
+public class CryptoCompareClient: ObservableObject {
     @Published public var coins: [Coin] = []
-    
+
     public init() {
     }
-
+    
     // MARK: - Load coin list
 
     public func loadCoinsList() {
