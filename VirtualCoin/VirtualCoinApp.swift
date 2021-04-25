@@ -15,7 +15,7 @@ struct VirtualCoinApp: App {
 
     var body: some Scene {
         WindowGroup {
-            CoinsView()
+            MainView()
                 .environmentObject(cryptoCompareClient)
                 .environment(\.managedObjectContext, coreDataHandler.container.viewContext)
         }
