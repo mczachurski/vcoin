@@ -35,19 +35,11 @@ struct CoinsView: View {
             }
             .navigationTitle(title)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        print("Edit button was tapped")
-                    }) {
-                        Image(systemName: "switch.2")
-                    }
-                }
-
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         print("Edit button was tapped")
                     }) {
-                        Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                        Image(systemName: "switch.2")
                     }
                 }
             }

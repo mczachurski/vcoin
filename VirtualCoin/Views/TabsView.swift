@@ -15,17 +15,17 @@ struct TabsView: View {
     var body: some View {
         TabView {
 
-//            // Favourites view
-//            NavigationView {
-//                CoinsView(title: "Favourites")
-//                    .environmentObject(cryptoCompareClient)
-//                    .environment(\.managedObjectContext, managedObjectContext)
-//            }
-//            .tabItem {
-//                Image(systemName: "phone.fill")
-//                Text("Favourites")
-//            }
-//
+            // Favourites view
+            NavigationView {
+                CoinsView(title: "Favourites")
+                    .environmentObject(cryptoCompareClient)
+                    .environment(\.managedObjectContext, managedObjectContext)
+            }
+            .tabItem {
+                Image(systemName: "star.fill")
+                Text("Favourites")
+            }
+
             // All currencies view
             NavigationView {
                 CoinsView(title: "All currencies")
@@ -33,7 +33,7 @@ struct TabsView: View {
                     .environment(\.managedObjectContext, managedObjectContext)
             }
             .tabItem {
-                Image(systemName: "tv.fill")
+                Image(systemName: "bitcoinsign.circle.fill")
                 Text("All currencies")
             }
             
@@ -42,7 +42,7 @@ struct TabsView: View {
                 Text("Exchanges view")
             }
             .tabItem {
-                Image(systemName: "tv.fill")
+                Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
                 Text("Exchanges")
             }
             
@@ -51,7 +51,7 @@ struct TabsView: View {
                 Text("Alerts view")
             }
             .tabItem {
-                Image(systemName: "tv.fill")
+                Image(systemName: "bell.fill")
                 Text("Alrets")
             }
         }

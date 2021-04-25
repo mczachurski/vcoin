@@ -25,7 +25,7 @@ struct SideBarsView: View {
                 tag: "favourites",
                 selection: $selectedFolder
             ) {
-                Label("Favourites", systemImage: "book.closed")
+                Label("Favourites", systemImage: "star.fill")
             }
             
             // All currencies view
@@ -36,7 +36,7 @@ struct SideBarsView: View {
                 tag: "currencies",
                 selection: $selectedFolder
             ) {
-                Label("All currencies", systemImage: "book.closed")
+                Label("All currencies", systemImage: "bitcoinsign.circle.fill")
             }
 
             // Exchange view
@@ -45,7 +45,7 @@ struct SideBarsView: View {
                 tag: "exchanges",
                 selection: $selectedFolder
             ) {
-                Label("Exchanges", systemImage: "book.closed")
+                Label("Exchanges", systemImage: "arrow.triangle.2.circlepath.circle.fill")
             }
             
             // Alerts view
@@ -54,7 +54,7 @@ struct SideBarsView: View {
                 tag: "alerts",
                 selection: $selectedFolder
             ) {
-                Label("Alerts", systemImage: "book.closed")
+                Label("Alerts", systemImage: "bell.fill")
             }
             
         }
