@@ -13,8 +13,34 @@ struct CoinRowView: View {
 
     var body: some View {
         HStack {
-            Text(coin.fullName ?? "")
+            if let imageString = coin.imageUrl,
+               let imageUrl = URL(string: "https://cryptocompare.com" + imageString) {
+                AsyncImage(
+                    url: imageUrl,
+                    placeholder: {
+                        Image(systemName: "bitcoinsign.circle.fill")
+                    },
+                    image: { Image(uiImage: $0).resizable() }
+                 )
+                .frame(width: 32, height: 32, alignment: .center)
+            }
+            VStack(alignment: .leading) {
+                Text(coin.coinName ?? "")
+                    .font(.body)
+                Text(coin.symbol)
+                    .font(.footnote)
+                    .foregroundColor(.accentColor)
+            }
+            
             Spacer()
+            
+            VStack(alignment: .trailing) {
+                Text("$32.32")
+                    .font(.body)
+                Text("-0.34%")
+                    .font(.caption)
+                    .foregroundColor(.red)
+            }
         }
     }
 }
