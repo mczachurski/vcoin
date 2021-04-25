@@ -7,6 +7,7 @@
 
 import SwiftUI
 import VirtualCoinKit
+import URLImage
 
 struct CoinRowView: View {
     var coin: Coin
@@ -15,14 +16,11 @@ struct CoinRowView: View {
         HStack {
             if let imageString = coin.imageUrl,
                let imageUrl = URL(string: "https://cryptocompare.com" + imageString) {
-                AsyncImage(
-                    url: imageUrl,
-                    placeholder: {
-                        Image(systemName: "bitcoinsign.circle.fill")
-                    },
-                    image: { Image(uiImage: $0).resizable() }
-                 )
-                .frame(width: 32, height: 32, alignment: .center)
+                URLImage(url: imageUrl, content: { image in
+                    image
+                        .resizable()
+                        .frame(width: 32, height: 32, alignment: .center)
+                })
             }
             VStack(alignment: .leading) {
                 Text(coin.coinName ?? "")
