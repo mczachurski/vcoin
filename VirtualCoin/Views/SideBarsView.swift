@@ -10,7 +10,7 @@ import VirtualCoinKit
 
 struct SideBarsView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
-    @EnvironmentObject var cryptoCompareClient: CryptoCompareClient
+    @EnvironmentObject var appViewModel: AppViewModel
     
     @Binding var selectedFolder: String?
     
@@ -19,8 +19,8 @@ struct SideBarsView: View {
             
             // Favourites view
             NavigationLink(
-                destination: CoinsView(title: "Favourites")
-                    .environmentObject(cryptoCompareClient)
+                destination: FavouritesView()
+                    .environmentObject(appViewModel)
                     .environment(\.managedObjectContext, managedObjectContext),
                 tag: "favourites",
                 selection: $selectedFolder
@@ -30,8 +30,8 @@ struct SideBarsView: View {
             
             // All currencies view
             NavigationLink(
-                destination: CoinsView(title: "All currencies")
-                    .environmentObject(cryptoCompareClient)
+                destination: CoinsView()
+                    .environmentObject(appViewModel)
                     .environment(\.managedObjectContext, managedObjectContext),
                 tag: "currencies",
                 selection: $selectedFolder

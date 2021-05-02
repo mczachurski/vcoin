@@ -10,15 +10,15 @@ import VirtualCoinKit
 
 struct TabsView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
-    @EnvironmentObject var cryptoCompareClient: CryptoCompareClient
+    @EnvironmentObject var appViewModel: AppViewModel
     
     var body: some View {
         TabView {
 
             // Favourites view
             NavigationView {
-                CoinsView(title: "Favourites")
-                    .environmentObject(cryptoCompareClient)
+                FavouritesView()
+                    .environmentObject(appViewModel)
                     .environment(\.managedObjectContext, managedObjectContext)
             }
             .tabItem {
@@ -28,8 +28,8 @@ struct TabsView: View {
 
             // All currencies view
             NavigationView {
-                CoinsView(title: "All currencies")
-                    .environmentObject(cryptoCompareClient)
+                CoinsView()
+                    .environmentObject(appViewModel)
                     .environment(\.managedObjectContext, managedObjectContext)
             }
             .tabItem {

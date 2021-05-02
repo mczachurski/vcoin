@@ -1,15 +1,13 @@
 //
-//  ContentView.swift
+//  FavouritesView.swift
 //  VirtualCoin
 //
-//  Created by Marcin Czachurski on 17/04/2021.
+//  Created by Marcin Czachurski on 02/05/2021.
 //
 
 import SwiftUI
-import CoreData
-import VirtualCoinKit
 
-struct CoinsView: View {
+struct FavouritesView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @EnvironmentObject var appViewModel: AppViewModel
 
@@ -19,14 +17,14 @@ struct CoinsView: View {
 //    private var items: FetchedResults<Favourite>
 
     var body: some View {
-        if let coins = appViewModel.coins {
-            List(coins) { coin in
-                NavigationLink(destination:CoinView(coin: coin).environmentObject(appViewModel)) {
+        if let favourites = appViewModel.favourites {
+            List(favourites) { coin in
+                NavigationLink(destination: CoinView(coin: coin)) {
                     CoinRowView(coin: coin)
                         .environmentObject(appViewModel)
                 }
             }
-            .navigationTitle("All currencies")
+            .navigationTitle("Favourites")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -43,9 +41,9 @@ struct CoinsView: View {
     }
 }
 
-struct CoinsView_Previews: PreviewProvider {
+struct FavouritesView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinsView()
+        FavouritesView()
             .environmentObject(AppViewModel())
             .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
     }

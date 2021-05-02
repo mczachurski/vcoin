@@ -11,20 +11,26 @@ import VirtualCoinKit
 struct MainView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    @EnvironmentObject var cryptoCompareClient: CryptoCompareClient
+    @EnvironmentObject var appViewModel: AppViewModel
     
     @State private var selectedFolder: String? = "currencies"
     
     var body: some View {
         if horizontalSizeClass == .compact {
             TabsView()
-                .environmentObject(cryptoCompareClient)
+                .environmentObject(appViewModel)
                 .environment(\.managedObjectContext, managedObjectContext)
+                .onAppear {
+                    appViewModel.loadCoins()
+                }
         } else {
             NavigationView {
                 SideBarsView(selectedFolder: $selectedFolder)
                 Text("Primary view")
                 // Text("Detail view")
+            }
+            .onAppear {
+                appViewModel.loadCoins()
             }
         }
     }

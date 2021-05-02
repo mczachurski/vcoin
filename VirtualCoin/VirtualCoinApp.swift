@@ -11,12 +11,12 @@ import VirtualCoinKit
 @main
 struct VirtualCoinApp: App {
     let coreDataHandler = CoreDataHandler.shared
-    var cryptoCompareClient = CryptoCompareClient()
+    var appViewModel = AppViewModel()
 
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(cryptoCompareClient)
+                .environmentObject(appViewModel)
                 .environment(\.managedObjectContext, coreDataHandler.container.viewContext)
         }
     }

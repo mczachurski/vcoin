@@ -10,6 +10,8 @@ import Foundation
 
 public enum RestClientError: Error {
     case badUrl
+    case serverError
+    case emptyDataError
     case networkFailure(Error)
     case badDataFormat(Error)
 }

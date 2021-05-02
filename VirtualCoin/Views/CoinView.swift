@@ -9,10 +9,11 @@ import SwiftUI
 import VirtualCoinKit
 
 struct CoinView: View {
-    var coin: Coin
+    @EnvironmentObject var appViewModel: AppViewModel
+    @StateObject var coin: CoinViewModel
 
     var body: some View {
-        Text("Coin details: \(coin.fullName ?? "")")
+        Text("Coin details: \(coin.name)")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(action: {
@@ -22,9 +23,9 @@ struct CoinView: View {
                 }
                 
                 Button(action: {
-                    print("Edit button was tapped")
+                    self.toggleFavourite();
                 }) {
-                    Image(systemName: "star.fill")
+                    Image(systemName: coin.isFavourite ? "star.fill" : "star")
                 }
                 
                 Button(action: {
@@ -35,10 +36,34 @@ struct CoinView: View {
             }
         }
     }
+    
+    private func toggleFavourite() {
+        let favouritesHandler = FavouritesHandler()
+        
+        if favouritesHandler.isFavourite(symbol: coin.symbol) {
+            self.coin.isFavourite = false
+            self.appViewModel.removeFromFavourites(coinViewModel: coin)
+
+            favouritesHandler.deleteFavouriteEntity(symbol: coin.symbol)
+        } else {
+            self.coin.isFavourite = true
+            self.appViewModel.addToFavourites(coinViewModel: coin)
+            
+            let favouriteEntity = favouritesHandler.createFavouriteEntity()
+            favouriteEntity.coinSymbol = coin.symbol
+        }
+        
+        CoreDataHandler.shared.save()
+    }
 }
 
 struct CoinView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinView(coin: Coin(data: ["FullName": "Bitcoin"]))
+        CoinView(coin: CoinViewModel(id: "bitcoin",
+                                     rank: "1",
+                                     symbol: "BTC",
+                                     name: "Bitcoin",
+                                     priceUsd: 6929.821775,
+                                     changePercent24Hr: -0.81014))
     }
 }
