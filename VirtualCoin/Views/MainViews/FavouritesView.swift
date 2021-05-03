@@ -10,27 +10,35 @@ import SwiftUI
 struct FavouritesView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @EnvironmentObject var appViewModel: AppViewModel
+    
+    @State private var showingSettingsView = false
 
     var body: some View {
         if let favourites = appViewModel.favourites {
             List(favourites) { coin in
                 NavigationLink(destination: CoinView(coin: coin)) {
-                    CoinRowView(coin: coin).environmentObject(appViewModel)
+                    CoinRowView(coin: coin)
                 }
             }
             .navigationTitle("Favourites")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        print("Settings button was tapped")
+                        showingSettingsView.toggle()
                     }) {
                         Image(systemName: "switch.2")
+                    }
+                    .sheet(isPresented: $showingSettingsView) {
+                        SettingsView()
                     }
                 }
             }
         }
         else {
-            Text("Loading...")
+            Spacer()
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle())
+            Spacer()
         }
     }
 }

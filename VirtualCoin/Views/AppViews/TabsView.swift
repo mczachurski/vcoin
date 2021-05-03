@@ -9,17 +9,13 @@ import SwiftUI
 import VirtualCoinKit
 
 struct TabsView: View {
-    @Environment(\.managedObjectContext) private var managedObjectContext
-    @EnvironmentObject var appViewModel: AppViewModel
-    
+
     var body: some View {
         TabView {
 
             // Favourites view.
             NavigationView {
                 FavouritesView()
-                    .environmentObject(appViewModel)
-                    .environment(\.managedObjectContext, managedObjectContext)
             }
             .tabItem {
                 Image(systemName: "star.fill")
@@ -29,8 +25,6 @@ struct TabsView: View {
             // All currencies view.
             NavigationView {
                 CoinsView()
-                    .environmentObject(appViewModel)
-                    .environment(\.managedObjectContext, managedObjectContext)
             }
             .tabItem {
                 Image(systemName: "bitcoinsign.circle.fill")
@@ -40,8 +34,6 @@ struct TabsView: View {
             // Exchanges view.
             NavigationView {
                 ExchangesView()
-                    .environmentObject(appViewModel)
-                    .environment(\.managedObjectContext, managedObjectContext)
             }
             .tabItem {
                 Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
@@ -51,8 +43,6 @@ struct TabsView: View {
             // Alerts view.
             NavigationView {
                 AlertsView()
-                    .environmentObject(appViewModel)
-                    .environment(\.managedObjectContext, managedObjectContext)
             }
             .tabItem {
                 Image(systemName: "bell.fill")

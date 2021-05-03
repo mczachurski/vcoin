@@ -17,7 +17,7 @@ struct CoinView: View {
     var body: some View {
         VStack {
             HStack {
-                CoinImageView(imageUrl: coin.imageUrl)
+                CoinImageView(coin: coin)
                 Text(coin.name)
                     .font(.largeTitle)
                     .fontWeight(.thin)
@@ -26,7 +26,7 @@ struct CoinView: View {
             Text(coin.symbol)
                 .font(.title2)
                 .fontWeight(.light)
-                .foregroundColor(Color.gray)
+                .foregroundColor(.gray)
 
             Text(coin.priceUsd.toFormattedPrice(currency: "USD"))
                 .fontWeight(.light)

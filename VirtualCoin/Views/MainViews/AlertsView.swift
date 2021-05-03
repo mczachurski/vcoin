@@ -10,6 +10,8 @@ import SwiftUI
 struct AlertsView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @EnvironmentObject var appViewModel: AppViewModel
+    
+    @State private var showingSettingsView = false
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Alert.coinSymbol, ascending: true)],
@@ -20,17 +22,20 @@ struct AlertsView: View {
     var body: some View {
         List(alerts, id: \.objectID) { alert in
             Text(alert.coinSymbol)
-//            NavigationLink(destination: CoinView(coin: coin).environmentObject(appViewModel)) {
-//                CoinRowView(coin: coin).environmentObject(appViewModel)
+//            NavigationLink(destination: CoinView(coin: coin)) {
+//                CoinRowView(coin: coin)
 //            }
         }
         .navigationTitle("Alerts")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
-                    print("Settings button was tapped")
+                    showingSettingsView.toggle()
                 }) {
                     Image(systemName: "switch.2")
+                }
+                .sheet(isPresented: $showingSettingsView) {
+                    SettingsView()
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {

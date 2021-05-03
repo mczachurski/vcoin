@@ -19,9 +19,7 @@ struct SideBarsView: View {
             
             // Favourites view.
             NavigationLink(
-                destination:FavouritesView()
-                    .environmentObject(appViewModel)
-                    .environment(\.managedObjectContext, managedObjectContext),
+                destination:FavouritesView(),
                 tag: "favourites",
                 selection: $selectedFolder
             ) {
@@ -30,9 +28,7 @@ struct SideBarsView: View {
             
             // All currencies view.
             NavigationLink(
-                destination: CoinsView()
-                    .environmentObject(appViewModel)
-                    .environment(\.managedObjectContext, managedObjectContext),
+                destination: CoinsView(),
                 tag: "currencies",
                 selection: $selectedFolder
             ) {
@@ -41,9 +37,7 @@ struct SideBarsView: View {
 
             // Exchanges view.
             NavigationLink(
-                destination: ExchangesView()
-                    .environmentObject(appViewModel)
-                    .environment(\.managedObjectContext, managedObjectContext),
+                destination: ExchangesView(),
                 tag: "exchanges",
                 selection: $selectedFolder
             ) {
@@ -52,9 +46,7 @@ struct SideBarsView: View {
             
             // Alerts view.
             NavigationLink(
-                destination: AlertsView()
-                    .environmentObject(appViewModel)
-                    .environment(\.managedObjectContext, managedObjectContext),
+                destination: AlertsView(),
                 tag: "alerts",
                 selection: $selectedFolder
             ) {

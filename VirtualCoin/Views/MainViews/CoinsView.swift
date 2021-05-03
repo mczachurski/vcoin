@@ -13,26 +13,40 @@ struct CoinsView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @EnvironmentObject var appViewModel: AppViewModel
 
+    @ObservedObject var searchBar: SearchBar = SearchBar()
+    @State private var showingSettingsView = false
+
     var body: some View {
         if let coins = appViewModel.coins {
-            List(coins) { coin in
-                NavigationLink(destination: CoinView(coin: coin).environmentObject(appViewModel)) {
-                    CoinRowView(coin: coin).environmentObject(appViewModel)
+            List {
+                ForEach(coins.filter {
+                    searchBar.text.isEmpty || $0.name.localizedStandardContains(searchBar.text)
+                }) { coin in
+                    NavigationLink(destination: CoinView(coin: coin)) {
+                        CoinRowView(coin: coin)
+                    }
                 }
             }
             .navigationTitle("All currencies")
+            .add(self.searchBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        print("Settings button was tapped")
+                        showingSettingsView.toggle()
                     }) {
                         Image(systemName: "switch.2")
+                    }
+                    .sheet(isPresented: $showingSettingsView) {
+                        SettingsView()
                     }
                 }
             }
         }
         else {
-            Text("Loading...")
+            Spacer()
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle())
+            Spacer()
         }
     }
 }

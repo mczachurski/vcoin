@@ -10,6 +10,8 @@ import SwiftUI
 struct ExchangesView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @EnvironmentObject var appViewModel: AppViewModel
+    
+    @State private var showingSettingsView = false
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \ExchangeItem.coinSymbol, ascending: true)],
@@ -20,17 +22,20 @@ struct ExchangesView: View {
     var body: some View {
         List(exchanges, id: \.objectID) { exchange in
             Text(exchange.coinSymbol)
-//            NavigationLink(destination: CoinView(coin: coin).environmentObject(appViewModel)) {
-//                CoinRowView(coin: coin).environmentObject(appViewModel)
+//            NavigationLink(destination: CoinView(coin: coin)) {
+//                CoinRowView(coin: coin)
 //            }
         }
         .navigationTitle("Exchanges")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
-                    print("Settings button was tapped")
+                    showingSettingsView.toggle()
                 }) {
                     Image(systemName: "switch.2")
+                }
+                .sheet(isPresented: $showingSettingsView) {
+                    SettingsView()
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {

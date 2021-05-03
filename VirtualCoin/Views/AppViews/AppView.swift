@@ -9,7 +9,6 @@ import SwiftUI
 import VirtualCoinKit
 
 struct AppView: View {
-    @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @EnvironmentObject var appViewModel: AppViewModel
     
@@ -18,8 +17,6 @@ struct AppView: View {
     var body: some View {
         if horizontalSizeClass == .compact {
             TabsView()
-                .environmentObject(appViewModel)
-                .environment(\.managedObjectContext, managedObjectContext)
                 .onAppear {
                     appViewModel.loadCoins()
                 }

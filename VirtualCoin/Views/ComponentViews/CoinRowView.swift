@@ -9,13 +9,12 @@ import SwiftUI
 import VirtualCoinKit
 
 struct CoinRowView: View {
-    @EnvironmentObject var appViewModel: AppViewModel
     @StateObject var coin: CoinViewModel
     
     var body: some View {
 
         HStack {
-            CoinImageView(imageUrl: coin.imageUrl)
+            CoinImageView(coin: coin)
             
             VStack(alignment: .leading) {
                 Text(coin.name)

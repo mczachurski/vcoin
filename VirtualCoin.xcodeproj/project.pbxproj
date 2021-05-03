@@ -59,6 +59,10 @@
 		F8F68551263FF875004F1D83 /* ChartValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F68550263FF875004F1D83 /* ChartValue.swift */; };
 		F8F68555263FFD9D004F1D83 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F68553263FFD87004F1D83 /* Date.swift */; };
 		F8F6855826400264004F1D83 /* LightChart in Frameworks */ = {isa = PBXBuildFile; productRef = F8F6855726400264004F1D83 /* LightChart */; };
+		F8F6855B264022E1004F1D83 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6855A264022E1004F1D83 /* SearchBar.swift */; };
+		F8F6855D26402755004F1D83 /* ViewControllerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6855C26402755004F1D83 /* ViewControllerResolver.swift */; };
+		F8F6855F264036C3004F1D83 /* InitialsPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6855E264036C3004F1D83 /* InitialsPlaceholder.swift */; };
+		F8F6856126403DF4004F1D83 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6856026403DF4004F1D83 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +177,10 @@
 		F8F68548263FE54A004F1D83 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		F8F68550263FF875004F1D83 /* ChartValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartValue.swift; sourceTree = "<group>"; };
 		F8F68553263FFD87004F1D83 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		F8F6855A264022E1004F1D83 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		F8F6855C26402755004F1D83 /* ViewControllerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResolver.swift; sourceTree = "<group>"; };
+		F8F6855E264036C3004F1D83 /* InitialsPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsPlaceholder.swift; sourceTree = "<group>"; };
+		F8F6856026403DF4004F1D83 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,6 +430,9 @@
 				F8571D37262C1CA900C882C5 /* CoinRowView.swift */,
 				F8F68546263FC84A004F1D83 /* CoinImageView.swift */,
 				F8F68548263FE54A004F1D83 /* ChartView.swift */,
+				F8F6855A264022E1004F1D83 /* SearchBar.swift */,
+				F8F6855C26402755004F1D83 /* ViewControllerResolver.swift */,
+				F8F6855E264036C3004F1D83 /* InitialsPlaceholder.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -430,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				F8038E12262F0C6100E434B3 /* CoinView.swift */,
+				F8F6856026403DF4004F1D83 /* SettingsView.swift */,
 			);
 			path = SceneViews;
 			sourceTree = "<group>";
@@ -696,13 +708,17 @@
 				F8459AD3263EFB480021773B /* FavouritesView.swift in Sources */,
 				F8571CB8262C0C6F00C882C5 /* Settings+CoreDataProperties.swift in Sources */,
 				F8F68541263FC3B8004F1D83 /* ExchangesView.swift in Sources */,
+				F8F6855F264036C3004F1D83 /* InitialsPlaceholder.swift in Sources */,
 				F8F68547263FC84A004F1D83 /* CoinImageView.swift in Sources */,
+				F8F6855D26402755004F1D83 /* ViewControllerResolver.swift in Sources */,
 				F8571CB6262C0C6F00C882C5 /* Settings+CoreDataClass.swift in Sources */,
 				F8571CBB262C0C6F00C882C5 /* ExchangeItem+CoreDataProperties.swift in Sources */,
+				F8F6855B264022E1004F1D83 /* SearchBar.swift in Sources */,
 				F85C62AC263557EB00FE5AEA /* SideBarsView.swift in Sources */,
 				F8571CB7262C0C6F00C882C5 /* Alert+CoreDataProperties.swift in Sources */,
 				F85C62A6263556D600FE5AEA /* TabsView.swift in Sources */,
 				F8571CB4262C0C6F00C882C5 /* Favourite+CoreDataProperties.swift in Sources */,
+				F8F6856126403DF4004F1D83 /* SettingsView.swift in Sources */,
 				F891683A262B38AD007335D7 /* VirtualCoinApp.swift in Sources */,
 				F8571CA7262C0C5E00C882C5 /* SettingsHandler.swift in Sources */,
 				F8459ACF263EE51E0021773B /* CoinViewModel.swift in Sources */,
