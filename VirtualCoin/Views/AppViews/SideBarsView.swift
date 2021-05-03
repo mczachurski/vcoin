@@ -17,9 +17,9 @@ struct SideBarsView: View {
     var body: some View {
         List {
             
-            // Favourites view
+            // Favourites view.
             NavigationLink(
-                destination: FavouritesView()
+                destination:FavouritesView()
                     .environmentObject(appViewModel)
                     .environment(\.managedObjectContext, managedObjectContext),
                 tag: "favourites",
@@ -28,7 +28,7 @@ struct SideBarsView: View {
                 Label("Favourites", systemImage: "star.fill")
             }
             
-            // All currencies view
+            // All currencies view.
             NavigationLink(
                 destination: CoinsView()
                     .environmentObject(appViewModel)
@@ -39,18 +39,22 @@ struct SideBarsView: View {
                 Label("All currencies", systemImage: "bitcoinsign.circle.fill")
             }
 
-            // Exchange view
+            // Exchanges view.
             NavigationLink(
-                destination: Text("Exchanges view"),
+                destination: ExchangesView()
+                    .environmentObject(appViewModel)
+                    .environment(\.managedObjectContext, managedObjectContext),
                 tag: "exchanges",
                 selection: $selectedFolder
             ) {
                 Label("Exchanges", systemImage: "arrow.triangle.2.circlepath.circle.fill")
             }
             
-            // Alerts view
+            // Alerts view.
             NavigationLink(
-                destination: Text("Alerts view"),
+                destination: AlertsView()
+                    .environmentObject(appViewModel)
+                    .environment(\.managedObjectContext, managedObjectContext),
                 tag: "alerts",
                 selection: $selectedFolder
             ) {
@@ -63,10 +67,10 @@ struct SideBarsView: View {
     }
 }
 
-//struct SideBarsView_Previews: PreviewProvider {
-//    @State private var selectedFolder: String? = "favourites"
-//
-//    static var previews: some View {
-//        SideBarsView(selectedFolder: $selectedFolder)
-//    }
-//}
+struct SideBarsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SideBarsView(selectedFolder: .constant("favourites"))
+            .environmentObject(AppViewModel())
+            .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
+    }
+}

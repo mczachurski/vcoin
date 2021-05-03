@@ -8,12 +8,12 @@
 import SwiftUI
 import VirtualCoinKit
 
-struct MainView: View {
+struct AppView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @EnvironmentObject var appViewModel: AppViewModel
     
-    @State private var selectedFolder: String? = "currencies"
+    @State private var selectedFolder: String? = "favourites"
     
     var body: some View {
         if horizontalSizeClass == .compact {
@@ -27,7 +27,6 @@ struct MainView: View {
             NavigationView {
                 SideBarsView(selectedFolder: $selectedFolder)
                 Text("Primary view")
-                // Text("Detail view")
             }
             .onAppear {
                 appViewModel.loadCoins()
@@ -36,8 +35,8 @@ struct MainView: View {
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        AppView()
     }
 }

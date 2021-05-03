@@ -11,10 +11,13 @@ import VirtualCoinKit
 public class AppViewModel: ObservableObject {
     @Published public var coins: [CoinViewModel]?
     @Published public var favourites: [CoinViewModel]?
+    @Published public var chartData: [Double]?
+    
+    private var cacheChartData: [String: [Double]] = [:]
     
     public func loadCoins() {
         let coinCapClient = CoinCapClient()
-        coinCapClient.loadCoins { result in
+        coinCapClient.getCoinsAsync { result in
             switch result {
             case .success(let coins):
                 var coinsResult: [CoinViewModel] = []
@@ -46,6 +49,49 @@ public class AppViewModel: ObservableObject {
                 print(error)
                 break
             }
+        }
+    }
+    
+    public func loadChartData(coin: CoinViewModel, chartTimeRange: ChartTimeRange) {
+        var dataResult: [Double] = []
+
+        if let cacheData = self.cacheChartData[coin.symbol + chartTimeRange.rawValue] {
+            DispatchQueue.main.async {
+                self.chartData = cacheData
+            }
+
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.chartData = nil
+        }
+
+        let coinCapClient = CoinCapClient()
+        coinCapClient.getChartValuesAsync(chartRange: chartTimeRange,
+                                          id: coin.id) { result in
+            
+            switch result {
+            case .success(let chartValues):
+                for chartValue in chartValues {
+                    if let value = Double(chartValue.priceUsd) {
+                        dataResult.append(value)
+                    }
+                }
+                
+                self.cacheChartData[coin.symbol + chartTimeRange.rawValue] = dataResult
+                
+                DispatchQueue.main.async {
+                    self.chartData = dataResult
+                }
+                
+                break
+            case .failure(let error):
+                // TODO: Show something in UI.
+                print(error)
+                break
+            }
+            
         }
     }
     

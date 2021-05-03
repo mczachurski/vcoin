@@ -13,7 +13,8 @@ public class CoinCapClient {
     public init() {
     }
 
-    public func loadCoins(completionHandler: @escaping (Result<[Coin], RestClientError>) -> Void) {
+    public func getCoinsAsync(completionHandler: @escaping (Result<[Coin], RestClientError>) -> Void) {
+
         guard let url = URL(string: "https://api.coincap.io/v2/assets?limit=2000") else {
             completionHandler(.failure(.badUrl))
             return
@@ -49,48 +50,66 @@ public class CoinCapClient {
         task.resume()
     }
 
-    public func loadCharViewData(chartRange: ChartTimeRange,
-                                 symbol: String,
-                                 currency: String,
-                                 completionHandler: @escaping (Result<[AnyObject], RestClientError>) -> Void) {
+    public func getChartValuesAsync(chartRange: ChartTimeRange,
+                                    id: String,
+                                    completionHandler: @escaping (Result<[ChartValue], RestClientError>) -> Void) {
         var apiUrl = ""
         switch chartRange {
         case .hour:
-            apiUrl = "https://min-api.cryptocompare.com/data/histominute?fsym=\(symbol)&tsym=\(currency)&limit=20&aggregate=3&e=CCCAGG"
+            let now = Date()
+            let start = Calendar.current.date(byAdding: .hour, value: -1, to: now)?.unixTimestamp
+            let end = now.unixTimestamp
+            apiUrl = "https://api.coincap.io/v2/assets/\(id)/history?interval=m1&start=\(start!)&end=\(end)"
         case .day:
-            apiUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=\(symbol)&tsym=\(currency)&limit=24&e=CCCAGG"
+            let now = Date()
+            let start = Calendar.current.date(byAdding: .day, value: -1, to: now)?.unixTimestamp
+            let end = now.unixTimestamp
+            apiUrl = "https://api.coincap.io/v2/assets/\(id)/history?interval=m5&start=\(start!)&end=\(end)"
         case .week:
-            apiUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=\(symbol)&tsym=\(currency)&limit=21&aggregate=8&e=CCCAGG"
+            let now = Date()
+            let start = Calendar.current.date(byAdding: .day, value: -7, to: now)?.unixTimestamp
+            let end = now.unixTimestamp
+            apiUrl = "https://api.coincap.io/v2/assets/\(id)/history?interval=h2&start=\(start!)&end=\(end)"
         case .month:
-            apiUrl = "https://min-api.cryptocompare.com/data/histoday?fsym=\(symbol)&tsym=\(currency)&limit=30&e=CCCAGG"
+            let now = Date()
+            let start = Calendar.current.date(byAdding: .day, value: -30, to: now)?.unixTimestamp
+            let end = now.unixTimestamp
+            apiUrl = "https://api.coincap.io/v2/assets/\(id)/history?interval=h12&start=\(start!)&end=\(end)"
         case .year:
-            apiUrl = "https://min-api.cryptocompare.com/data/histoday?fsym=\(symbol)&tsym=\(currency)&limit=36&aggregate=10&e=CCCAGG"
+            let now = Date()
+            let start = Calendar.current.date(byAdding: .day, value: -365, to: now)?.unixTimestamp
+            let end = now.unixTimestamp
+            apiUrl = "https://api.coincap.io/v2/assets/\(id)/history?interval=d1&start=\(start!)&end=\(end)"
         }
-
-        var coinsValues: [AnyObject] = []
 
         guard let url = URL(string: apiUrl) else {
             completionHandler(.failure(.badUrl))
             return
         }
 
-        let request = URLRequest(url: url)
         let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: { data, _, error -> Void in
+        let task = session.dataTask(with: url, completionHandler: { data, response, error -> Void in
             if let error = error {
                 completionHandler(.failure(.networkFailure(error)))
                 return
             }
 
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                completionHandler(.failure(.serverError))
+                return
+            }
+            
+            guard let data = data else {
+                completionHandler(.failure(.emptyDataError))
+                return
+            }
+            
             do {
-                if let jsonData = data, let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
-                    if let values = json["Data"] as? [AnyObject] {
-                        coinsValues = values
-                    }
-                }
+                let decoder = JSONDecoder()
+                let coinsResult = try decoder.decode(Response<ChartValue>.self, from: data)
 
-                completionHandler(.success(coinsValues))
-            } catch {
+                completionHandler(.success(coinsResult.data))
+            } catch let error {
                 completionHandler(.failure(.badDataFormat(error)))
             }
         })

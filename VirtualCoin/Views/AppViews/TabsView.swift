@@ -15,7 +15,7 @@ struct TabsView: View {
     var body: some View {
         TabView {
 
-            // Favourites view
+            // Favourites view.
             NavigationView {
                 FavouritesView()
                     .environmentObject(appViewModel)
@@ -26,7 +26,7 @@ struct TabsView: View {
                 Text("Favourites")
             }
 
-            // All currencies view
+            // All currencies view.
             NavigationView {
                 CoinsView()
                     .environmentObject(appViewModel)
@@ -37,22 +37,26 @@ struct TabsView: View {
                 Text("All currencies")
             }
             
-            // Exchanges view
+            // Exchanges view.
             NavigationView {
-                Text("Exchanges view")
+                ExchangesView()
+                    .environmentObject(appViewModel)
+                    .environment(\.managedObjectContext, managedObjectContext)
             }
             .tabItem {
                 Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
                 Text("Exchanges")
             }
             
-            // Alerts view
+            // Alerts view.
             NavigationView {
-                Text("Alerts view")
+                AlertsView()
+                    .environmentObject(appViewModel)
+                    .environment(\.managedObjectContext, managedObjectContext)
             }
             .tabItem {
                 Image(systemName: "bell.fill")
-                Text("Alrets")
+                Text("Alerts")
             }
         }
     }
@@ -61,5 +65,7 @@ struct TabsView: View {
 struct TabsView_Previews: PreviewProvider {
     static var previews: some View {
         TabsView()
+            .environmentObject(AppViewModel())
+            .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
     }
 }

@@ -15,7 +15,7 @@ struct VirtualCoinApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            AppView()
                 .environmentObject(appViewModel)
                 .environment(\.managedObjectContext, coreDataHandler.container.viewContext)
         }

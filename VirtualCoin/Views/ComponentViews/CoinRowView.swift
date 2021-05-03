@@ -7,21 +7,16 @@
 
 import SwiftUI
 import VirtualCoinKit
-import URLImage
 
 struct CoinRowView: View {
     @EnvironmentObject var appViewModel: AppViewModel
     @StateObject var coin: CoinViewModel
-
+    
     var body: some View {
+
         HStack {
-            if let imageUrl = URL(string: coin.imageUrl) {
-                URLImage(url: imageUrl, content: { image in
-                    image
-                        .resizable()
-                        .frame(width: 32, height: 32, alignment: .center)
-                })
-            }
+            CoinImageView(imageUrl: coin.imageUrl)
+            
             VStack(alignment: .leading) {
                 Text(coin.name)
                     .font(.body)
@@ -34,11 +29,12 @@ struct CoinRowView: View {
             
             VStack(alignment: .trailing) {
                 Text(coin.priceUsd.toFormattedPrice(currency: "USD"))
-                    .font(.caption)
+                    .font(.footnote)
+                    .foregroundColor(coin.changePercent24Hr > 0 ?.greenPastel : .redPastel)
 
                 Text(coin.changePercent24Hr.toFormattedPercent())
                     .font(.caption)
-                    .foregroundColor(coin.changePercent24Hr > 0 ? .green : .red)
+                    .foregroundColor(.gray)
             }
         }
     }
