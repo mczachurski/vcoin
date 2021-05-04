@@ -19,3 +19,16 @@ public class Currency {
         self.name = name
     }
 }
+
+extension Currency: Hashable {
+    public static func == (lhs: Currency, rhs: Currency) -> Bool {
+        return lhs.code == rhs.code
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.code)
+    }
+}
+
+extension Currency: Identifiable {
+}
