@@ -48,7 +48,7 @@ struct ChartView: View {
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
         ChartView(chartTimeRange: .day, coin: CoinViewModel(id: "bitcoin",
-                                                            rank: "1",
+                                                            rank: 1,
                                                             symbol: "BTC",
                                                             name: "Bitcoin",
                                                             priceUsd: 6929.821775,

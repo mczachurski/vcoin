@@ -13,6 +13,7 @@ struct CoinView: View {
     @StateObject var coin: CoinViewModel
 
     @State private var selectedTab: ChartTimeRange = .hour
+    @State private var isShowingMarketsView = false
     
     var body: some View {
         VStack {
@@ -69,6 +70,16 @@ struct CoinView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(action: {
+                    isShowingMarketsView.toggle()
+                }) {
+                    Image(systemName: "globe")
+                }
+                .disabled(appViewModel.markets == nil)
+                .sheet(isPresented: $isShowingMarketsView) {
+                    MarketsView(markets: appViewModel.markets!)
+                }
+                
+                Button(action: {
                     self.toggleFavourite();
                 }) {
                     Image(systemName: coin.isFavourite ? "star.fill" : "star")
@@ -80,6 +91,9 @@ struct CoinView: View {
                     Image(systemName: "bell.fill")
                 }
             }
+        }
+        .onAppear {
+            appViewModel.loadMarketValues(coin: coin)
         }
     }
     
@@ -107,7 +121,7 @@ struct CoinView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             CoinView(coin: CoinViewModel(id: "bitcoin",
-                                         rank: "1",
+                                         rank: 1,
                                          symbol: "BTC",
                                          name: "Bitcoin",
                                          priceUsd: 6929.821775,

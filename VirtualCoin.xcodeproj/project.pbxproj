@@ -35,7 +35,6 @@
 		F8571D0D262C1AEA00C882C5 /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D07262C1AEA00C882C5 /* Currencies.swift */; };
 		F8571D0F262C1AEA00C882C5 /* ChartTimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D09262C1AEA00C882C5 /* ChartTimeRange.swift */; };
 		F8571D10262C1AEA00C882C5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D0A262C1AEA00C882C5 /* Currency.swift */; };
-		F8571D11262C1AEA00C882C5 /* Markets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D0B262C1AEA00C882C5 /* Markets.swift */; };
 		F8571D12262C1AEA00C882C5 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D0C262C1AEA00C882C5 /* Market.swift */; };
 		F8571D18262C1AF500C882C5 /* CoinCapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D17262C1AF500C882C5 /* CoinCapClient.swift */; };
 		F8571D22262C1B0000C882C5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D1E262C1B0000C882C5 /* Color.swift */; };
@@ -52,6 +51,9 @@
 		F8916841262B38AE007335D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8916840262B38AE007335D7 /* Preview Assets.xcassets */; };
 		F8916851262B38AE007335D7 /* VirtualCoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8916850262B38AE007335D7 /* VirtualCoinTests.swift */; };
 		F891685C262B38AE007335D7 /* VirtualCoinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891685B262B38AE007335D7 /* VirtualCoinUITests.swift */; };
+		F8B4993926431A2C001ADF51 /* MarketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993826431A2C001ADF51 /* MarketsView.swift */; };
+		F8B4993B26431B19001ADF51 /* MarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993A26431B19001ADF51 /* MarketViewModel.swift */; };
+		F8B4993D26432531001ADF51 /* MarketRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993C26432531001ADF51 /* MarketRowView.swift */; };
 		F8E599102634499300E4B66B /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5990F2634499300E4B66B /* AppView.swift */; };
 		F8F6853F263FC2EC004F1D83 /* AlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6853E263FC2EC004F1D83 /* AlertsView.swift */; };
 		F8F68541263FC3B8004F1D83 /* ExchangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F68540263FC3B8004F1D83 /* ExchangesView.swift */; };
@@ -150,7 +152,6 @@
 		F8571D07262C1AEA00C882C5 /* Currencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currencies.swift; sourceTree = "<group>"; };
 		F8571D09262C1AEA00C882C5 /* ChartTimeRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartTimeRange.swift; sourceTree = "<group>"; };
 		F8571D0A262C1AEA00C882C5 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
-		F8571D0B262C1AEA00C882C5 /* Markets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Markets.swift; sourceTree = "<group>"; };
 		F8571D0C262C1AEA00C882C5 /* Market.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 		F8571D17262C1AF500C882C5 /* CoinCapClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinCapClient.swift; sourceTree = "<group>"; };
 		F8571D1E262C1B0000C882C5 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -172,6 +173,9 @@
 		F8916857262B38AE007335D7 /* VirtualCoinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirtualCoinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F891685B262B38AE007335D7 /* VirtualCoinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCoinUITests.swift; sourceTree = "<group>"; };
 		F891685D262B38AE007335D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8B4993826431A2C001ADF51 /* MarketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsView.swift; sourceTree = "<group>"; };
+		F8B4993A26431B19001ADF51 /* MarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
+		F8B4993C26432531001ADF51 /* MarketRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRowView.swift; sourceTree = "<group>"; };
 		F8E5990F2634499300E4B66B /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		F8F6853E263FC2EC004F1D83 /* AlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsView.swift; sourceTree = "<group>"; };
 		F8F68540263FC3B8004F1D83 /* ExchangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesView.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 			children = (
 				F8459ACE263EE51E0021773B /* CoinViewModel.swift */,
 				F8459AD0263EF0320021773B /* AppViewModel.swift */,
+				F8B4993A26431B19001ADF51 /* MarketViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -330,7 +335,6 @@
 				F8571D07262C1AEA00C882C5 /* Currencies.swift */,
 				F8571D0A262C1AEA00C882C5 /* Currency.swift */,
 				F8571D0C262C1AEA00C882C5 /* Market.swift */,
-				F8571D0B262C1AEA00C882C5 /* Markets.swift */,
 				F8459AC9263EDFF10021773B /* Coin.swift */,
 				F8459ACB263EE1780021773B /* Response.swift */,
 				F8F68550263FF875004F1D83 /* ChartValue.swift */,
@@ -435,6 +439,7 @@
 				F8F6855A264022E1004F1D83 /* SearchBar.swift */,
 				F8F6855C26402755004F1D83 /* ViewControllerResolver.swift */,
 				F8F6855E264036C3004F1D83 /* InitialsPlaceholder.swift */,
+				F8B4993C26432531001ADF51 /* MarketRowView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -445,6 +450,7 @@
 				F8038E12262F0C6100E434B3 /* CoinView.swift */,
 				F8F6856026403DF4004F1D83 /* SettingsView.swift */,
 				F879C24826417C5C00F72D2B /* ThirdPartyView.swift */,
+				F8B4993826431A2C001ADF51 /* MarketsView.swift */,
 			);
 			path = SceneViews;
 			sourceTree = "<group>";
@@ -674,7 +680,6 @@
 				F8459ACC263EE1780021773B /* Response.swift in Sources */,
 				F8571D0F262C1AEA00C882C5 /* ChartTimeRange.swift in Sources */,
 				F8571D22262C1B0000C882C5 /* Color.swift in Sources */,
-				F8571D11262C1AEA00C882C5 /* Markets.swift in Sources */,
 				F8571D0D262C1AEA00C882C5 /* Currencies.swift in Sources */,
 				F8571D18262C1AF500C882C5 /* CoinCapClient.swift in Sources */,
 				F8571D23262C1B0000C882C5 /* Double.swift in Sources */,
@@ -704,13 +709,16 @@
 				F8038E13262F0C6100E434B3 /* CoinView.swift in Sources */,
 				F8571CA8262C0C5E00C882C5 /* FavouritesHandler.swift in Sources */,
 				F8E599102634499300E4B66B /* AppView.swift in Sources */,
+				F8B4993926431A2C001ADF51 /* MarketsView.swift in Sources */,
 				F8571CA4262C0C5E00C882C5 /* AlertsHandler.swift in Sources */,
 				F8571CB5262C0C6F00C882C5 /* ExchangeItem+CoreDataClass.swift in Sources */,
 				F8571CA6262C0C5E00C882C5 /* ExchangeItemsHandler.swift in Sources */,
 				F891683C262B38AD007335D7 /* CoinsView.swift in Sources */,
+				F8B4993D26432531001ADF51 /* MarketRowView.swift in Sources */,
 				F8459AD3263EFB480021773B /* FavouritesView.swift in Sources */,
 				F8571CB8262C0C6F00C882C5 /* Settings+CoreDataProperties.swift in Sources */,
 				F8F68541263FC3B8004F1D83 /* ExchangesView.swift in Sources */,
+				F8B4993B26431B19001ADF51 /* MarketViewModel.swift in Sources */,
 				F8F6855F264036C3004F1D83 /* InitialsPlaceholder.swift in Sources */,
 				F8F68547263FC84A004F1D83 /* CoinImageView.swift in Sources */,
 				F8F6855D26402755004F1D83 /* ViewControllerResolver.swift in Sources */,

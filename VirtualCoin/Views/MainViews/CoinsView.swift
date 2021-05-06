@@ -43,10 +43,13 @@ struct CoinsView: View {
             }
         }
         else {
-            Spacer()
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle())
-            Spacer()
+            VStack {
+                Spacer()
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                Spacer()
+            }
+            .navigationTitle("All currencies")
         }
     }
 }

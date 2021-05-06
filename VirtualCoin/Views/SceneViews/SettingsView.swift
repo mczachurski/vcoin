@@ -10,11 +10,11 @@ import VirtualCoinKit
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var appViewModel: AppViewModel
     
-    @State var username: String = ""
     @State var matchSystem: Bool = true
     @State var isDarkMode: Bool = true
-    @State private var selectedCurrency = Currency(code: "PLN", locale: "", name: "")
+    @State private var selectedCurrency = Currency(id: "USD", locale: "", name: "")
     
     var body: some View {
         NavigationView {
@@ -24,8 +24,10 @@ struct SettingsView: View {
                         Text("Match system")
                     }
                     
-                    Toggle(isOn: $isDarkMode) {
-                        Text("Dark mode")
+                    if matchSystem == false {
+                        Toggle(isOn: $isDarkMode) {
+                            Text("Dark mode")
+                        }
                     }
                 }
                 
@@ -36,11 +38,13 @@ struct SettingsView: View {
                             VStack(alignment: .leading) {
                                 Text(currency.name)
                                     .font(.body)
-                                Text(currency.code)
+                                Text(currency.id)
                                     .font(.footnote)
                             }.tag(currency)
                        }
-                    }
+                    }.onChange(of: selectedCurrency, perform: { value in
+                        print("selected: \(value.id)")
+                    })
                 }
                 
                 Section(header: Text("OTHER")) {
@@ -81,12 +85,32 @@ struct SettingsView: View {
             }
             .listStyle(GroupedListStyle())
             .navigationBarTitle(Text("Settings"), displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("Done").bold()
-                })
+            .navigationBarItems(trailing: Button(action: {
+                self.saveSettings()
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Text("Done").bold()
+            })
+        }.onAppear {
+            self.loadDefaultCurrency()
         }
+    }
+    
+    private func loadDefaultCurrency() {
+        let settingsHandler = SettingsHandler()
+        let defaultSettings = settingsHandler.getDefaultSettings()
+        
+        if defaultSettings.currency != "" {
+            self.selectedCurrency = Currency(id: defaultSettings.currency, locale: "", name: "")
+        }
+    }
+    
+    private func saveSettings() {
+        let settingsHandler = SettingsHandler()
+        let defaultSettings = settingsHandler.getDefaultSettings()
+        defaultSettings.currency = self.selectedCurrency.id
+        
+        CoreDataHandler.shared.save()
     }
 }
 

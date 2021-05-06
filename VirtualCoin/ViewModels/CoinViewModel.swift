@@ -10,20 +10,26 @@ import VirtualCoinKit
 
 public class CoinViewModel: Identifiable, ObservableObject {
     public let id: String
-    public let rank: String
+    public let rank: Int
     public let symbol: String
     public let name: String
     public let priceUsd: Double
     public let changePercent24Hr: Double
     public let imageUrl: String
+    
 
     @Published public var isFavourite = false
     
     init(coin: Coin) {
         self.id = coin.id
-        self.rank = coin.rank
         self.symbol = coin.symbol
         self.name = coin.name
+        
+        if let rank = Int(coin.rank) {
+            self.rank = rank
+        } else {
+            self.rank = 0
+        }
         
         if let priceUsd = coin.priceUsd, let price = Double(priceUsd) {
             self.priceUsd = price
@@ -40,7 +46,7 @@ public class CoinViewModel: Identifiable, ObservableObject {
         self.imageUrl = "https://static.coincap.io/assets/icons/\(symbol.lowercased())@2x.png"
     }
     
-    init(id: String, rank: String, symbol: String, name: String, priceUsd: Double, changePercent24Hr: Double) {
+    init(id: String, rank: Int, symbol: String, name: String, priceUsd: Double, changePercent24Hr: Double) {
         self.id = id
         self.rank = rank
         self.symbol = symbol

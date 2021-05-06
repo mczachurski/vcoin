@@ -35,10 +35,13 @@ struct FavouritesView: View {
             }
         }
         else {
-            Spacer()
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle())
-            Spacer()
+            VStack {
+                Spacer()
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                Spacer()
+            }
+            .navigationTitle("Favourites")
         }
     }
 }

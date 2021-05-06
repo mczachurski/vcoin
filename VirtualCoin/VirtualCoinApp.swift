@@ -11,8 +11,8 @@ import VirtualCoinKit
 @main
 struct VirtualCoinApp: App {
     let coreDataHandler = CoreDataHandler.shared
-    var appViewModel = AppViewModel()
-
+    let appViewModel = AppViewModel()
+    
     var body: some Scene {
         WindowGroup {
             AppView()

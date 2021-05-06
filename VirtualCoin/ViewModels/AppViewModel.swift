@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
 import VirtualCoinKit
 
 public class AppViewModel: ObservableObject {
     @Published public var coins: [CoinViewModel]?
+    @Published public var markets: [MarketViewModel]?
     @Published public var favourites: [CoinViewModel]?
     @Published public var chartData: [Double]?
     
@@ -68,8 +70,7 @@ public class AppViewModel: ObservableObject {
         }
 
         let coinCapClient = CoinCapClient()
-        coinCapClient.getChartValuesAsync(chartRange: chartTimeRange,
-                                          id: coin.id) { result in
+        coinCapClient.getChartValuesAsync(for: coin.id, withRange: chartTimeRange) { result in
             
             switch result {
             case .success(let chartValues):
@@ -95,11 +96,45 @@ public class AppViewModel: ObservableObject {
         }
     }
     
+    public func loadMarketValues(coin: CoinViewModel) {
+        DispatchQueue.main.async {
+            self.markets = nil
+        }
+
+        let coinCapClient = CoinCapClient()
+        coinCapClient.getMarketValuesAsync(for: coin.id) { result in
+            
+            switch result {
+            case .success(let markets):
+                var marketsResult: [MarketViewModel] = []
+                
+                for market in markets {
+                    let marketViewModel = MarketViewModel(market: market)
+                    marketsResult.append(marketViewModel)
+                }
+                
+                DispatchQueue.main.async {
+                    self.markets = marketsResult
+                }
+                
+                break
+            case .failure(let error):
+                // TODO: Show something in UI.
+                print(error)
+                break
+            }
+        }
+    }
+    
     public func removeFromFavourites(coinViewModel: CoinViewModel) {
         self.favourites = self.favourites?.filter { $0 !== coinViewModel }
     }
     
     public func addToFavourites(coinViewModel: CoinViewModel) {
         self.favourites?.append(coinViewModel)
+
+        self.favourites = self.favourites?.sorted(by: { lhs, rhs in
+            lhs.rank < rhs.rank
+        })
     }
 }

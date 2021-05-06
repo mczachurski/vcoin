@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class Currency {
-    public var code: String
+public struct Currency {
+    public var id: String
     public var locale: String
     public var name: String
 
-    public init(code: String, locale: String, name: String) {
-        self.code = code
+    public init(id: String, locale: String, name: String) {
+        self.id = id
         self.locale = locale
         self.name = name
     }
@@ -22,11 +22,11 @@ public class Currency {
 
 extension Currency: Hashable {
     public static func == (lhs: Currency, rhs: Currency) -> Bool {
-        return lhs.code == rhs.code
+        return lhs.id == rhs.id
     }
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(self.code)
+        hasher.combine(self.id)
     }
 }
 

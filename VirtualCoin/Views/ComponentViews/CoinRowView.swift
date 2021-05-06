@@ -43,14 +43,14 @@ struct CoinRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             CoinRowView(coin: CoinViewModel(id: "bitcoin",
-                                            rank: "1",
+                                            rank: 1,
                                             symbol: "BTC",
                                             name: "Bitcoin",
                                             priceUsd: 6929.821775,
                                             changePercent24Hr: -0.81014))
 
             CoinRowView(coin: CoinViewModel(id: "ethereum",
-                                            rank: "2",
+                                            rank: 2,
                                             symbol: "ETH",
                                             name: "Ethereum",
                                             priceUsd: 404.9774667,

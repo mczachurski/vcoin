@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class Market {
-    public var name: String
-    public var code: String
-    public var price: Double?
-
-    public init(name: String, code: String) {
-        self.name = name
-        self.code = code
-    }
+public struct Market: Decodable {    
+    public var exchangeId: String
+    public var baseId: String?
+    public var quoteId: String?
+    public var baseSymbol: String?
+    public var quoteSymbol: String?
+    public var volumeUsd24Hr: String?
+    public var priceUsd: String?
+    public var volumePercent: String?
 }

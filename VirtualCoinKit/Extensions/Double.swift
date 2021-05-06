@@ -30,7 +30,7 @@ public extension Double {
     }
 
     func toFormattedPercent() -> String {
-        return String(self.rounded(toPlaces: 2)) + " %"
+        return String(self.rounded(toPlaces: 2)) + "%"
     }
 
     var absoluteValue: Double {
