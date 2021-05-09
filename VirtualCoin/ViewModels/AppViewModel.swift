@@ -16,6 +16,7 @@ public class AppViewModel: ObservableObject {
     @Published public var chartData: [Double]?
     
     @Published public var selectedExchangeViewModel: ExchangeViewModel?
+    @Published public var selectedAlertViewModel: AlertViewModel?
     
     private var cacheChartData: [String: [Double]] = [:]
     

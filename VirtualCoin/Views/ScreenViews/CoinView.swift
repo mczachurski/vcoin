@@ -84,12 +84,6 @@ struct CoinView: View {
                 }) {
                     Image(systemName: coin.isFavourite ? "star.fill" : "star")
                 }
-                
-                Button(action: {
-                    print("Edit button was tapped")
-                }) {
-                    Image(systemName: "bell.fill")
-                }
             }
         }
         .onAppear {

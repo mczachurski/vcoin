@@ -65,12 +65,11 @@ struct ExchangeDetailView: View {
 }
 
 struct ExchangeDetailView_Previews: PreviewProvider {
-    @State private var amount: NSNumber?
-    @State private var selectedCurrency: Currency
-    @State private var selectedCoin: CoinViewModel
+    @State private static var amount: NSNumber?
+    @State private static var selectedCurrency: Currency = Currency(id: "USD", locale: "en-us", name: "US Dollar")
+    @State private static var selectedCoin: CoinViewModel = CoinViewModel(id: "bitcoin", rank: 1, symbol: "BTC", name: "Bitcoin", priceUsd: 12.2, changePercent24Hr: 2.1)
 
     static var previews: some View {
-        Text("TODO")
-        // ExchangeDetailView(amount: self., currency: , coin: )
+        ExchangeDetailView(amount: $amount, currency: $selectedCurrency, coin: $selectedCoin)
     }
 }

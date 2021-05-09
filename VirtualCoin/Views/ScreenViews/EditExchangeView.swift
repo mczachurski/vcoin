@@ -63,6 +63,10 @@ struct EditExchangeView: View {
         }) {
             self.exchangeViewModel.setCoinViewModel(coinViewModel)
         }
+        
+        if let currency = Currencies.allCurrenciesDictionary[self.exchangeViewModel.exchangeItem.currency] {
+            self.exchangeViewModel.setCurrency(currency)
+        }
     }
     
     private static func getCoinViewModel(for symbol: String) -> CoinViewModel {

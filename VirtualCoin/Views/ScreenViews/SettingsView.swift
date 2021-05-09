@@ -23,11 +23,13 @@ struct SettingsView: View {
                     Toggle(isOn: $matchSystem) {
                         Text("Match system")
                     }
+                    .toggleStyle(SwitchToggleStyle(tint: .accentColor))
                     
                     if matchSystem == false {
                         Toggle(isOn: $isDarkMode) {
                             Text("Dark mode")
                         }
+                        .toggleStyle(SwitchToggleStyle(tint: .accentColor))
                     }
                 }
                 

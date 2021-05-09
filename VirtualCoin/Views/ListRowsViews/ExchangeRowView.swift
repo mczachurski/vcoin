@@ -19,11 +19,11 @@ struct ExchangeRowView: View {
                 VStack(alignment: .leading) {
                     Text("\(exchangeViewModel.coinViewModel.name)")
                         .font(.headline)
-                    Text("\(exchangeViewModel.exchangeItem.amount)")
-                        .font(.subheadline)
                     Text(exchangeViewModel.exchangeItem.coinSymbol)
                         .font(.subheadline)
                         .foregroundColor(.accentColor)
+                    Text("\(exchangeViewModel.exchangeItem.amount)")
+                        .font(.subheadline)
                 }
                 
                 Spacer()
@@ -31,11 +31,11 @@ struct ExchangeRowView: View {
                 VStack(alignment: .trailing)  {
                     Text("\(exchangeViewModel.currency.name)")
                         .font(.headline)
-                    Text(exchangeViewModel.price.toFormattedPrice(currency: "USD"))
-                        .font(.subheadline)
                     Text(exchangeViewModel.exchangeItem.currency)
                         .font(.subheadline)
                         .foregroundColor(.accentColor)
+                    Text(exchangeViewModel.price.toFormattedPrice(currency: "USD"))
+                        .font(.subheadline)
                 }
             }
             HStack {
