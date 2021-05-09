@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AlertsView: View {
-    @Environment(\.managedObjectContext) private var managedObjectContext
     @EnvironmentObject var appViewModel: AppViewModel
     
     @State private var showingSettingsView = false
@@ -26,6 +25,7 @@ struct AlertsView: View {
 //                CoinRowView(coin: coin)
 //            }
         }
+        .listStyle(PlainListStyle())
         .navigationTitle("Alerts")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -33,9 +33,6 @@ struct AlertsView: View {
                     showingSettingsView.toggle()
                 }) {
                     Image(systemName: "switch.2")
-                }
-                .sheet(isPresented: $showingSettingsView) {
-                    SettingsView()
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -46,6 +43,9 @@ struct AlertsView: View {
                 }
             }
         }
+        .sheet(isPresented: $showingSettingsView) {
+            SettingsView()
+        }
     }
 }
 
@@ -53,6 +53,5 @@ struct AlertsView_Previews: PreviewProvider {
     static var previews: some View {
         AlertsView()
             .environmentObject(AppViewModel())
-            .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
     }
 }

@@ -15,6 +15,8 @@ public class AppViewModel: ObservableObject {
     @Published public var favourites: [CoinViewModel]?
     @Published public var chartData: [Double]?
     
+    @Published public var selectedExchangeViewModel: ExchangeViewModel?
+    
     private var cacheChartData: [String: [Double]] = [:]
     
     public func loadCoins() {

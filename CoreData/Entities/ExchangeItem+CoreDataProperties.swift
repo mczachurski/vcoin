@@ -21,3 +21,7 @@ public extension ExchangeItem {
     @NSManaged var currency: String
     @NSManaged var marketCode: String
 }
+
+
+extension ExchangeItem: Identifiable {
+}

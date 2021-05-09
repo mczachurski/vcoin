@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct FavouritesView: View {
-    @Environment(\.managedObjectContext) private var managedObjectContext
     @EnvironmentObject var appViewModel: AppViewModel
     
     @State private var showingSettingsView = false
@@ -20,6 +19,7 @@ struct FavouritesView: View {
                     CoinRowView(coin: coin)
                 }
             }
+            .listStyle(PlainListStyle())
             .navigationTitle("Favourites")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -28,10 +28,10 @@ struct FavouritesView: View {
                     }) {
                         Image(systemName: "switch.2")
                     }
-                    .sheet(isPresented: $showingSettingsView) {
-                        SettingsView()
-                    }
                 }
+            }
+            .sheet(isPresented: $showingSettingsView) {
+                SettingsView()
             }
         }
         else {
@@ -50,6 +50,5 @@ struct FavouritesView_Previews: PreviewProvider {
     static var previews: some View {
         FavouritesView()
             .environmentObject(AppViewModel())
-            .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
     }
 }

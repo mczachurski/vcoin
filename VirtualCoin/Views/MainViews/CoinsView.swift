@@ -10,7 +10,6 @@ import CoreData
 import VirtualCoinKit
 
 struct CoinsView: View {
-    @Environment(\.managedObjectContext) private var managedObjectContext
     @EnvironmentObject var appViewModel: AppViewModel
 
     @ObservedObject var searchBar: SearchBar = SearchBar()
@@ -27,6 +26,7 @@ struct CoinsView: View {
                     }
                 }
             }
+            .listStyle(PlainListStyle())
             .navigationTitle("All currencies")
             .add(self.searchBar)
             .toolbar {
@@ -36,10 +36,10 @@ struct CoinsView: View {
                     }) {
                         Image(systemName: "switch.2")
                     }
-                    .sheet(isPresented: $showingSettingsView) {
-                        SettingsView()
-                    }
                 }
+            }
+            .sheet(isPresented: $showingSettingsView) {
+                SettingsView()
             }
         }
         else {
@@ -58,6 +58,5 @@ struct CoinsView_Previews: PreviewProvider {
     static var previews: some View {
         CoinsView()
             .environmentObject(AppViewModel())
-            .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
     }
 }

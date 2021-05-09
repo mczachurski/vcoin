@@ -43,6 +43,8 @@
 		F8571D38262C1CA900C882C5 /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D37262C1CA900C882C5 /* CoinRowView.swift */; };
 		F85C62A6263556D600FE5AEA /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85C62A5263556D600FE5AEA /* TabsView.swift */; };
 		F85C62AC263557EB00FE5AEA /* SideBarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85C62AB263557EB00FE5AEA /* SideBarsView.swift */; };
+		F86620762647132E00577013 /* AddExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86620752647132E00577013 /* AddExchangeView.swift */; };
+		F86620782647153E00577013 /* ExchangeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86620772647153E00577013 /* ExchangeDetailView.swift */; };
 		F879C24926417C5C00F72D2B /* ThirdPartyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F879C24826417C5C00F72D2B /* ThirdPartyView.swift */; };
 		F87E0AC42635AA7800354BA5 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = F87E0AC32635AA7800354BA5 /* URLImage */; };
 		F891683A262B38AD007335D7 /* VirtualCoinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8916839262B38AD007335D7 /* VirtualCoinApp.swift */; };
@@ -51,10 +53,14 @@
 		F8916841262B38AE007335D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8916840262B38AE007335D7 /* Preview Assets.xcassets */; };
 		F8916851262B38AE007335D7 /* VirtualCoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8916850262B38AE007335D7 /* VirtualCoinTests.swift */; };
 		F891685C262B38AE007335D7 /* VirtualCoinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891685B262B38AE007335D7 /* VirtualCoinUITests.swift */; };
+		F8A2195F2647BFD600A7E3CD /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A2195E2647BFD600A7E3CD /* ExchangeViewModel.swift */; };
+		F8A62A58264442B700B30D97 /* ExchangeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A62A57264442B700B30D97 /* ExchangeRowView.swift */; };
+		F8A62A5A264443C600B30D97 /* EditExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A62A59264443C600B30D97 /* EditExchangeView.swift */; };
 		F8B4993926431A2C001ADF51 /* MarketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993826431A2C001ADF51 /* MarketsView.swift */; };
 		F8B4993B26431B19001ADF51 /* MarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993A26431B19001ADF51 /* MarketViewModel.swift */; };
 		F8B4993D26432531001ADF51 /* MarketRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993C26432531001ADF51 /* MarketRowView.swift */; };
 		F8E599102634499300E4B66B /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5990F2634499300E4B66B /* AppView.swift */; };
+		F8E8F36B2646601400335B45 /* NumericText in Frameworks */ = {isa = PBXBuildFile; productRef = F8E8F36A2646601400335B45 /* NumericText */; };
 		F8F6853F263FC2EC004F1D83 /* AlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6853E263FC2EC004F1D83 /* AlertsView.swift */; };
 		F8F68541263FC3B8004F1D83 /* ExchangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F68540263FC3B8004F1D83 /* ExchangesView.swift */; };
 		F8F68547263FC84A004F1D83 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F68546263FC84A004F1D83 /* CoinImageView.swift */; };
@@ -160,6 +166,8 @@
 		F8571D37262C1CA900C882C5 /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		F85C62A5263556D600FE5AEA /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		F85C62AB263557EB00FE5AEA /* SideBarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarsView.swift; sourceTree = "<group>"; };
+		F86620752647132E00577013 /* AddExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExchangeView.swift; sourceTree = "<group>"; };
+		F86620772647153E00577013 /* ExchangeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDetailView.swift; sourceTree = "<group>"; };
 		F879C24826417C5C00F72D2B /* ThirdPartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyView.swift; sourceTree = "<group>"; };
 		F8916836262B38AD007335D7 /* VirtualCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8916839262B38AD007335D7 /* VirtualCoinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCoinApp.swift; sourceTree = "<group>"; };
@@ -173,6 +181,9 @@
 		F8916857262B38AE007335D7 /* VirtualCoinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirtualCoinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F891685B262B38AE007335D7 /* VirtualCoinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCoinUITests.swift; sourceTree = "<group>"; };
 		F891685D262B38AE007335D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8A2195E2647BFD600A7E3CD /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
+		F8A62A57264442B700B30D97 /* ExchangeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRowView.swift; sourceTree = "<group>"; };
+		F8A62A59264443C600B30D97 /* EditExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExchangeView.swift; sourceTree = "<group>"; };
 		F8B4993826431A2C001ADF51 /* MarketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsView.swift; sourceTree = "<group>"; };
 		F8B4993A26431B19001ADF51 /* MarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
 		F8B4993C26432531001ADF51 /* MarketRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRowView.swift; sourceTree = "<group>"; };
@@ -212,6 +223,7 @@
 				F8F6855826400264004F1D83 /* LightChart in Frameworks */,
 				F87E0AC42635AA7800354BA5 /* URLImage in Frameworks */,
 				F8571CF6262C1A3D00C882C5 /* VirtualCoinKit.framework in Frameworks */,
+				F8E8F36B2646601400335B45 /* NumericText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +261,7 @@
 				F8459ACE263EE51E0021773B /* CoinViewModel.swift */,
 				F8459AD0263EF0320021773B /* AppViewModel.swift */,
 				F8B4993A26431B19001ADF51 /* MarketViewModel.swift */,
+				F8A2195E2647BFD600A7E3CD /* ExchangeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -440,6 +453,7 @@
 				F8F6855C26402755004F1D83 /* ViewControllerResolver.swift */,
 				F8F6855E264036C3004F1D83 /* InitialsPlaceholder.swift */,
 				F8B4993C26432531001ADF51 /* MarketRowView.swift */,
+				F8A62A57264442B700B30D97 /* ExchangeRowView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -451,6 +465,9 @@
 				F8F6856026403DF4004F1D83 /* SettingsView.swift */,
 				F879C24826417C5C00F72D2B /* ThirdPartyView.swift */,
 				F8B4993826431A2C001ADF51 /* MarketsView.swift */,
+				F8A62A59264443C600B30D97 /* EditExchangeView.swift */,
+				F86620752647132E00577013 /* AddExchangeView.swift */,
+				F86620772647153E00577013 /* ExchangeDetailView.swift */,
 			);
 			path = SceneViews;
 			sourceTree = "<group>";
@@ -532,6 +549,7 @@
 			packageProductDependencies = (
 				F87E0AC32635AA7800354BA5 /* URLImage */,
 				F8F6855726400264004F1D83 /* LightChart */,
+				F8E8F36A2646601400335B45 /* NumericText */,
 			);
 			productName = VirtualCoin;
 			productReference = F8916836262B38AD007335D7 /* VirtualCoin.app */;
@@ -615,6 +633,7 @@
 			packageReferences = (
 				F87E0AC22635AA7800354BA5 /* XCRemoteSwiftPackageReference "url-image" */,
 				F8F6855626400264004F1D83 /* XCRemoteSwiftPackageReference "LightChart" */,
+				F8E8F3692646601400335B45 /* XCRemoteSwiftPackageReference "NumericText" */,
 			);
 			productRefGroup = F8916837262B38AD007335D7 /* Products */;
 			projectDirPath = "";
@@ -709,9 +728,12 @@
 				F8038E13262F0C6100E434B3 /* CoinView.swift in Sources */,
 				F8571CA8262C0C5E00C882C5 /* FavouritesHandler.swift in Sources */,
 				F8E599102634499300E4B66B /* AppView.swift in Sources */,
+				F8A62A5A264443C600B30D97 /* EditExchangeView.swift in Sources */,
 				F8B4993926431A2C001ADF51 /* MarketsView.swift in Sources */,
 				F8571CA4262C0C5E00C882C5 /* AlertsHandler.swift in Sources */,
 				F8571CB5262C0C6F00C882C5 /* ExchangeItem+CoreDataClass.swift in Sources */,
+				F8A2195F2647BFD600A7E3CD /* ExchangeViewModel.swift in Sources */,
+				F86620782647153E00577013 /* ExchangeDetailView.swift in Sources */,
 				F8571CA6262C0C5E00C882C5 /* ExchangeItemsHandler.swift in Sources */,
 				F891683C262B38AD007335D7 /* CoinsView.swift in Sources */,
 				F8B4993D26432531001ADF51 /* MarketRowView.swift in Sources */,
@@ -730,8 +752,10 @@
 				F85C62A6263556D600FE5AEA /* TabsView.swift in Sources */,
 				F8571CB4262C0C6F00C882C5 /* Favourite+CoreDataProperties.swift in Sources */,
 				F8F6856126403DF4004F1D83 /* SettingsView.swift in Sources */,
+				F86620762647132E00577013 /* AddExchangeView.swift in Sources */,
 				F891683A262B38AD007335D7 /* VirtualCoinApp.swift in Sources */,
 				F8571CA7262C0C5E00C882C5 /* SettingsHandler.swift in Sources */,
+				F8A62A58264442B700B30D97 /* ExchangeRowView.swift in Sources */,
 				F8459ACF263EE51E0021773B /* CoinViewModel.swift in Sources */,
 				F8459AD1263EF0320021773B /* AppViewModel.swift in Sources */,
 				F879C24926417C5C00F72D2B /* ThirdPartyView.swift in Sources */,
@@ -1200,6 +1224,14 @@
 				minimumVersion = 2.2.4;
 			};
 		};
+		F8E8F3692646601400335B45 /* XCRemoteSwiftPackageReference "NumericText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amayers/NumericText";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.2;
+			};
+		};
 		F8F6855626400264004F1D83 /* XCRemoteSwiftPackageReference "LightChart" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pichukov/LightChart";
@@ -1215,6 +1247,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F87E0AC22635AA7800354BA5 /* XCRemoteSwiftPackageReference "url-image" */;
 			productName = URLImage;
+		};
+		F8E8F36A2646601400335B45 /* NumericText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8E8F3692646601400335B45 /* XCRemoteSwiftPackageReference "NumericText" */;
+			productName = NumericText;
 		};
 		F8F6855726400264004F1D83 /* LightChart */ = {
 			isa = XCSwiftPackageProductDependency;

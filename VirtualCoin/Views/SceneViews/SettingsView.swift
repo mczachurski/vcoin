@@ -35,11 +35,12 @@ struct SettingsView: View {
                     
                     Picker(selection: $selectedCurrency, label: Text("Currency")) {
                         ForEach(Currencies.allCurrenciesList, id: \.self) { currency in
-                            VStack(alignment: .leading) {
+                            HStack {
                                 Text(currency.name)
                                     .font(.body)
-                                Text(currency.id)
+                                Text("(\(currency.id))")
                                     .font(.footnote)
+                                    .foregroundColor(.accentColor)
                             }.tag(currency)
                        }
                     }.onChange(of: selectedCurrency, perform: { value in

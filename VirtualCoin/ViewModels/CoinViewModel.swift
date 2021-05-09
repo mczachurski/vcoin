@@ -56,3 +56,13 @@ public class CoinViewModel: Identifiable, ObservableObject {
         self.imageUrl = "https://static.coincap.io/assets/icons/\(symbol.lowercased())@2x.png"
     }
 }
+
+extension CoinViewModel: Hashable {
+    public static func == (lhs: CoinViewModel, rhs: CoinViewModel) -> Bool {
+        return lhs.symbol == rhs.symbol
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.symbol)
+    }
+}

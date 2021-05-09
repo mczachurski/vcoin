@@ -18,9 +18,9 @@ struct CoinRowView: View {
             
             VStack(alignment: .leading) {
                 Text(coin.name)
-                    .font(.body)
+                    .font(.headline)
                 Text(coin.symbol)
-                    .font(.footnote)
+                    .font(.subheadline)
                     .foregroundColor(.accentColor)
             }
             
@@ -28,7 +28,7 @@ struct CoinRowView: View {
             
             VStack(alignment: .trailing) {
                 Text(coin.priceUsd.toFormattedPrice(currency: "USD"))
-                    .font(.footnote)
+                    .font(.subheadline)
                     .foregroundColor(coin.changePercent24Hr > 0 ?.greenPastel : .redPastel)
 
                 Text(coin.changePercent24Hr.toFormattedPercent())
