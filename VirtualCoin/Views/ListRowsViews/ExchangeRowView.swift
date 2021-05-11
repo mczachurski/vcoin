@@ -47,19 +47,17 @@ struct ExchangeRowView: View {
     }
 }
 
-struct ExchangeRowView_Previews: PreviewProvider {
+struct ExchangeRowView_Previews: PreviewProvider {    
     static var previews: some View {
-        ExchangeRowView(exchangeViewModel:
-                            ExchangeViewModel(coinViewModel:
-                                                CoinViewModel(id: "bitcoin",
-                                                              rank: 1,
-                                                              symbol: "BTC",
-                                                              name: "Bitcoin",
-                                                              priceUsd: 12.1,
-                                                              changePercent24Hr: 1.2),
-                                              exchangeItem: ExchangeItem(),
-                                              currency: Currency(id: "USD",
-                                                                 locale: "en-US",
-                                                                 name: "US Dollar")))
+        Group {
+            ExchangeRowView(exchangeViewModel: PreviewData.getExchangeViewModel())
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.dark)
+            
+            ExchangeRowView(exchangeViewModel: PreviewData.getExchangeViewModel())
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.light)
+        }
+        .previewLayout(.fixed(width: 360, height: 70))
     }
 }

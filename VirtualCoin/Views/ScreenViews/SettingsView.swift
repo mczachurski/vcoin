@@ -119,6 +119,14 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        Group {
+            SettingsView()
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.dark)
+            
+            SettingsView()
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.light)
+        }
     }
 }

@@ -85,16 +85,14 @@ struct EditExchangeView: View {
 
 struct EditExchangeView_Previews: PreviewProvider {
     static var previews: some View {
-        EditExchangeView(exchangeViewModel:
-                            ExchangeViewModel(coinViewModel: CoinViewModel(id: "bitcoin",
-                                                                           rank: 1,
-                                                                           symbol: "BTC",
-                                                                           name: "Bitcoin",
-                                                                           priceUsd: 12.1,
-                                                                           changePercent24Hr: 2.1),
-                                              exchangeItem: ExchangeItem(),
-                                              currency: Currency(id: "USD",
-                                                                 locale: "en-US",
-                                                                 name: "US Dollar")))
+        Group {
+            EditExchangeView(exchangeViewModel: PreviewData.getExchangeViewModel())
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.dark)
+            
+            EditExchangeView(exchangeViewModel: PreviewData.getExchangeViewModel())
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.light)
+        }
     }
 }

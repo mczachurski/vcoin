@@ -47,12 +47,15 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView(chartTimeRange: .day, coin: CoinViewModel(id: "bitcoin",
-                                                            rank: 1,
-                                                            symbol: "BTC",
-                                                            name: "Bitcoin",
-                                                            priceUsd: 6929.821775,
-                                                            changePercent24Hr: -0.81014))
-            .previewLayout(.fixed(width: 360, height: 560))
+        Group {
+            ChartView(chartTimeRange: .day, coin: PreviewData.getCoinViewModel())
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.dark)
+
+            ChartView(chartTimeRange: .day, coin: PreviewData.getCoinViewModel())
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.light)
+        }
+        .previewLayout(.fixed(width: 360, height: 360))
     }
 }

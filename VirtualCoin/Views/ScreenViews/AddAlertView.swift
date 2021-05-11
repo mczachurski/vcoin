@@ -65,6 +65,14 @@ struct AddAlertView: View {
 
 struct AddAlertView_Previews: PreviewProvider {
     static var previews: some View {
-        AddAlertView()
+        Group {
+            AddAlertView()
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.dark)
+            
+            AddAlertView()
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.light)
+        }
     }
 }

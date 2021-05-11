@@ -19,8 +19,17 @@ public class AppViewModel: ObservableObject {
     @Published public var selectedAlertViewModel: AlertViewModel?
     
     private var cacheChartData: [String: [Double]] = [:]
+    private let inMemory: Bool
+    
+    init(inMemory: Bool = false) {
+        self.inMemory = inMemory
+    }
     
     public func loadCoins() {
+        if inMemory {
+            return
+        }
+        
         let coinCapClient = CoinCapClient()
         coinCapClient.getCoinsAsync { result in
             switch result {
@@ -58,6 +67,10 @@ public class AppViewModel: ObservableObject {
     }
     
     public func loadChartData(coin: CoinViewModel, chartTimeRange: ChartTimeRange) {
+        if inMemory {
+            return
+        }
+        
         var dataResult: [Double] = []
 
         if let cacheData = self.cacheChartData[coin.symbol + chartTimeRange.rawValue] {
@@ -100,6 +113,10 @@ public class AppViewModel: ObservableObject {
     }
     
     public func loadMarketValues(coin: CoinViewModel) {
+        if inMemory {
+            return
+        }
+        
         DispatchQueue.main.async {
             self.markets = nil
         }
@@ -140,4 +157,22 @@ public class AppViewModel: ObservableObject {
             lhs.rank < rhs.rank
         })
     }
+    
+    public static var preview: AppViewModel = {
+        let result = AppViewModel(inMemory: true)
+
+        result.coins = [
+            CoinViewModel(id: "bitcoin", rank: 1, symbol: "BTC", name: "Bitcoin", priceUsd: 53221.21, changePercent24Hr: -2.1),
+            CoinViewModel(id: "ethereum", rank: 2, symbol: "ETH", name: "Ethereum", priceUsd: 3211.23, changePercent24Hr: 1.1)
+        ]
+        
+        result.favourites = [
+            CoinViewModel(id: "bitcoin", rank: 1, symbol: "BTC", name: "Bitcoin", priceUsd: 53221.21, changePercent24Hr: -2.1),
+            CoinViewModel(id: "ethereum", rank: 2, symbol: "ETH", name: "Ethereum", priceUsd: 3211.23, changePercent24Hr: 1.1)
+        ]
+        
+        result.chartData = [3212.02, 3292.01, 3296.83, 3222.73, 3298.74, 3265.32, 3287.73, 3287.32, 3301.83, 3301.74, 3403.21, 3502.92]
+        
+        return result
+    }()
 }

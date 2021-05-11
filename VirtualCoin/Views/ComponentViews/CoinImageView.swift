@@ -42,12 +42,13 @@ struct CoinImageView: View {
 
 struct CoinImageView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinImageView(coin: CoinViewModel(id: "bitcoin",
-                                          rank: 1,
-                                          symbol: "BTC",
-                                          name: "Bitcoin",
-                                          priceUsd: 6929.821775,
-                                          changePercent24Hr: -0.81014))
-            .previewLayout(.fixed(width: 32, height: 32))
+        Group {
+            CoinImageView(coin: PreviewData.getCoinViewModel())
+                .preferredColorScheme(.dark)
+
+            CoinImageView(coin: PreviewData.getCoinViewModel())
+                .preferredColorScheme(.light)
+        }
+        .previewLayout(.fixed(width: 32, height: 32))
     }
 }

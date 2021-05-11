@@ -55,7 +55,7 @@ struct TabsView: View {
 struct TabsView_Previews: PreviewProvider {
     static var previews: some View {
         TabsView()
-            .environmentObject(AppViewModel())
+            .environmentObject(AppViewModel.preview)
             .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
     }
 }

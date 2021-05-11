@@ -26,7 +26,12 @@ struct InitialsPlaceholder: View {
 
 struct InitialsPlaceholder_Previews: PreviewProvider {
     static var previews: some View {
-        InitialsPlaceholder(text: "Bitcoin")
-            .previewLayout(.fixed(width: 32, height: 32))
+        Group {
+            InitialsPlaceholder(text: "Bitcoin")
+                .preferredColorScheme(.dark)
+            InitialsPlaceholder(text: "DegeCoin")
+                .preferredColorScheme(.light)
+        }
+        .previewLayout(.fixed(width: 32, height: 32))
     }
 }

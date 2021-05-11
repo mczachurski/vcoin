@@ -62,7 +62,7 @@ struct SideBarsView: View {
 struct SideBarsView_Previews: PreviewProvider {
     static var previews: some View {
         SideBarsView(selectedFolder: .constant("favourites"))
-            .environmentObject(AppViewModel())
+            .environmentObject(AppViewModel.preview)
             .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
     }
 }

@@ -56,7 +56,18 @@ struct CoinsView: View {
 
 struct CoinsView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinsView()
-            .environmentObject(AppViewModel())
+        Group {
+            NavigationView {
+                CoinsView()
+                    .environmentObject(AppViewModel.preview)
+            }
+            .preferredColorScheme(.dark)
+            
+            NavigationView {
+                CoinsView()
+                    .environmentObject(AppViewModel.preview)
+            }
+            .preferredColorScheme(.light)
+        }
     }
 }

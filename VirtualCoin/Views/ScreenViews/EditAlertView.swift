@@ -84,16 +84,14 @@ struct EditAlertView: View {
 
 struct EEditAlertView_Previews: PreviewProvider {
     static var previews: some View {
-        EditAlertView(alertViewModel:
-                        AlertViewModel(coinViewModel: CoinViewModel(id: "bitcoin",
-                                                                    rank: 1,
-                                                                    symbol: "BTC",
-                                                                    name: "Bitcoin",
-                                                                    priceUsd: 12.1,
-                                                                    changePercent24Hr: 2.1),
-                                       alert: Alert(),
-                                       currency: Currency(id: "USD",
-                                                          locale: "en-US",
-                                                          name: "US Dollar")))
+        Group {
+            EditAlertView(alertViewModel: PreviewData.getAlertViewModel())
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.dark)
+            
+            EditAlertView(alertViewModel: PreviewData.getAlertViewModel())
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.light)
+        }
     }
 }

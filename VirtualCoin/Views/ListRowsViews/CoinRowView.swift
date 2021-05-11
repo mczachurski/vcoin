@@ -42,19 +42,11 @@ struct CoinRowView: View {
 struct CoinRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CoinRowView(coin: CoinViewModel(id: "bitcoin",
-                                            rank: 1,
-                                            symbol: "BTC",
-                                            name: "Bitcoin",
-                                            priceUsd: 6929.821775,
-                                            changePercent24Hr: -0.81014))
+            CoinRowView(coin: PreviewData.getCoinViewModel())
+                .preferredColorScheme(.dark)
 
-            CoinRowView(coin: CoinViewModel(id: "ethereum",
-                                            rank: 2,
-                                            symbol: "ETH",
-                                            name: "Ethereum",
-                                            priceUsd: 404.9774667,
-                                            changePercent24Hr: -0.099962))
+            CoinRowView(coin: PreviewData.getCoinViewModel())
+                .preferredColorScheme(.light)
         }
         .previewLayout(.fixed(width: 360, height: 70))
     }

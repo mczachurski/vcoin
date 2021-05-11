@@ -48,7 +48,20 @@ struct FavouritesView: View {
 
 struct FavouritesView_Previews: PreviewProvider {
     static var previews: some View {
-        FavouritesView()
-            .environmentObject(AppViewModel())
+        Group {
+            NavigationView {
+                FavouritesView()
+                    .environmentObject(AppViewModel.preview)
+                    .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
+            }
+            .preferredColorScheme(.dark)
+            
+            NavigationView {
+                FavouritesView()
+                    .environmentObject(AppViewModel.preview)
+                    .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
+            }
+            .preferredColorScheme(.light)
+        }
     }
 }

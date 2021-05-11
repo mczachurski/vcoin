@@ -40,8 +40,16 @@ struct ThirdPartyView: View {
 
 struct ThirdPartyView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            ThirdPartyView()
+        Group {
+            NavigationView {
+                ThirdPartyView()
+            }
+            .preferredColorScheme(.dark)
+            
+            NavigationView {
+                ThirdPartyView()
+            }
+            .preferredColorScheme(.light)
         }
     }
 }

@@ -26,6 +26,20 @@ public class CoreDataHandler {
         let favouriteItem3 = Favourite(context: viewContext)
         favouriteItem3.coinSymbol = "DGC"
         
+        let exchangeItem1 = ExchangeItem(context: viewContext)
+        exchangeItem1.coinSymbol = "BTC"
+        exchangeItem1.amount = 2
+        exchangeItem1.currency = "USD"
+        exchangeItem1.marketCode = ""
+        
+        let alertItem1 = Alert(context: viewContext)
+        alertItem1.coinSymbol = "BTC"
+        alertItem1.currency = "USD"
+        alertItem1.isEnabled = true
+        alertItem1.isPriceLower = true
+        alertItem1.marketCode = ""
+        alertItem1.price = 63.33
+        
         do {
             try viewContext.save()
         } catch {

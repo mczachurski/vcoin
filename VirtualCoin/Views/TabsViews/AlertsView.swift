@@ -75,7 +75,20 @@ struct AlertsView: View {
 
 struct AlertsView_Previews: PreviewProvider {
     static var previews: some View {
-        AlertsView()
-            .environmentObject(AppViewModel())
+        Group {
+            NavigationView {
+                AlertsView()
+                    .environmentObject(AppViewModel.preview)
+                    .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
+            }
+            .preferredColorScheme(.dark)
+            
+            NavigationView {
+                AlertsView()
+                    .environmentObject(AppViewModel.preview)
+                    .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
+            }
+            .preferredColorScheme(.light)
+        }
     }
 }

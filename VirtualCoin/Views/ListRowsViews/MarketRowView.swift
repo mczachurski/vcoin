@@ -30,9 +30,13 @@ struct MarketRowView: View {
 
 struct MarketRowView_Previews: PreviewProvider {
     static var previews: some View {
-        MarketRowView(market: MarketViewModel(id: "Kraken",
-                                              baseSymbol: "BTC",
-                                              quoteSymbol: "EUR",
-                                              priceUsd: 67211.23))
+        Group {
+            MarketRowView(market: PreviewData.getMarketViewModel())
+                .preferredColorScheme(.dark)
+            
+            MarketRowView(market: PreviewData.getMarketViewModel())
+                .preferredColorScheme(.light)
+        }
+        .previewLayout(.fixed(width: 360, height: 70))
     }
 }

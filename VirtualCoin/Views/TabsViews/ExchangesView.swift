@@ -88,7 +88,20 @@ struct ExchangesView: View {
 
 struct ExchangesView_Previews: PreviewProvider {
     static var previews: some View {
-        ExchangesView()
-            .environmentObject(AppViewModel())
+        Group {
+            NavigationView {
+                ExchangesView()
+                    .environmentObject(AppViewModel.preview)
+                    .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
+            }
+            .preferredColorScheme(.dark)
+            
+            NavigationView {
+                ExchangesView()
+                    .environmentObject(AppViewModel.preview)
+                    .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
+            }
+            .preferredColorScheme(.light)
+        }
     }
 }

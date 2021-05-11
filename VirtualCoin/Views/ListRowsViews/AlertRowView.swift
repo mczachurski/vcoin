@@ -24,7 +24,7 @@ struct AlertRowView: View {
                     .font(.subheadline)
                     .foregroundColor(.accentColor)
                 HStack {
-                    Text("Lower then")
+                    Text(alertViewModel.alert.isPriceLower ? "Lower then" : "Greather then")
                         .foregroundColor(.gray)
                         .font(.subheadline)
                     Text("\(alertViewModel.alert.price.toFormattedPrice(currency: "USD"))")
@@ -48,17 +48,15 @@ struct AlertRowView: View {
 
 struct AlertRowView_Previews: PreviewProvider {
     static var previews: some View {
-        AlertRowView(alertViewModel:
-                        AlertViewModel(coinViewModel:
-                                        CoinViewModel(id: "bitcoin",
-                                                      rank: 1,
-                                                      symbol: "BTC",
-                                                      name: "Bitcoin",
-                                                      priceUsd: 12.1,
-                                                      changePercent24Hr: 2),
-                                       alert: Alert(),
-                                       currency: Currency(id: "USD",
-                                                          locale: "en-usd",
-                                                          name: "US Dollar")))
+        Group {
+            AlertRowView(alertViewModel: PreviewData.getAlertViewModel())
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.dark)
+            
+            AlertRowView(alertViewModel: PreviewData.getAlertViewModel())
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.light)
+        }
+        .previewLayout(.fixed(width: 360, height: 70))
     }
 }

@@ -113,14 +113,18 @@ struct CoinView: View {
 
 struct CoinView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            CoinView(coin: CoinViewModel(id: "bitcoin",
-                                         rank: 1,
-                                         symbol: "BTC",
-                                         name: "Bitcoin",
-                                         priceUsd: 6929.821775,
-                                         changePercent24Hr: -0.81014))
-                .environmentObject(AppViewModel())
+        Group {
+            NavigationView {
+                CoinView(coin: PreviewData.getCoinViewModel())
+                    .environmentObject(AppViewModel.preview)
+            }
+            .preferredColorScheme(.dark)
+            
+            NavigationView {
+                CoinView(coin: PreviewData.getCoinViewModel())
+                    .environmentObject(AppViewModel.preview)
+            }
+            .preferredColorScheme(.light)
         }
     }
 }

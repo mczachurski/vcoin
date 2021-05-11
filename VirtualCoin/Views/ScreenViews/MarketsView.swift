@@ -29,7 +29,14 @@ struct MarketsView: View {
 
 struct MarketsView_Previews: PreviewProvider {
     static var previews: some View {
-        MarketsView(markets: [MarketViewModel(id: "Kraken", baseSymbol: "BTC", quoteSymbol: "USD", priceUsd: 12)])
-            .environmentObject(AppViewModel())
+        Group {
+            MarketsView(markets: [PreviewData.getMarketViewModel()])
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.dark)
+            
+            MarketsView(markets: [PreviewData.getMarketViewModel()])
+                .environmentObject(AppViewModel.preview)
+                .preferredColorScheme(.light)
+        }
     }
 }

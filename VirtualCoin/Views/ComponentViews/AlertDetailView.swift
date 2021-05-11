@@ -65,11 +65,12 @@ struct AlertDetailView: View {
 }
 
 struct AlertDetailView_Previews: PreviewProvider {
-    @State private static var price: NSNumber?
-    @State private static var selectedCurrency: Currency = Currency(id: "USD", locale: "en-us", name: "US Dollar")
-    @State private static var selectedCoin: CoinViewModel = CoinViewModel(id: "bitcoin", rank: 1, symbol: "BTC", name: "Bitcoin", priceUsd: 12.2, changePercent24Hr: 2.1)
+    @State private static var price: NSNumber? = 21.2
+    @State private static var currency = PreviewData.getCurrency()
+    @State private static var coin = PreviewData.getCoinViewModel()
 
     static var previews: some View {
-        AlertDetailView(price: $price, currency: $selectedCurrency, coin: $selectedCoin)
+        AlertDetailView(price: $price, currency: $currency, coin: $coin)
+            .environmentObject(AppViewModel.preview)
     }
 }
