@@ -31,6 +31,12 @@ public class CoinCapClient {
         self.downloadAsync(from: url, completionHandler: completionHandler)
     }
     
+    public func getCurrencyRate(for currencyId: String,
+                                     completionHandler: @escaping (Result<CurrencyRate, RestClientError>) -> Void) {
+        let url = "https://api.coincap.io/v2/rates/\(currencyId)"
+        self.downloadAsync(from: url, completionHandler: completionHandler)
+    }
+    
     private func getChartApiUrl(for coinId: String,
                                 withRange chartRange: ChartTimeRange) -> String {
         switch chartRange {
@@ -63,7 +69,7 @@ public class CoinCapClient {
     }
     
     private func downloadAsync<T: Decodable>(from url: String,
-                                             completionHandler: @escaping (Result<[T], RestClientError>) -> Void) {
+                                             completionHandler: @escaping (Result<T, RestClientError>) -> Void) {
         guard let url = URL(string: url) else {
             completionHandler(.failure(.badUrl))
             return

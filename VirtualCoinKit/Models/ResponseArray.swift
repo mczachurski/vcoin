@@ -8,5 +8,5 @@
 import Foundation
 
 public class Response<T: Decodable>: Decodable {
-    public var data: [T] = []
+    public var data: T
 }

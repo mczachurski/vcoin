@@ -29,7 +29,7 @@ struct CoinView: View {
                 .fontWeight(.light)
                 .foregroundColor(.gray)
 
-            Text(coin.priceUsd.toFormattedPrice(currency: "USD"))
+            Text(coin.price.toFormattedPrice(currency: appViewModel.currencySymbol))
                 .fontWeight(.light)
                 .font(.title)
 

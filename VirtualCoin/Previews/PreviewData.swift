@@ -22,7 +22,8 @@ struct PreviewData: PreviewProvider {
         MarketViewModel(id: "Kraken",
                         baseSymbol: "BTC",
                         quoteSymbol: "EUR",
-                        priceUsd: 67211.23)
+                        priceUsd: 67211.23,
+                        price: 12321.33)
     }
     
     static func getAlert() -> Alert {
@@ -48,7 +49,7 @@ struct PreviewData: PreviewProvider {
     }
     
     static func getCurrency() -> Currency {
-        Currency(id: "USD", locale: "en-US", name: "US Dollar")
+        Currency(id: "united-states-dollar", symbol: "USD", locale: "en-US", name: "US Dollar")
     }
     
     static func getExchangeViewModel() -> ExchangeViewModel {

@@ -42,7 +42,7 @@ struct ExchangeDetailView: View {
                         }.tag(coin)
                    }
                 }.onChange(of: selectedCurrency, perform: { value in
-                    print("selected: \(value.id)")
+                    print("selected: \(value.symbol)")
                 })
                 
                 Picker(selection: $selectedCurrency, label: Text("Currency")) {
@@ -50,13 +50,13 @@ struct ExchangeDetailView: View {
                         HStack {
                             Text(currency.name)
                                 .font(.body)
-                            Text("(\(currency.id))")
+                            Text("(\(currency.symbol))")
                                 .font(.footnote)
                                 .foregroundColor(.accentColor)
                         }.tag(currency)
                    }
                 }.onChange(of: selectedCurrency, perform: { value in
-                    print("selected: \(value.id)")
+                    print("selected: \(value.symbol)")
                 })
             }
         }

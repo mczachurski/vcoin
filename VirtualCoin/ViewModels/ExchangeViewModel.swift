@@ -9,6 +9,7 @@ import Foundation
 import VirtualCoinKit
 
 public class ExchangeViewModel: Identifiable, ObservableObject {
+    @Published public var priceUsd = 0.0
     @Published public var price = 0.0
     @Published public var exchangeItem: ExchangeItem
     @Published public var coinViewModel: CoinViewModel
@@ -33,7 +34,23 @@ public class ExchangeViewModel: Identifiable, ObservableObject {
     }
     
     private func recalculatePrice() {
-        // TODO: Recalculate price based on currency.
-        self.price = self.coinViewModel.priceUsd * self.exchangeItem.amount
+        self.priceUsd = self.coinViewModel.priceUsd * self.exchangeItem.amount
+        
+        let coinCapClient = CoinCapClient()
+        coinCapClient.getCurrencyRate(for: self.currency.id) { result in
+            switch result {
+            case .success(let currencyRate):
+                let currencyRateUsd = Double(currencyRate.rateUsd) ?? 1.0
+
+                DispatchQueue.main.async {
+                    self.price = self.priceUsd / currencyRateUsd
+                }
+                break
+            case .failure(let error):
+                // TODO: Show something in UI.
+                print(error)
+                break
+            }
+        }
     }
 }

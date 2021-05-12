@@ -18,6 +18,8 @@ public class AppViewModel: ObservableObject {
     @Published public var selectedExchangeViewModel: ExchangeViewModel?
     @Published public var selectedAlertViewModel: AlertViewModel?
     
+    public var currencySymbol: String = "USD"
+    public var currencyRateUsd: Double = 1.0
     private var cacheChartData: [String: [Double]] = [:]
     private let inMemory: Bool
     
@@ -25,44 +27,23 @@ public class AppViewModel: ObservableObject {
         self.inMemory = inMemory
     }
     
-    public func loadCoins() {
+    public func loadData() {
         if inMemory {
             return
         }
         
-        let coinCapClient = CoinCapClient()
-        coinCapClient.getCoinsAsync { result in
-            switch result {
-            case .success(let coins):
-                var coinsResult: [CoinViewModel] = []
-                var favouritesResult: [CoinViewModel] = []
-                
-                let favouritesHandler = FavouritesHandler()
-                let favourites = favouritesHandler.getFavourites()
-                
-                for coin in coins {
-                    let coinViewModel = CoinViewModel(coin: coin)
-                    coinsResult.append(coinViewModel)
-                    
-                    if favourites.contains(where: { favourite in
-                        favourite.coinSymbol == coinViewModel.symbol
-                    }) {
-                        coinViewModel.isFavourite = true
-                        favouritesResult.append(coinViewModel)
-                    }
-                }
-                
-                DispatchQueue.main.async {
-                    self.coins = coinsResult
-                    self.favourites = favouritesResult
-                }
-                
-                break
-            case .failure(let error):
-                // TODO: Show something in UI.
-                print(error)
-                break
-            }
+        self.coins = nil
+        self.favourites = nil
+
+        let settingsHandler = SettingsHandler()
+        let settings = settingsHandler.getDefaultSettings()
+        
+        if settings.currency.count > 0 {
+            self.currencySymbol = settings.currency
+        }
+        
+        self.loadCurrencyRate {
+            self.loadCoins()
         }
     }
     
@@ -129,7 +110,7 @@ public class AppViewModel: ObservableObject {
                 var marketsResult: [MarketViewModel] = []
                 
                 for market in markets {
-                    let marketViewModel = MarketViewModel(market: market)
+                    let marketViewModel = MarketViewModel(market: market, rateUsd: self.currencyRateUsd)
                     marketsResult.append(marketViewModel)
                 }
                 
@@ -156,6 +137,63 @@ public class AppViewModel: ObservableObject {
         self.favourites = self.favourites?.sorted(by: { lhs, rhs in
             lhs.rank < rhs.rank
         })
+    }
+    
+    private func loadCurrencyRate(completionHandler: @escaping () -> Void) {
+        let coinCapClient = CoinCapClient()
+
+        if let currency = Currencies.allCurrenciesDictionary[self.currencySymbol] {
+            coinCapClient.getCurrencyRate(for: currency.id) { result in
+                switch result {
+                case .success(let currencyRate):
+                    self.currencyRateUsd = Double(currencyRate.rateUsd) ?? 1.0
+                    break
+                case .failure(let error):
+                    // TODO: Show something in UI.
+                    print(error)
+                    break
+                }
+                
+                completionHandler()
+            }
+        }
+    }
+    
+    private func loadCoins() {
+        let coinCapClient = CoinCapClient()
+        coinCapClient.getCoinsAsync { result in
+            switch result {
+            case .success(let coins):
+                var coinsResult: [CoinViewModel] = []
+                var favouritesResult: [CoinViewModel] = []
+                
+                let favouritesHandler = FavouritesHandler()
+                let favourites = favouritesHandler.getFavourites()
+                
+                for coin in coins {                    
+                    let coinViewModel = CoinViewModel(coin: coin, rateUsd: self.currencyRateUsd)
+                    coinsResult.append(coinViewModel)
+                    
+                    if favourites.contains(where: { favourite in
+                        favourite.coinSymbol == coinViewModel.symbol
+                    }) {
+                        coinViewModel.isFavourite = true
+                        favouritesResult.append(coinViewModel)
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    self.coins = coinsResult
+                    self.favourites = favouritesResult
+                }
+                
+                break
+            case .failure(let error):
+                // TODO: Show something in UI.
+                print(error)
+                break
+            }
+        }
     }
     
     public static var preview: AppViewModel = {

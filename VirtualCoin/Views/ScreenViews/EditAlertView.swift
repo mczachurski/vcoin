@@ -23,12 +23,8 @@ struct EditAlertView: View {
         self.alertViewModel = alertViewModel
         
         self._price = State(initialValue: NSNumber(value: alertViewModel.alert.price))
-
-        self._selectedCurrency = State(initialValue:
-                                        EditAlertView.getCurrency(for: alertViewModel.alert.currency))
-
-        self._selectedCoin = State(initialValue:
-                                    EditAlertView.getCoinViewModel(for: alertViewModel.alert.coinSymbol))
+        self._selectedCurrency = State(initialValue: Currency(symbol: alertViewModel.alert.currency))
+        self._selectedCoin = State(initialValue: CoinViewModel(symbol: alertViewModel.alert.coinSymbol))
     }
     
     var body: some View {
@@ -51,7 +47,7 @@ struct EditAlertView: View {
     }
     
     private func saveSettings() {
-        self.alertViewModel.alert.currency = self.selectedCurrency.id
+        self.alertViewModel.alert.currency = self.selectedCurrency.symbol
         self.alertViewModel.alert.coinSymbol = self.selectedCoin.symbol
         self.alertViewModel.alert.price = self.price?.doubleValue ?? 0
         
@@ -66,19 +62,6 @@ struct EditAlertView: View {
         if let currency = Currencies.allCurrenciesDictionary[self.alertViewModel.alert.currency] {
             self.alertViewModel.setCurrency(currency)
         }
-    }
-    
-    private static func getCoinViewModel(for symbol: String) -> CoinViewModel {
-        CoinViewModel(id: "",
-                      rank: 0,
-                      symbol: symbol,
-                      name: "",
-                      priceUsd: 0,
-                      changePercent24Hr: 0)
-    }
-    
-    private static func getCurrency(for currency: String) -> Currency {
-        Currency(id: currency, locale: "", name: "")
     }
 }
 

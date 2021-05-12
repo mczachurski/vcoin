@@ -10,11 +10,13 @@ import Foundation
 
 public struct Currency {
     public var id: String
+    public var symbol: String
     public var locale: String
     public var name: String
 
-    public init(id: String, locale: String, name: String) {
+    public init(id: String = "", symbol: String = "", locale: String = "", name: String = "") {
         self.id = id
+        self.symbol = symbol
         self.locale = locale
         self.name = name
     }
@@ -22,11 +24,11 @@ public struct Currency {
 
 extension Currency: Hashable {
     public static func == (lhs: Currency, rhs: Currency) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.symbol == rhs.symbol
     }
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
+        hasher.combine(self.symbol)
     }
 }
 

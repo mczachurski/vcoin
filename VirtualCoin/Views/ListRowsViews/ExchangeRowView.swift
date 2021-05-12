@@ -33,8 +33,8 @@ struct ExchangeRowView: View {
                         .font(.headline)
                     Text(exchangeViewModel.exchangeItem.currency)
                         .font(.subheadline)
-                        .foregroundColor(.accentColor)
-                    Text(exchangeViewModel.price.toFormattedPrice(currency: "USD"))
+                        .foregroundColor(.accentColor)                    
+                    Text(exchangeViewModel.price.toFormattedPrice(currency: exchangeViewModel.exchangeItem.currency))
                         .font(.subheadline)
                 }
             }

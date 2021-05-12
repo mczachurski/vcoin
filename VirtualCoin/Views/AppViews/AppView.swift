@@ -18,7 +18,7 @@ struct AppView: View {
         if horizontalSizeClass == .compact {
             TabsView()
                 .onAppear {
-                    appViewModel.loadCoins()
+                    appViewModel.loadData()
                 }
         } else {
             NavigationView {
@@ -26,7 +26,7 @@ struct AppView: View {
                 Text("Primary view")
             }
             .onAppear {
-                appViewModel.loadCoins()
+                appViewModel.loadData()
             }
         }
     }

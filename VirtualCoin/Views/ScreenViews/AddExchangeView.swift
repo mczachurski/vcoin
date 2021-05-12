@@ -14,8 +14,8 @@ struct AddExchangeView: View {
     @EnvironmentObject var appViewModel: AppViewModel
     
     @State private var amount: NSNumber?
-    @State private var selectedCurrency = AddExchangeView.getCurrency(for: "USD")
-    @State private var selectedCoin = AddExchangeView.getCoinViewModel(for: "BTC")
+    @State private var selectedCurrency = Currencies.getDefaultCurrency()
+    @State private var selectedCoin = CoinViewModel(symbol: "BTC")
         
     var body: some View {
         NavigationView {
@@ -40,25 +40,12 @@ struct AddExchangeView: View {
         let exchangeItemHandler = ExchangeItemsHandler()
         let exchangeItem = exchangeItemHandler.createExchangeItemEntity()
         
-        exchangeItem.currency = self.selectedCurrency.id
+        exchangeItem.currency = self.selectedCurrency.symbol
         exchangeItem.coinSymbol = self.selectedCoin.symbol
         exchangeItem.amount = self.amount?.doubleValue ?? 0
         exchangeItem.marketCode = ""
         
         CoreDataHandler.shared.save()
-    }
-    
-    private static func getCoinViewModel(for symbol: String) -> CoinViewModel {
-        CoinViewModel(id: "",
-                      rank: 0,
-                      symbol: symbol,
-                      name: "",
-                      priceUsd: 0,
-                      changePercent24Hr: 0)
-    }
-    
-    private static func getCurrency(for currency: String) -> Currency {
-        Currency(id: currency, locale: "", name: "")
     }
 }
 

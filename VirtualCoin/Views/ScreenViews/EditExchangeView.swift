@@ -23,12 +23,8 @@ struct EditExchangeView: View {
         self.exchangeViewModel = exchangeViewModel
         
         self._amount = State(initialValue: NSNumber(value: exchangeViewModel.exchangeItem.amount))
-
-        self._selectedCurrency = State(initialValue:
-            EditExchangeView.getCurrency(for: exchangeViewModel.exchangeItem.currency))
-
-        self._selectedCoin = State(initialValue:
-            EditExchangeView.getCoinViewModel(for: exchangeViewModel.exchangeItem.coinSymbol))
+        self._selectedCurrency = State(initialValue: Currency(symbol: exchangeViewModel.exchangeItem.currency))
+        self._selectedCoin = State(initialValue: CoinViewModel(symbol: exchangeViewModel.exchangeItem.coinSymbol))
     }
     
     var body: some View {
@@ -51,7 +47,7 @@ struct EditExchangeView: View {
     }
     
     private func saveSettings() {
-        self.exchangeViewModel.exchangeItem.currency = self.selectedCurrency.id
+        self.exchangeViewModel.exchangeItem.currency = self.selectedCurrency.symbol
         self.exchangeViewModel.exchangeItem.coinSymbol = self.selectedCoin.symbol
         self.exchangeViewModel.exchangeItem.amount = self.amount?.doubleValue ?? 0
         self.exchangeViewModel.exchangeItem.marketCode = ""
@@ -67,19 +63,6 @@ struct EditExchangeView: View {
         if let currency = Currencies.allCurrenciesDictionary[self.exchangeViewModel.exchangeItem.currency] {
             self.exchangeViewModel.setCurrency(currency)
         }
-    }
-    
-    private static func getCoinViewModel(for symbol: String) -> CoinViewModel {
-        CoinViewModel(id: "",
-                      rank: 0,
-                      symbol: symbol,
-                      name: "",
-                      priceUsd: 0,
-                      changePercent24Hr: 0)
-    }
-    
-    private static func getCurrency(for currency: String) -> Currency {
-        Currency(id: currency, locale: "", name: "")
     }
 }
 

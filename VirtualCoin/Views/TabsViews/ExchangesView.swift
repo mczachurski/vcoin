@@ -27,10 +27,9 @@ struct ExchangesView: View {
                     coinViewModel.symbol == exchange.coinSymbol
                 })
                 
-                let coinViewModel = coinViewModelFromApi ?? CoinViewModel(id: "", rank: 1, symbol: "", name: "", priceUsd: 0, changePercent24Hr: 0)
+                let coinViewModel = coinViewModelFromApi ?? CoinViewModel()
                 
-                let currency = Currencies.allCurrenciesDictionary[exchange.currency]
-                    ?? Currency(id: "", locale: "", name: "")
+                let currency = Currencies.allCurrenciesDictionary[exchange.currency] ?? Currency()
                 
                 let exchangeViewModel = ExchangeViewModel(coinViewModel: coinViewModel,
                                                           exchangeItem: exchange,

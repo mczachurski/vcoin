@@ -28,8 +28,7 @@ struct AlertsView: View {
             
             let coinViewModel = coinViewModelFromApi ?? CoinViewModel(id: "", rank: 1, symbol: "", name: "", priceUsd: 0, changePercent24Hr: 0)
             
-            let currency = Currencies.allCurrenciesDictionary[alert.currency]
-                ?? Currency(id: "", locale: "", name: "")
+            let currency = Currencies.allCurrenciesDictionary[alert.currency] ?? Currency()
             
             let alertViewModel = AlertViewModel(coinViewModel: coinViewModel,
                                                 alert: alert,

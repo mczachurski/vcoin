@@ -27,7 +27,7 @@ struct AlertRowView: View {
                     Text(alertViewModel.alert.isPriceLower ? "Lower then" : "Greather then")
                         .foregroundColor(.gray)
                         .font(.subheadline)
-                    Text("\(alertViewModel.alert.price.toFormattedPrice(currency: "USD"))")
+                    Text("\(alertViewModel.alert.price.toFormattedPrice(currency: alertViewModel.alert.currency))")
                         .font(.subheadline)
                     Text(alertViewModel.alert.currency)
                         .font(.subheadline)

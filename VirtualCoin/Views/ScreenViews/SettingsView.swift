@@ -14,7 +14,7 @@ struct SettingsView: View {
     
     @State var matchSystem: Bool = true
     @State var isDarkMode: Bool = true
-    @State private var selectedCurrency = Currency(id: "USD", locale: "", name: "")
+    @State private var selectedCurrency = Currencies.getDefaultCurrency()
     
     var body: some View {
         NavigationView {
@@ -40,13 +40,13 @@ struct SettingsView: View {
                             HStack {
                                 Text(currency.name)
                                     .font(.body)
-                                Text("(\(currency.id))")
+                                Text("(\(currency.symbol))")
                                     .font(.footnote)
                                     .foregroundColor(.accentColor)
                             }.tag(currency)
                        }
                     }.onChange(of: selectedCurrency, perform: { value in
-                        print("selected: \(value.id)")
+                        print("selected: \(value.symbol)")
                     })
                 }
                 
@@ -104,16 +104,17 @@ struct SettingsView: View {
         let defaultSettings = settingsHandler.getDefaultSettings()
         
         if defaultSettings.currency != "" {
-            self.selectedCurrency = Currency(id: defaultSettings.currency, locale: "", name: "")
+            self.selectedCurrency = Currency(symbol: defaultSettings.currency)
         }
     }
     
     private func saveSettings() {
         let settingsHandler = SettingsHandler()
         let defaultSettings = settingsHandler.getDefaultSettings()
-        defaultSettings.currency = self.selectedCurrency.id
+        defaultSettings.currency = self.selectedCurrency.symbol
         
         CoreDataHandler.shared.save()
+        appViewModel.loadData()
     }
 }
 
