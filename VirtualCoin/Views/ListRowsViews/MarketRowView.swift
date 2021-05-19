@@ -22,7 +22,7 @@ struct MarketRowView: View {
             
             Spacer()
             
-            Text(market.price.toFormattedPrice(currency: ApplicationState.shared.currencySymbol))
+            Text(market.price.toFormattedPrice(currency: CoinsService.shared.currencySymbol))
                 .font(.footnote)
         }
     }

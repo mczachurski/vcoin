@@ -12,45 +12,6 @@ import UIKit
 
 public class CoreDataHandler {
     public static let shared = CoreDataHandler()
-
-    public static var preview: CoreDataHandler = {
-        let result = CoreDataHandler(inMemory: true)
-        let viewContext = result.container.viewContext
-        
-        let favouriteItem1 = Favourite(context: viewContext)
-        favouriteItem1.coinSymbol = "ETH"
-
-        let favouriteItem2 = Favourite(context: viewContext)
-        favouriteItem2.coinSymbol = "BTC"
-
-        let favouriteItem3 = Favourite(context: viewContext)
-        favouriteItem3.coinSymbol = "DGC"
-        
-        let exchangeItem1 = ExchangeItem(context: viewContext)
-        exchangeItem1.coinSymbol = "BTC"
-        exchangeItem1.amount = 2
-        exchangeItem1.currency = "USD"
-        exchangeItem1.marketCode = ""
-        
-        let alertItem1 = Alert(context: viewContext)
-        alertItem1.coinSymbol = "BTC"
-        alertItem1.currency = "USD"
-        alertItem1.isEnabled = true
-        alertItem1.isPriceLower = true
-        alertItem1.marketCode = ""
-        alertItem1.price = 63.33
-        
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
- 
-        return result
-    }()
     
     public let container: NSPersistentContainer
     
@@ -101,4 +62,45 @@ public class CoreDataHandler {
             }
         }
     }
+}
+
+extension CoreDataHandler {
+    public static var preview: CoreDataHandler = {
+        let result = CoreDataHandler(inMemory: true)
+        let viewContext = result.container.viewContext
+        
+        let favouriteItem1 = Favourite(context: viewContext)
+        favouriteItem1.coinSymbol = "ETH"
+
+        let favouriteItem2 = Favourite(context: viewContext)
+        favouriteItem2.coinSymbol = "BTC"
+
+        let favouriteItem3 = Favourite(context: viewContext)
+        favouriteItem3.coinSymbol = "DGC"
+        
+        let exchangeItem1 = ExchangeItem(context: viewContext)
+        exchangeItem1.coinSymbol = "BTC"
+        exchangeItem1.amount = 2
+        exchangeItem1.currency = "USD"
+        exchangeItem1.marketCode = ""
+        
+        let alertItem1 = Alert(context: viewContext)
+        alertItem1.coinSymbol = "BTC"
+        alertItem1.currency = "USD"
+        alertItem1.isEnabled = true
+        alertItem1.isPriceLower = true
+        alertItem1.marketCode = ""
+        alertItem1.price = 63.33
+        
+        do {
+            try viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+ 
+        return result
+    }()
 }

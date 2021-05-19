@@ -27,7 +27,7 @@ struct CoinRowView: View {
             Spacer()
             
             VStack(alignment: .trailing) {
-                Text(coin.price.toFormattedPrice(currency: ApplicationState.shared.currencySymbol))
+                Text(coin.price.toFormattedPrice(currency: CoinsService.shared.currencySymbol))
                     .font(.subheadline)
                     .foregroundColor(coin.changePercent24Hr > 0 ?.greenPastel : .redPastel)
 

@@ -9,13 +9,14 @@ import Foundation
 import SwiftUI
 import VirtualCoinKit
 
-public class ApplicationState {
-    public static let shared = ApplicationState()
+public class CoinsService: ObservableObject {
+    public static let shared = CoinsService()
     
-    public var coins: [CoinViewModel]?
-    public var markets: [MarketViewModel]?
-    public var favourites: [CoinViewModel]?
-    public var chartData: [Double]?
+    private let inMemory: Bool
+    private var coins: [CoinViewModel]?
+    private var markets: [MarketViewModel]?
+    private var favourites: [CoinViewModel]?
+    private var chartData: [Double]?
     
     public var selectedExchangeViewModel: ExchangeViewModel?
     public var selectedAlertViewModel: AlertViewModel?
@@ -25,21 +26,49 @@ public class ApplicationState {
     public var currencyRateUsd: Double = 1.0
     private var cacheChartData: [String: [Double]] = [:]
     
-    public func loadData(completionHandler: @escaping (Result<Void, RestClientError>) -> Void) {
+    init(inMemory: Bool = false) {
+        self.inMemory = inMemory
+    }
+    
+    public func loadCoins(completionHandler: @escaping (Result<[CoinViewModel], RestClientError>) -> Void) {
+        if inMemory {
+            completionHandler(.success(self.coins ?? []))
+            return
+        }
+        
         self.coins = nil
         self.favourites = nil
         
         self.loadCurrencyRate {
-            self.loadCoins(completionHandler: completionHandler)
+            self.loadCoinsInternal(completionHandler: completionHandler)
+        }
+    }
+
+    public func loadFavourites(completionHandler: @escaping (Result<[CoinViewModel], RestClientError>) -> Void) {
+        if inMemory {
+            completionHandler(.success(self.coins ?? []))
+            return
+        }
+        
+        self.coins = nil
+        self.favourites = nil
+        
+        self.loadCurrencyRate {
+            self.loadFavouritesInternal(completionHandler: completionHandler)
         }
     }
     
-    public func loadChartData(coin: CoinViewModel, chartTimeRange: ChartTimeRange, completionHandler: @escaping (Result<Void, RestClientError>) -> Void) {
+    public func loadChartData(coin: CoinViewModel, chartTimeRange: ChartTimeRange, completionHandler: @escaping (Result<[Double], RestClientError>) -> Void) {
+        if inMemory {
+            completionHandler(.success(self.chartData ?? []))
+            return
+        }
+        
         var dataResult: [Double] = []
 
         if let cacheData = self.cacheChartData[coin.symbol + chartTimeRange.rawValue] {
             self.chartData = cacheData
-            completionHandler(.success(()))
+            completionHandler(.success(self.chartData ?? []))
 
             return
         }
@@ -59,8 +88,8 @@ public class ApplicationState {
                 
                 self.cacheChartData[coin.symbol + chartTimeRange.rawValue] = dataResult
                 self.chartData = dataResult
-                
-                completionHandler(.success(()))
+
+                completionHandler(.success(self.chartData ?? []))
                 break
             case .failure(let error):
                 completionHandler(.failure(error))
@@ -70,7 +99,12 @@ public class ApplicationState {
         }
     }
     
-    public func loadMarketValues(coin: CoinViewModel, completionHandler: @escaping (Result<Void, RestClientError>) -> Void) {        
+    public func loadMarketValues(coin: CoinViewModel, completionHandler: @escaping (Result<[MarketViewModel], RestClientError>) -> Void) {
+        if inMemory {
+            completionHandler(.success(self.markets ?? []))
+            return
+        }
+        
         self.markets = nil
         let coinCapClient = CoinCapClient()
         coinCapClient.getMarketValuesAsync(for: coin.id) { result in
@@ -85,7 +119,7 @@ public class ApplicationState {
                 }
                 
                 self.markets = marketsResult
-                completionHandler(.success(()))
+                completionHandler(.success(self.markets ?? []))
                 
                 break
             case .failure(let error):
@@ -93,18 +127,6 @@ public class ApplicationState {
                 break
             }
         }
-    }
-    
-    public func removeFromFavourites(coinViewModel: CoinViewModel) {
-        self.favourites = self.favourites?.filter { $0 !== coinViewModel }
-    }
-    
-    public func addToFavourites(coinViewModel: CoinViewModel) {
-        self.favourites?.append(coinViewModel)
-
-        self.favourites = self.favourites?.sorted(by: { lhs, rhs in
-            lhs.rank < rhs.rank
-        })
     }
     
     private func loadCurrencyRate(completionHandler: @escaping () -> Void) {
@@ -127,7 +149,7 @@ public class ApplicationState {
         }
     }
     
-    private func loadCoins(completionHandler: @escaping (Result<Void, RestClientError>) -> Void) {
+    private func loadCoinsInternal(completionHandler: @escaping (Result<[CoinViewModel], RestClientError>) -> Void) {
         let coinCapClient = CoinCapClient()
         coinCapClient.getCoinsAsync { result in
             switch result {
@@ -138,7 +160,7 @@ public class ApplicationState {
                 let favouritesHandler = FavouritesHandler()
                 let favourites = favouritesHandler.getFavourites()
                 
-                for coin in coins {                    
+                for coin in coins {
                     let coinViewModel = CoinViewModel(coin: coin, rateUsd: self.currencyRateUsd)
                     coinsResult.append(coinViewModel)
                     
@@ -152,8 +174,9 @@ public class ApplicationState {
                 
                 self.coins = coinsResult
                 self.favourites = favouritesResult
+                
+                completionHandler(.success(self.coins ?? []))
 
-                completionHandler(.success(()))
                 break
             case .failure(let error):
                 completionHandler(.failure(error))
@@ -161,4 +184,53 @@ public class ApplicationState {
             }
         }
     }
+    
+    private func loadFavouritesInternal(completionHandler: @escaping (Result<[CoinViewModel], RestClientError>) -> Void) {
+        let coinCapClient = CoinCapClient()
+        coinCapClient.getCoinsAsync { result in
+            switch result {
+            case .success(let coins):
+                var coinsResult: [CoinViewModel] = []
+                var favouritesResult: [CoinViewModel] = []
+                
+                let favouritesHandler = FavouritesHandler()
+                let favourites = favouritesHandler.getFavourites()
+                
+                for coin in coins {
+                    let coinViewModel = CoinViewModel(coin: coin, rateUsd: self.currencyRateUsd)
+                    coinsResult.append(coinViewModel)
+                    
+                    if favourites.contains(where: { favourite in
+                        favourite.coinSymbol == coinViewModel.symbol
+                    }) {
+                        coinViewModel.isFavourite = true
+                        favouritesResult.append(coinViewModel)
+                    }
+                }
+                
+                self.coins = coinsResult
+                self.favourites = favouritesResult
+                
+                completionHandler(.success(self.favourites ?? []))
+
+                break
+            case .failure(let error):
+                completionHandler(.failure(error))
+                break
+            }
+        }
+    }
+}
+
+extension CoinsService {
+    public static var preview: CoinsService = {
+        let result = CoinsService(inMemory: true)
+        
+        result.coins = PreviewData.getCoinsViewModel()
+        result.favourites = PreviewData.getCoinsViewModel()
+        result.markets = PreviewData.getMarketsViewModel()
+        result.chartData = PreviewData.getChartData()
+        
+        return result
+    }()
 }

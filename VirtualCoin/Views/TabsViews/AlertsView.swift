@@ -9,6 +9,8 @@ import SwiftUI
 import VirtualCoinKit
 
 struct AlertsView: View {
+    @EnvironmentObject private var applicationStateService: ApplicationStateService
+    
     @State private var showingSettingsView = false
     @State private var showingAlertView = false
 
@@ -20,7 +22,7 @@ struct AlertsView: View {
     
     var body: some View {
         List(alerts, id: \.objectID) { alert in
-            let coinViewModelFromApi = ApplicationState.shared.coins?.first(where: { coinViewModel in
+            let coinViewModelFromApi = applicationStateService.coins.first(where: { coinViewModel in
                 coinViewModel.symbol == alert.coinSymbol
             })
             
@@ -34,7 +36,7 @@ struct AlertsView: View {
             
             AlertRowView(alertViewModel: alertViewModel)
                 .onTapGesture {
-                    ApplicationState.shared.selectedAlertViewModel = alertViewModel
+                    CoinsService.shared.selectedAlertViewModel = alertViewModel
                      self.showingAlertView = true
                 }
         }
@@ -50,7 +52,7 @@ struct AlertsView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    ApplicationState.shared.selectedAlertViewModel = nil
+                    CoinsService.shared.selectedAlertViewModel = nil
                     self.showingAlertView = true
                 }) {
                     Image(systemName: "plus")
@@ -61,7 +63,7 @@ struct AlertsView: View {
             SettingsView()
         }
         .sheet(isPresented: $showingAlertView) {
-            if let selectedAlertViewModel = ApplicationState.shared.selectedAlertViewModel {
+            if let selectedAlertViewModel = CoinsService.shared.selectedAlertViewModel {
                 EditAlertView(alertViewModel: selectedAlertViewModel)
             } else {
                 AddAlertView()
@@ -75,12 +77,14 @@ struct AlertsView_Previews: PreviewProvider {
         Group {
             NavigationView {
                 AlertsView()
+                    .environmentObject(ApplicationStateService.preview)
                     .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
             }
             .preferredColorScheme(.dark)
             
             NavigationView {
                 AlertsView()
+                    .environmentObject(ApplicationStateService.preview)
                     .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
             }
             .preferredColorScheme(.light)

@@ -42,7 +42,7 @@ public class ExchangeViewModel: Identifiable, ObservableObject {
             case .success(let currencyRate):
                 let currencyRateUsd = Double(currencyRate.rateUsd) ?? 1.0
 
-                DispatchQueue.main.async {
+                DispatchQueue.runOnMain {
                     self.price = self.priceUsd / currencyRateUsd
                 }
                 break

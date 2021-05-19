@@ -10,6 +10,7 @@ import VirtualCoinKit
 import NumericText
 
 struct EditExchangeView: View {
+    @EnvironmentObject private var applicationStateService: ApplicationStateService
     @Environment(\.presentationMode) var presentationMode
     
     @State private var amount: NSNumber?
@@ -53,7 +54,7 @@ struct EditExchangeView: View {
         
         CoreDataHandler.shared.save()
         
-        if let coinViewModel = ApplicationState.shared.coins?.first(where: { coinViewModel in
+        if let coinViewModel = applicationStateService.coins.first(where: { coinViewModel in
             coinViewModel.symbol == self.exchangeViewModel.exchangeItem.coinSymbol
         }) {
             self.exchangeViewModel.setCoinViewModel(coinViewModel)
@@ -69,9 +70,11 @@ struct EditExchangeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             EditExchangeView(exchangeViewModel: PreviewData.getExchangeViewModel())
+                .environmentObject(ApplicationStateService.preview)
                 .preferredColorScheme(.dark)
             
             EditExchangeView(exchangeViewModel: PreviewData.getExchangeViewModel())
+                .environmentObject(ApplicationStateService.preview)
                 .preferredColorScheme(.light)
         }
     }

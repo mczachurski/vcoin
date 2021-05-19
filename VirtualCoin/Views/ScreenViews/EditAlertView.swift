@@ -10,6 +10,7 @@ import VirtualCoinKit
 import NumericText
 
 struct EditAlertView: View {
+    @EnvironmentObject private var applicationStateService: ApplicationStateService
     @Environment(\.presentationMode) var presentationMode
     
     @State private var price: NSNumber?
@@ -52,7 +53,7 @@ struct EditAlertView: View {
         
         CoreDataHandler.shared.save()
         
-        if let coinViewModel = ApplicationState.shared.coins?.first(where: { coinViewModel in
+        if let coinViewModel = applicationStateService.coins.first(where: { coinViewModel in
             coinViewModel.symbol == self.alertViewModel.alert.coinSymbol
         }) {
             self.alertViewModel.setCoinViewModel(coinViewModel)
@@ -68,9 +69,11 @@ struct EEditAlertView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             EditAlertView(alertViewModel: PreviewData.getAlertViewModel())
+                .environmentObject(ApplicationStateService.preview)
                 .preferredColorScheme(.dark)
             
             EditAlertView(alertViewModel: PreviewData.getAlertViewModel())
+                .environmentObject(ApplicationStateService.preview)
                 .preferredColorScheme(.light)
         }
     }

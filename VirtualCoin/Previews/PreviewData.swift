@@ -87,6 +87,10 @@ struct PreviewData: PreviewProvider {
                        currency: getCurrency())
     }
     
+    static func getChartData() -> [Double] {
+        return [34, 34, 23, 34, 45, 65, 34, 32, 23, 33, 65, 57, 65, 34, 65, 67]
+    }
+    
     static var previews: some View {
         EmptyView()
     }

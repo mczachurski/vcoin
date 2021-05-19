@@ -9,14 +9,19 @@ import SwiftUI
 import VirtualCoinKit
 import LightChart
 
-struct ChartView<VM>: View where VM: ChartViewViewModelProtocol {
-    @ObservedObject var viewModel: VM
+struct ChartView: View {
+    @EnvironmentObject var coinsService: CoinsService
+    @State private var state: ViewState = .iddle
+    @State private var chartData: [Double] = []
+
+    public var chartTimeRange: ChartTimeRange
+    public var coin: CoinViewModel
             
     var body: some View {
-        switch viewModel.state {
+        switch state {
         case .iddle:
             Text("Iddle").onAppear {
-                viewModel.load()
+                self.load()
             }
         case .loading:
             VStack {
@@ -25,9 +30,9 @@ struct ChartView<VM>: View where VM: ChartViewViewModelProtocol {
                     .progressViewStyle(CircularProgressViewStyle())
                 Spacer()
             }
-        case .loaded(let chartData):
+        case .loaded:
             VStack {
-                LightChartView(data: chartData,
+                LightChartView(data: self.chartData,
                                type: .curved,
                                visualType: .customFilled(color: .main,
                                                          lineWidth: 2,
@@ -42,15 +47,33 @@ struct ChartView<VM>: View where VM: ChartViewViewModelProtocol {
             Text("\(error.localizedDescription)")
         }
     }
+    
+    private func load() {
+        state = .loading
+        
+        coinsService.loadChartData(coin: coin, chartTimeRange: chartTimeRange) { result in
+            switch result {
+            case .success(let chartData):
+                self.chartData = chartData
+                self.state = .loaded
+                break;
+            case .failure(let error):
+                self.state = .error(error)
+                break;
+            }
+        }
+    }
 }
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ChartView(viewModel: MockChartViewViewModel(chartTimeRange: .hour, coin: PreviewData.getCoinViewModel()))
+            ChartView(chartTimeRange: .hour, coin: PreviewData.getCoinViewModel())
+                .environmentObject(CoinsService.preview)
                 .preferredColorScheme(.dark)
 
-            ChartView(viewModel: MockChartViewViewModel(chartTimeRange: .hour, coin: PreviewData.getCoinViewModel()))
+            ChartView(chartTimeRange: .hour, coin: PreviewData.getCoinViewModel())
+                .environmentObject(CoinsService.preview)
                 .preferredColorScheme(.light)
         }
         .previewLayout(.fixed(width: 360, height: 360))

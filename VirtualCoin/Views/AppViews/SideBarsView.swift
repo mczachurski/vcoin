@@ -27,7 +27,7 @@ struct SideBarsView: View {
             
             // All currencies view.
             NavigationLink(
-                destination: CoinsView<CoinsViewViewModel, CoinViewViewModel, ChartViewViewModel>(viewModel: CoinsViewViewModel()),
+                destination: CoinsView(),
                 tag: "currencies",
                 selection: $selectedFolder
             ) {

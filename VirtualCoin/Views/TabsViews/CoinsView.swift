@@ -9,17 +9,20 @@ import SwiftUI
 import CoreData
 import VirtualCoinKit
 
-struct CoinsView<VM, CoinVM, ChartVM>: View where VM: CoinsViewViewModelProtocol, CoinVM: CoinViewViewModelProtocol, ChartVM: ChartViewViewModelProtocol {
-    @ObservedObject var viewModel: VM
+struct CoinsView: View {
 
-    @ObservedObject var searchBar: SearchBar = SearchBar()
+    @EnvironmentObject private var coinsService: CoinsService
+    @EnvironmentObject private var applicationStateService: ApplicationStateService
+    
+    @ObservedObject private var searchBar: SearchBar = SearchBar()
     @State private var showingSettingsView = false
+    @State private var state: ViewState = .iddle
     
     var body: some View {
-        switch viewModel.state {
+        switch state {
         case .iddle:
             Text("Iddle").onAppear {
-                viewModel.load()
+                self.load()
             }
         case .loading:
             VStack {
@@ -29,12 +32,12 @@ struct CoinsView<VM, CoinVM, ChartVM>: View where VM: CoinsViewViewModelProtocol
                 Spacer()
             }
             .navigationTitle("All currencies")
-        case .loaded(let coins):
+        case .loaded:
             List {
-                ForEach(coins.filter {
+                ForEach(applicationStateService.coins.filter {
                     searchBar.text.isEmpty || $0.name.localizedStandardContains(searchBar.text)
                 }) { coin in
-                    NavigationLink(destination: CoinView<CoinVM, ChartVM>(viewModel: CoinVM.init(coin: coin))) {
+                    NavigationLink(destination: CoinView(coin: coin)) {
                         CoinRowView(coin: coin)
                     }
                 }
@@ -58,18 +61,40 @@ struct CoinsView<VM, CoinVM, ChartVM>: View where VM: CoinsViewViewModelProtocol
             Text("\(error.localizedDescription)")
         }
     }
+    
+    public func load() {
+        state = .loading
+        
+        coinsService.loadCoins { result in
+            DispatchQueue.runOnMain {
+                switch result {
+                case .success(let coins):
+                    self.applicationStateService.coins = coins
+                    self.state = .loaded
+                    break;
+                case .failure(let error):
+                    self.state = .error(error)
+                    break;
+                }
+            }
+        }
+    }
 }
 
 struct CoinsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                CoinsView<MockCoinsViewViewModel, MockCoinViewViewModel, MockChartViewViewModel>(viewModel: MockCoinsViewViewModel())
+                CoinsView()
+                    .environmentObject(ApplicationStateService.preview)
+                    .environmentObject(CoinsService.preview)
             }
             .preferredColorScheme(.dark)
             
             NavigationView {
-                CoinsView<MockCoinsViewViewModel, MockCoinViewViewModel, MockChartViewViewModel>(viewModel: MockCoinsViewViewModel())
+                CoinsView()
+                    .environmentObject(ApplicationStateService.preview)
+                    .environmentObject(CoinsService.preview)
             }
             .preferredColorScheme(.light)
         }

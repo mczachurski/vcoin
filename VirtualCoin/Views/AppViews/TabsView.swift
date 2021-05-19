@@ -24,7 +24,7 @@ struct TabsView: View {
 
             // All currencies view.
             NavigationView {
-                CoinsView<CoinsViewViewModel, CoinViewViewModel, ChartViewViewModel>(viewModel: CoinsViewViewModel())
+                CoinsView()
             }
             .tabItem {
                 Image(systemName: "bitcoinsign.circle.fill")

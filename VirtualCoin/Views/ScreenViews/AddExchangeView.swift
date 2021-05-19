@@ -52,9 +52,11 @@ struct AddExchangeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             EditExchangeView(exchangeViewModel: PreviewData.getExchangeViewModel())
+                .environmentObject(ApplicationStateService.preview)
                 .preferredColorScheme(.dark)
             
             EditExchangeView(exchangeViewModel: PreviewData.getExchangeViewModel())
+                .environmentObject(ApplicationStateService.preview)
                 .preferredColorScheme(.light)
         }
     }
