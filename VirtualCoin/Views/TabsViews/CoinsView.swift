@@ -9,19 +9,32 @@ import SwiftUI
 import CoreData
 import VirtualCoinKit
 
-struct CoinsView: View {
-    @EnvironmentObject var appViewModel: AppViewModel
+struct CoinsView<VM, CoinVM, ChartVM>: View where VM: CoinsViewViewModelProtocol, CoinVM: CoinViewViewModelProtocol, ChartVM: ChartViewViewModelProtocol {
+    @ObservedObject var viewModel: VM
 
     @ObservedObject var searchBar: SearchBar = SearchBar()
     @State private var showingSettingsView = false
-
+    
     var body: some View {
-        if let coins = appViewModel.coins {
+        switch viewModel.state {
+        case .iddle:
+            Text("Iddle").onAppear {
+                viewModel.load()
+            }
+        case .loading:
+            VStack {
+                Spacer()
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                Spacer()
+            }
+            .navigationTitle("All currencies")
+        case .loaded(let coins):
             List {
                 ForEach(coins.filter {
                     searchBar.text.isEmpty || $0.name.localizedStandardContains(searchBar.text)
                 }) { coin in
-                    NavigationLink(destination: CoinView(coin: coin)) {
+                    NavigationLink(destination: CoinView<CoinVM, ChartVM>(viewModel: CoinVM.init(coin: coin))) {
                         CoinRowView(coin: coin)
                     }
                 }
@@ -41,15 +54,8 @@ struct CoinsView: View {
             .sheet(isPresented: $showingSettingsView) {
                 SettingsView()
             }
-        }
-        else {
-            VStack {
-                Spacer()
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-                Spacer()
-            }
-            .navigationTitle("All currencies")
+        case .error(let error):
+            Text("\(error.localizedDescription)")
         }
     }
 }
@@ -58,14 +64,12 @@ struct CoinsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                CoinsView()
-                    .environmentObject(AppViewModel.preview)
+                CoinsView<MockCoinsViewViewModel, MockCoinViewViewModel, MockChartViewViewModel>(viewModel: MockCoinsViewViewModel())
             }
             .preferredColorScheme(.dark)
             
             NavigationView {
-                CoinsView()
-                    .environmentObject(AppViewModel.preview)
+                CoinsView<MockCoinsViewViewModel, MockCoinViewViewModel, MockChartViewViewModel>(viewModel: MockCoinsViewViewModel())
             }
             .preferredColorScheme(.light)
         }

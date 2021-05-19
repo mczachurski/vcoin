@@ -10,8 +10,6 @@ import VirtualCoinKit
 import NumericText
 
 struct AlertDetailView: View {
-    @EnvironmentObject var appViewModel: AppViewModel
-    
     @Binding private var price: NSNumber?
     @Binding private var selectedCurrency: Currency
     @Binding private var selectedCoin: CoinViewModel
@@ -32,7 +30,7 @@ struct AlertDetailView: View {
                 }
                 
                 Picker(selection: $selectedCoin, label: Text("Coin")) {
-                    ForEach(appViewModel.coins ?? [], id: \.self) { coin in
+                    ForEach(ApplicationState.shared.coins ?? [], id: \.self) { coin in
                         HStack {
                             Text(coin.name)
                                 .font(.body)
@@ -71,6 +69,5 @@ struct AlertDetailView_Previews: PreviewProvider {
 
     static var previews: some View {
         AlertDetailView(price: $price, currency: $currency, coin: $coin)
-            .environmentObject(AppViewModel.preview)
     }
 }

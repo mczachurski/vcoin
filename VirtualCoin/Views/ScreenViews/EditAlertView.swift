@@ -11,7 +11,6 @@ import NumericText
 
 struct EditAlertView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var appViewModel: AppViewModel
     
     @State private var price: NSNumber?
     @State private var selectedCurrency: Currency
@@ -53,7 +52,7 @@ struct EditAlertView: View {
         
         CoreDataHandler.shared.save()
         
-        if let coinViewModel = self.appViewModel.coins?.first(where: { coinViewModel in
+        if let coinViewModel = ApplicationState.shared.coins?.first(where: { coinViewModel in
             coinViewModel.symbol == self.alertViewModel.alert.coinSymbol
         }) {
             self.alertViewModel.setCoinViewModel(coinViewModel)
@@ -69,11 +68,9 @@ struct EEditAlertView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             EditAlertView(alertViewModel: PreviewData.getAlertViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.dark)
             
             EditAlertView(alertViewModel: PreviewData.getAlertViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.light)
         }
     }

@@ -24,7 +24,7 @@ struct TabsView: View {
 
             // All currencies view.
             NavigationView {
-                CoinsView()
+                CoinsView<CoinsViewViewModel, CoinViewViewModel, ChartViewViewModel>(viewModel: CoinsViewViewModel())
             }
             .tabItem {
                 Image(systemName: "bitcoinsign.circle.fill")
@@ -55,7 +55,6 @@ struct TabsView: View {
 struct TabsView_Previews: PreviewProvider {
     static var previews: some View {
         TabsView()
-            .environmentObject(AppViewModel.preview)
             .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
     }
 }

@@ -11,7 +11,6 @@ import NumericText
 
 struct EditExchangeView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var appViewModel: AppViewModel
     
     @State private var amount: NSNumber?
     @State private var selectedCurrency: Currency
@@ -54,7 +53,7 @@ struct EditExchangeView: View {
         
         CoreDataHandler.shared.save()
         
-        if let coinViewModel = self.appViewModel.coins?.first(where: { coinViewModel in
+        if let coinViewModel = ApplicationState.shared.coins?.first(where: { coinViewModel in
             coinViewModel.symbol == self.exchangeViewModel.exchangeItem.coinSymbol
         }) {
             self.exchangeViewModel.setCoinViewModel(coinViewModel)
@@ -70,11 +69,9 @@ struct EditExchangeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             EditExchangeView(exchangeViewModel: PreviewData.getExchangeViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.dark)
             
             EditExchangeView(exchangeViewModel: PreviewData.getExchangeViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.light)
         }
     }

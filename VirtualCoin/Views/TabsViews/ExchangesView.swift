@@ -9,8 +9,6 @@ import SwiftUI
 import VirtualCoinKit
 
 struct ExchangesView: View {
-    @EnvironmentObject var appViewModel: AppViewModel
-    
     @State private var showingSettingsView = false
     @State private var showingExchangeDetailsView = false
     
@@ -23,7 +21,7 @@ struct ExchangesView: View {
     var body: some View {
         List {
             ForEach(exchanges, id: \.self) { exchange in                
-                let coinViewModelFromApi = self.appViewModel.coins?.first(where: { coinViewModel in
+                let coinViewModelFromApi = ApplicationState.shared.coins?.first(where: { coinViewModel in
                     coinViewModel.symbol == exchange.coinSymbol
                 })
                 
@@ -37,7 +35,7 @@ struct ExchangesView: View {
 
                 ExchangeRowView(exchangeViewModel: exchangeViewModel)
                     .onTapGesture {
-                         self.appViewModel.selectedExchangeViewModel = exchangeViewModel
+                        ApplicationState.shared.selectedExchangeViewModel = exchangeViewModel
                          self.showingExchangeDetailsView = true
                     }
             }.onDelete(perform: self.deleteItem)
@@ -54,7 +52,7 @@ struct ExchangesView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    self.appViewModel.selectedExchangeViewModel = nil
+                    ApplicationState.shared.selectedExchangeViewModel = nil
                     self.showingExchangeDetailsView = true
                 }) {
                     Image(systemName: "plus")
@@ -65,7 +63,7 @@ struct ExchangesView: View {
             SettingsView()
         }
         .sheet(isPresented: $showingExchangeDetailsView) {
-            if let selectedExchangeViewModel = self.appViewModel.selectedExchangeViewModel {
+            if let selectedExchangeViewModel = ApplicationState.shared.selectedExchangeViewModel {
                 EditExchangeView(exchangeViewModel: selectedExchangeViewModel)
             } else {
                 AddExchangeView()
@@ -90,14 +88,12 @@ struct ExchangesView_Previews: PreviewProvider {
         Group {
             NavigationView {
                 ExchangesView()
-                    .environmentObject(AppViewModel.preview)
                     .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
             }
             .preferredColorScheme(.dark)
             
             NavigationView {
                 ExchangesView()
-                    .environmentObject(AppViewModel.preview)
                     .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
             }
             .preferredColorScheme(.light)

@@ -10,7 +10,6 @@ import VirtualCoinKit
 
 struct SideBarsView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
-    @EnvironmentObject var appViewModel: AppViewModel
     
     @Binding var selectedFolder: String?
     
@@ -28,7 +27,7 @@ struct SideBarsView: View {
             
             // All currencies view.
             NavigationLink(
-                destination: CoinsView(),
+                destination: CoinsView<CoinsViewViewModel, CoinViewViewModel, ChartViewViewModel>(viewModel: CoinsViewViewModel()),
                 tag: "currencies",
                 selection: $selectedFolder
             ) {
@@ -62,7 +61,6 @@ struct SideBarsView: View {
 struct SideBarsView_Previews: PreviewProvider {
     static var previews: some View {
         SideBarsView(selectedFolder: .constant("favourites"))
-            .environmentObject(AppViewModel.preview)
             .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
     }
 }

@@ -10,7 +10,6 @@ import VirtualCoinKit
 
 struct AddAlertView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var appViewModel: AppViewModel
     
     @State private var price: NSNumber?
     @State private var selectedCurrency = Currencies.getDefaultCurrency()
@@ -54,11 +53,9 @@ struct AddAlertView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AddAlertView()
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.dark)
             
             AddAlertView()
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.light)
         }
     }

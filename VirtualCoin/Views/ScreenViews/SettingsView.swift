@@ -10,7 +10,6 @@ import VirtualCoinKit
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var appViewModel: AppViewModel
     
     @State var matchSystem: Bool = true
     @State var isDarkMode: Bool = true
@@ -114,7 +113,9 @@ struct SettingsView: View {
         defaultSettings.currency = self.selectedCurrency.symbol
         
         CoreDataHandler.shared.save()
-        appViewModel.loadData()
+        
+        // TODO: Refresh data after setting changed.
+        // appViewModel.loadData()
     }
 }
 
@@ -122,11 +123,9 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SettingsView()
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.dark)
             
             SettingsView()
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.light)
         }
     }

@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct FavouritesView: View {
-    @EnvironmentObject var appViewModel: AppViewModel
-    
     @State private var showingSettingsView = false
 
     var body: some View {
-        if let favourites = appViewModel.favourites {
+        if let favourites = ApplicationState.shared.favourites {
             List(favourites) { coin in
-                NavigationLink(destination: CoinView(coin: coin)) {
+                NavigationLink(destination: CoinView<CoinViewViewModel, ChartViewViewModel>(viewModel: CoinViewViewModel(coin: coin))) {
                     CoinRowView(coin: coin)
                 }
             }
@@ -51,14 +49,12 @@ struct FavouritesView_Previews: PreviewProvider {
         Group {
             NavigationView {
                 FavouritesView()
-                    .environmentObject(AppViewModel.preview)
                     .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
             }
             .preferredColorScheme(.dark)
             
             NavigationView {
                 FavouritesView()
-                    .environmentObject(AppViewModel.preview)
                     .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
             }
             .preferredColorScheme(.light)

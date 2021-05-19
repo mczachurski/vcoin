@@ -9,7 +9,6 @@ import SwiftUI
 import VirtualCoinKit
 
 struct ExchangeRowView: View {
-    @EnvironmentObject var appViewModel: AppViewModel
     @ObservedObject public var exchangeViewModel: ExchangeViewModel
 
     var body: some View {
@@ -51,11 +50,9 @@ struct ExchangeRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ExchangeRowView(exchangeViewModel: PreviewData.getExchangeViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.dark)
             
             ExchangeRowView(exchangeViewModel: PreviewData.getExchangeViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.light)
         }
         .previewLayout(.fixed(width: 360, height: 70))

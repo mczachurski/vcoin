@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MarketRowView: View {
-    @EnvironmentObject var appViewModel: AppViewModel
     @StateObject var market: MarketViewModel
 
     var body: some View {
@@ -23,7 +22,7 @@ struct MarketRowView: View {
             
             Spacer()
             
-            Text(market.price.toFormattedPrice(currency: appViewModel.currencySymbol))
+            Text(market.price.toFormattedPrice(currency: ApplicationState.shared.currencySymbol))
                 .font(.footnote)
         }
     }
@@ -33,11 +32,9 @@ struct MarketRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             MarketRowView(market: PreviewData.getMarketViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.dark)
             
             MarketRowView(market: PreviewData.getMarketViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.light)
         }
         .previewLayout(.fixed(width: 360, height: 70))

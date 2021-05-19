@@ -8,34 +8,33 @@
 import SwiftUI
 import VirtualCoinKit
 
-struct CoinView: View {
-    @EnvironmentObject var appViewModel: AppViewModel
-    @StateObject var coin: CoinViewModel
+struct CoinView<VM, CVM>: View where VM: CoinViewViewModelProtocol, CVM: ChartViewViewModelProtocol {
+    @ObservedObject var viewModel: VM
 
     @State private var selectedTab: ChartTimeRange = .hour
     @State private var isShowingMarketsView = false
-    
+        
     var body: some View {
         VStack {
             HStack {
-                CoinImageView(coin: coin)
-                Text(coin.name)
+                CoinImageView(coin: viewModel.coin)
+                Text(viewModel.coin.name)
                     .font(.largeTitle)
                     .fontWeight(.thin)
             }.padding(.trailing, 32)
             
-            Text(coin.symbol)
+            Text(viewModel.coin.symbol)
                 .font(.title2)
                 .fontWeight(.light)
                 .foregroundColor(.gray)
 
-            Text(coin.price.toFormattedPrice(currency: appViewModel.currencySymbol))
+            Text(viewModel.coin.price.toFormattedPrice(currency: ApplicationState.shared.currencySymbol))
                 .fontWeight(.light)
                 .font(.title)
 
-            Text(coin.changePercent24Hr.toFormattedPercent())
+            Text(viewModel.coin.changePercent24Hr.toFormattedPercent())
                 .font(.body)
-                .foregroundColor(coin.changePercent24Hr > 0 ? .greenPastel : .redPastel)
+                .foregroundColor(viewModel.coin.changePercent24Hr > 0 ? .greenPastel : .redPastel)
 
             VStack {
                 Picker("", selection: $selectedTab) {
@@ -50,19 +49,19 @@ struct CoinView: View {
 
                 switch(selectedTab) {
                 case .hour:
-                    ChartView(chartTimeRange: .hour, coin: self.coin)
+                    ChartView(viewModel: CVM.init(chartTimeRange: .hour, coin: viewModel.coin))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 case .day:
-                    ChartView(chartTimeRange: .day, coin: self.coin)
+                    ChartView(viewModel: CVM.init(chartTimeRange: .day, coin: viewModel.coin))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 case .week:
-                    ChartView(chartTimeRange: .week, coin: self.coin)
+                    ChartView(viewModel: CVM.init(chartTimeRange: .week, coin: viewModel.coin))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 case .month:
-                    ChartView(chartTimeRange: .month, coin: self.coin)
+                    ChartView(viewModel: CVM.init(chartTimeRange: .month, coin: viewModel.coin))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 case .year:
-                    ChartView(chartTimeRange: .year, coin: self.coin)
+                    ChartView(viewModel: CVM.init(chartTimeRange: .year, coin: viewModel.coin))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
@@ -74,37 +73,37 @@ struct CoinView: View {
                 }) {
                     Image(systemName: "globe")
                 }
-                .disabled(appViewModel.markets == nil)
+                .disabled(ApplicationState.shared.markets == nil)
                 .sheet(isPresented: $isShowingMarketsView) {
-                    MarketsView(markets: appViewModel.markets!)
+                    MarketsView(markets: ApplicationState.shared.markets!)
                 }
                 
                 Button(action: {
                     self.toggleFavourite();
                 }) {
-                    Image(systemName: coin.isFavourite ? "star.fill" : "star")
+                    Image(systemName: viewModel.coin.isFavourite ? "star.fill" : "star")
                 }
             }
         }
         .onAppear {
-            appViewModel.loadMarketValues(coin: coin)
+            viewModel.load()
         }
     }
     
     private func toggleFavourite() {
         let favouritesHandler = FavouritesHandler()
         
-        if favouritesHandler.isFavourite(symbol: coin.symbol) {
-            self.coin.isFavourite = false
-            self.appViewModel.removeFromFavourites(coinViewModel: coin)
+        if favouritesHandler.isFavourite(symbol: viewModel.coin.symbol) {
+            self.viewModel.coin.isFavourite = false
+            ApplicationState.shared.removeFromFavourites(coinViewModel: viewModel.coin)
 
-            favouritesHandler.deleteFavouriteEntity(symbol: coin.symbol)
+            favouritesHandler.deleteFavouriteEntity(symbol: viewModel.coin.symbol)
         } else {
-            self.coin.isFavourite = true
-            self.appViewModel.addToFavourites(coinViewModel: coin)
+            self.viewModel.coin.isFavourite = true
+            ApplicationState.shared.addToFavourites(coinViewModel: viewModel.coin)
             
             let favouriteEntity = favouritesHandler.createFavouriteEntity()
-            favouriteEntity.coinSymbol = coin.symbol
+            favouriteEntity.coinSymbol = viewModel.coin.symbol
         }
         
         CoreDataHandler.shared.save()
@@ -115,14 +114,12 @@ struct CoinView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                CoinView(coin: PreviewData.getCoinViewModel())
-                    .environmentObject(AppViewModel.preview)
+                CoinView<MockCoinViewViewModel, MockChartViewViewModel>(viewModel: MockCoinViewViewModel(coin: PreviewData.getCoinViewModel()))
             }
             .preferredColorScheme(.dark)
             
             NavigationView {
-                CoinView(coin: PreviewData.getCoinViewModel())
-                    .environmentObject(AppViewModel.preview)
+                CoinView<MockCoinViewViewModel, MockChartViewViewModel>(viewModel: MockCoinViewViewModel(coin: PreviewData.getCoinViewModel()))
             }
             .preferredColorScheme(.light)
         }

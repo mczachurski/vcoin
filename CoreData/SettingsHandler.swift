@@ -25,9 +25,15 @@ class SettingsHandler {
         }
 
         if let settings = settingsList.first {
+            if settings.currency.count == 0 {
+                settings.currency = "USD"
+            }
+            
             return settings
         } else {
             let settings = self.createSettingsEntity()
+            settings.currency = "USD"
+            settings.isDarkMode = false
             CoreDataHandler.shared.save()
 
             return settings

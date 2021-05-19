@@ -9,64 +9,44 @@ import Foundation
 import SwiftUI
 import VirtualCoinKit
 
-public class AppViewModel: ObservableObject {
-    @Published public var coins: [CoinViewModel]?
-    @Published public var markets: [MarketViewModel]?
-    @Published public var favourites: [CoinViewModel]?
-    @Published public var chartData: [Double]?
+public class ApplicationState {
+    public static let shared = ApplicationState()
     
-    @Published public var selectedExchangeViewModel: ExchangeViewModel?
-    @Published public var selectedAlertViewModel: AlertViewModel?
+    public var coins: [CoinViewModel]?
+    public var markets: [MarketViewModel]?
+    public var favourites: [CoinViewModel]?
+    public var chartData: [Double]?
     
-    public var currencySymbol: String = "USD"
+    public var selectedExchangeViewModel: ExchangeViewModel?
+    public var selectedAlertViewModel: AlertViewModel?
+    
+    @Setting(\.currency) public var currencySymbol: String
+
     public var currencyRateUsd: Double = 1.0
     private var cacheChartData: [String: [Double]] = [:]
-    private let inMemory: Bool
     
-    init(inMemory: Bool = false) {
-        self.inMemory = inMemory
-    }
-    
-    public func loadData() {
-        if inMemory {
-            return
-        }
-        
+    public func loadData(completionHandler: @escaping (Result<Void, RestClientError>) -> Void) {
         self.coins = nil
         self.favourites = nil
-
-        let settingsHandler = SettingsHandler()
-        let settings = settingsHandler.getDefaultSettings()
-        
-        if settings.currency.count > 0 {
-            self.currencySymbol = settings.currency
-        }
         
         self.loadCurrencyRate {
-            self.loadCoins()
+            self.loadCoins(completionHandler: completionHandler)
         }
     }
     
-    public func loadChartData(coin: CoinViewModel, chartTimeRange: ChartTimeRange) {
-        if inMemory {
-            return
-        }
-        
+    public func loadChartData(coin: CoinViewModel, chartTimeRange: ChartTimeRange, completionHandler: @escaping (Result<Void, RestClientError>) -> Void) {
         var dataResult: [Double] = []
 
         if let cacheData = self.cacheChartData[coin.symbol + chartTimeRange.rawValue] {
-            DispatchQueue.main.async {
-                self.chartData = cacheData
-            }
+            self.chartData = cacheData
+            completionHandler(.success(()))
 
             return
         }
         
-        DispatchQueue.main.async {
-            self.chartData = nil
-        }
-
+        self.chartData = nil
         let coinCapClient = CoinCapClient()
+
         coinCapClient.getChartValuesAsync(for: coin.id, withRange: chartTimeRange) { result in
             
             switch result {
@@ -78,30 +58,20 @@ public class AppViewModel: ObservableObject {
                 }
                 
                 self.cacheChartData[coin.symbol + chartTimeRange.rawValue] = dataResult
+                self.chartData = dataResult
                 
-                DispatchQueue.main.async {
-                    self.chartData = dataResult
-                }
-                
+                completionHandler(.success(()))
                 break
             case .failure(let error):
-                // TODO: Show something in UI.
-                print(error)
+                completionHandler(.failure(error))
                 break
             }
             
         }
     }
     
-    public func loadMarketValues(coin: CoinViewModel) {
-        if inMemory {
-            return
-        }
-        
-        DispatchQueue.main.async {
-            self.markets = nil
-        }
-
+    public func loadMarketValues(coin: CoinViewModel, completionHandler: @escaping (Result<Void, RestClientError>) -> Void) {        
+        self.markets = nil
         let coinCapClient = CoinCapClient()
         coinCapClient.getMarketValuesAsync(for: coin.id) { result in
             
@@ -114,14 +84,12 @@ public class AppViewModel: ObservableObject {
                     marketsResult.append(marketViewModel)
                 }
                 
-                DispatchQueue.main.async {
-                    self.markets = marketsResult
-                }
+                self.markets = marketsResult
+                completionHandler(.success(()))
                 
                 break
             case .failure(let error):
-                // TODO: Show something in UI.
-                print(error)
+                completionHandler(.failure(error))
                 break
             }
         }
@@ -159,7 +127,7 @@ public class AppViewModel: ObservableObject {
         }
     }
     
-    private func loadCoins() {
+    private func loadCoins(completionHandler: @escaping (Result<Void, RestClientError>) -> Void) {
         let coinCapClient = CoinCapClient()
         coinCapClient.getCoinsAsync { result in
             switch result {
@@ -182,35 +150,15 @@ public class AppViewModel: ObservableObject {
                     }
                 }
                 
-                DispatchQueue.main.async {
-                    self.coins = coinsResult
-                    self.favourites = favouritesResult
-                }
-                
+                self.coins = coinsResult
+                self.favourites = favouritesResult
+
+                completionHandler(.success(()))
                 break
             case .failure(let error):
-                // TODO: Show something in UI.
-                print(error)
+                completionHandler(.failure(error))
                 break
             }
         }
     }
-    
-    public static var preview: AppViewModel = {
-        let result = AppViewModel(inMemory: true)
-
-        result.coins = [
-            CoinViewModel(id: "bitcoin", rank: 1, symbol: "BTC", name: "Bitcoin", priceUsd: 53221.21, changePercent24Hr: -2.1),
-            CoinViewModel(id: "ethereum", rank: 2, symbol: "ETH", name: "Ethereum", priceUsd: 3211.23, changePercent24Hr: 1.1)
-        ]
-        
-        result.favourites = [
-            CoinViewModel(id: "bitcoin", rank: 1, symbol: "BTC", name: "Bitcoin", priceUsd: 53221.21, changePercent24Hr: -2.1),
-            CoinViewModel(id: "ethereum", rank: 2, symbol: "ETH", name: "Ethereum", priceUsd: 3211.23, changePercent24Hr: 1.1)
-        ]
-        
-        result.chartData = [3212.02, 3292.01, 3296.83, 3222.73, 3298.74, 3265.32, 3287.73, 3287.32, 3301.83, 3301.74, 3403.21, 3502.92]
-        
-        return result
-    }()
 }

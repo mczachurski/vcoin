@@ -11,7 +11,6 @@ import NumericText
 
 struct AddExchangeView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var appViewModel: AppViewModel
     
     @State private var amount: NSNumber?
     @State private var selectedCurrency = Currencies.getDefaultCurrency()
@@ -53,11 +52,9 @@ struct AddExchangeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             EditExchangeView(exchangeViewModel: PreviewData.getExchangeViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.dark)
             
             EditExchangeView(exchangeViewModel: PreviewData.getExchangeViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.light)
         }
     }

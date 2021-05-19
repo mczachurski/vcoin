@@ -9,7 +9,6 @@ import SwiftUI
 import VirtualCoinKit
 
 struct AlertRowView: View {
-    @EnvironmentObject var appViewModel: AppViewModel
     @ObservedObject public var alertViewModel: AlertViewModel
     
     @State var isEnabled: Bool = true
@@ -50,11 +49,9 @@ struct AlertRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AlertRowView(alertViewModel: PreviewData.getAlertViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.dark)
             
             AlertRowView(alertViewModel: PreviewData.getAlertViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.light)
         }
         .previewLayout(.fixed(width: 360, height: 70))

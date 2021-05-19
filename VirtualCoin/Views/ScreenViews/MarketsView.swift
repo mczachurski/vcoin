@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MarketsView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var appViewModel: AppViewModel    
     public var markets: [MarketViewModel]
     
     var body: some View {
@@ -31,11 +30,9 @@ struct MarketsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             MarketsView(markets: [PreviewData.getMarketViewModel()])
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.dark)
             
             MarketsView(markets: [PreviewData.getMarketViewModel()])
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.light)
         }
     }

@@ -9,7 +9,6 @@ import SwiftUI
 import VirtualCoinKit
 
 struct CoinRowView: View {
-    @EnvironmentObject var appViewModel: AppViewModel
     @StateObject var coin: CoinViewModel
     
     var body: some View {
@@ -28,7 +27,7 @@ struct CoinRowView: View {
             Spacer()
             
             VStack(alignment: .trailing) {
-                Text(coin.price.toFormattedPrice(currency: appViewModel.currencySymbol))
+                Text(coin.price.toFormattedPrice(currency: ApplicationState.shared.currencySymbol))
                     .font(.subheadline)
                     .foregroundColor(coin.changePercent24Hr > 0 ?.greenPastel : .redPastel)
 
@@ -44,11 +43,9 @@ struct CoinRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             CoinRowView(coin: PreviewData.getCoinViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.dark)
 
             CoinRowView(coin: PreviewData.getCoinViewModel())
-                .environmentObject(AppViewModel.preview)
                 .preferredColorScheme(.light)
         }
         .previewLayout(.fixed(width: 360, height: 70))
