@@ -13,7 +13,7 @@ struct ErrorView: View {
         
     var body: some View {
         VStack {
-            Text("ERROR: \(error.localizedDescription)")
+            Text("\(error.localizedDescription)")
             if let action = refreshAction {
                 Button("Refresh", action: action)
             }
@@ -23,12 +23,20 @@ struct ErrorView: View {
 
 struct ErrorView_Previews: PreviewProvider {
     
-    enum PreviewError: Error {
+    enum PreviewError: Error, LocalizedError {
         case unknown
+        
+        public var errorDescription: String? {
+            switch self {
+            case .unknown:
+                return NSLocalizedString("Bad URL to coincap.io API.", comment: "")
+            }
+        }
     }
     
     static var previews: some View {
-        ErrorView(error: PreviewError.unknown)
-            .previewLayout(.fixed(width: 360, height: 200))
+        ErrorView(error: PreviewError.unknown) {
+        }
+        .previewLayout(.fixed(width: 360, height: 200))
     }
 }
