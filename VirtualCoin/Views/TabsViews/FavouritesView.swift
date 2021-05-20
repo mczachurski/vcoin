@@ -18,17 +18,12 @@ struct FavouritesView: View {
     var body: some View {
         switch state {
         case .iddle:
-            Text("Iddle").onAppear {
+            Text("").onAppear {
                 self.load()
             }
         case .loading:
-            VStack {
-                Spacer()
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-                Spacer()
-            }
-            .navigationTitle("Favourites")
+            LoadingView()
+                .navigationTitle("Favourites")
         case .loaded:
             List {
                 ForEach(applicationStateService.favourites.filter {
@@ -55,18 +50,32 @@ struct FavouritesView: View {
                 SettingsView()
             }
         case .error(let error):
-            Text("\(error.localizedDescription)")
+            ErrorView(error: error) {
+                self.load()
+            }
+            .navigationTitle("Favourites")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showingSettingsView.toggle()
+                    }) {
+                        Image(systemName: "switch.2")
+                    }
+                }
+            }
+            .sheet(isPresented: $showingSettingsView) {
+                SettingsView()
+            }
         }
     }
     
     public func load() {
         state = .loading
         
-        coinsService.loadFavourites { result in
+        coinsService.loadCoins(into: applicationStateService) { result in
             DispatchQueue.runOnMain {
                 switch result {
-                case .success(let coins):
-                    self.applicationStateService.favourites = coins
+                case .success:
                     self.state = .loaded
                     break;
                 case .failure(let error):

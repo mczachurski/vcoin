@@ -14,7 +14,7 @@ public class CoinCapClient {
     }
     
     public func getCoinsAsync(completionHandler: @escaping (Result<[Coin], RestClientError>) -> Void) {
-        let url = "https://api.coincap.io/v2/assets?limit=2000"
+        let url = "https://api.coincap.io2/v2/assets?limit=2000"
         self.downloadAsync(from: url, completionHandler: completionHandler)
     }
 

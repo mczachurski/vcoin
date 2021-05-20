@@ -21,16 +21,11 @@ struct CoinsView: View {
     var body: some View {
         switch state {
         case .iddle:
-            Text("Iddle").onAppear {
+            Text("").onAppear {
                 self.load()
             }
         case .loading:
-            VStack {
-                Spacer()
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-                Spacer()
-            }
+            LoadingView()
             .navigationTitle("All currencies")
         case .loaded:
             List {
@@ -58,18 +53,32 @@ struct CoinsView: View {
                 SettingsView()
             }
         case .error(let error):
-            Text("\(error.localizedDescription)")
+            ErrorView(error: error) {
+                self.load()
+            }
+            .navigationTitle("All currencies")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showingSettingsView.toggle()
+                    }) {
+                        Image(systemName: "switch.2")
+                    }
+                }
+            }
+            .sheet(isPresented: $showingSettingsView) {
+                SettingsView()
+            }
         }
     }
     
     public func load() {
         state = .loading
         
-        coinsService.loadCoins { result in
+        coinsService.loadCoins(into: applicationStateService) { result in
             DispatchQueue.runOnMain {
                 switch result {
-                case .success(let coins):
-                    self.applicationStateService.coins = coins
+                case .success:
                     self.state = .loaded
                     break;
                 case .failure(let error):

@@ -78,26 +78,10 @@
             filePath = "VirtualCoin/Views/ComponentViews/ChartView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "body"
             landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E84BFE15-6795-4EC6-BE4C-B4B1949D648E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VirtualCoin/Services/CoinsService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "loadChartData(coin:chartTimeRange:completionHandler:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -110,9 +94,137 @@
             filePath = "VirtualCoin/Views/TabsViews/FavouritesView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "load()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4A9C1EB5-F179-464A-9B7B-2A6D8D37FB53"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VirtualCoin/Services/CoinsService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "loadCoinsInternal(into:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C64C4A8-1E4A-4E67-B1A4-AE9093094E41"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VirtualCoin/Views/TabsViews/CoinsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "load()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A9852986-4874-4F02-9187-CDE2CD4E0700"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VirtualCoin/Views/TabsViews/CoinsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "A9852986-4874-4F02-9187-CDE2CD4E0700 - 995d7d2018c05f85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (VirtualCoin.CoinViewModel) -&gt; SwiftUI.NavigationLink&lt;VirtualCoin.CoinRowView, VirtualCoin.CoinView&gt; in closure #2 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;VirtualCoin.CoinViewModel&gt;, Swift.String, SwiftUI.NavigationLink&lt;VirtualCoin.CoinRowView, VirtualCoin.CoinView&gt;&gt; in VirtualCoin.CoinsView.body.getter : some"
+                  moduleName = "VirtualCoin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mczachurski/Projects/Vcoin/vcoin2/VirtualCoin/Views/TabsViews/CoinsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "142">
+               </Location>
+               <Location
+                  uuid = "A9852986-4874-4F02-9187-CDE2CD4E0700 - 5d33d4dd2b8f58e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; VirtualCoin.CoinRowView in closure #2 (VirtualCoin.CoinViewModel) -&gt; SwiftUI.NavigationLink&lt;VirtualCoin.CoinRowView, VirtualCoin.CoinView&gt; in closure #2 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;VirtualCoin.CoinViewModel&gt;, Swift.String, SwiftUI.NavigationLink&lt;VirtualCoin.CoinRowView, VirtualCoin.CoinView&gt;&gt; in VirtualCoin.CoinsView.body.getter : some"
+                  moduleName = "VirtualCoin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mczachurski/Projects/Vcoin/vcoin2/VirtualCoin/Views/TabsViews/CoinsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "54">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC62394C-11B1-4C75-9D94-DAFCD016A914"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VirtualCoinKit/HttpClients/CoinCapClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "downloadAsync(from:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C8563463-C692-425C-BCBC-08CB336C18FB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VirtualCoinKit/HttpClients/CoinCapClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "downloadAsync(from:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE751628-38D2-4AAA-A097-3CDC5D0C1D3F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VirtualCoinKit/HttpClients/CoinCapClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "downloadAsync(from:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

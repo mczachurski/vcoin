@@ -17,6 +17,8 @@ struct CoinView: View {
     @State private var state: ViewState = .iddle
     @State private var selectedTab: ChartTimeRange = .hour
     @State private var isShowingMarketsView = false
+    
+    @Setting(\.currency) private var currencySymbol: String
         
     var body: some View {
         VStack {
@@ -32,7 +34,7 @@ struct CoinView: View {
                 .fontWeight(.light)
                 .foregroundColor(.gray)
 
-            Text(coin.price.toFormattedPrice(currency: CoinsService.shared.currencySymbol))
+            Text(coin.price.toFormattedPrice(currency: currencySymbol))
                 .fontWeight(.light)
                 .font(.title)
 
@@ -97,11 +99,11 @@ struct CoinView: View {
     private func load() {
         state = .loading
         
-        coinsService.loadMarketValues(coin: coin) { result in
+        coinsService.loadMarketValues(into: applicationStateService,
+                                      coin: coin) { result in
             DispatchQueue.runOnMain {
                 switch result {
-                case .success(let markets):
-                    self.applicationStateService.markets = markets
+                case .success:
                     self.state = .loaded
                     break;
                 case .failure(let error):

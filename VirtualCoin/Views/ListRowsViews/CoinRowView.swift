@@ -9,7 +9,8 @@ import SwiftUI
 import VirtualCoinKit
 
 struct CoinRowView: View {
-    @StateObject var coin: CoinViewModel
+    @ObservedObject var coin: CoinViewModel
+    @Setting(\.currency) private var currencySymbol: String
     
     var body: some View {
 
@@ -27,7 +28,7 @@ struct CoinRowView: View {
             Spacer()
             
             VStack(alignment: .trailing) {
-                Text(coin.price.toFormattedPrice(currency: CoinsService.shared.currencySymbol))
+                Text(coin.price.toFormattedPrice(currency: currencySymbol))
                     .font(.subheadline)
                     .foregroundColor(coin.changePercent24Hr > 0 ?.greenPastel : .redPastel)
 

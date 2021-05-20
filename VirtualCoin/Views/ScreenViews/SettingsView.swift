@@ -9,6 +9,8 @@ import SwiftUI
 import VirtualCoinKit
 
 struct SettingsView: View {
+    @EnvironmentObject private var coinsService: CoinsService
+    @EnvironmentObject private var applicationStateService: ApplicationStateService
     @Environment(\.presentationMode) var presentationMode
     
     @State var matchSystem: Bool = true
@@ -113,9 +115,7 @@ struct SettingsView: View {
         defaultSettings.currency = self.selectedCurrency.symbol
         
         CoreDataHandler.shared.save()
-        
-        // TODO: Refresh data after setting changed.
-        // appViewModel.loadData()
+        coinsService.loadCoins(into: applicationStateService) { _ in }
     }
 }
 

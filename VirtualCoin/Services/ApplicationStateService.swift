@@ -11,6 +11,10 @@ public class ApplicationStateService: ObservableObject {
     @Published public var coins: [CoinViewModel] = []
     @Published public var markets: [MarketViewModel] = []
     @Published public var favourites: [CoinViewModel] = []
+    @Published public var currencyRateUsd: Double = 1.0
+    
+    public var selectedExchangeViewModel: ExchangeViewModel?
+    public var selectedAlertViewModel: AlertViewModel?
 }
 
 extension ApplicationStateService {

@@ -36,8 +36,8 @@ struct AlertsView: View {
             
             AlertRowView(alertViewModel: alertViewModel)
                 .onTapGesture {
-                    CoinsService.shared.selectedAlertViewModel = alertViewModel
-                     self.showingAlertView = true
+                    applicationStateService.selectedAlertViewModel = alertViewModel
+                    self.showingAlertView = true
                 }
         }
         .listStyle(PlainListStyle())
@@ -52,7 +52,7 @@ struct AlertsView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    CoinsService.shared.selectedAlertViewModel = nil
+                    applicationStateService.selectedAlertViewModel = nil
                     self.showingAlertView = true
                 }) {
                     Image(systemName: "plus")
@@ -63,7 +63,7 @@ struct AlertsView: View {
             SettingsView()
         }
         .sheet(isPresented: $showingAlertView) {
-            if let selectedAlertViewModel = CoinsService.shared.selectedAlertViewModel {
+            if let selectedAlertViewModel = applicationStateService.selectedAlertViewModel {
                 EditAlertView(alertViewModel: selectedAlertViewModel)
             } else {
                 AddAlertView()

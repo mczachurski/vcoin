@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MarketRowView: View {
     @StateObject var market: MarketViewModel
+    @Setting(\.currency) private var currencySymbol: String
 
     var body: some View {
         HStack {
@@ -22,7 +23,7 @@ struct MarketRowView: View {
             
             Spacer()
             
-            Text(market.price.toFormattedPrice(currency: CoinsService.shared.currencySymbol))
+            Text(market.price.toFormattedPrice(currency: currencySymbol))
                 .font(.footnote)
         }
     }

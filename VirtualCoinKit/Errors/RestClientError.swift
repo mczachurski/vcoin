@@ -15,3 +15,20 @@ public enum RestClientError: Error {
     case networkFailure(Error)
     case badDataFormat(Error)
 }
+
+extension RestClientError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .badUrl:
+            return NSLocalizedString("Bad URL to coincap.io API.", comment: "")
+        case .serverError:
+            return NSLocalizedString("Server returns unexpected error.", comment: "")
+        case .emptyDataError:
+            return NSLocalizedString("Server returns empty data result.", comment: "")
+        case .networkFailure(let error):
+            return NSLocalizedString(error.localizedDescription, comment: "")
+        case .badDataFormat(let error):
+            return NSLocalizedString(error.localizedDescription, comment: "")
+        }
+    }
+}

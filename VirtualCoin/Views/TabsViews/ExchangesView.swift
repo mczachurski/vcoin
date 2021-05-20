@@ -37,7 +37,7 @@ struct ExchangesView: View {
 
                 ExchangeRowView(exchangeViewModel: exchangeViewModel)
                     .onTapGesture {
-                        CoinsService.shared.selectedExchangeViewModel = exchangeViewModel
+                        applicationStateService.selectedExchangeViewModel = exchangeViewModel
                          self.showingExchangeDetailsView = true
                     }
             }.onDelete(perform: self.deleteItem)
@@ -54,7 +54,7 @@ struct ExchangesView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    CoinsService.shared.selectedExchangeViewModel = nil
+                    applicationStateService.selectedExchangeViewModel = nil
                     self.showingExchangeDetailsView = true
                 }) {
                     Image(systemName: "plus")
@@ -65,7 +65,7 @@ struct ExchangesView: View {
             SettingsView()
         }
         .sheet(isPresented: $showingExchangeDetailsView) {
-            if let selectedExchangeViewModel = CoinsService.shared.selectedExchangeViewModel {
+            if let selectedExchangeViewModel = applicationStateService.selectedExchangeViewModel {
                 EditExchangeView(exchangeViewModel: selectedExchangeViewModel)
             } else {
                 AddExchangeView()

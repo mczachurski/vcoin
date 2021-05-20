@@ -13,12 +13,12 @@ public class CoinViewModel: Identifiable, ObservableObject {
     public let rank: Int
     public let symbol: String
     public let name: String
-    public let priceUsd: Double
-    public let changePercent24Hr: Double
     public let imageUrl: String
 
     @Published public var price: Double
     @Published public var isFavourite = false
+    @Published public var priceUsd: Double
+    @Published public var changePercent24Hr: Double
     
     init(coin: Coin, rateUsd: Double) {
         self.id = coin.id

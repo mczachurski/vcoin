@@ -10,7 +10,9 @@ import VirtualCoinKit
 import LightChart
 
 struct ChartView: View {
-    @EnvironmentObject var coinsService: CoinsService
+    @EnvironmentObject private var applicationStateService: ApplicationStateService
+    @EnvironmentObject private var coinsService: CoinsService
+    
     @State private var state: ViewState = .iddle
     @State private var chartData: [Double] = []
 
@@ -20,16 +22,11 @@ struct ChartView: View {
     var body: some View {
         switch state {
         case .iddle:
-            Text("Iddle").onAppear {
+            Text("").onAppear {
                 self.load()
             }
         case .loading:
-            VStack {
-                Spacer()
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-                Spacer()
-            }
+            LoadingView()
         case .loaded:
             VStack {
                 LightChartView(data: self.chartData,
@@ -44,14 +41,14 @@ struct ChartView: View {
                                currentValueLineType: .dash(color: .main(opacity: 0.3), lineWidth: 1, dash: [5]))
             }
         case .error(let error):
-            Text("\(error.localizedDescription)")
+            ErrorView(error: error)
         }
     }
     
     private func load() {
         state = .loading
         
-        coinsService.loadChartData(coin: coin, chartTimeRange: chartTimeRange) { result in
+        coinsService.getChartData(coin: coin, chartTimeRange: chartTimeRange) { result in
             switch result {
             case .success(let chartData):
                 self.chartData = chartData
