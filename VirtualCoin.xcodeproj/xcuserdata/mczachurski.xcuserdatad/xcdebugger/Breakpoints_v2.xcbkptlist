@@ -94,8 +94,8 @@
             filePath = "VirtualCoin/Views/TabsViews/FavouritesView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "load()"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,58 +126,10 @@
             filePath = "VirtualCoin/Views/TabsViews/CoinsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "load()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A9852986-4874-4F02-9187-CDE2CD4E0700"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VirtualCoin/Views/TabsViews/CoinsView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "A9852986-4874-4F02-9187-CDE2CD4E0700 - 995d7d2018c05f85"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (VirtualCoin.CoinViewModel) -&gt; SwiftUI.NavigationLink&lt;VirtualCoin.CoinRowView, VirtualCoin.CoinView&gt; in closure #2 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;VirtualCoin.CoinViewModel&gt;, Swift.String, SwiftUI.NavigationLink&lt;VirtualCoin.CoinRowView, VirtualCoin.CoinView&gt;&gt; in VirtualCoin.CoinsView.body.getter : some"
-                  moduleName = "VirtualCoin"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mczachurski/Projects/Vcoin/vcoin2/VirtualCoin/Views/TabsViews/CoinsView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
-                  offsetFromSymbolStart = "142">
-               </Location>
-               <Location
-                  uuid = "A9852986-4874-4F02-9187-CDE2CD4E0700 - 5d33d4dd2b8f58e7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; VirtualCoin.CoinRowView in closure #2 (VirtualCoin.CoinViewModel) -&gt; SwiftUI.NavigationLink&lt;VirtualCoin.CoinRowView, VirtualCoin.CoinView&gt; in closure #2 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;VirtualCoin.CoinViewModel&gt;, Swift.String, SwiftUI.NavigationLink&lt;VirtualCoin.CoinRowView, VirtualCoin.CoinView&gt;&gt; in VirtualCoin.CoinsView.body.getter : some"
-                  moduleName = "VirtualCoin"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mczachurski/Projects/Vcoin/vcoin2/VirtualCoin/Views/TabsViews/CoinsView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "54">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

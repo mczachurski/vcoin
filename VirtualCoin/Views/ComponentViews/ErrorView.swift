@@ -13,9 +13,16 @@ struct ErrorView: View {
         
     var body: some View {
         VStack {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .resizable()
+                .foregroundColor(.accentColor)
+                .frame(width: 64, height: 64, alignment: .center)
+                
             Text("\(error.localizedDescription)")
+                .multilineTextAlignment(.center)
             if let action = refreshAction {
                 Button("Refresh", action: action)
+                    .padding(.top, 10)
             }
         }
     }

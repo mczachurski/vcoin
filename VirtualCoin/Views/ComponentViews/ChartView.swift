@@ -42,6 +42,7 @@ struct ChartView: View {
             }
         case .error(let error):
             ErrorView(error: error)
+                .padding()
         }
     }
     

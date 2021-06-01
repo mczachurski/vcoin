@@ -19,43 +19,7 @@ struct CoinsView: View {
     @State private var state: ViewState = .iddle
     
     var body: some View {
-        switch state {
-        case .iddle:
-            Text("").onAppear {
-                self.load()
-            }
-        case .loading:
-            LoadingView()
-            .navigationTitle("All currencies")
-        case .loaded:
-            List {
-                ForEach(applicationStateService.coins.filter {
-                    searchBar.text.isEmpty || $0.name.localizedStandardContains(searchBar.text)
-                }) { coin in
-                    NavigationLink(destination: CoinView(coin: coin)) {
-                        CoinRowView(coin: coin)
-                    }
-                }
-            }
-            .listStyle(PlainListStyle())
-            .navigationTitle("All currencies")
-            .add(self.searchBar)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        showingSettingsView.toggle()
-                    }) {
-                        Image(systemName: "switch.2")
-                    }
-                }
-            }
-            .sheet(isPresented: $showingSettingsView) {
-                SettingsView()
-            }
-        case .error(let error):
-            ErrorView(error: error) {
-                self.load()
-            }
+        self.mainBody()
             .navigationTitle("All currencies")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -68,11 +32,40 @@ struct CoinsView: View {
             }
             .sheet(isPresented: $showingSettingsView) {
                 SettingsView()
+            }
+    }
+    
+    private func mainBody() -> some View {
+        Group {
+            switch state {
+            case .iddle:
+                Text("").onAppear {
+                    self.load()
+                }
+            case .loading:
+                LoadingView()
+            case .loaded:
+                List {
+                    ForEach(applicationStateService.coins.filter {
+                        searchBar.text.isEmpty || $0.name.localizedStandardContains(searchBar.text)
+                    }) { coin in
+                        NavigationLink(destination: CoinView(coin: coin)) {
+                            CoinRowView(coin: coin)
+                        }
+                    }
+                }
+                .add(self.searchBar)
+                .listStyle(PlainListStyle())
+            case .error(let error):
+                ErrorView(error: error) {
+                    self.load()
+                }
+                .padding()
             }
         }
     }
     
-    public func load() {
+    private func load() {
         state = .loading
         
         coinsService.loadCoins(into: applicationStateService) { result in
