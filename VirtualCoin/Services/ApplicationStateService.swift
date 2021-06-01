@@ -8,6 +8,8 @@
 import Foundation
 
 public class ApplicationStateService: ObservableObject {
+    public static let shared = ApplicationStateService()
+
     @Published public var coins: [CoinViewModel] = []
     @Published public var markets: [MarketViewModel] = []
     @Published public var favourites: [CoinViewModel] = []

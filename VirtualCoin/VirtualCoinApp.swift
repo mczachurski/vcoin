@@ -13,7 +13,7 @@ struct VirtualCoinApp: App {
     var body: some Scene {
         WindowGroup {
             AppView()
-                .environmentObject(ApplicationStateService())
+                .environmentObject(ApplicationStateService.shared)
                 .environmentObject(CoinsService.shared)
                 .environment(\.managedObjectContext, CoreDataHandler.shared.container.viewContext)
         }
