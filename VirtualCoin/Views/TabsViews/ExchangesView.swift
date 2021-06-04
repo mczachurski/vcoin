@@ -35,11 +35,10 @@ struct ExchangesView: View {
                                                           exchangeItem: exchange,
                                                           currency: currency)
 
-                ExchangeRowView(exchangeViewModel: exchangeViewModel)
-                    .onTapGesture {
-                        applicationStateService.selectedExchangeViewModel = exchangeViewModel
-                         self.showingExchangeDetailsView = true
-                    }
+                ExchangeRowView(exchangeViewModel: exchangeViewModel) {
+                    applicationStateService.selectedExchangeViewModel = exchangeViewModel
+                    self.showingExchangeDetailsView = true
+                }
             }.onDelete(perform: self.deleteItem)
         }
         .listStyle(PlainListStyle())

@@ -34,11 +34,10 @@ struct AlertsView: View {
                                                 alert: alert,
                                                 currency: currency)
             
-            AlertRowView(alertViewModel: alertViewModel)
-                .onTapGesture {
-                    applicationStateService.selectedAlertViewModel = alertViewModel
-                    self.showingAlertView = true
-                }
+            AlertRowView(alertViewModel: alertViewModel) {
+                applicationStateService.selectedAlertViewModel = alertViewModel
+                self.showingAlertView = true
+            }
         }
         .listStyle(PlainListStyle())
         .navigationTitle("Alerts")

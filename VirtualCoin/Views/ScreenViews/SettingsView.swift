@@ -20,19 +20,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("APPERANCE")) {
-                    Toggle(isOn: $matchSystem) {
-                        Text("Match system")
-                    }
-                    .toggleStyle(SwitchToggleStyle(tint: .accentColor))
-                    
-                    if matchSystem == false {
-                        Toggle(isOn: $isDarkMode) {
-                            Text("Dark mode")
-                        }
-                        .toggleStyle(SwitchToggleStyle(tint: .accentColor))
-                    }
-                }
                 
                 Section(header: Text("MAIN")) {
                     
