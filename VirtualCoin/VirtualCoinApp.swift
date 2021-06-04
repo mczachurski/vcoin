@@ -37,15 +37,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     private func registerBackgroundFetch() {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: backgroundTaskId, using: nil) { task in
             
+            // Task expired.
             task.expirationHandler = {
-                print("Task expired")
                 task.setTaskCompleted(success: false)
             }
             
-            print("Refreshing app in background. Time remaining: \(UIApplication.shared.backgroundTimeRemaining) s")
-            
-            print("Networking...")
-                task.setTaskCompleted(success: true)
+            let notifications = Notifications()
+            notifications.sendNotification { result in
+                switch result {
+                case .success:
+                    task.setTaskCompleted(success: true)
+                case .failure(_):
+                    task.setTaskCompleted(success: false)
+                }
+            }
         }
     }
     
@@ -56,10 +61,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func submitBackgroundTasks() {
         do {
             let request = BGAppRefreshTaskRequest(identifier: backgroundTaskId)
-            request.earliestBeginDate = Date(timeIntervalSinceNow: 5 * 60) // Refresh after 5 minutes.
+            request.earliestBeginDate = Date(timeIntervalSinceNow: 60 * 60) // Refresh after 1 hour.
             try BGTaskScheduler.shared.submit(request)
-
-            print("Submitted background task")
         } catch {
             print("Could not schedule app refresh task \(error.localizedDescription)")
         }

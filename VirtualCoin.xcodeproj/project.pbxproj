@@ -52,6 +52,9 @@
 		F85C62AC263557EB00FE5AEA /* SideBarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85C62AB263557EB00FE5AEA /* SideBarsView.swift */; };
 		F85C7985266A195400BCBE8A /* PriceAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85C7984266A195400BCBE8A /* PriceAlert.swift */; };
 		F85C7987266A197100BCBE8A /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85C7986266A197100BCBE8A /* Notifications.swift */; };
+		F85C798A266A26A200BCBE8A /* CoinIdMappingPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85C7989266A26A200BCBE8A /* CoinIdMappingPolicy.swift */; };
+		F85C798C266A2F2500BCBE8A /* CoinIdMappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = F85C798B266A2F2500BCBE8A /* CoinIdMappingModel.xcmappingmodel */; };
+		F85C798E266A3AF800BCBE8A /* NotificationsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85C798D266A3AF800BCBE8A /* NotificationsError.swift */; };
 		F86620762647132E00577013 /* AddExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86620752647132E00577013 /* AddExchangeView.swift */; };
 		F86620782647153E00577013 /* ExchangeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86620772647153E00577013 /* ExchangeDetailView.swift */; };
 		F86714E42656725600B8B34C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86714E32656725600B8B34C /* LoadingView.swift */; };
@@ -190,6 +193,10 @@
 		F85C62AB263557EB00FE5AEA /* SideBarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarsView.swift; sourceTree = "<group>"; };
 		F85C7984266A195400BCBE8A /* PriceAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceAlert.swift; sourceTree = "<group>"; };
 		F85C7986266A197100BCBE8A /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		F85C7988266A261E00BCBE8A /* vcoin-20210604.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "vcoin-20210604.xcdatamodel"; sourceTree = "<group>"; };
+		F85C7989266A26A200BCBE8A /* CoinIdMappingPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinIdMappingPolicy.swift; sourceTree = "<group>"; };
+		F85C798B266A2F2500BCBE8A /* CoinIdMappingModel.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = CoinIdMappingModel.xcmappingmodel; sourceTree = "<group>"; };
+		F85C798D266A3AF800BCBE8A /* NotificationsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsError.swift; sourceTree = "<group>"; };
 		F86620752647132E00577013 /* AddExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExchangeView.swift; sourceTree = "<group>"; };
 		F86620772647153E00577013 /* ExchangeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDetailView.swift; sourceTree = "<group>"; };
 		F86714E32656725600B8B34C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -312,6 +319,7 @@
 		F8571C9D262C0C1300C882C5 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				F85C7989266A26A200BCBE8A /* CoinIdMappingPolicy.swift */,
 				F8571C9F262C0C5E00C882C5 /* AlertsHandler.swift */,
 				F8571CA0262C0C5E00C882C5 /* CoreDataHandler.swift */,
 				F8571CA1262C0C5E00C882C5 /* ExchangeItemsHandler.swift */,
@@ -404,6 +412,7 @@
 			children = (
 				F85C7984266A195400BCBE8A /* PriceAlert.swift */,
 				F85C7986266A197100BCBE8A /* Notifications.swift */,
+				F85C798D266A3AF800BCBE8A /* NotificationsError.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -452,6 +461,7 @@
 				F8459ACD263EE5050021773B /* ViewModels */,
 				F8038E11262F0B8A00E434B3 /* Views */,
 				F8571CD5262C117F00C882C5 /* VirtualCoin.entitlements */,
+				F85C798B266A2F2500BCBE8A /* CoinIdMappingModel.xcmappingmodel */,
 				F8571CCB262C0EAC00C882C5 /* vcoin.xcdatamodeld */,
 				F8916839262B38AD007335D7 /* VirtualCoinApp.swift */,
 				F891683D262B38AE007335D7 /* Assets.xcassets */,
@@ -839,9 +849,11 @@
 				F8F68547263FC84A004F1D83 /* CoinImageView.swift in Sources */,
 				F8F6855D26402755004F1D83 /* ViewControllerResolver.swift in Sources */,
 				F8571CB6262C0C6F00C882C5 /* Settings+CoreDataClass.swift in Sources */,
+				F85C798C266A2F2500BCBE8A /* CoinIdMappingModel.xcmappingmodel in Sources */,
 				F84D35F72648396E0095C100 /* AddAlertView.swift in Sources */,
 				F85C7985266A195400BCBE8A /* PriceAlert.swift in Sources */,
 				F85C7987266A197100BCBE8A /* Notifications.swift in Sources */,
+				F85C798E266A3AF800BCBE8A /* NotificationsError.swift in Sources */,
 				F8D9449126517862004ACBF3 /* ViewState.swift in Sources */,
 				F8571CBB262C0C6F00C882C5 /* ExchangeItem+CoreDataProperties.swift in Sources */,
 				F8F6855B264022E1004F1D83 /* SearchBar.swift in Sources */,
@@ -854,6 +866,7 @@
 				F8D9448D265172ED004ACBF3 /* Setting.swift in Sources */,
 				F86620762647132E00577013 /* AddExchangeView.swift in Sources */,
 				F891683A262B38AD007335D7 /* VirtualCoinApp.swift in Sources */,
+				F85C798A266A26A200BCBE8A /* CoinIdMappingPolicy.swift in Sources */,
 				F8571CA7262C0C5E00C882C5 /* SettingsHandler.swift in Sources */,
 				F8A62A58264442B700B30D97 /* ExchangeRowView.swift in Sources */,
 				F8459ACF263EE51E0021773B /* CoinViewModel.swift in Sources */,
@@ -1364,10 +1377,11 @@
 		F8571CCB262C0EAC00C882C5 /* vcoin.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F85C7988266A261E00BCBE8A /* vcoin-20210604.xcdatamodel */,
 				F8571CCC262C0EAC00C882C5 /* vcoin-20190712.xcdatamodel */,
 				F8571CCD262C0EAC00C882C5 /* vcoin.xcdatamodel */,
 			);
-			currentVersion = F8571CCC262C0EAC00C882C5 /* vcoin-20190712.xcdatamodel */;
+			currentVersion = F85C7988266A261E00BCBE8A /* vcoin-20210604.xcdatamodel */;
 			path = vcoin.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -40,9 +40,9 @@ struct AddExchangeView: View {
         let exchangeItem = exchangeItemHandler.createExchangeItemEntity()
         
         exchangeItem.currency = self.selectedCurrency.symbol
+        exchangeItem.coinId = self.selectedCoin.id
         exchangeItem.coinSymbol = self.selectedCoin.symbol
         exchangeItem.amount = self.amount?.doubleValue ?? 0
-        exchangeItem.marketCode = ""
         
         CoreDataHandler.shared.save()
     }

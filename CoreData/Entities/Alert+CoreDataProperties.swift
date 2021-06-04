@@ -17,10 +17,10 @@ public extension Alert {
     }
 
     @NSManaged var alertSentDate: Date?
+    @NSManaged var coinId: String
     @NSManaged var coinSymbol: String
     @NSManaged var currency: String
     @NSManaged var isEnabled: Bool
     @NSManaged var isPriceLower: Bool
-    @NSManaged var marketCode: String
     @NSManaged var price: Double
 }

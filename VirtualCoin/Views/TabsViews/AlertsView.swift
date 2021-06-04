@@ -16,7 +16,7 @@ struct AlertsView: View {
     @State private var showingAlertView = false
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Alert.coinSymbol, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Alert.coinId, ascending: true)],
         animation: .default
     )
     private var alerts: FetchedResults<Alert>
@@ -24,7 +24,7 @@ struct AlertsView: View {
     var body: some View {
         List(alerts, id: \.objectID) { alert in
             let coinViewModelFromApi = applicationStateService.coins.first(where: { coinViewModel in
-                coinViewModel.symbol == alert.coinSymbol
+                coinViewModel.id == alert.coinId
             })
             
             let coinViewModel = coinViewModelFromApi ?? CoinViewModel(id: "", rank: 1, symbol: "", name: "", priceUsd: 0, changePercent24Hr: 0)

@@ -17,9 +17,9 @@ public extension ExchangeItem {
     }
 
     @NSManaged var amount: Double
+    @NSManaged var coinId: String
     @NSManaged var coinSymbol: String
     @NSManaged var currency: String
-    @NSManaged var marketCode: String
 }
 
 

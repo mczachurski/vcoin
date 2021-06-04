@@ -14,16 +14,14 @@ enum Processing {
 
 class PriceAlert {
     var currency: String
-    var marketCode: String
-    var coinSymbol: String
+    var coinId: String
 
     var price: Double?
     var processing: Processing
 
-    init(currency: String, markedCode: String, coinSymbol: String) {
+    init(currency: String, coinId: String) {
         self.currency = currency
-        self.marketCode = markedCode
-        self.coinSymbol = coinSymbol
+        self.coinId = coinId
         self.processing = Processing.inQueue
     }
 }

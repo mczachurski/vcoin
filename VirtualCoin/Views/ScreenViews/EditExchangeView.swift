@@ -24,7 +24,7 @@ struct EditExchangeView: View {
         
         self._amount = State(initialValue: NSNumber(value: exchangeViewModel.exchangeItem.amount))
         self._selectedCurrency = State(initialValue: Currency(symbol: exchangeViewModel.exchangeItem.currency))
-        self._selectedCoin = State(initialValue: CoinViewModel(symbol: exchangeViewModel.exchangeItem.coinSymbol))
+        self._selectedCoin = State(initialValue: CoinViewModel(id: exchangeViewModel.exchangeItem.coinId))
     }
     
     var body: some View {
@@ -48,14 +48,14 @@ struct EditExchangeView: View {
     
     private func saveSettings() {
         self.exchangeViewModel.exchangeItem.currency = self.selectedCurrency.symbol
+        self.exchangeViewModel.exchangeItem.coinId = self.selectedCoin.id
         self.exchangeViewModel.exchangeItem.coinSymbol = self.selectedCoin.symbol
         self.exchangeViewModel.exchangeItem.amount = self.amount?.doubleValue ?? 0
-        self.exchangeViewModel.exchangeItem.marketCode = ""
         
         CoreDataHandler.shared.save()
         
         if let coinViewModel = applicationStateService.coins.first(where: { coinViewModel in
-            coinViewModel.symbol == self.exchangeViewModel.exchangeItem.coinSymbol
+            coinViewModel.id == self.exchangeViewModel.exchangeItem.coinId
         }) {
             self.exchangeViewModel.setCoinViewModel(coinViewModel)
         }

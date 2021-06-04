@@ -17,5 +17,4 @@ public extension Settings {
     }
 
     @NSManaged var currency: String
-    @NSManaged var isDarkMode: Bool
 }

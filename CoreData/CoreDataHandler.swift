@@ -70,26 +70,24 @@ extension CoreDataHandler {
         let viewContext = result.container.viewContext
         
         let favouriteItem1 = Favourite(context: viewContext)
-        favouriteItem1.coinSymbol = "ETH"
+        favouriteItem1.coinId = "ethereum"
 
         let favouriteItem2 = Favourite(context: viewContext)
-        favouriteItem2.coinSymbol = "BTC"
+        favouriteItem2.coinId = "bitcoin"
 
         let favouriteItem3 = Favourite(context: viewContext)
-        favouriteItem3.coinSymbol = "DGC"
+        favouriteItem3.coinId = "dogecoin"
         
         let exchangeItem1 = ExchangeItem(context: viewContext)
-        exchangeItem1.coinSymbol = "BTC"
+        exchangeItem1.coinId = "bitcoin"
         exchangeItem1.amount = 2
         exchangeItem1.currency = "USD"
-        exchangeItem1.marketCode = ""
         
         let alertItem1 = Alert(context: viewContext)
-        alertItem1.coinSymbol = "BTC"
+        alertItem1.coinId = "bitcoin"
         alertItem1.currency = "USD"
         alertItem1.isEnabled = true
         alertItem1.isPriceLower = true
-        alertItem1.marketCode = ""
         alertItem1.price = 63.33
         
         do {

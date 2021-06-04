@@ -62,10 +62,10 @@ public class CoinViewModel: Identifiable, ObservableObject {
 
 extension CoinViewModel: Hashable {
     public static func == (lhs: CoinViewModel, rhs: CoinViewModel) -> Bool {
-        return lhs.symbol == rhs.symbol
+        return lhs.id == rhs.id
     }
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(self.symbol)
+        hasher.combine(self.id)
     }
 }

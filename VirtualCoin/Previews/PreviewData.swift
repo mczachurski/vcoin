@@ -51,11 +51,10 @@ struct PreviewData: PreviewProvider {
     
     static func getAlert() -> Alert {
         let alert = Alert(context: CoreDataHandler.preview.container.viewContext)
-        alert.coinSymbol = "BTC"
+        alert.coinId = "bitcoin"
         alert.currency = "USD"
         alert.isEnabled = true
         alert.isPriceLower = true
-        alert.marketCode = ""
         alert.price = 3212.21
         
         return alert
@@ -63,10 +62,9 @@ struct PreviewData: PreviewProvider {
     
     static func getExchangeItem() -> ExchangeItem {
         let exchangeItem = ExchangeItem(context: CoreDataHandler.preview.container.viewContext)
-        exchangeItem.coinSymbol = "BTC"
+        exchangeItem.coinId = "bitcoin"
         exchangeItem.amount = 2
         exchangeItem.currency = "USD"
-        exchangeItem.marketCode = ""
     
         return exchangeItem
     }

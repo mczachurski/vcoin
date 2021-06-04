@@ -40,9 +40,9 @@ struct AddAlertView: View {
         let alert = alertsHandler.createAlertEntity()
         
         alert.currency = self.selectedCurrency.symbol
+        alert.coinId = self.selectedCoin.id
         alert.coinSymbol = self.selectedCoin.symbol
         alert.price = self.price?.doubleValue ?? 0
-        alert.marketCode = ""
         alert.isEnabled = true
         
         CoreDataHandler.shared.save()

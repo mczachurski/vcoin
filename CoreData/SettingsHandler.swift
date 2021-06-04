@@ -33,7 +33,6 @@ class SettingsHandler {
         } else {
             let settings = self.createSettingsEntity()
             settings.currency = "USD"
-            settings.isDarkMode = false
             CoreDataHandler.shared.save()
 
             return settings

@@ -117,17 +117,17 @@ struct CoinView: View {
     private func toggleFavourite() {
         let favouritesHandler = FavouritesHandler()
         
-        if favouritesHandler.isFavourite(symbol: coin.symbol) {
+        if favouritesHandler.isFavourite(coinId: coin.id) {
             self.coin.isFavourite = false
             self.applicationStateService.removeFromFavourites(coinViewModel: coin)
 
-            favouritesHandler.deleteFavouriteEntity(symbol: coin.symbol)
+            favouritesHandler.deleteFavouriteEntity(coinId: coin.id)
         } else {
             self.coin.isFavourite = true
             self.applicationStateService.addToFavourites(coinViewModel: coin)
             
             let favouriteEntity = favouritesHandler.createFavouriteEntity()
-            favouriteEntity.coinSymbol = coin.symbol
+            favouriteEntity.coinId = coin.id
         }
         
         CoreDataHandler.shared.save()

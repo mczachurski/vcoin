@@ -24,7 +24,7 @@ struct EditAlertView: View {
         
         self._price = State(initialValue: NSNumber(value: alertViewModel.alert.price))
         self._selectedCurrency = State(initialValue: Currency(symbol: alertViewModel.alert.currency))
-        self._selectedCoin = State(initialValue: CoinViewModel(symbol: alertViewModel.alert.coinSymbol))
+        self._selectedCoin = State(initialValue: CoinViewModel(id: alertViewModel.alert.coinId))
     }
     
     var body: some View {
@@ -48,13 +48,14 @@ struct EditAlertView: View {
     
     private func saveSettings() {
         self.alertViewModel.alert.currency = self.selectedCurrency.symbol
+        self.alertViewModel.alert.coinId = self.selectedCoin.id
         self.alertViewModel.alert.coinSymbol = self.selectedCoin.symbol
         self.alertViewModel.alert.price = self.price?.doubleValue ?? 0
         
         CoreDataHandler.shared.save()
         
         if let coinViewModel = applicationStateService.coins.first(where: { coinViewModel in
-            coinViewModel.symbol == self.alertViewModel.alert.coinSymbol
+            coinViewModel.id == self.alertViewModel.alert.coinId
         }) {
             self.alertViewModel.setCoinViewModel(coinViewModel)
         }

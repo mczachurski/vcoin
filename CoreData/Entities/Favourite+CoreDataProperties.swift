@@ -16,5 +16,5 @@ public extension Favourite {
         return NSFetchRequest<Favourite>(entityName: "Favourite")
     }
 
-    @NSManaged var coinSymbol: String
+    @NSManaged var coinId: String
 }

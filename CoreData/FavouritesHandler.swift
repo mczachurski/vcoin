@@ -15,10 +15,10 @@ class FavouritesHandler {
         return Favourite(context: context)
     }
 
-    func deleteFavouriteEntity(symbol: String) {
+    func deleteFavouriteEntity(coinId: String) {
         let favourites = self.getFavourites()
         let filtered = favourites.filter { favourite -> Bool in
-            return favourite.coinSymbol == symbol
+            return favourite.coinId == coinId
         }
 
         let context = CoreDataHandler.shared.container.viewContext
@@ -27,11 +27,11 @@ class FavouritesHandler {
         }
     }
 
-    func isFavourite(symbol: String) -> Bool {
+    func isFavourite(coinId: String) -> Bool {
         let favourites = self.getFavourites()
 
         let exists = favourites.contains { favourite -> Bool in
-            return favourite.coinSymbol == symbol
+            return favourite.coinId == coinId
         }
 
         return exists

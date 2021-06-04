@@ -182,7 +182,7 @@ public class CoinsService: ObservableObject {
             coinsResult.append(coinViewModel)
             
             if favourites.contains(where: { favourite in
-                favourite.coinSymbol == coinViewModel.symbol
+                favourite.coinId == coinViewModel.id
             }) {
                 coinViewModel.isFavourite = true
                 favouritesResult.append(coinViewModel)

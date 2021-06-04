@@ -15,7 +15,7 @@ struct ExchangesView: View {
     @State private var showingExchangeDetailsView = false
     
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \ExchangeItem.coinSymbol, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \ExchangeItem.coinId, ascending: true)],
         animation: .default
     )
     private var exchanges: FetchedResults<ExchangeItem>
@@ -24,7 +24,7 @@ struct ExchangesView: View {
         List {
             ForEach(exchanges, id: \.self) { exchange in                
                 let coinViewModelFromApi = applicationStateService.coins.first(where: { coinViewModel in
-                    coinViewModel.symbol == exchange.coinSymbol
+                    coinViewModel.id == exchange.coinId
                 })
                 
                 let coinViewModel = coinViewModelFromApi ?? CoinViewModel()

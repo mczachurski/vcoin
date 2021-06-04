@@ -15,15 +15,14 @@ class Notifications {
     private let coinCapClient = CoinCapClient()
     private var priceAlerts: [String: PriceAlert] = [:]
 
-    func sendNotification() {
+    func sendNotification(completionHandler: @escaping (Result<Void, Error>) -> Void) {
         let alerts = self.alertsHandler.getActiveAlerts()
 
         for alert in alerts {
             let alertKey = self.getKey(alert: alert)
             if priceAlerts[alertKey] == nil {
                 priceAlerts[alertKey] = PriceAlert(currency: alert.currency,
-                                                   markedCode: alert.marketCode,
-                                                   coinSymbol: alert.coinSymbol)
+                                                   coinId: alert.coinId)
             }
         }
 
@@ -32,15 +31,22 @@ class Notifications {
         for priceAlert in priceAlerts {
             priceAlert.value.processing = Processing.processing
 
-            self.coinCapClient.getCoinPriceAsync(for: priceAlert.value.coinSymbol, currencyId: priceAlert.value.currency) { result in
+            guard let currency = Currencies.allCurrenciesDictionary[priceAlert.value.currency] else {
+                completionHandler(Result.failure(NotificationsError.notRecognizedCurrencySymbol))
+                return
+            }
+            
+            self.coinCapClient.getCoinPriceAsync(for: priceAlert.value.coinId, currencyId: currency.id) { result in
                 switch result {
                 case .success(let price):
                     lock.lock()
 
                     priceAlert.value.price = price
                     priceAlert.value.processing = Processing.finished
+
                     if self.allAlertsFinished() {
                         self.processAlerts(alerts: alerts)
+                        completionHandler(Result.success(()))
                     }
 
                     lock.unlock()
@@ -131,10 +137,10 @@ class Notifications {
     }
 
     private func getKey(alert: Alert) -> String {
-        return self.getKey(currency: alert.currency, markedCode: alert.marketCode, coinSymbol: alert.coinSymbol)
+        return self.getKey(currency: alert.currency, coinId: alert.coinId)
     }
 
-    private func getKey(currency: String, markedCode: String, coinSymbol: String) -> String {
-        return "\(currency)|\(markedCode)|\(coinSymbol)"
+    private func getKey(currency: String, coinId: String) -> String {
+        return "\(currency)|\(coinId)"
     }
 }
