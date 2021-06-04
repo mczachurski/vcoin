@@ -12,6 +12,7 @@ public enum RestClientError: Error {
     case badUrl
     case serverError
     case emptyDataError
+    case numberBadFormat
     case networkFailure(Error)
     case badDataFormat(Error)
 }
@@ -25,6 +26,8 @@ extension RestClientError: LocalizedError {
             return NSLocalizedString("Server returns unexpected error.", comment: "")
         case .emptyDataError:
             return NSLocalizedString("Server returns empty data result.", comment: "")
+        case .numberBadFormat:
+            return NSLocalizedString("Server returns number which cannot be deserialized.", comment: "")
         case .networkFailure(let error):
             return NSLocalizedString(error.localizedDescription, comment: "")
         case .badDataFormat(let error):

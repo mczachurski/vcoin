@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 import VirtualCoinKit
 
 struct AlertsView: View {
@@ -63,9 +64,21 @@ struct AlertsView: View {
         }
         .sheet(isPresented: $showingAlertView) {
             if let selectedAlertViewModel = applicationStateService.selectedAlertViewModel {
-                EditAlertView(alertViewModel: selectedAlertViewModel)
+                EditAlertView(alertViewModel: selectedAlertViewModel).onDisappear {
+                    self.grantNotificationPermission()
+                }
             } else {
                 AddAlertView()
+            }
+        }
+    }
+    
+    private func grantNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("Authorization was granted: \(success)")
+            } else if let error = error {
+                print(error.localizedDescription)
             }
         }
     }

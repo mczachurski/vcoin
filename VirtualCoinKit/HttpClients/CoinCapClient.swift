@@ -32,9 +32,43 @@ public class CoinCapClient {
     }
     
     public func getCurrencyRate(for currencyId: String,
-                                     completionHandler: @escaping (Result<CurrencyRate, RestClientError>) -> Void) {
+                                completionHandler: @escaping (Result<CurrencyRate, RestClientError>) -> Void) {
         let url = "https://api.coincap.io/v2/rates/\(currencyId)"
         self.downloadAsync(from: url, completionHandler: completionHandler)
+    }
+    
+    public func getCoinPriceAsync(for coinId: String,
+                                  currencyId: String,
+                                  completionHandler: @escaping (Result<Double, RestClientError>) -> Void) {
+
+        self.getCurrencyRate(for: currencyId) { currencyResult in
+            
+            switch currencyResult {
+            case .success(let currencyRate):
+                let url = "https://api.coincap.io/v2/assets/\(coinId)"
+                self.downloadAsync(from: url) { (coinResult: Result<Coin, RestClientError>) in
+                    switch coinResult {
+                    case .success(let coin):
+                        
+                        guard let priceUsdString = coin.priceUsd, let priceUsd = Double(priceUsdString), let rateUsd = Double(currencyRate.rateUsd) else {
+                            completionHandler(Result.failure(RestClientError.numberBadFormat))
+                            return
+                        }
+                        
+                        let value = priceUsd / rateUsd
+                        completionHandler(Result.success(value))
+                        break
+                    case .failure(let error):
+                        completionHandler(Result.failure(error))
+                        break
+                    }
+                }
+                break
+            case.failure(let error):
+                completionHandler(Result.failure(error))
+                break
+            }
+        }
     }
     
     private func getChartApiUrl(for coinId: String,
