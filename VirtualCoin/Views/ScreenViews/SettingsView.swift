@@ -91,7 +91,6 @@ struct SettingsView: View {
             .navigationBarTitle(Text("Settings"), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 self.saveSettings()
-                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Done").bold()
             })
@@ -107,15 +106,27 @@ struct SettingsView: View {
         if defaultSettings.currency != "" {
             self.selectedCurrency = Currency(symbol: defaultSettings.currency)
         }
+        
+        self.isDarkMode = defaultSettings.isDarkMode
+        self.matchSystem = defaultSettings.matchSystem
     }
     
     private func saveSettings() {
+        presentationMode.wrappedValue.dismiss()
+        
         let settingsHandler = SettingsHandler()
         let defaultSettings = settingsHandler.getDefaultSettings()
+        let reloadCoins = defaultSettings.currency != self.selectedCurrency.symbol
+        
         defaultSettings.currency = self.selectedCurrency.symbol
+        defaultSettings.isDarkMode = self.isDarkMode
+        defaultSettings.matchSystem = self.matchSystem
         
         CoreDataHandler.shared.save()
-        coinsService.loadCoins(into: applicationStateService) { _ in }
+        
+        if reloadCoins {
+            // coinsService.loadCoins(into: applicationStateService) { _ in }
+        }
     }
 }
 

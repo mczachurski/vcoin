@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 public class ApplicationStateService: ObservableObject {
     public static let shared = ApplicationStateService()
@@ -14,6 +15,9 @@ public class ApplicationStateService: ObservableObject {
     @Published public var markets: [MarketViewModel] = []
     @Published public var favourites: [CoinViewModel] = []
     @Published public var currencyRateUsd: Double = 1.0
+
+    @Published public var isDarkMode: Bool = false
+    @Published public var matchSystem: Bool = false
     
     public var selectedExchangeViewModel: ExchangeViewModel?
     public var selectedAlertViewModel: AlertViewModel?

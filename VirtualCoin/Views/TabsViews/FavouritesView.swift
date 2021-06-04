@@ -15,6 +15,9 @@ struct FavouritesView: View {
     @State private var showingSettingsView = false
     @State private var state: ViewState = .iddle
     
+    @Setting(\.isDarkMode) private var isDarkMode: Bool
+    @Setting(\.matchSystem) private var matchSystem: Bool
+    
     var body: some View {
         self.mainBody()
             .navigationTitle("Favourites")
@@ -29,7 +32,20 @@ struct FavouritesView: View {
             }
             .sheet(isPresented: $showingSettingsView) {
                 SettingsView()
+                    .applyPreferredColorScheme(self.getColorScheme())
+                    .onDisappear {
+                         applicationStateService.isDarkMode = self.isDarkMode
+                         applicationStateService.matchSystem = self.matchSystem
+                    }
             }
+    }
+    
+    private func getColorScheme() -> ColorScheme? {
+        if applicationStateService.matchSystem {
+            return nil
+        }
+        
+        return applicationStateService.isDarkMode ? .dark : .light
     }
     
     private func mainBody() -> some View {

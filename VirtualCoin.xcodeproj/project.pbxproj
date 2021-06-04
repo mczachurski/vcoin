@@ -74,6 +74,7 @@
 		F8D9449126517862004ACBF3 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9449026517862004ACBF3 /* ViewState.swift */; };
 		F8E599102634499300E4B66B /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5990F2634499300E4B66B /* AppView.swift */; };
 		F8E8F36B2646601400335B45 /* NumericText in Frameworks */ = {isa = PBXBuildFile; productRef = F8E8F36A2646601400335B45 /* NumericText */; };
+		F8ED231626669DF30081CB0F /* PreferredColorSchemeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8ED231526669DF30081CB0F /* PreferredColorSchemeModifier.swift */; };
 		F8F6853F263FC2EC004F1D83 /* AlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6853E263FC2EC004F1D83 /* AlertsView.swift */; };
 		F8F68541263FC3B8004F1D83 /* ExchangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F68540263FC3B8004F1D83 /* ExchangesView.swift */; };
 		F8F68547263FC84A004F1D83 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F68546263FC84A004F1D83 /* CoinImageView.swift */; };
@@ -214,6 +215,8 @@
 		F8D9448C265172ED004ACBF3 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		F8D9449026517862004ACBF3 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		F8E5990F2634499300E4B66B /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		F8ED2313266694F50081CB0F /* vcoin- 20210601.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "vcoin- 20210601.xcdatamodel"; sourceTree = "<group>"; };
+		F8ED231526669DF30081CB0F /* PreferredColorSchemeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferredColorSchemeModifier.swift; sourceTree = "<group>"; };
 		F8F6853E263FC2EC004F1D83 /* AlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsView.swift; sourceTree = "<group>"; };
 		F8F68540263FC3B8004F1D83 /* ExchangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesView.swift; sourceTree = "<group>"; };
 		F8F68546263FC84A004F1D83 /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
@@ -431,6 +434,7 @@
 		F8916838262B38AD007335D7 /* VirtualCoin */ = {
 			isa = PBXGroup;
 			children = (
+				F8ED231426669DE20081CB0F /* ViewModifiers */,
 				F8CD6C6E2653F8850065EE8F /* Services */,
 				F8D9448B265172DE004ACBF3 /* PropertyWrappers */,
 				F882B477264AC6FD00484AF6 /* Previews */,
@@ -488,6 +492,14 @@
 				F8D9448C265172ED004ACBF3 /* Setting.swift */,
 			);
 			path = PropertyWrappers;
+			sourceTree = "<group>";
+		};
+		F8ED231426669DE20081CB0F /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				F8ED231526669DF30081CB0F /* PreferredColorSchemeModifier.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		F8F68542263FC52F004F1D83 /* TabsViews */ = {
@@ -795,6 +807,7 @@
 				F8571CBA262C0C6F00C882C5 /* Favourite+CoreDataClass.swift in Sources */,
 				F8F6853F263FC2EC004F1D83 /* AlertsView.swift in Sources */,
 				F8571CCE262C0EAC00C882C5 /* vcoin.xcdatamodeld in Sources */,
+				F8ED231626669DF30081CB0F /* PreferredColorSchemeModifier.swift in Sources */,
 				F84D35FF264843BF0095C100 /* EditAlertView.swift in Sources */,
 				F84D35FD26483DDF0095C100 /* AlertViewModel.swift in Sources */,
 				F8F68549263FE54A004F1D83 /* ChartView.swift in Sources */,
@@ -1348,10 +1361,11 @@
 		F8571CCB262C0EAC00C882C5 /* vcoin.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F8ED2313266694F50081CB0F /* vcoin- 20210601.xcdatamodel */,
 				F8571CCC262C0EAC00C882C5 /* vcoin-20190712.xcdatamodel */,
 				F8571CCD262C0EAC00C882C5 /* vcoin.xcdatamodel */,
 			);
-			currentVersion = F8571CCC262C0EAC00C882C5 /* vcoin-20190712.xcdatamodel */;
+			currentVersion = F8ED2313266694F50081CB0F /* vcoin- 20210601.xcdatamodel */;
 			path = vcoin.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
