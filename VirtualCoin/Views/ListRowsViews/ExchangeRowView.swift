@@ -24,7 +24,7 @@ struct ExchangeRowView: View {
                         Text(exchangeViewModel.exchangeItem.coinSymbol)
                             .font(.subheadline)
                             .foregroundColor(.accentColor)
-                        Text("\(exchangeViewModel.exchangeItem.amount)")
+                        Text("\(exchangeViewModel.exchangeItem.amount.toFormattedAmount())")
                             .font(.subheadline)
                     }
                     

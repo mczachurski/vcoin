@@ -27,7 +27,10 @@ struct ExchangeDetailView: View {
             Section(header: Text("VALUES")) {
                 HStack {
                     Text("Amount")
-                    NumericTextField("Amount", number: $amount, isDecimalAllowed: true)
+                    NumericTextField("Amount",
+                                     number: $amount,
+                                     isDecimalAllowed: true,
+                                     numberFormatter: NumberFormatter.amountFormatter)
                         .multilineTextAlignment(.trailing)
                 }
                 

@@ -1,14 +1,18 @@
 //
-//  Float.swift
-//  vcoin
+//  Double.swift
+//  VirtualCoin
 //
-//  Created by Marcin Czachurski on 12.01.2018.
-//  Copyright © 2018 Marcin Czachurski. All rights reserved.
+//  Created by Marcin Czachurski on 05/06/2021.
 //
 
 import Foundation
+import VirtualCoinKit
 
-public extension Double {
+extension Double {
+    func toFormattedAmount() -> String {
+        return NumberFormatter.amountFormatter.string(from: NSNumber(value: self)) ?? ""
+    }
+    
     func toFormattedPrice(currency: String) -> String {
         return self.toFormattedPrice(currency: currency, maximumFractionDigits: 4)
     }
