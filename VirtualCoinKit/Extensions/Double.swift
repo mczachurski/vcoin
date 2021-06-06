@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import VirtualCoinKit
 
-extension Double {
+public extension Double {
     func toFormattedAmount() -> String {
         return NumberFormatter.amountFormatter.string(from: NSNumber(value: self)) ?? ""
     }
