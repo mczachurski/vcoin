@@ -8,12 +8,24 @@
 import SwiftUI
 import VirtualCoinKit
 
-struct PreviewData: PreviewProvider {
+struct PreviewData {
     
     static func getCoinsViewModel() -> [CoinViewModel] {
         return [
-            CoinViewModel(id: "bitcoin", rank: 1, symbol: "BTC", name: "Bitcoin", priceUsd: 53221.21, changePercent24Hr: -2.1),
-            CoinViewModel(id: "ethereum", rank: 2, symbol: "ETH", name: "Ethereum", priceUsd: 3211.23, changePercent24Hr: 1.1)
+            CoinViewModel(id: "bitcoin", rank: 1, symbol: "BTC", name: "Bitcoin", priceUsd: 36135.11, changePercent24Hr: -4.72),
+            CoinViewModel(id: "ethereum", rank: 2, symbol: "ETH", name: "Ethereum", priceUsd: 2662.72, changePercent24Hr: -4.43),
+            CoinViewModel(id: "dogecoin", rank: 3, symbol: "DOGE", name: "Dogecoin", priceUsd: 0.37526429, changePercent24Hr: -5.18),
+            CoinViewModel(id: "cardano", rank: 4, symbol: "USDT", name: "Cardano", priceUsd: 1.69, changePercent24Hr: -5.18),
+            CoinViewModel(id: "tether", rank: 5, symbol: "USDT", name: "Tether", priceUsd: 1.00, changePercent24Hr: 0.03),
+            CoinViewModel(id: "xrp", rank: 6, symbol: "XRP", name: "XRP", priceUsd: 0.94153174, changePercent24Hr: -5.35),
+            CoinViewModel(id: "uniswap", rank: 7, symbol: "UNI", name: "Uniswap", priceUsd: 25.98, changePercent24Hr: -5.28),
+            CoinViewModel(id: "litecoin", rank: 8, symbol: "LTC", name: "Litecoin", priceUsd: 175.35, changePercent24Hr: -3.78),
+            CoinViewModel(id: "chainlink", rank: 9, symbol: "LINK", name: "Chainlink", priceUsd: 27.65, changePercent24Hr: -7.53),
+            CoinViewModel(id: "binance-usd", rank: 10, symbol: "BUSD", name: "Binance USD", priceUsd: 1.00, changePercent24Hr: 0.04),
+            CoinViewModel(id: "stellar", rank: 11, symbol: "XLM", name: "Stellar", priceUsd: 0.38132001, changePercent24Hr: -4.78),
+            CoinViewModel(id: "vechain", rank: 12, symbol: "VET", name: "VeChain", priceUsd: 0.12897915, changePercent24Hr: -5.77),
+            CoinViewModel(id: "matic-network", rank: 13, symbol: "MATIC", name: "Matic Network", priceUsd: 1.57, changePercent24Hr: -8.23),
+            CoinViewModel(id: "ethereum-classic", rank: 14, symbol: "MATIC", name: "Ethereum Classic", priceUsd: 63.85, changePercent24Hr: -4.17)
         ]
     }
     
@@ -87,9 +99,5 @@ struct PreviewData: PreviewProvider {
     
     static func getChartData() -> [Double] {
         return [34, 34, 23, 34, 45, 65, 34, 32, 23, 33, 65, 57, 65, 34, 65, 67]
-    }
-    
-    static var previews: some View {
-        EmptyView()
     }
 }

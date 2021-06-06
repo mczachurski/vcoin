@@ -39,11 +39,12 @@ struct CoinsView: View {
         Group {
             switch state {
             case .iddle:
-                Text("").onAppear {
+                self.skeletonView()
+                .onAppear {
                     self.load()
                 }
             case .loading:
-                LoadingView()
+                self.skeletonView()
             case .loaded:
                 List {
                     ForEach(applicationStateService.coins.filter {
@@ -63,6 +64,16 @@ struct CoinsView: View {
                 .padding()
             }
         }
+    }
+    
+    private func skeletonView() -> some View {
+        List(PreviewData.getCoinsViewModel(), id: \.id) { coin in
+            NavigationLink(destination: CoinView(coin: coin)) {
+                CoinRowView(coin: coin)
+            }
+        }
+        .listStyle(PlainListStyle())
+        .redacted(reason: .placeholder)
     }
     
     private func load() {
