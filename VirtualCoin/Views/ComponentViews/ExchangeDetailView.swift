@@ -34,18 +34,6 @@ struct ExchangeDetailView: View {
                         .multilineTextAlignment(.trailing)
                 }
                 
-                Picker(selection: $selectedCurrency, label: Text("Currency")) {
-                    ForEach(Currencies.allCurrenciesList, id: \.self) { currency in
-                        HStack {
-                            Text(currency.name)
-                                .font(.body)
-                            Text("(\(currency.symbol))")
-                                .font(.footnote)
-                                .foregroundColor(.accentColor)
-                        }.tag(currency)
-                    }
-                }
-                
                 Picker(selection: $selectedCoin, label: Text("Coin")) {
                     ForEach(applicationStateService.coins, id: \.self) { coin in
                         HStack {
@@ -55,6 +43,18 @@ struct ExchangeDetailView: View {
                                 .font(.footnote)
                                 .foregroundColor(.accentColor)
                         }.tag(coin)
+                    }
+                }
+                
+                Picker(selection: $selectedCurrency, label: Text("Currency")) {
+                    ForEach(Currencies.allCurrenciesList, id: \.self) { currency in
+                        HStack {
+                            Text(currency.name)
+                                .font(.body)
+                            Text("(\(currency.symbol))")
+                                .font(.footnote)
+                                .foregroundColor(.accentColor)
+                        }.tag(currency)
                     }
                 }
             }
