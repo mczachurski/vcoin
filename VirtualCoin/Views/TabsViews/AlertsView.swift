@@ -22,23 +22,25 @@ struct AlertsView: View {
     private var alerts: FetchedResults<Alert>
     
     var body: some View {
-        List(alerts, id: \.objectID) { alert in
-            let coinViewModelFromApi = applicationStateService.coins.first(where: { coinViewModel in
-                coinViewModel.id == alert.coinId
-            })
-            
-            let coinViewModel = coinViewModelFromApi ?? CoinViewModel(id: "", rank: 1, symbol: "", name: "", priceUsd: 0, changePercent24Hr: 0)
-            
-            let currency = Currencies.allCurrenciesDictionary[alert.currency] ?? Currency()
-            
-            let alertViewModel = AlertViewModel(coinViewModel: coinViewModel,
-                                                alert: alert,
-                                                currency: currency)
-            
-            AlertRowView(alertViewModel: alertViewModel) {
-                applicationStateService.selectedAlertViewModel = alertViewModel
-                self.showingAlertView = true
-            }
+        List {
+            ForEach(alerts, id: \.self) { alert in
+                let coinViewModelFromApi = applicationStateService.coins.first(where: { coinViewModel in
+                    coinViewModel.id == alert.coinId
+                })
+                
+                let coinViewModel = coinViewModelFromApi ?? CoinViewModel(id: "", rank: 1, symbol: "", name: "", priceUsd: 0, changePercent24Hr: 0)
+                
+                let currency = Currencies.allCurrenciesDictionary[alert.currency] ?? Currency()
+                
+                let alertViewModel = AlertViewModel(coinViewModel: coinViewModel,
+                                                    alert: alert,
+                                                    currency: currency)
+                
+                AlertRowView(alertViewModel: alertViewModel) {
+                    applicationStateService.selectedAlertViewModel = alertViewModel
+                    self.showingAlertView = true
+                }
+            }.onDelete(perform: self.deleteItem)
         }
         .listStyle(PlainListStyle())
         .navigationTitle("Alerts")
@@ -71,6 +73,17 @@ struct AlertsView: View {
                 AddAlertView()
             }
         }
+    }
+    
+    private func deleteItem(at indexSet: IndexSet) {
+        let alertsHandler = AlertsHandler()
+        
+        for index in indexSet {
+            let alert = self.alerts[index]
+            alertsHandler.deleteAlertEntity(alert: alert)
+        }
+        
+        CoreDataHandler.shared.save()
     }
     
     private func grantNotificationPermission() {
