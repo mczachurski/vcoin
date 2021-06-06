@@ -42,6 +42,9 @@ class FavouritesHandler {
 
         let context = CoreDataHandler.shared.container.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Favourite")
+        let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+        fetchRequest.sortDescriptors = [ sortDescriptor ]
+        
         do {
             if let list = try context.fetch(fetchRequest) as? [Favourite] {
                 favourites = list

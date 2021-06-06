@@ -187,6 +187,13 @@ public class CoinsService: ObservableObject {
                 favourite.coinId == coinViewModel.id
             }) {
                 coinViewModel.isFavourite = true
+            }
+        }
+        
+        for favourite in favourites {
+            if let coinViewModel = coinsResult.first(where: { coin in
+                favourite.coinId == coin.id
+            }) {
                 favouritesResult.append(coinViewModel)
             }
         }

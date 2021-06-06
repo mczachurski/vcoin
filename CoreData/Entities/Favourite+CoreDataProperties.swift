@@ -17,4 +17,5 @@ public extension Favourite {
     }
 
     @NSManaged var coinId: String
+    @NSManaged var order: Int32
 }

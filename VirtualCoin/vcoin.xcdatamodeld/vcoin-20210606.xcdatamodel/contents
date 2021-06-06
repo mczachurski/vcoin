@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Alert" representedClassName="Alert" syncable="YES">
+        <attribute name="alertSentDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="coinId" attributeType="String"/>
+        <attribute name="coinSymbol" optional="YES" attributeType="String"/>
+        <attribute name="currency" attributeType="String"/>
+        <attribute name="isEnabled" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="isPriceLower" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="ExchangeItem" representedClassName="ExchangeItem" syncable="YES">
+        <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="coinId" attributeType="String"/>
+        <attribute name="coinSymbol" optional="YES" attributeType="String"/>
+        <attribute name="currency" attributeType="String"/>
+    </entity>
+    <entity name="Favourite" representedClassName="Favourite" syncable="YES">
+        <attribute name="coinId" attributeType="String"/>
+        <attribute name="order" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Settings" representedClassName="Settings" syncable="YES">
+        <attribute name="currency" attributeType="String" defaultValueString="USD"/>
+    </entity>
+    <elements>
+        <element name="Alert" positionX="-238.3828125" positionY="-54.2421875" width="128" height="134"/>
+        <element name="ExchangeItem" positionX="-80.0078125" positionY="-177.96875" width="128" height="89"/>
+        <element name="Favourite" positionX="-280.76171875" positionY="-239.921875" width="128" height="59"/>
+        <element name="Settings" positionX="-471.828125" positionY="-144.953125" width="128" height="44"/>
+    </elements>
+</model>

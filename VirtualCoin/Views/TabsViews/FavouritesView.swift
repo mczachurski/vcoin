@@ -51,7 +51,10 @@ struct FavouritesView: View {
                         NavigationLink(destination: CoinView(coin: coin)) {
                             CoinRowView(coin: coin)
                         }
-                    }
+                    }.onMove(perform: self.move)
+                }
+                .toolbar {
+                    EditButton()
                 }
                 .listStyle(PlainListStyle())
                 .add(self.searchBar)
@@ -62,6 +65,27 @@ struct FavouritesView: View {
                 .padding()
             }
         }
+    }
+    
+    private func move(from source: IndexSet, to destination: Int) {
+        // Get favourites form core data.
+        let favouritesHandler = FavouritesHandler()
+        var favourites: [Favourite] = favouritesHandler.getFavourites()
+
+        // Change order in core data array.
+        favourites.move(fromOffsets: source, toOffset: destination)
+
+        // Update the userOrder attribute in revisedItems to persist the new order.
+        // This is done in reverse order to minimize changes to the indices.
+        for reverseIndex in stride(from: favourites.count - 1, through: 0, by: -1 ) {
+            favourites[reverseIndex].order = Int32(reverseIndex)
+        }
+        
+        // Save new order.
+        CoreDataHandler.shared.save()
+        
+        // Change also order in array stored in application state.
+        self.applicationStateService.favourites.move(fromOffsets: source, toOffset: destination)
     }
     
     private func skeletonView() -> some View {
