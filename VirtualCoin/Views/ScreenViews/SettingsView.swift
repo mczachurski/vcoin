@@ -33,9 +33,7 @@ struct SettingsView: View {
                                     .foregroundColor(.accentColor)
                             }.tag(currency)
                        }
-                    }.onChange(of: selectedCurrency, perform: { value in
-                        print("selected: \(value.symbol)")
-                    })
+                    }
                 }
                 
                 Section(header: Text("OTHER")) {

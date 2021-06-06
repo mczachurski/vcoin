@@ -34,20 +34,6 @@ struct ExchangeDetailView: View {
                         .multilineTextAlignment(.trailing)
                 }
                 
-                Picker(selection: $selectedCoin, label: Text("Coin")) {
-                    ForEach(applicationStateService.coins, id: \.self) { coin in
-                        HStack {
-                            Text(coin.name)
-                                .font(.body)
-                            Text("(\(coin.symbol))")
-                                .font(.footnote)
-                                .foregroundColor(.accentColor)
-                        }.tag(coin)
-                   }
-                }.onChange(of: selectedCurrency, perform: { value in
-                    print("selected: \(value.symbol)")
-                })
-                
                 Picker(selection: $selectedCurrency, label: Text("Currency")) {
                     ForEach(Currencies.allCurrenciesList, id: \.self) { currency in
                         HStack {
@@ -57,10 +43,20 @@ struct ExchangeDetailView: View {
                                 .font(.footnote)
                                 .foregroundColor(.accentColor)
                         }.tag(currency)
-                   }
-                }.onChange(of: selectedCurrency, perform: { value in
-                    print("selected: \(value.symbol)")
-                })
+                    }
+                }
+                
+                Picker(selection: $selectedCoin, label: Text("Coin")) {
+                    ForEach(applicationStateService.coins, id: \.self) { coin in
+                        HStack {
+                            Text(coin.name)
+                                .font(.body)
+                            Text("(\(coin.symbol))")
+                                .font(.footnote)
+                                .foregroundColor(.accentColor)
+                        }.tag(coin)
+                    }
+                }
             }
         }
         .listStyle(GroupedListStyle())

@@ -24,4 +24,12 @@ public extension Color {
     static var redPastel: Color {
         return Color("RedPastel")
     }
+    
+    static var backgroundLabel: Color {
+        return Color("BackgroundLabel")
+    }
+    
+    static func backgroundLabel(opacity: Double) -> Color {
+        return Color.backgroundLabel.opacity(opacity)
+    }
 }

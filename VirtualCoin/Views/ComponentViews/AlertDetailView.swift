@@ -13,11 +13,13 @@ struct AlertDetailView: View {
     @EnvironmentObject private var applicationStateService: ApplicationStateService
     
     @Binding private var price: NSNumber?
+    @Binding private var isPriceLower: Bool
     @Binding private var selectedCurrency: Currency
     @Binding private var selectedCoin: CoinViewModel
     
-    init(price: Binding<NSNumber?>, currency: Binding<Currency>, coin: Binding<CoinViewModel>) {
+    init(price: Binding<NSNumber?>, isPriceLower: Binding<Bool>, currency: Binding<Currency>, coin: Binding<CoinViewModel>) {
         _price = price
+        _isPriceLower = isPriceLower
         _selectedCurrency = currency
         _selectedCoin = coin
     }
@@ -26,9 +28,30 @@ struct AlertDetailView: View {
         List {
             Section(header: Text("VALUES")) {
                 HStack {
+                    Text("Notify for")
+                    Picker("", selection: $isPriceLower) {
+                        Text("lower than").tag(true)
+                        Text("higher than").tag(false)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+                
+                HStack {
                     Text("Price")
                     NumericTextField("Price", number: $price, isDecimalAllowed: true)
                         .multilineTextAlignment(.trailing)
+                }
+                
+                Picker(selection: $selectedCurrency, label: Text("Currency")) {
+                    ForEach(Currencies.allCurrenciesList, id: \.self) { currency in
+                        HStack {
+                            Text(currency.name)
+                                .font(.body)
+                            Text("(\(currency.symbol))")
+                                .font(.footnote)
+                                .foregroundColor(.accentColor)
+                        }.tag(currency)
+                    }
                 }
                 
                 Picker(selection: $selectedCoin, label: Text("Coin")) {
@@ -40,24 +63,8 @@ struct AlertDetailView: View {
                                 .font(.footnote)
                                 .foregroundColor(.accentColor)
                         }.tag(coin)
-                   }
-                }.onChange(of: selectedCurrency, perform: { value in
-                    print("selected: \(value.symbol)")
-                })
-                
-                Picker(selection: $selectedCurrency, label: Text("Currency")) {
-                    ForEach(Currencies.allCurrenciesList, id: \.self) { currency in
-                        HStack {
-                            Text(currency.name)
-                                .font(.body)
-                            Text("(\(currency.symbol))")
-                                .font(.footnote)
-                                .foregroundColor(.accentColor)
-                        }.tag(currency)
-                   }
-                }.onChange(of: selectedCurrency, perform: { value in
-                    print("selected: \(value.symbol)")
-                })
+                    }
+                }
             }
         }
         .listStyle(GroupedListStyle())
@@ -66,11 +73,12 @@ struct AlertDetailView: View {
 
 struct AlertDetailView_Previews: PreviewProvider {
     @State private static var price: NSNumber? = 21.2
+    @State private static var isPriceLower: Bool = true
     @State private static var currency = PreviewData.getCurrency()
     @State private static var coin = PreviewData.getCoinViewModel()
 
     static var previews: some View {
-        AlertDetailView(price: $price, currency: $currency, coin: $coin)
+        AlertDetailView(price: $price, isPriceLower: $isPriceLower, currency: $currency, coin: $coin)
             .environmentObject(ApplicationStateService.preview)
     }
 }

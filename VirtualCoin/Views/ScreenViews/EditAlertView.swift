@@ -14,6 +14,7 @@ struct EditAlertView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State private var price: NSNumber?
+    @State private var isPriceLower: Bool = true
     @State private var selectedCurrency: Currency
     @State private var selectedCoin: CoinViewModel
     
@@ -23,13 +24,14 @@ struct EditAlertView: View {
         self.alertViewModel = alertViewModel
         
         self._price = State(initialValue: NSNumber(value: alertViewModel.alert.price))
+        self._isPriceLower = State(initialValue: alertViewModel.alert.isPriceLower)
         self._selectedCurrency = State(initialValue: Currency(symbol: alertViewModel.alert.currency))
         self._selectedCoin = State(initialValue: CoinViewModel(id: alertViewModel.alert.coinId))
     }
     
     var body: some View {
         NavigationView {
-            AlertDetailView(price: self.$price, currency: self.$selectedCurrency, coin: self.$selectedCoin)
+            AlertDetailView(price: self.$price, isPriceLower: $isPriceLower, currency: self.$selectedCurrency, coin: self.$selectedCoin)
             .navigationBarTitle(Text("Alert"), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
@@ -51,6 +53,7 @@ struct EditAlertView: View {
         self.alertViewModel.alert.coinId = self.selectedCoin.id
         self.alertViewModel.alert.coinSymbol = self.selectedCoin.symbol
         self.alertViewModel.alert.price = self.price?.doubleValue ?? 0
+        self.alertViewModel.alert.isPriceLower = self.isPriceLower
         
         CoreDataHandler.shared.save()
         

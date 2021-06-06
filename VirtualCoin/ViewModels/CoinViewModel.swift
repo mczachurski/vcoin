@@ -15,12 +15,12 @@ public class CoinViewModel: Identifiable, ObservableObject {
     public let name: String
     public let imageUrl: String
 
-    @Published public var price: Double
+    @Published public var price: Double = 0.0
     @Published public var isFavourite = false
     @Published public var priceUsd: Double
     @Published public var changePercent24Hr: Double
     
-    init(coin: Coin, rateUsd: Double) {
+    init(coin: Coin) {
         self.id = coin.id
         self.symbol = coin.symbol
         self.name = coin.name
@@ -33,10 +33,8 @@ public class CoinViewModel: Identifiable, ObservableObject {
         
         if let priceUsd = coin.priceUsd, let price = Double(priceUsd) {
             self.priceUsd = price
-            self.price = price / rateUsd
         } else {
             self.priceUsd = 0
-            self.price = 0
         }
         
         if let changePercent24Hr = coin.changePercent24Hr, let price = Double(changePercent24Hr) {
@@ -57,6 +55,19 @@ public class CoinViewModel: Identifiable, ObservableObject {
         self.price = priceUsd
         self.changePercent24Hr = changePercent24Hr
         self.imageUrl = "https://static.coincap.io/assets/icons/\(symbol.lowercased())@2x.png"
+    }
+}
+
+extension CoinViewModel {
+    public func refresh(priceUsd: String?, changePercent24Hr: String?, withRateUsd rateUsd: Double) {
+        if let priceUsd = priceUsd, let price = Double(priceUsd) {
+            self.priceUsd = price
+            self.price = price / rateUsd
+        }
+        
+        if let changePercent24Hr = changePercent24Hr, let price = Double(changePercent24Hr) {
+            self.changePercent24Hr = price
+        }
     }
 }
 

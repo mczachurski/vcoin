@@ -178,7 +178,9 @@ public class CoinsService: ObservableObject {
         let favourites = favouritesHandler.getFavourites()
         
         for coin in coins {
-            let coinViewModel = CoinViewModel(coin: coin, rateUsd: self.currencyRateUsdCache)
+            let coinViewModel = CoinViewModel(coin: coin)
+            coinViewModel.refresh(priceUsd: coin.priceUsd, changePercent24Hr: coin.changePercent24Hr, withRateUsd: self.currencyRateUsdCache)
+
             coinsResult.append(coinViewModel)
             
             if favourites.contains(where: { favourite in
@@ -202,14 +204,7 @@ public class CoinsService: ObservableObject {
                 coinViewModel.id == coin.id
             }) {
                 DispatchQueue.runOnMain {
-                    if let priceUsd = coin.priceUsd, let price = Double(priceUsd) {
-                        existingCoin.priceUsd = price
-                        existingCoin.price = price / self.currencyRateUsdCache
-                    }
-                    
-                    if let changePercent24Hr = coin.changePercent24Hr, let price = Double(changePercent24Hr) {
-                        existingCoin.changePercent24Hr = price
-                    }
+                    existingCoin.refresh(priceUsd: coin.priceUsd, changePercent24Hr: coin.changePercent24Hr, withRateUsd: self.currencyRateUsdCache)
                 }
             }
         }

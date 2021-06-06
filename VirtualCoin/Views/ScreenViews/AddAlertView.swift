@@ -12,12 +12,13 @@ struct AddAlertView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State private var price: NSNumber?
+    @State private var isPriceLower: Bool = true
     @State private var selectedCurrency = Currencies.getDefaultCurrency()
     @State private var selectedCoin = CoinViewModel(symbol: "BTC")
 
     var body: some View {
         NavigationView {
-            AlertDetailView(price: $price, currency: $selectedCurrency, coin: $selectedCoin)
+            AlertDetailView(price: $price, isPriceLower: $isPriceLower, currency: $selectedCurrency, coin: $selectedCoin)
             .navigationBarTitle(Text("Exchange"), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
@@ -44,6 +45,7 @@ struct AddAlertView: View {
         alert.coinSymbol = self.selectedCoin.symbol
         alert.price = self.price?.doubleValue ?? 0
         alert.isEnabled = true
+        alert.isPriceLower = self.isPriceLower
         
         CoreDataHandler.shared.save()
     }

@@ -18,6 +18,8 @@ struct ChartView: View {
 
     public var chartTimeRange: ChartTimeRange
     public var coin: CoinViewModel
+    
+    @Setting(\.currency) private var currencySymbol: String
             
     var body: some View {
         switch state {
@@ -28,7 +30,7 @@ struct ChartView: View {
         case .loading:
             LoadingView()
         case .loaded:
-            VStack {
+            ZStack(alignment: .topTrailing) {
                 LightChartView(data: self.chartData,
                                type: .curved,
                                visualType: .customFilled(color: .main,
@@ -39,11 +41,35 @@ struct ChartView: View {
                                                             endPoint: .init(x: 0.5, y: 0)
                                                          )),
                                currentValueLineType: .dash(color: .main(opacity: 0.3), lineWidth: 1, dash: [5]))
+                VStack {
+                    self.getLabelView(value: self.getMaxValue())
+                        .offset(x: -4, y: 4)
+                    Spacer()
+                    self.getLabelView(value: self.getMinValue())
+                        .offset(x: -4, y: -4)
+                }
             }
         case .error(let error):
             ErrorView(error: error)
                 .padding()
         }
+    }
+    
+    private func getLabelView(value: Double) -> some View {
+        Text(value.toFormattedPrice(currency: currencySymbol))
+            .font(.footnote)
+            .padding(2)
+            .background(Color.backgroundLabel(opacity: 0.4))
+            .foregroundColor(.main)
+            .cornerRadius(5)
+    }
+    
+    private func getMaxValue() -> Double {
+        return (self.chartData.max() ?? 0) / self.applicationStateService.currencyRateUsd
+    }
+    
+    private func getMinValue() -> Double {
+        return (self.chartData.min() ?? 0) / self.applicationStateService.currencyRateUsd
     }
     
     private func load() {
