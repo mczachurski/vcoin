@@ -8,7 +8,7 @@
 import SwiftUI
 import VirtualCoinKit
 
-struct PreviewData {
+public struct PreviewData {
     
     static func getCoinsViewModel() -> [CoinViewModel] {
         return [
