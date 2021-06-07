@@ -266,6 +266,7 @@
 		F85DDBF4266E6DE9006157B4 /* MediumWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWidgetView.swift; sourceTree = "<group>"; };
 		F85DDBF6266E6DFA006157B4 /* LargeWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeWidgetView.swift; sourceTree = "<group>"; };
 		F85DDBF8266E6E27006157B4 /* VirtualCoinWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCoinWidgetEntryView.swift; sourceTree = "<group>"; };
+		F85DDBFD266E79A5006157B4 /* VirtualCoinWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VirtualCoinWidgetExtension.entitlements; sourceTree = "<group>"; };
 		F86620752647132E00577013 /* AddExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExchangeView.swift; sourceTree = "<group>"; };
 		F86620772647153E00577013 /* ExchangeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDetailView.swift; sourceTree = "<group>"; };
 		F86714E32656725600B8B34C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -527,6 +528,7 @@
 		F891682D262B38AD007335D7 = {
 			isa = PBXGroup;
 			children = (
+				F85DDBFD266E79A5006157B4 /* VirtualCoinWidgetExtension.entitlements */,
 				F8571C9D262C0C1300C882C5 /* CoreData */,
 				F8916838262B38AD007335D7 /* VirtualCoin */,
 				F891684F262B38AE007335D7 /* VirtualCoinTests */,
@@ -1484,6 +1486,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = VirtualCoinWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VirtualCoinWidget/Info.plist;
@@ -1508,6 +1511,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = VirtualCoinWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VirtualCoinWidget/Info.plist;
