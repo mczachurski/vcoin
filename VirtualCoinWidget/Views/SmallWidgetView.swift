@@ -18,13 +18,15 @@ struct SmallWidgetView: View {
                 VStack {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("\(viewModels[index].symbol)")
-                                .foregroundColor(Color.main)
-                                .font(.caption2)
                             Text("\(viewModels[index].name)")
                                 .font(.caption2)
+                            Text("\(viewModels[index].symbol)")
+                                .foregroundColor(Color.gray)
+                                .font(.caption2)
                         }
+                        
                         Spacer()
+                        
                         VStack(alignment: .trailing){
                             Text("\(viewModels[index].price.toFormattedPrice(currency: currencySymbol))")
                                 .font(.caption2)

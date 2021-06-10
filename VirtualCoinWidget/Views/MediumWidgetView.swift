@@ -19,23 +19,19 @@ struct MediumWidgetView: View {
                 VStack {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("\(viewModels[index].symbol)")
-                                .foregroundColor(Color.main)
-                                .font(.caption2)
                             Text("\(viewModels[index].name)")
                                 .font(.caption2)
+                            Text("\(viewModels[index].symbol)")
+                                .foregroundColor(Color.gray)
+                                .font(.caption2)
                         }
+
                         Spacer()
                         
                         LightChartView(data: viewModels[index].chart,
                                        type: .curved,
-                                       visualType: .customFilled(color: .main,
-                                                                 lineWidth: 2,
-                                                                 fillGradient: LinearGradient(
-                                                                    gradient: .init(colors: [.main(opacity: 0.5), .main(opacity: 0.1)]),
-                                                                    startPoint: .init(x: 0.5, y: 1),
-                                                                    endPoint: .init(x: 0.5, y: 0)
-                                                                 )))
+                                       visualType: viewModels[index].changePercent24Hr > 0 ? .green : .red,
+                                       currentValueLineType: viewModels[index].changePercent24Hr > 0 ? .green : .red)
                             .frame(maxWidth: 80, maxHeight: .infinity)
                             .padding(.top, 2)
                             .padding(.bottom, 2)

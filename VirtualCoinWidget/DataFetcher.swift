@@ -8,7 +8,6 @@ import VirtualCoinKit
 
 class DataFetcher {
     func getCoins(completionHandler: @escaping (Result<[WidgetViewModel], RestClientError>) -> Void) {
-
         let settingsHandler = SettingsHandler()
         let defaultSettings = settingsHandler.getDefaultSettings()
         
@@ -33,26 +32,23 @@ class DataFetcher {
     }
     
     private func downloadCoins(currencyRateUsd: Double, completionHandler: @escaping (Result<[WidgetViewModel], RestClientError>) -> Void) {
-        
         var results: [WidgetViewModel] = []
-        let favouritesHandler = FavouritesHandler()
-        let favourites = favouritesHandler.getFavourites()
-
+        let coinOrders = self.getCoinOrders()
         let coinCapClient = CoinCapClient()
         let downloadCoinsGroup = DispatchGroup()
         
-        for favourite in favourites {
+        for coinOrder in coinOrders {
             downloadCoinsGroup.enter()
 
-            coinCapClient.getCoinAsync(for: favourite.coinId) { coinResult in
+            coinCapClient.getCoinAsync(for: coinOrder.coinId) { coinResult in
                 switch coinResult {
                 case .success(let coin):
                     
                     let priceUsd = Double(coin.priceUsd ?? "") ?? 0.0
                     let changePercent24Hr = Double(coin.changePercent24Hr ?? "") ?? 0.0
                     
-                    results.append(WidgetViewModel(id: favourite.coinId,
-                                                   order: favourite.order,
+                    results.append(WidgetViewModel(id: coinOrder.coinId,
+                                                   order: coinOrder.order,
                                                    rank: Int(coin.rank) ?? 0,
                                                    symbol: coin.symbol,
                                                    name: coin.name,
@@ -114,5 +110,29 @@ class DataFetcher {
 
             completionHandler(.success(resultOrdered))
         }
+    }
+    
+    private func getCoinOrders() -> [CoinOrder] {
+        let favouritesHandler = FavouritesHandler()
+        let favourites = favouritesHandler.getFavourites()
+        
+        // Get coins from favourites.
+        var coinOrders = favourites.map { favourite in
+            CoinOrder(coinId: favourite.coinId, order: favourite.order)
+        }
+        
+        var maxOrder = coinOrders.map { coinOrder in coinOrder.order }.max() ?? 0
+        
+        // Add other higher rank coins for nice widget.
+        for widgetViewModel in PreviewData.getWidgetViewModels() {
+            if coinOrders.contains(where: { coinOrder in coinOrder.coinId == widgetViewModel.id }) {
+                continue
+            }
+            
+            coinOrders.append(CoinOrder(coinId: widgetViewModel.id, order: maxOrder))
+            maxOrder = maxOrder + 1
+        }
+        
+        return coinOrders
     }
 }

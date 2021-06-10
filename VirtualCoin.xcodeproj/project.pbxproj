@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		F8038E13262F0C6100E434B3 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8038E12262F0C6100E434B3 /* CoinView.swift */; };
 		F8042595266FB13D00E3FAE1 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8042594266FB13D00E3FAE1 /* DataFetcher.swift */; };
+		F814B0F12672896800C2DF11 /* ChartVisualType+ChartColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814B0F02672896800C2DF11 /* ChartVisualType+ChartColors.swift */; };
+		F814B0F426728DBF00C2DF11 /* CurrentValueLineType+ChartColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814B0F326728DBF00C2DF11 /* CurrentValueLineType+ChartColors.swift */; };
+		F814B0F6267291AA00C2DF11 /* CoinSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814B0F5267291AA00C2DF11 /* CoinSymbol.swift */; };
 		F8189E7E26557C3F00563F5A /* ApplicationStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8189E7D26557C3F00563F5A /* ApplicationStateService.swift */; };
 		F8189E8026558A3700563F5A /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8189E7F26558A3700563F5A /* DispatchQueue.swift */; };
 		F8459ACA263EDFF10021773B /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459AC9263EDFF10021773B /* Coin.swift */; };
@@ -44,7 +47,6 @@
 		F8571CEA262C1A3D00C882C5 /* VirtualCoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8571CE1262C1A3D00C882C5 /* VirtualCoinKit.framework */; };
 		F8571CF1262C1A3D00C882C5 /* VirtualCoinKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571CF0262C1A3D00C882C5 /* VirtualCoinKitTests.swift */; };
 		F8571CF3262C1A3D00C882C5 /* VirtualCoinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F8571CE3262C1A3D00C882C5 /* VirtualCoinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8571CF6262C1A3D00C882C5 /* VirtualCoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8571CE1262C1A3D00C882C5 /* VirtualCoinKit.framework */; };
 		F8571D0D262C1AEA00C882C5 /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D07262C1AEA00C882C5 /* Currencies.swift */; };
 		F8571D0F262C1AEA00C882C5 /* ChartTimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D09262C1AEA00C882C5 /* ChartTimeRange.swift */; };
 		F8571D10262C1AEA00C882C5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D0A262C1AEA00C882C5 /* Currency.swift */; };
@@ -72,6 +74,8 @@
 		F86620782647153E00577013 /* ExchangeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86620772647153E00577013 /* ExchangeDetailView.swift */; };
 		F86714E42656725600B8B34C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86714E32656725600B8B34C /* LoadingView.swift */; };
 		F86714E62656730D00B8B34C /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86714E52656730D00B8B34C /* ErrorView.swift */; };
+		F86FC76A267284520015627D /* VirtualCoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8571CE1262C1A3D00C882C5 /* VirtualCoinKit.framework */; };
+		F86FC76B267284520015627D /* VirtualCoinKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F8571CE1262C1A3D00C882C5 /* VirtualCoinKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F879C24926417C5C00F72D2B /* ThirdPartyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F879C24826417C5C00F72D2B /* ThirdPartyView.swift */; };
 		F87E0AC42635AA7800354BA5 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = F87E0AC32635AA7800354BA5 /* URLImage */; };
 		F882B479264AC71300484AF6 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882B478264AC71300484AF6 /* PreviewData.swift */; };
@@ -180,6 +184,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		F86FC76C267284520015627D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F86FC76B267284520015627D /* VirtualCoinKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F89F5F36266D0A5D00B0E2F2 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -196,6 +211,10 @@
 /* Begin PBXFileReference section */
 		F8038E12262F0C6100E434B3 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		F8042594266FB13D00E3FAE1 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		F814B0F02672896800C2DF11 /* ChartVisualType+ChartColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChartVisualType+ChartColors.swift"; sourceTree = "<group>"; };
+		F814B0F326728DBF00C2DF11 /* CurrentValueLineType+ChartColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentValueLineType+ChartColors.swift"; sourceTree = "<group>"; };
+		F814B0F5267291AA00C2DF11 /* CoinSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSymbol.swift; sourceTree = "<group>"; };
+		F814B0F72672962F00C2DF11 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F8189E7D26557C3F00563F5A /* ApplicationStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStateService.swift; sourceTree = "<group>"; };
 		F8189E7F26558A3700563F5A /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		F8459AC9263EDFF10021773B /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
@@ -324,9 +343,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F86FC76A267284520015627D /* VirtualCoinKit.framework in Frameworks */,
 				F8F6855826400264004F1D83 /* LightChart in Frameworks */,
 				F87E0AC42635AA7800354BA5 /* URLImage in Frameworks */,
-				F8571CF6262C1A3D00C882C5 /* VirtualCoinKit.framework in Frameworks */,
 				F852749A266BDBEA00F26785 /* NumericText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +388,15 @@
 				F8F68542263FC52F004F1D83 /* TabsViews */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F814B0F22672897200C2DF11 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F814B0F02672896800C2DF11 /* ChartVisualType+ChartColors.swift */,
+				F814B0F326728DBF00C2DF11 /* CurrentValueLineType+ChartColors.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F8459ACD263EE5050021773B /* ViewModels */ = {
@@ -518,6 +546,7 @@
 		F891682D262B38AD007335D7 = {
 			isa = PBXGroup;
 			children = (
+				F814B0F72672962F00C2DF11 /* README.md */,
 				F85DDBFD266E79A5006157B4 /* VirtualCoinWidgetExtension.entitlements */,
 				F8571C9D262C0C1300C882C5 /* CoreData */,
 				F8916838262B38AD007335D7 /* VirtualCoin */,
@@ -602,9 +631,11 @@
 		F89F5F2A266D0A5C00B0E2F2 /* VirtualCoinWidget */ = {
 			isa = PBXGroup;
 			children = (
+				F814B0F22672897200C2DF11 /* Extensions */,
 				F85DDBF1266E6DB0006157B4 /* Views */,
 				F85DDBE9266E6D1E006157B4 /* PreviewData.swift */,
 				F8042594266FB13D00E3FAE1 /* DataFetcher.swift */,
+				F814B0F5267291AA00C2DF11 /* CoinSymbol.swift */,
 				F85DDBEB266E6D48006157B4 /* Provider.swift */,
 				F85DDBED266E6D81006157B4 /* WidgetViewModel.swift */,
 				F85DDBEF266E6D9D006157B4 /* WidgetEntry.swift */,
@@ -753,6 +784,7 @@
 				F8916833262B38AD007335D7 /* Frameworks */,
 				F8916834262B38AD007335D7 /* Resources */,
 				F89F5F36266D0A5D00B0E2F2 /* Embed App Extensions */,
+				F86FC76C267284520015627D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -834,7 +866,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					F8571CE0262C1A3D00C882C5 = {
 						CreatedOnToolsVersion = 12.4;
@@ -1061,12 +1093,15 @@
 				F89F5F46266D0F5400B0E2F2 /* Alert+CoreDataProperties.swift in Sources */,
 				F89F5F47266D0F5400B0E2F2 /* ExchangeItem+CoreDataClass.swift in Sources */,
 				F85DDBF3266E6DBE006157B4 /* SmallWidgetView.swift in Sources */,
+				F814B0F6267291AA00C2DF11 /* CoinSymbol.swift in Sources */,
 				F89F5F48266D0F5400B0E2F2 /* ExchangeItem+CoreDataProperties.swift in Sources */,
+				F814B0F12672896800C2DF11 /* ChartVisualType+ChartColors.swift in Sources */,
 				F89F5F49266D0F5400B0E2F2 /* Favourite+CoreDataClass.swift in Sources */,
 				F89F5F4A266D0F5400B0E2F2 /* Favourite+CoreDataProperties.swift in Sources */,
 				F85DDBF7266E6DFA006157B4 /* LargeWidgetView.swift in Sources */,
 				F89F5F4B266D0F5400B0E2F2 /* Settings+CoreDataClass.swift in Sources */,
 				F85DDBEA266E6D1E006157B4 /* PreviewData.swift in Sources */,
+				F814B0F426728DBF00C2DF11 /* CurrentValueLineType+ChartColors.swift in Sources */,
 				F85DDBF9266E6E27006157B4 /* VirtualCoinWidgetEntryView.swift in Sources */,
 				F89F5F4C266D0F5400B0E2F2 /* Settings+CoreDataProperties.swift in Sources */,
 				F89F5F3F266D0F4D00B0E2F2 /* CoinIdMappingPolicy.swift in Sources */,
@@ -1350,6 +1385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = VirtualCoin/VirtualCoin.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"VirtualCoin/Preview Content\"";
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
@@ -1363,6 +1399,7 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1375,6 +1412,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = VirtualCoin/VirtualCoin.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"VirtualCoin/Preview Content\"";
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
@@ -1388,6 +1426,7 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1480,6 +1519,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = VirtualCoinWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VirtualCoinWidget/Info.plist;
@@ -1492,6 +1532,7 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1505,6 +1546,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = VirtualCoinWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VirtualCoinWidget/Info.plist;
@@ -1517,6 +1559,7 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
