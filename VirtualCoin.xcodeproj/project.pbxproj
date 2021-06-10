@@ -45,7 +45,6 @@
 		F8571CF1262C1A3D00C882C5 /* VirtualCoinKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571CF0262C1A3D00C882C5 /* VirtualCoinKitTests.swift */; };
 		F8571CF3262C1A3D00C882C5 /* VirtualCoinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F8571CE3262C1A3D00C882C5 /* VirtualCoinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8571CF6262C1A3D00C882C5 /* VirtualCoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8571CE1262C1A3D00C882C5 /* VirtualCoinKit.framework */; };
-		F8571CF7262C1A3D00C882C5 /* VirtualCoinKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F8571CE1262C1A3D00C882C5 /* VirtualCoinKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F8571D0D262C1AEA00C882C5 /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D07262C1AEA00C882C5 /* Currencies.swift */; };
 		F8571D0F262C1AEA00C882C5 /* ChartTimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D09262C1AEA00C882C5 /* ChartTimeRange.swift */; };
 		F8571D10262C1AEA00C882C5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571D0A262C1AEA00C882C5 /* Currency.swift */; };
@@ -181,17 +180,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F8571CFB262C1A3D00C882C5 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				F8571CF7262C1A3D00C882C5 /* VirtualCoinKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F89F5F36266D0A5D00B0E2F2 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -764,7 +752,6 @@
 				F8916832262B38AD007335D7 /* Sources */,
 				F8916833262B38AD007335D7 /* Frameworks */,
 				F8916834262B38AD007335D7 /* Resources */,
-				F8571CFB262C1A3D00C882C5 /* Embed Frameworks */,
 				F89F5F36266D0A5D00B0E2F2 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -1503,7 +1490,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin.VirtualCoinWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1528,7 +1515,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin.VirtualCoinWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.mczachurski.vcoin.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
