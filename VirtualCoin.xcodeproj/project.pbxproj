@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F8038E13262F0C6100E434B3 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8038E12262F0C6100E434B3 /* CoinView.swift */; };
+		F8042595266FB13D00E3FAE1 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8042594266FB13D00E3FAE1 /* DataFetcher.swift */; };
 		F8189E7E26557C3F00563F5A /* ApplicationStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8189E7D26557C3F00563F5A /* ApplicationStateService.swift */; };
 		F8189E8026558A3700563F5A /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8189E7F26558A3700563F5A /* DispatchQueue.swift */; };
 		F8459ACA263EDFF10021773B /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459AC9263EDFF10021773B /* Coin.swift */; };
@@ -206,6 +207,7 @@
 
 /* Begin PBXFileReference section */
 		F8038E12262F0C6100E434B3 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
+		F8042594266FB13D00E3FAE1 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		F8189E7D26557C3F00563F5A /* ApplicationStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStateService.swift; sourceTree = "<group>"; };
 		F8189E7F26558A3700563F5A /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		F8459AC9263EDFF10021773B /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 			children = (
 				F85DDBF1266E6DB0006157B4 /* Views */,
 				F85DDBE9266E6D1E006157B4 /* PreviewData.swift */,
+				F8042594266FB13D00E3FAE1 /* DataFetcher.swift */,
 				F85DDBEB266E6D48006157B4 /* Provider.swift */,
 				F85DDBED266E6D81006157B4 /* WidgetViewModel.swift */,
 				F85DDBEF266E6D9D006157B4 /* WidgetEntry.swift */,
@@ -1084,6 +1087,7 @@
 				F89F5F41266D0F4D00B0E2F2 /* CoreDataHandler.swift in Sources */,
 				F89F5F42266D0F4D00B0E2F2 /* ExchangeItemsHandler.swift in Sources */,
 				F89F5F43266D0F4D00B0E2F2 /* FavouritesHandler.swift in Sources */,
+				F8042595266FB13D00E3FAE1 /* DataFetcher.swift in Sources */,
 				F85DDBEC266E6D48006157B4 /* Provider.swift in Sources */,
 				F89F5F44266D0F4D00B0E2F2 /* SettingsHandler.swift in Sources */,
 				F85DDBEE266E6D81006157B4 /* WidgetViewModel.swift in Sources */,

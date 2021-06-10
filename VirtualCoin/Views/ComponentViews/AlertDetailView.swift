@@ -1,8 +1,6 @@
 //
-//  ExchangeDetailView.swift
-//  VirtualCoin
-//
-//  Created by Marcin Czachurski on 08/05/2021.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import SwiftUI
@@ -28,7 +26,7 @@ struct AlertDetailView: View {
         List {
             Section(header: Text("VALUES")) {
                 HStack {
-                    Text("Notify for")
+                    Text("Notify when")
                     Picker("", selection: $isPriceLower) {
                         Text("lower than").tag(true)
                         Text("higher than").tag(false)

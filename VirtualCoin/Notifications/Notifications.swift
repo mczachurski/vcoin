@@ -1,9 +1,6 @@
 //
-//  Notifications.swift
-//  VCoin
-//
-//  Created by Marcin Czachurski on 03.02.2018.
-//  Copyright © 2018 Marcin Czachurski. All rights reserved.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import Foundation
@@ -26,9 +23,10 @@ class Notifications {
             }
         }
 
-        let lock = NSLock()
+        let notificationsGroup = DispatchGroup()
 
         for priceAlert in priceAlerts {
+            notificationsGroup.enter()
             priceAlert.value.processing = Processing.processing
 
             guard let currency = Currencies.allCurrenciesDictionary[priceAlert.value.currency] else {
@@ -39,30 +37,20 @@ class Notifications {
             self.coinCapClient.getCoinPriceAsync(for: priceAlert.value.coinId, currencyId: currency.id) { result in
                 switch result {
                 case .success(let price):
-                    lock.lock()
-
                     priceAlert.value.price = price
                     priceAlert.value.processing = Processing.finished
-
-                    if self.allAlertsFinished() {
-                        self.processAlerts(alerts: alerts)
-                        completionHandler(Result.success(()))
-                    }
-
-                    lock.unlock()
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
+                
+                notificationsGroup.leave()
             }
         }
-    }
-
-    private func allAlertsFinished() -> Bool {
-        let notFinishedAlerts = priceAlerts.filter { _, value -> Bool in
-            return value.processing != Processing.finished
+        
+        notificationsGroup.notify(queue: .main) {
+            self.processAlerts(alerts: alerts)
+            completionHandler(Result.success(()))
         }
-
-        return notFinishedAlerts.isEmpty
     }
 
     private func processAlerts(alerts: [Alert]) {
@@ -94,7 +82,7 @@ class Notifications {
 
     private func notifyAboutLowerPrices(settings: UNNotificationSettings, center: UNUserNotificationCenter, alert: Alert, price: Double) {
         if settings.authorizationStatus == .authorized {
-            let body = "Currency price is \(price.toFormattedPrice(currency: alert.currency)) lower then: \(alert.price.toFormattedPrice(currency: alert.currency))"
+            let body = "Currency price is \(price.toFormattedPrice(currency: alert.currency)) lower than: \(alert.price.toFormattedPrice(currency: alert.currency))"
 
             self.sendNotification(center: center,
                                   title: alert.coinSymbol,
@@ -107,7 +95,7 @@ class Notifications {
 
     private func notifyAboutHigherPrices(settings: UNNotificationSettings, center: UNUserNotificationCenter, alert: Alert, price: Double) {
         if settings.authorizationStatus == .authorized {
-            let body = "Currency price is \(price.toFormattedPrice(currency: alert.currency)) higher then: \(alert.price.toFormattedPrice(currency: alert.currency))"
+            let body = "Currency price is \(price.toFormattedPrice(currency: alert.currency)) higher than: \(alert.price.toFormattedPrice(currency: alert.currency))"
 
             self.sendNotification(center: center,
                                   title: alert.coinSymbol,

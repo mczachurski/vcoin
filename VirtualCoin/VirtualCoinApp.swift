@@ -3,6 +3,7 @@
 //  VirtualCoin
 //
 //  Created by Marcin Czachurski on 17/04/2021.
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import SwiftUI

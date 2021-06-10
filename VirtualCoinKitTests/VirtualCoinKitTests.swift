@@ -1,8 +1,6 @@
 //
-//  VirtualCoinKitTests.swift
-//  VirtualCoinKitTests
-//
-//  Created by Marcin Czachurski on 18/04/2021.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import XCTest

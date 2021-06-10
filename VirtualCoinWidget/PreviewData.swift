@@ -1,8 +1,6 @@
 //
-//  PreviewData.swift
-//  VirtualCoinWidgetExtension
-//
-//  Created by Marcin Czachurski on 07/06/2021.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import Foundation
@@ -12,6 +10,7 @@ struct PreviewData {
     static func getWidgetViewModels() -> [WidgetViewModel] {
         return [
             WidgetViewModel(id: "bitcoin",
+                            order: 1,
                             rank: 1,
                             symbol: "BTC",
                             name: "Bitcoin",
@@ -21,6 +20,7 @@ struct PreviewData {
                             chart: getChartData()),
             
             WidgetViewModel(id: "ethereum",
+                            order: 2,
                             rank: 2,
                             symbol: "ETH",
                             name: "Ethereum",
@@ -30,6 +30,7 @@ struct PreviewData {
                             chart: getChartData()),
 
             WidgetViewModel(id: "dogecoin",
+                            order: 3,
                             rank: 3,
                             symbol: "DOGE",
                             name: "Dogecoin",
@@ -39,6 +40,7 @@ struct PreviewData {
                             chart: getChartData()),
 
             WidgetViewModel(id: "cardano",
+                            order: 4,
                             rank: 4,
                             symbol: "USDT",
                             name: "Cardano",
@@ -48,6 +50,7 @@ struct PreviewData {
                             chart: getChartData()),
 
             WidgetViewModel(id: "tether",
+                            order: 5,
                             rank: 5,
                             symbol: "USDT",
                             name: "Tether",
@@ -57,6 +60,7 @@ struct PreviewData {
                             chart: getChartData()),
 
             WidgetViewModel(id: "xrp",
+                            order: 6,
                             rank: 6,
                             symbol: "XRP",
                             name: "XRP",

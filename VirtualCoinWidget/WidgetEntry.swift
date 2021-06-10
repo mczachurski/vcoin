@@ -1,8 +1,6 @@
 //
-//  SimpleEntry.swift
-//  VirtualCoinWidgetExtension
-//
-//  Created by Marcin Czachurski on 07/06/2021.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import WidgetKit

@@ -1,8 +1,6 @@
 //
-//  AlertRowView.swift
-//  VirtualCoin
-//
-//  Created by Marcin Czachurski on 09/05/2021.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import SwiftUI
@@ -25,7 +23,7 @@ struct AlertRowView: View {
                         .font(.subheadline)
                         .foregroundColor(.accentColor)
                     HStack {
-                        Text(alertViewModel.alert.isPriceLower ? "Lower then" : "Greather then")
+                        Text(alertViewModel.alert.isPriceLower ? "Lower than" : "Greather than")
                             .foregroundColor(.gray)
                             .font(.subheadline)
                         Text("\(alertViewModel.alert.price.toFormattedPrice(currency: alertViewModel.alert.currency))")

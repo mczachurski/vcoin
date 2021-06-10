@@ -1,9 +1,6 @@
 //
-//  UIColor.swift
-//  vcoin
-//
-//  Created by Marcin Czachurski on 14.01.2018.
-//  Copyright © 2018 Marcin Czachurski. All rights reserved.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import SwiftUI

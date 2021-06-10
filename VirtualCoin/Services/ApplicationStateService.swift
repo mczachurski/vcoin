@@ -1,8 +1,6 @@
 //
-//  ApplicationStateService.swift
-//  VirtualCoin
-//
-//  Created by Marcin Czachurski on 19/05/2021.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import Foundation

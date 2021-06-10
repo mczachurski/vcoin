@@ -1,8 +1,6 @@
 //
-//  MediumWidgetView.swift
-//  VirtualCoinWidgetExtension
-//
-//  Created by Marcin Czachurski on 07/06/2021.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import WidgetKit
@@ -45,7 +43,7 @@ struct MediumWidgetView: View {
                         HStack {
                             Spacer()
                             VStack(alignment: .trailing){
-                                Text("\(viewModels[index].priceUsd.toFormattedPrice(currency: currencySymbol))")
+                                Text("\(viewModels[index].price.toFormattedPrice(currency: currencySymbol))")
                                     .font(.caption2)
                                 Text("\(viewModels[index].changePercent24Hr.toFormattedPercent())")
                                     .foregroundColor(viewModels[index].changePercent24Hr > 0 ?.greenPastel : .redPastel)

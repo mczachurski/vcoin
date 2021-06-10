@@ -1,9 +1,6 @@
 //
-//  RestClient.swift
-//  vcoin
-//
-//  Created by Marcin Czachurski on 16.01.2018.
-//  Copyright © 2018 Marcin Czachurski. All rights reserved.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import Foundation
@@ -18,6 +15,12 @@ public class CoinCapClient {
         self.downloadAsync(from: url, completionHandler: completionHandler)
     }
 
+    public func getCoinAsync(for coinId: String,
+                             completionHandler: @escaping (Result<Coin, RestClientError>) -> Void) {
+        let url = "https://api.coincap.io/v2/assets/\(coinId)"
+        self.downloadAsync(from: url, completionHandler: completionHandler)
+    }
+    
     public func getChartValuesAsync(for coinId: String,
                                     withRange chartRange: ChartTimeRange,
                                     completionHandler: @escaping (Result<[ChartValue], RestClientError>) -> Void) {

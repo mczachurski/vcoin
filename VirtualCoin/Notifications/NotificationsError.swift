@@ -1,12 +1,9 @@
 //
-//  NotificationsErrors.swift
-//  VirtualCoin
-//
-//  Created by Marcin Czachurski on 04/06/2021.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import Foundation
-
 
 public enum NotificationsError: Error {
     case notRecognizedCurrencySymbol

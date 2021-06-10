@@ -1,9 +1,6 @@
 //
-//  RestClienError.swift
-//  VCoinKit
-//
-//  Created by Marcin Czachurski on 12/07/2019.
-//  Copyright © 2019 Marcin Czachurski. All rights reserved.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import Foundation

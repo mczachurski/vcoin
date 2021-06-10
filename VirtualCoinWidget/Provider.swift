@@ -1,8 +1,6 @@
 //
-//  Provider.swift
-//  VirtualCoinWidgetExtension
-//
-//  Created by Marcin Czachurski on 07/06/2021.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import WidgetKit
@@ -17,29 +15,28 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WidgetEntry) -> ()) {
-        let entry: WidgetEntry
-
-        if context.isPreview {
-            entry = WidgetEntry(date: Date(), viewModels: PreviewData.getWidgetViewModels())
-        } else {
-            entry = WidgetEntry(date: Date(), viewModels: PreviewData.getWidgetViewModels())
-        }
-        
+        let entry = WidgetEntry(date: Date(), viewModels: PreviewData.getWidgetViewModels())
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [WidgetEntry] = []
+        
+        let dataFetcher = DataFetcher()
+        dataFetcher.getCoins { widgetViewModelsResult in
+            var entries: [WidgetEntry] = []
+            let currentDate = Date()
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = WidgetEntry(date: entryDate, viewModels: PreviewData.getWidgetViewModels())
-            entries.append(entry)
+            switch widgetViewModelsResult {
+            case .success(let widgetViewModels):
+                entries.append(WidgetEntry(date: currentDate, viewModels: widgetViewModels))
+                break
+            case .failure:
+                break
+            }
+            
+            let nextUpdateDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
+            let timeline = Timeline(entries: entries, policy: .after(nextUpdateDate))
+            completion(timeline)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
 }
