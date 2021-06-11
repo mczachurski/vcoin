@@ -1,9 +1,6 @@
 //
-//  File.swift
-//  VCoin
-//
-//  Created by Marcin Czachurski on 28.01.2018.
-//  Copyright © 2018 Marcin Czachurski. All rights reserved.
+//  https://mczachurski.dev
+//  Copyright © 2021 Marcin Czachurski. All rights reserved.
 //
 
 import CoreData
