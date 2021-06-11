@@ -1,6 +1,6 @@
-#  VCoin
+#  Virtual Coin
 
-VCoin is lightweight application for keeping track of cryptocurrency prices.
+Virtual Coin is lightweight application for keeping track of cryptocurrency prices.
 
 Main features:
 - more then 1000 cryptocurrencies
@@ -12,7 +12,7 @@ Main features:
 
 <img src="https://raw.githubusercontent.com/mczachurski/vcoin/master/Resources/screen-dark-01.png" width="200" > <img src="https://raw.githubusercontent.com/mczachurski/vcoin/master/Resources/screen-dark-02.png" width="200" > <img src="https://raw.githubusercontent.com/mczachurski/vcoin/master/Resources/screen-white-01.png" width="200" > <img src="https://raw.githubusercontent.com/mczachurski/vcoin/master/Resources/screen-white-02.png" width="200" >
 
-You can downlad app from AppStore.
+You can downlad app from <a href="https://apps.apple.com/us/app/vcoin/id1471998515">AppStore</a>.
 
 ## Contributing
 You can fork and clone repository. Execute 'carthage update' and build. Do your changes and pull a request. Enjoy!
