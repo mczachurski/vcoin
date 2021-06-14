@@ -21,6 +21,7 @@ struct MarketsView: View {
                 Text("Done").bold()
             })
         }
+        .listStyle(PlainListStyle())
     }
 }
 

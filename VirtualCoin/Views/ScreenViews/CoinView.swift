@@ -78,9 +78,6 @@ struct CoinView: View {
                     Image(systemName: "globe")
                 }
                 .disabled(self.state != .loaded)
-                .sheet(isPresented: $isShowingMarketsView) {
-                    MarketsView(markets: self.applicationStateService.markets)
-                }
                 
                 Button(action: {
                     self.toggleFavourite();
@@ -88,6 +85,9 @@ struct CoinView: View {
                     Image(systemName: coin.isFavourite ? "star.fill" : "star")
                 }
             }
+        }
+        .sheet(isPresented: $isShowingMarketsView) {
+            MarketsView(markets: self.applicationStateService.markets)
         }
         .onAppear {
             self.load()

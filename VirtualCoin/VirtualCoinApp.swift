@@ -18,9 +18,14 @@ struct VirtualCoinApp: App {
         WindowGroup {
             AppView()
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+                    PricesService.shared.stop()
                     appDelegate.submitBackgroundTasks()
                 }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                    PricesService.shared.start()
+                }
                 .environmentObject(ApplicationStateService.shared)
+                .environmentObject(PricesService.shared)
                 .environmentObject(CoinsService.shared)
                 .environment(\.managedObjectContext, CoreDataHandler.shared.container.viewContext)
         }
@@ -53,10 +58,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 }
             }
         }
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        self.submitBackgroundTasks()
     }
     
     func submitBackgroundTasks() {
