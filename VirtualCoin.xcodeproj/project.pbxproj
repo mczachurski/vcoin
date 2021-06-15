@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -89,8 +89,6 @@
 		F89F5F27266D0A5C00B0E2F2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F89F5F26266D0A5C00B0E2F2 /* WidgetKit.framework */; };
 		F89F5F29266D0A5C00B0E2F2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F89F5F28266D0A5C00B0E2F2 /* SwiftUI.framework */; };
 		F89F5F2C266D0A5C00B0E2F2 /* VirtualCoinWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89F5F2B266D0A5C00B0E2F2 /* VirtualCoinWidget.swift */; };
-		F89F5F31266D0A5D00B0E2F2 /* VirtualCoinWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F89F5F2D266D0A5C00B0E2F2 /* VirtualCoinWidget.intentdefinition */; };
-		F89F5F32266D0A5D00B0E2F2 /* VirtualCoinWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F89F5F2D266D0A5C00B0E2F2 /* VirtualCoinWidget.intentdefinition */; };
 		F89F5F35266D0A5D00B0E2F2 /* VirtualCoinWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F89F5F24266D0A5C00B0E2F2 /* VirtualCoinWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F89F5F3A266D0EF500B0E2F2 /* VirtualCoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8571CE1262C1A3D00C882C5 /* VirtualCoinKit.framework */; };
 		F89F5F3F266D0F4D00B0E2F2 /* CoinIdMappingPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85C7989266A26A200BCBE8A /* CoinIdMappingPolicy.swift */; };
@@ -116,6 +114,8 @@
 		F8B4993926431A2C001ADF51 /* MarketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993826431A2C001ADF51 /* MarketsView.swift */; };
 		F8B4993B26431B19001ADF51 /* MarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993A26431B19001ADF51 /* MarketViewModel.swift */; };
 		F8B4993D26432531001ADF51 /* MarketRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993C26432531001ADF51 /* MarketRowView.swift */; };
+		F8D5CF6C2678CFB3001361EA /* VirtualCoinWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F8D5CF6F2678CFB3001361EA /* VirtualCoinWidget.intentdefinition */; };
+		F8D5CF6D2678CFB3001361EA /* VirtualCoinWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F8D5CF6F2678CFB3001361EA /* VirtualCoinWidget.intentdefinition */; };
 		F8D9448D265172ED004ACBF3 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9448C265172ED004ACBF3 /* Setting.swift */; };
 		F8D9449126517862004ACBF3 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9449026517862004ACBF3 /* ViewState.swift */; };
 		F8E599102634499300E4B66B /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5990F2634499300E4B66B /* AppView.swift */; };
@@ -301,7 +301,6 @@
 		F89F5F26266D0A5C00B0E2F2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		F89F5F28266D0A5C00B0E2F2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		F89F5F2B266D0A5C00B0E2F2 /* VirtualCoinWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCoinWidget.swift; sourceTree = "<group>"; };
-		F89F5F2D266D0A5C00B0E2F2 /* VirtualCoinWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = VirtualCoinWidget.intentdefinition; sourceTree = "<group>"; };
 		F89F5F30266D0A5D00B0E2F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8A2195E2647BFD600A7E3CD /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		F8A44516264C0E9600A15A2C /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
@@ -310,6 +309,7 @@
 		F8B4993826431A2C001ADF51 /* MarketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsView.swift; sourceTree = "<group>"; };
 		F8B4993A26431B19001ADF51 /* MarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
 		F8B4993C26432531001ADF51 /* MarketRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRowView.swift; sourceTree = "<group>"; };
+		F8D5CF6E2678CFB3001361EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/VirtualCoinWidget.intentdefinition; sourceTree = "<group>"; };
 		F8D9448C265172ED004ACBF3 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		F8D9449026517862004ACBF3 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		F8E5990F2634499300E4B66B /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -643,7 +643,7 @@
 				F85DDBEF266E6D9D006157B4 /* WidgetEntry.swift */,
 				F85DDBF8266E6E27006157B4 /* VirtualCoinWidgetEntryView.swift */,
 				F89F5F2B266D0A5C00B0E2F2 /* VirtualCoinWidget.swift */,
-				F89F5F2D266D0A5C00B0E2F2 /* VirtualCoinWidget.intentdefinition */,
+				F8D5CF6F2678CFB3001361EA /* VirtualCoinWidget.intentdefinition */,
 				F89F5F30266D0A5D00B0E2F2 /* Info.plist */,
 			);
 			path = VirtualCoinWidget;
@@ -896,7 +896,7 @@
 				};
 			};
 			buildConfigurationList = F8916831262B38AD007335D7 /* Build configuration list for PBXProject "VirtualCoin" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1052,7 +1052,7 @@
 				F85C62A6263556D600FE5AEA /* TabsView.swift in Sources */,
 				F8571CB4262C0C6F00C882C5 /* Favourite+CoreDataProperties.swift in Sources */,
 				F8F6856126403DF4004F1D83 /* SettingsView.swift in Sources */,
-				F89F5F32266D0A5D00B0E2F2 /* VirtualCoinWidget.intentdefinition in Sources */,
+				F8D5CF6C2678CFB3001361EA /* VirtualCoinWidget.intentdefinition in Sources */,
 				F8D9448D265172ED004ACBF3 /* Setting.swift in Sources */,
 				F86620762647132E00577013 /* AddExchangeView.swift in Sources */,
 				F891683A262B38AD007335D7 /* VirtualCoinApp.swift in Sources */,
@@ -1118,7 +1118,7 @@
 				F89F5F44266D0F4D00B0E2F2 /* SettingsHandler.swift in Sources */,
 				F85DDBEE266E6D81006157B4 /* WidgetViewModel.swift in Sources */,
 				F89F5F2C266D0A5C00B0E2F2 /* VirtualCoinWidget.swift in Sources */,
-				F89F5F31266D0A5D00B0E2F2 /* VirtualCoinWidget.intentdefinition in Sources */,
+				F8D5CF6D2678CFB3001361EA /* VirtualCoinWidget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1162,6 +1162,17 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		F8D5CF6F2678CFB3001361EA /* VirtualCoinWidget.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8D5CF6E2678CFB3001361EA /* Base */,
+			);
+			name = VirtualCoinWidget.intentdefinition;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		F8571CF9262C1A3D00C882C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1169,7 +1180,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1201,7 +1212,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1391,7 +1402,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoin/VirtualCoin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"VirtualCoin/Preview Content\"";
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				ENABLE_PREVIEWS = YES;
@@ -1419,7 +1430,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoin/VirtualCoin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"VirtualCoin/Preview Content\"";
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				ENABLE_PREVIEWS = YES;
@@ -1527,7 +1538,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoinWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VirtualCoinWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1555,7 +1566,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoinWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VirtualCoinWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
