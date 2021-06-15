@@ -14,6 +14,8 @@
 		F814B0F6267291AA00C2DF11 /* CoinSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814B0F5267291AA00C2DF11 /* CoinSymbol.swift */; };
 		F8189E7E26557C3F00563F5A /* ApplicationStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8189E7D26557C3F00563F5A /* ApplicationStateService.swift */; };
 		F8189E8026558A3700563F5A /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8189E7F26558A3700563F5A /* DispatchQueue.swift */; };
+		F824F64B267903FF0022EB48 /* NumericText in Frameworks */ = {isa = PBXBuildFile; productRef = F824F64A267903FF0022EB48 /* NumericText */; };
+		F824F64E2679059E0022EB48 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = F824F64D2679059E0022EB48 /* URLImage */; };
 		F8459ACA263EDFF10021773B /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459AC9263EDFF10021773B /* Coin.swift */; };
 		F8459ACC263EE1780021773B /* ResponseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459ACB263EE1780021773B /* ResponseArray.swift */; };
 		F8459ACF263EE51E0021773B /* CoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459ACE263EE51E0021773B /* CoinViewModel.swift */; };
@@ -29,7 +31,6 @@
 		F8520032266D2CB000FF8C28 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F852749B266BDEFC00F26785 /* NumberFormatter.swift */; };
 		F8520033266D2D7500FF8C28 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9448C265172ED004ACBF3 /* Setting.swift */; };
 		F8520035266D2E7200FF8C28 /* LightChart in Frameworks */ = {isa = PBXBuildFile; productRef = F8520034266D2E7200FF8C28 /* LightChart */; };
-		F852749A266BDBEA00F26785 /* NumericText in Frameworks */ = {isa = PBXBuildFile; productRef = F8527499266BDBEA00F26785 /* NumericText */; };
 		F8571CA4262C0C5E00C882C5 /* AlertsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571C9F262C0C5E00C882C5 /* AlertsHandler.swift */; };
 		F8571CA5262C0C5E00C882C5 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571CA0262C0C5E00C882C5 /* CoreDataHandler.swift */; };
 		F8571CA6262C0C5E00C882C5 /* ExchangeItemsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8571CA1262C0C5E00C882C5 /* ExchangeItemsHandler.swift */; };
@@ -77,7 +78,6 @@
 		F86FC76A267284520015627D /* VirtualCoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8571CE1262C1A3D00C882C5 /* VirtualCoinKit.framework */; };
 		F86FC76B267284520015627D /* VirtualCoinKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F8571CE1262C1A3D00C882C5 /* VirtualCoinKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F879C24926417C5C00F72D2B /* ThirdPartyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F879C24826417C5C00F72D2B /* ThirdPartyView.swift */; };
-		F87E0AC42635AA7800354BA5 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = F87E0AC32635AA7800354BA5 /* URLImage */; };
 		F882B479264AC71300484AF6 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882B478264AC71300484AF6 /* PreviewData.swift */; };
 		F8866835267726610055BC4B /* PricesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8866834267726610055BC4B /* PricesService.swift */; };
 		F891683A262B38AD007335D7 /* VirtualCoinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8916839262B38AD007335D7 /* VirtualCoinApp.swift */; };
@@ -314,7 +314,6 @@
 		F8D5CF6E2678CFB3001361EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/VirtualCoinWidget.intentdefinition; sourceTree = "<group>"; };
 		F8D5CF722678E7E8001361EA /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		F8D5CF742678F56F001361EA /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		F8D5CF762678FACA001361EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VirtualCoinWidget.strings; sourceTree = "<group>"; };
 		F8D9448C265172ED004ACBF3 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		F8D9449026517862004ACBF3 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		F8E5990F2634499300E4B66B /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -352,8 +351,8 @@
 			files = (
 				F86FC76A267284520015627D /* VirtualCoinKit.framework in Frameworks */,
 				F8F6855826400264004F1D83 /* LightChart in Frameworks */,
-				F87E0AC42635AA7800354BA5 /* URLImage in Frameworks */,
-				F852749A266BDBEA00F26785 /* NumericText in Frameworks */,
+				F824F64E2679059E0022EB48 /* URLImage in Frameworks */,
+				F824F64B267903FF0022EB48 /* NumericText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,9 +803,9 @@
 			);
 			name = VirtualCoin;
 			packageProductDependencies = (
-				F87E0AC32635AA7800354BA5 /* URLImage */,
 				F8F6855726400264004F1D83 /* LightChart */,
-				F8527499266BDBEA00F26785 /* NumericText */,
+				F824F64A267903FF0022EB48 /* NumericText */,
+				F824F64D2679059E0022EB48 /* URLImage */,
 			);
 			productName = VirtualCoin;
 			productReference = F8916836262B38AD007335D7 /* VirtualCoin.app */;
@@ -912,9 +911,9 @@
 			);
 			mainGroup = F891682D262B38AD007335D7;
 			packageReferences = (
-				F87E0AC22635AA7800354BA5 /* XCRemoteSwiftPackageReference "url-image" */,
 				F8F6855626400264004F1D83 /* XCRemoteSwiftPackageReference "LightChart" */,
-				F8527498266BDBEA00F26785 /* XCRemoteSwiftPackageReference "NumericText" */,
+				F824F649267903FF0022EB48 /* XCRemoteSwiftPackageReference "NumericText" */,
+				F824F64C2679059E0022EB48 /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = F8916837262B38AD007335D7 /* Products */;
 			projectDirPath = "";
@@ -1176,7 +1175,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F8D5CF6E2678CFB3001361EA /* Base */,
-				F8D5CF762678FACA001361EA /* en */,
 			);
 			name = VirtualCoinWidget.intentdefinition;
 			sourceTree = "<group>";
@@ -1664,20 +1662,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F8527498266BDBEA00F26785 /* XCRemoteSwiftPackageReference "NumericText" */ = {
+		F824F649267903FF0022EB48 /* XCRemoteSwiftPackageReference "NumericText" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mczachurski/NumericText/";
+			repositoryURL = "https://github.com/amayers/NumericText";
 			requirement = {
 				branch = main;
 				kind = branch;
 			};
 		};
-		F87E0AC22635AA7800354BA5 /* XCRemoteSwiftPackageReference "url-image" */ = {
+		F824F64C2679059E0022EB48 /* XCRemoteSwiftPackageReference "url-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.4;
+				minimumVersion = 3.0.0;
 			};
 		};
 		F8F6855626400264004F1D83 /* XCRemoteSwiftPackageReference "LightChart" */ = {
@@ -1691,20 +1689,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F824F64A267903FF0022EB48 /* NumericText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F824F649267903FF0022EB48 /* XCRemoteSwiftPackageReference "NumericText" */;
+			productName = NumericText;
+		};
+		F824F64D2679059E0022EB48 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F824F64C2679059E0022EB48 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
 		F8520034266D2E7200FF8C28 /* LightChart */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F8F6855626400264004F1D83 /* XCRemoteSwiftPackageReference "LightChart" */;
 			productName = LightChart;
-		};
-		F8527499266BDBEA00F26785 /* NumericText */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F8527498266BDBEA00F26785 /* XCRemoteSwiftPackageReference "NumericText" */;
-			productName = NumericText;
-		};
-		F87E0AC32635AA7800354BA5 /* URLImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F87E0AC22635AA7800354BA5 /* XCRemoteSwiftPackageReference "url-image" */;
-			productName = URLImage;
 		};
 		F8F6855726400264004F1D83 /* LightChart */ = {
 			isa = XCSwiftPackageProductDependency;

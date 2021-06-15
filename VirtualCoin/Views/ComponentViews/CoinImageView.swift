@@ -11,8 +11,7 @@ struct CoinImageView: View {
 
     var body: some View {
         if let imageUrl = URL(string: coin.imageUrl) {
-            URLImage(
-                url: imageUrl,
+            URLImage(imageUrl,
                 empty: {
                     InitialsPlaceholder(text: coin.name)
                         .frame(width: 32, height: 32, alignment: .center)
