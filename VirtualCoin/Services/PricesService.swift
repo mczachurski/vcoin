@@ -83,7 +83,9 @@ public class PricesService: ObservableObject {
             }
             
             DispatchQueue.runOnMain {
+                coin.changePercent24Hr = (priceUsd * coin.changePercent24Hr) / coin.priceUsd
                 coin.price = priceUsd / ApplicationStateService.shared.currencyRateUsd
+                coin.priceUsd = priceUsd
             }
         }
     }
