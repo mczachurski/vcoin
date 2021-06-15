@@ -33,17 +33,18 @@ struct CoinsView: View {
             }
     }
     
+    @ViewBuilder
     private func mainBody() -> some View {
-        Group {
-            switch state {
-            case .iddle:
-                self.skeletonView()
-                .onAppear {
-                    self.load()
-                }
-            case .loading:
-                self.skeletonView()
-            case .loaded:
+        switch state {
+        case .iddle:
+            self.skeletonView()
+            .onAppear {
+                self.load()
+            }
+        case .loading:
+            self.skeletonView()
+        case .loaded:
+            if applicationStateService.coins.count > 0 {
                 List {
                     ForEach(applicationStateService.coins.filter {
                         searchBar.text.isEmpty || $0.name.localizedStandardContains(searchBar.text)
@@ -55,12 +56,14 @@ struct CoinsView: View {
                 }
                 .add(self.searchBar)
                 .listStyle(PlainListStyle())
-            case .error(let error):
-                ErrorView(error: error) {
-                    self.load()
-                }
-                .padding()
+            } else {
+                NoDataView(title: "No Coins", subtitle: "Coins has not been downloaded")
             }
+        case .error(let error):
+            ErrorView(error: error) {
+                self.load()
+            }
+            .padding()
         }
     }
     

@@ -9,7 +9,6 @@ struct FavouritesView: View {
     @EnvironmentObject private var applicationStateService: ApplicationStateService
     @EnvironmentObject private var coinsService: CoinsService
     
-    @ObservedObject private var searchBar: SearchBar = SearchBar()
     @State private var showingSettingsView = false
     @State private var state: ViewState = .iddle
     
@@ -30,22 +29,21 @@ struct FavouritesView: View {
             }
     }
     
+    @ViewBuilder
     private func mainBody() -> some View {
-        Group {
-            switch state {
-            case .iddle:
-                self.skeletonView()
-                .onAppear {
-                    self.load()
-                }
-                
-            case .loading:
-                self.skeletonView()
-            case .loaded:
+        switch state {
+        case .iddle:
+            self.skeletonView()
+            .onAppear {
+                self.load()
+            }
+            
+        case .loading:
+            self.skeletonView()
+        case .loaded:
+            if applicationStateService.favourites.count > 0 {
                 List {
-                    ForEach(applicationStateService.favourites.filter {
-                        searchBar.text.isEmpty || $0.name.localizedStandardContains(searchBar.text)
-                    }) { coin in
+                    ForEach(applicationStateService.favourites) { coin in
                         NavigationLink(destination: CoinView(coin: coin)) {
                             CoinRowView(coin: coin)
                         }
@@ -55,13 +53,14 @@ struct FavouritesView: View {
                     EditButton()
                 }
                 .listStyle(PlainListStyle())
-                .add(self.searchBar)
-            case .error(let error):
-                ErrorView(error: error) {
-                    self.load()
-                }
-                .padding()
+            } else {
+                NoDataView(title: "No Favourites", subtitle: "Select your favourites coins")
             }
+        case .error(let error):
+            ErrorView(error: error) {
+                self.load()
+            }
+            .padding()
         }
     }
     

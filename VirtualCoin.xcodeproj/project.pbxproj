@@ -116,6 +116,8 @@
 		F8B4993D26432531001ADF51 /* MarketRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993C26432531001ADF51 /* MarketRowView.swift */; };
 		F8D5CF6C2678CFB3001361EA /* VirtualCoinWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F8D5CF6F2678CFB3001361EA /* VirtualCoinWidget.intentdefinition */; };
 		F8D5CF6D2678CFB3001361EA /* VirtualCoinWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F8D5CF6F2678CFB3001361EA /* VirtualCoinWidget.intentdefinition */; };
+		F8D5CF732678E7E8001361EA /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D5CF722678E7E8001361EA /* NoDataView.swift */; };
+		F8D5CF752678F56F001361EA /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D5CF742678F56F001361EA /* View.swift */; };
 		F8D9448D265172ED004ACBF3 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9448C265172ED004ACBF3 /* Setting.swift */; };
 		F8D9449126517862004ACBF3 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9449026517862004ACBF3 /* ViewState.swift */; };
 		F8E599102634499300E4B66B /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5990F2634499300E4B66B /* AppView.swift */; };
@@ -310,6 +312,9 @@
 		F8B4993A26431B19001ADF51 /* MarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
 		F8B4993C26432531001ADF51 /* MarketRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRowView.swift; sourceTree = "<group>"; };
 		F8D5CF6E2678CFB3001361EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/VirtualCoinWidget.intentdefinition; sourceTree = "<group>"; };
+		F8D5CF722678E7E8001361EA /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
+		F8D5CF742678F56F001361EA /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		F8D5CF762678FACA001361EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VirtualCoinWidget.strings; sourceTree = "<group>"; };
 		F8D9448C265172ED004ACBF3 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		F8D9449026517862004ACBF3 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		F8E5990F2634499300E4B66B /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -700,6 +705,7 @@
 				F8F6855E264036C3004F1D83 /* InitialsPlaceholder.swift */,
 				F86714E32656725600B8B34C /* LoadingView.swift */,
 				F86714E52656730D00B8B34C /* ErrorView.swift */,
+				F8D5CF722678E7E8001361EA /* NoDataView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -724,6 +730,7 @@
 			children = (
 				F8571D1E262C1B0000C882C5 /* Color.swift */,
 				F8189E7F26558A3700563F5A /* DispatchQueue.swift */,
+				F8D5CF742678F56F001361EA /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1008,6 +1015,7 @@
 				F8F6853F263FC2EC004F1D83 /* AlertsView.swift in Sources */,
 				F8571CCE262C0EAC00C882C5 /* vcoin.xcdatamodeld in Sources */,
 				F84D35FF264843BF0095C100 /* EditAlertView.swift in Sources */,
+				F8D5CF732678E7E8001361EA /* NoDataView.swift in Sources */,
 				F84D35FD26483DDF0095C100 /* AlertViewModel.swift in Sources */,
 				F8F68549263FE54A004F1D83 /* ChartView.swift in Sources */,
 				F8571CA5262C0C5E00C882C5 /* CoreDataHandler.swift in Sources */,
@@ -1061,6 +1069,7 @@
 				F8A62A58264442B700B30D97 /* ExchangeRowView.swift in Sources */,
 				F8459ACF263EE51E0021773B /* CoinViewModel.swift in Sources */,
 				F8459AD1263EF0320021773B /* CoinsService.swift in Sources */,
+				F8D5CF752678F56F001361EA /* View.swift in Sources */,
 				F879C24926417C5C00F72D2B /* ThirdPartyView.swift in Sources */,
 				F8571D38262C1CA900C882C5 /* CoinRowView.swift in Sources */,
 				F8571CB9262C0C6F00C882C5 /* Alert+CoreDataClass.swift in Sources */,
@@ -1167,6 +1176,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F8D5CF6E2678CFB3001361EA /* Base */,
+				F8D5CF762678FACA001361EA /* en */,
 			);
 			name = VirtualCoinWidget.intentdefinition;
 			sourceTree = "<group>";

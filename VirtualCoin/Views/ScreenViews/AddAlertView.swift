@@ -31,7 +31,6 @@ struct AddAlertView: View {
                     Text("Done").bold()
                 })
         }
-        .accentColor(.accentColor)
     }
     
     private func saveSettings() {

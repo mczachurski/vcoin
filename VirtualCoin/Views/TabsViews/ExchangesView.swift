@@ -19,27 +19,7 @@ struct ExchangesView: View {
     private var exchanges: FetchedResults<ExchangeItem>
     
     var body: some View {
-        List {
-            ForEach(exchanges, id: \.self) { exchange in                
-                let coinViewModelFromApi = applicationStateService.coins.first(where: { coinViewModel in
-                    coinViewModel.id == exchange.coinId
-                })
-                
-                let coinViewModel = coinViewModelFromApi ?? CoinViewModel()
-                
-                let currency = Currencies.allCurrenciesDictionary[exchange.currency] ?? Currency()
-                
-                let exchangeViewModel = ExchangeViewModel(coinViewModel: coinViewModel,
-                                                          exchangeItem: exchange,
-                                                          currency: currency)
-
-                ExchangeRowView(exchangeViewModel: exchangeViewModel) {
-                    applicationStateService.selectedExchangeViewModel = exchangeViewModel
-                    self.showingExchangeDetailsView = true
-                }
-            }.onDelete(perform: self.deleteItem)
-        }
-        .listStyle(PlainListStyle())
+        self.mainBody()
         .navigationTitle("Exchanges")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -66,6 +46,38 @@ struct ExchangesView: View {
                 EditExchangeView(exchangeViewModel: selectedExchangeViewModel)
             } else {
                 AddExchangeView()
+            }
+        }
+    }
+        
+    @ViewBuilder
+    private func mainBody() -> some View {
+        if exchanges.count > 0 {
+            List {
+                ForEach(exchanges, id: \.self) { exchange in
+                    let coinViewModelFromApi = applicationStateService.coins.first(where: { coinViewModel in
+                        coinViewModel.id == exchange.coinId
+                    })
+                    
+                    let coinViewModel = coinViewModelFromApi ?? CoinViewModel()
+                    
+                    let currency = Currencies.allCurrenciesDictionary[exchange.currency] ?? Currency()
+                    
+                    let exchangeViewModel = ExchangeViewModel(coinViewModel: coinViewModel,
+                                                              exchangeItem: exchange,
+                                                              currency: currency)
+
+                    ExchangeRowView(exchangeViewModel: exchangeViewModel) {
+                        applicationStateService.selectedExchangeViewModel = exchangeViewModel
+                        self.showingExchangeDetailsView = true
+                    }
+                }.onDelete(perform: self.deleteItem)
+            }
+            .listStyle(PlainListStyle())
+        } else {
+            NoDataView(title: "No Exchanges", subtitle: "Add exchange") {
+                applicationStateService.selectedExchangeViewModel = nil
+                self.showingExchangeDetailsView = true
             }
         }
     }

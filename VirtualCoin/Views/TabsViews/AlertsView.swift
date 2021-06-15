@@ -20,27 +20,7 @@ struct AlertsView: View {
     private var alerts: FetchedResults<Alert>
     
     var body: some View {
-        List {
-            ForEach(alerts, id: \.self) { alert in
-                let coinViewModelFromApi = applicationStateService.coins.first(where: { coinViewModel in
-                    coinViewModel.id == alert.coinId
-                })
-                
-                let coinViewModel = coinViewModelFromApi ?? CoinViewModel(id: "", rank: 1, symbol: "", name: "", priceUsd: 0, changePercent24Hr: 0)
-                
-                let currency = Currencies.allCurrenciesDictionary[alert.currency] ?? Currency()
-                
-                let alertViewModel = AlertViewModel(coinViewModel: coinViewModel,
-                                                    alert: alert,
-                                                    currency: currency)
-                
-                AlertRowView(alertViewModel: alertViewModel) {
-                    applicationStateService.selectedAlertViewModel = alertViewModel
-                    self.showingAlertView = true
-                }
-            }.onDelete(perform: self.deleteItem)
-        }
-        .listStyle(PlainListStyle())
+        self.mainBody()
         .navigationTitle("Alerts")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -69,6 +49,38 @@ struct AlertsView: View {
                 }
             } else {
                 AddAlertView()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func mainBody() -> some View {
+        if alerts.count > 0 {
+            List {
+                ForEach(alerts, id: \.self) { alert in
+                    let coinViewModelFromApi = applicationStateService.coins.first(where: { coinViewModel in
+                        coinViewModel.id == alert.coinId
+                    })
+                    
+                    let coinViewModel = coinViewModelFromApi ?? CoinViewModel(id: "", rank: 1, symbol: "", name: "", priceUsd: 0, changePercent24Hr: 0)
+                    
+                    let currency = Currencies.allCurrenciesDictionary[alert.currency] ?? Currency()
+                    
+                    let alertViewModel = AlertViewModel(coinViewModel: coinViewModel,
+                                                        alert: alert,
+                                                        currency: currency)
+                    
+                    AlertRowView(alertViewModel: alertViewModel) {
+                        applicationStateService.selectedAlertViewModel = alertViewModel
+                        self.showingAlertView = true
+                    }
+                }.onDelete(perform: self.deleteItem)
+            }
+            .listStyle(PlainListStyle())
+        } else {
+            NoDataView(title: "No Alerts", subtitle: "Add alert") {
+                applicationStateService.selectedAlertViewModel = nil
+                self.showingAlertView = true
             }
         }
     }
