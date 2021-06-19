@@ -232,7 +232,6 @@
 		F84D35FE264843BF0095C100 /* EditAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlertView.swift; sourceTree = "<group>"; };
 		F852749B266BDEFC00F26785 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		F852749D266BE32B00F26785 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
-		F8550081267907EA004C93CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VirtualCoinWidget.strings; sourceTree = "<group>"; };
 		F8571C9F262C0C5E00C882C5 /* AlertsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsHandler.swift; sourceTree = "<group>"; };
 		F8571CA0262C0C5E00C882C5 /* CoreDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		F8571CA1262C0C5E00C882C5 /* ExchangeItemsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeItemsHandler.swift; sourceTree = "<group>"; };
@@ -312,6 +311,7 @@
 		F8B4993826431A2C001ADF51 /* MarketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsView.swift; sourceTree = "<group>"; };
 		F8B4993A26431B19001ADF51 /* MarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
 		F8B4993C26432531001ADF51 /* MarketRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRowView.swift; sourceTree = "<group>"; };
+		F8C2825E267E1AC80049DFDC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VirtualCoinWidget.strings; sourceTree = "<group>"; };
 		F8D5CF6E2678CFB3001361EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/VirtualCoinWidget.intentdefinition; sourceTree = "<group>"; };
 		F8D5CF722678E7E8001361EA /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		F8D5CF742678F56F001361EA /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -1176,7 +1176,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F8D5CF6E2678CFB3001361EA /* Base */,
-				F8550081267907EA004C93CF /* en */,
+				F8C2825E267E1AC80049DFDC /* en */,
 			);
 			name = VirtualCoinWidget.intentdefinition;
 			sourceTree = "<group>";
@@ -1190,7 +1190,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1222,7 +1222,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1412,7 +1412,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoin/VirtualCoin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"VirtualCoin/Preview Content\"";
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				ENABLE_PREVIEWS = YES;
@@ -1440,7 +1440,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoin/VirtualCoin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"VirtualCoin/Preview Content\"";
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				ENABLE_PREVIEWS = YES;
@@ -1548,7 +1548,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoinWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VirtualCoinWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1576,7 +1576,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoinWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VirtualCoinWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
