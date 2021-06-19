@@ -12,7 +12,7 @@ struct NoDataView: View {
     var subtitle: String
     var action: (() -> Void)?
 
-    @State var opacity: CGFloat = 0
+    @State var opacity = 0.0
     
     public init(title: String, subtitle: String) {
         self.title = title

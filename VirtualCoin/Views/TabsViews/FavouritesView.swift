@@ -54,7 +54,7 @@ struct FavouritesView: View {
                 }
                 .listStyle(PlainListStyle())
             } else {
-                NoDataView(title: "No Favourites", subtitle: "Select your favourites coins")
+                NoDataView(title: "No Favourites", subtitle: "Select your favourite coins")
             }
         case .error(let error):
             ErrorView(error: error) {

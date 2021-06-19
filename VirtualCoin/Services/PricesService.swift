@@ -81,9 +81,12 @@ public class PricesService: ObservableObject {
             guard let priceUsd = Double(price.value) else {
                 continue
             }
+
+            let difference = priceUsd - coin.orginalPriceUsd
+            let changePercent24Hr = (difference / coin.orginalPriceUsd) * 100
             
             DispatchQueue.runOnMain {
-                coin.changePercent24Hr = (priceUsd * coin.changePercent24Hr) / coin.priceUsd
+                coin.changePercent24Hr = changePercent24Hr
                 coin.price = priceUsd / ApplicationStateService.shared.currencyRateUsd
                 coin.priceUsd = priceUsd
             }

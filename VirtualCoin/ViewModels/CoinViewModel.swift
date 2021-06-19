@@ -12,6 +12,7 @@ public class CoinViewModel: Identifiable, ObservableObject {
     public let symbol: String
     public let name: String
     public let imageUrl: String
+    public let orginalPriceUsd: Double
 
     @Published public var price: Double = 0.0
     @Published public var isFavourite = false
@@ -29,18 +30,19 @@ public class CoinViewModel: Identifiable, ObservableObject {
             self.rank = 0
         }
         
+        var internalPriceUsd = 0.0
         if let priceUsd = coin.priceUsd, let price = Double(priceUsd) {
-            self.priceUsd = price
-        } else {
-            self.priceUsd = 0
+            internalPriceUsd = price
         }
         
+        var internalChangePercent24Hr = 0.0
         if let changePercent24Hr = coin.changePercent24Hr, let price = Double(changePercent24Hr) {
-            self.changePercent24Hr = price
-        } else {
-            self.changePercent24Hr = 0
+            internalChangePercent24Hr = price
         }
         
+        self.priceUsd = internalPriceUsd
+        self.changePercent24Hr = internalChangePercent24Hr
+        self.orginalPriceUsd = internalPriceUsd / ((internalChangePercent24Hr / 100) + 1)
         self.imageUrl = "https://static.coincap.io/assets/icons/\(symbol.lowercased())@2x.png"
     }
     
@@ -50,6 +52,7 @@ public class CoinViewModel: Identifiable, ObservableObject {
         self.symbol = symbol
         self.name = name
         self.priceUsd = priceUsd
+        self.orginalPriceUsd = priceUsd
         self.price = priceUsd
         self.changePercent24Hr = changePercent24Hr
         self.imageUrl = "https://static.coincap.io/assets/icons/\(symbol.lowercased())@2x.png"

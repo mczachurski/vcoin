@@ -232,6 +232,7 @@
 		F84D35FE264843BF0095C100 /* EditAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlertView.swift; sourceTree = "<group>"; };
 		F852749B266BDEFC00F26785 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		F852749D266BE32B00F26785 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		F8550081267907EA004C93CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VirtualCoinWidget.strings; sourceTree = "<group>"; };
 		F8571C9F262C0C5E00C882C5 /* AlertsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsHandler.swift; sourceTree = "<group>"; };
 		F8571CA0262C0C5E00C882C5 /* CoreDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		F8571CA1262C0C5E00C882C5 /* ExchangeItemsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeItemsHandler.swift; sourceTree = "<group>"; };
@@ -1175,6 +1176,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F8D5CF6E2678CFB3001361EA /* Base */,
+				F8550081267907EA004C93CF /* en */,
 			);
 			name = VirtualCoinWidget.intentdefinition;
 			sourceTree = "<group>";
