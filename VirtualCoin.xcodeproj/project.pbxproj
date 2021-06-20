@@ -17,6 +17,7 @@
 		F824F64B267903FF0022EB48 /* NumericText in Frameworks */ = {isa = PBXBuildFile; productRef = F824F64A267903FF0022EB48 /* NumericText */; };
 		F824F64E2679059E0022EB48 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = F824F64D2679059E0022EB48 /* URLImage */; };
 		F82C6F81267F995100FF4FAE /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = F82C6F80267F995100FF4FAE /* URLImageStore */; };
+		F82C6F84267F9A3900FF4FAE /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82C6F83267F9A3900FF4FAE /* MemoryCache.swift */; };
 		F8459ACA263EDFF10021773B /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459AC9263EDFF10021773B /* Coin.swift */; };
 		F8459ACC263EE1780021773B /* ResponseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459ACB263EE1780021773B /* ResponseArray.swift */; };
 		F8459ACF263EE51E0021773B /* CoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459ACE263EE51E0021773B /* CoinViewModel.swift */; };
@@ -221,6 +222,7 @@
 		F814B0F72672962F00C2DF11 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F8189E7D26557C3F00563F5A /* ApplicationStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStateService.swift; sourceTree = "<group>"; };
 		F8189E7F26558A3700563F5A /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
+		F82C6F83267F9A3900FF4FAE /* MemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
 		F8459AC9263EDFF10021773B /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		F8459ACB263EE1780021773B /* ResponseArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseArray.swift; sourceTree = "<group>"; };
 		F8459ACE263EE51E0021773B /* CoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewModel.swift; sourceTree = "<group>"; };
@@ -408,6 +410,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		F82C6F82267F9A2800FF4FAE /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				F82C6F83267F9A3900FF4FAE /* MemoryCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		F8459ACD263EE5050021773B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,6 +595,7 @@
 		F8916838262B38AD007335D7 /* VirtualCoin */ = {
 			isa = PBXGroup;
 			children = (
+				F82C6F82267F9A2800FF4FAE /* Cache */,
 				F85C7983266A193A00BCBE8A /* Notifications */,
 				F8CD6C6E2653F8850065EE8F /* Services */,
 				F882B477264AC6FD00484AF6 /* Previews */,
@@ -1032,6 +1043,7 @@
 				F8A62A5A264443C600B30D97 /* EditExchangeView.swift in Sources */,
 				F8B4993926431A2C001ADF51 /* MarketsView.swift in Sources */,
 				F8571CA4262C0C5E00C882C5 /* AlertsHandler.swift in Sources */,
+				F82C6F84267F9A3900FF4FAE /* MemoryCache.swift in Sources */,
 				F8571CB5262C0C6F00C882C5 /* ExchangeItem+CoreDataClass.swift in Sources */,
 				F8A2195F2647BFD600A7E3CD /* ExchangeViewModel.swift in Sources */,
 				F8189E7E26557C3F00563F5A /* ApplicationStateService.swift in Sources */,

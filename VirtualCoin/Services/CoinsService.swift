@@ -14,7 +14,7 @@ public class CoinsService: ObservableObject {
     private var marketsCache: [MarketViewModel]?
     private var chartDataCache: [Double]?
     private var currencyRateUsdCache: Double = 1.0
-    private var cacheChartData: [String: [Double]] = [:]
+    private var memoryChartData = MemoryCache<String, [Double]>(entryLifetime: 5 * 60)
     
     @Setting(\.currency) private var currencySymbol: String
     
@@ -88,7 +88,7 @@ public class CoinsService: ObservableObject {
         
         var dataResult: [Double] = []
 
-        if let cacheData = self.cacheChartData[coin.symbol + chartTimeRange.rawValue] {
+        if let cacheData = self.memoryChartData[coin.symbol + chartTimeRange.rawValue] {
             self.chartDataCache = cacheData
             completionHandler(.success(self.chartDataCache ?? []))
 
@@ -108,7 +108,7 @@ public class CoinsService: ObservableObject {
                     }
                 }
                 
-                self.cacheChartData[coin.symbol + chartTimeRange.rawValue] = dataResult
+                self.memoryChartData[coin.symbol + chartTimeRange.rawValue] = dataResult
                 self.chartDataCache = dataResult
 
                 completionHandler(.success(self.chartDataCache ?? []))
