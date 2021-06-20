@@ -9,10 +9,14 @@
 import SwiftUI
 import VirtualCoinKit
 import BackgroundTasks
+import URLImage
+import URLImageStore
 
 @main
 struct VirtualCoinApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+    let urlImageService = URLImageService(inMemoryStore: URLImageInMemoryStore())
 
     var body: some Scene {
         WindowGroup {
@@ -28,6 +32,7 @@ struct VirtualCoinApp: App {
                 .environmentObject(PricesService.shared)
                 .environmentObject(CoinsService.shared)
                 .environment(\.managedObjectContext, CoreDataHandler.shared.container.viewContext)
+                .environment(\.urlImageService, urlImageService)
         }
     }
 }

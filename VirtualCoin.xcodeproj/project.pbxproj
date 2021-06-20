@@ -16,6 +16,7 @@
 		F8189E8026558A3700563F5A /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8189E7F26558A3700563F5A /* DispatchQueue.swift */; };
 		F824F64B267903FF0022EB48 /* NumericText in Frameworks */ = {isa = PBXBuildFile; productRef = F824F64A267903FF0022EB48 /* NumericText */; };
 		F824F64E2679059E0022EB48 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = F824F64D2679059E0022EB48 /* URLImage */; };
+		F82C6F81267F995100FF4FAE /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = F82C6F80267F995100FF4FAE /* URLImageStore */; };
 		F8459ACA263EDFF10021773B /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459AC9263EDFF10021773B /* Coin.swift */; };
 		F8459ACC263EE1780021773B /* ResponseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459ACB263EE1780021773B /* ResponseArray.swift */; };
 		F8459ACF263EE51E0021773B /* CoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8459ACE263EE51E0021773B /* CoinViewModel.swift */; };
@@ -350,6 +351,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F82C6F81267F995100FF4FAE /* URLImageStore in Frameworks */,
 				F86FC76A267284520015627D /* VirtualCoinKit.framework in Frameworks */,
 				F8F6855826400264004F1D83 /* LightChart in Frameworks */,
 				F824F64E2679059E0022EB48 /* URLImage in Frameworks */,
@@ -807,6 +809,7 @@
 				F8F6855726400264004F1D83 /* LightChart */,
 				F824F64A267903FF0022EB48 /* NumericText */,
 				F824F64D2679059E0022EB48 /* URLImage */,
+				F82C6F80267F995100FF4FAE /* URLImageStore */,
 			);
 			productName = VirtualCoin;
 			productReference = F8916836262B38AD007335D7 /* VirtualCoin.app */;
@@ -1700,6 +1703,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F824F64C2679059E0022EB48 /* XCRemoteSwiftPackageReference "url-image" */;
 			productName = URLImage;
+		};
+		F82C6F80267F995100FF4FAE /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F824F64C2679059E0022EB48 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
 		};
 		F8520034266D2E7200FF8C28 /* LightChart */ = {
 			isa = XCSwiftPackageProductDependency;
