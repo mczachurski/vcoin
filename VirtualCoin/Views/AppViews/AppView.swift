@@ -17,7 +17,7 @@ struct AppView: View {
         } else {
             NavigationView {
                 SideBarsView(selectedFolder: $selectedFolder)
-                Text("Primary view")
+                Text("Favourites")
             }
         }
     }

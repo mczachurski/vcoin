@@ -52,7 +52,7 @@ struct SideBarsView: View {
             
         }
         .listStyle(SidebarListStyle())
-        .navigationTitle("Menu")
+        .navigationTitle("Virtual Coin")
     }
 }
 
