@@ -7,9 +7,7 @@ import SwiftUI
 import VirtualCoinKit
 
 struct SideBarsView: View {
-    @Environment(\.managedObjectContext) private var managedObjectContext
-    
-    @Binding var selectedFolder: String?
+    @State private var selectedItem: SideBarNavigationItem? = .favourites
     
     var body: some View {
         List {
@@ -17,8 +15,8 @@ struct SideBarsView: View {
             // Favourites view.
             NavigationLink(
                 destination:FavouritesView(),
-                tag: "favourites",
-                selection: $selectedFolder
+                tag: SideBarNavigationItem.favourites,
+                selection: $selectedItem
             ) {
                 Label("Favourites", systemImage: "star.fill")
             }
@@ -26,8 +24,8 @@ struct SideBarsView: View {
             // All currencies view.
             NavigationLink(
                 destination: CoinsView(),
-                tag: "currencies",
-                selection: $selectedFolder
+                tag: SideBarNavigationItem.currencies,
+                selection: $selectedItem
             ) {
                 Label("All currencies", systemImage: "bitcoinsign.circle.fill")
             }
@@ -35,8 +33,8 @@ struct SideBarsView: View {
             // Exchanges view.
             NavigationLink(
                 destination: ExchangesView(),
-                tag: "exchanges",
-                selection: $selectedFolder
+                tag: SideBarNavigationItem.exchanges,
+                selection: $selectedItem
             ) {
                 Label("Exchanges", systemImage: "arrow.triangle.2.circlepath.circle.fill")
             }
@@ -44,8 +42,8 @@ struct SideBarsView: View {
             // Alerts view.
             NavigationLink(
                 destination: AlertsView(),
-                tag: "alerts",
-                selection: $selectedFolder
+                tag: SideBarNavigationItem.alerts,
+                selection: $selectedItem
             ) {
                 Label("Alerts", systemImage: "bell.fill")
             }
@@ -58,7 +56,6 @@ struct SideBarsView: View {
 
 struct SideBarsView_Previews: PreviewProvider {
     static var previews: some View {
-        SideBarsView(selectedFolder: .constant("favourites"))
-            .environment(\.managedObjectContext, CoreDataHandler.preview.container.viewContext)
+        SideBarsView()
     }
 }

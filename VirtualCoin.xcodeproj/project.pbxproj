@@ -116,6 +116,7 @@
 		F8B4993926431A2C001ADF51 /* MarketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993826431A2C001ADF51 /* MarketsView.swift */; };
 		F8B4993B26431B19001ADF51 /* MarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993A26431B19001ADF51 /* MarketViewModel.swift */; };
 		F8B4993D26432531001ADF51 /* MarketRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4993C26432531001ADF51 /* MarketRowView.swift */; };
+		F8B7AA5D268873BE000C0CE2 /* SideBarNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B7AA5C268873BE000C0CE2 /* SideBarNavigationItem.swift */; };
 		F8D5CF6C2678CFB3001361EA /* VirtualCoinWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F8D5CF6F2678CFB3001361EA /* VirtualCoinWidget.intentdefinition */; };
 		F8D5CF6D2678CFB3001361EA /* VirtualCoinWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F8D5CF6F2678CFB3001361EA /* VirtualCoinWidget.intentdefinition */; };
 		F8D5CF732678E7E8001361EA /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D5CF722678E7E8001361EA /* NoDataView.swift */; };
@@ -314,6 +315,7 @@
 		F8B4993826431A2C001ADF51 /* MarketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsView.swift; sourceTree = "<group>"; };
 		F8B4993A26431B19001ADF51 /* MarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
 		F8B4993C26432531001ADF51 /* MarketRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRowView.swift; sourceTree = "<group>"; };
+		F8B7AA5C268873BE000C0CE2 /* SideBarNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarNavigationItem.swift; sourceTree = "<group>"; };
 		F8C2825E267E1AC80049DFDC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VirtualCoinWidget.strings; sourceTree = "<group>"; };
 		F8D5CF6E2678CFB3001361EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/VirtualCoinWidget.intentdefinition; sourceTree = "<group>"; };
 		F8D5CF722678E7E8001361EA /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				F8B4993A26431B19001ADF51 /* MarketViewModel.swift */,
 				F8A2195E2647BFD600A7E3CD /* ExchangeViewModel.swift */,
 				F84D35FC26483DDF0095C100 /* AlertViewModel.swift */,
+				F8B7AA5C268873BE000C0CE2 /* SideBarNavigationItem.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1072,6 +1075,7 @@
 				F85C62AC263557EB00FE5AEA /* SideBarsView.swift in Sources */,
 				F86714E42656725600B8B34C /* LoadingView.swift in Sources */,
 				F8571CB7262C0C6F00C882C5 /* Alert+CoreDataProperties.swift in Sources */,
+				F8B7AA5D268873BE000C0CE2 /* SideBarNavigationItem.swift in Sources */,
 				F85C62A6263556D600FE5AEA /* TabsView.swift in Sources */,
 				F8571CB4262C0C6F00C882C5 /* Favourite+CoreDataProperties.swift in Sources */,
 				F8F6856126403DF4004F1D83 /* SettingsView.swift in Sources */,
@@ -1205,7 +1209,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1237,7 +1241,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1427,7 +1431,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoin/VirtualCoin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"VirtualCoin/Preview Content\"";
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				ENABLE_PREVIEWS = YES;
@@ -1455,7 +1459,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoin/VirtualCoin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"VirtualCoin/Preview Content\"";
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				ENABLE_PREVIEWS = YES;
@@ -1563,7 +1567,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoinWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VirtualCoinWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1591,7 +1595,7 @@
 				CODE_SIGN_ENTITLEMENTS = VirtualCoinWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = B2U9FEKYP8;
 				INFOPLIST_FILE = VirtualCoinWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;

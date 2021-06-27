@@ -9,15 +9,13 @@ import VirtualCoinKit
 struct AppView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
-    @State private var selectedFolder: String? = "favourites"
-    
     var body: some View {
         if horizontalSizeClass == .compact {
             TabsView()
         } else {
             NavigationView {
-                SideBarsView(selectedFolder: $selectedFolder)
-                Text("Favourites")
+                SideBarsView()
+                FavouritesView()
             }
         }
     }

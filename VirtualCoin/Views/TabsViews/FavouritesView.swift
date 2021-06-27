@@ -96,6 +96,11 @@ struct FavouritesView: View {
     }
     
     private func load() {
+        if applicationStateService.coins.isEmpty == false {
+            self.state = .loaded
+            return
+        }
+        
         state = .loading
         
         coinsService.loadCoins(into: applicationStateService) { result in
