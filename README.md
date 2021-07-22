@@ -14,5 +14,29 @@ Main features:
 
 You can downlad app from <a href="https://apps.apple.com/us/app/vcoin/id1471998515">AppStore</a>.
 
+Virtual coin uses [https://coincap.io](https://coincap.io) API. All endpoints are described here: [https://docs.coincap.io/](https://docs.coincap.io/).
+
+## Screenshots for App Store
+
+After running simulator run one of the following command to change status bar icons.
+ 
+**iPhone 6.5" Display**
+
+```bash
+xcrun simctl status_bar "iPhone 11 Pro Max" override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100
+```
+
+**iPhone 5.5" Display**
+
+```bash
+xcrun simctl status_bar "iPhone 8 Plus" override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100
+```
+
+**iPad Pro (3rd Gen) 12.9" Display**
+
+```bash
+xcrun simctl status_bar "iPad Pro (12.9-inch) (5th generation)" override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100
+```
+
 ## Contributing
 You can fork and clone repository. Execute 'carthage update' and build. Do your changes and pull a request. Enjoy!
