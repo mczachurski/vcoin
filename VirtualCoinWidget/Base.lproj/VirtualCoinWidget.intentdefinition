@@ -9,9 +9,9 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>21A5248p</string>
+	<string>21A5284e</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>13A5154h</string>
+	<string>13A5192j</string>
 	<key>INIntentDefinitionToolsVersion</key>
 	<string>13.0</string>
 	<key>INIntents</key>
@@ -20,7 +20,7 @@
 			<key>INIntentCategory</key>
 			<string>information</string>
 			<key>INIntentDescription</key>
-			<string>Configuration for Virtual Coin app</string>
+			<string>Configuration for vCoin app</string>
 			<key>INIntentDescriptionID</key>
 			<string>tVvJ9c</string>
 			<key>INIntentEligibleForWidgets</key>

@@ -1,6 +1,6 @@
-#  Virtual Coin
+# vCoin (Virtual Coin)
 
-Virtual Coin is lightweight application for keeping track of cryptocurrency prices.
+**vCoin** is lightweight application for keeping track of cryptocurrency prices.
 
 Main features:
 - more then 1000 cryptocurrencies
@@ -14,7 +14,7 @@ Main features:
 
 You can downlad app from <a href="https://apps.apple.com/us/app/vcoin/id1471998515">AppStore</a>.
 
-Virtual coin uses [https://coincap.io](https://coincap.io) API. All endpoints are described here: [https://docs.coincap.io/](https://docs.coincap.io/).
+**vCoin** uses [https://coincap.io](https://coincap.io) API. All endpoints are described here: [https://docs.coincap.io/](https://docs.coincap.io/).
 
 ## Screenshots for App Store
 

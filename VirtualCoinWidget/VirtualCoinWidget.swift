@@ -15,7 +15,7 @@ struct VirtualCoinWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             VirtualCoinWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Virtual coin")
+        .configurationDisplayName("vCoin")
         .description("Shows coin prices")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
